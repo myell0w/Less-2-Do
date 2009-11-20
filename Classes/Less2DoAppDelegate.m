@@ -7,12 +7,17 @@
 //
 
 #import "Less2DoAppDelegate.h"
-
+#import "HomeNavigationController.h"
 
 @implementation Less2DoAppDelegate
 
 @synthesize window;
 @synthesize rootController;
+@synthesize homeController;
+@synthesize foldersController;
+@synthesize contextsController;
+@synthesize tagsController;
+@synthesize settingsController;
 
 
 #pragma mark -
@@ -135,7 +140,14 @@
     [persistentStoreCoordinator release];
     
 	[rootController release];
+	[homeController release];
+	[foldersController release];
+	[contextsController release];
+	[tagsController release];
+	[settingsController release];
+	
 	[window release];
+	
 	[super dealloc];
 }
 

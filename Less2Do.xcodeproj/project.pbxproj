@@ -15,6 +15,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28C3AD8A0F43EF2300507BA6 /* Less2Do.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		3903386910B6096F007985A9 /* HomeFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */; };
+		3903387610B60BF0007985A9 /* TasksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903387510B60BF0007985A9 /* TasksListViewController.m */; };
 		392325B210B2EE7D00075370 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325A810B2EE7D00075370 /* Default.png */; };
 		392325B310B2EE7D00075370 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325A910B2EE7D00075370 /* Icon.png */; };
 		392325B410B2EE7D00075370 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AA10B2EE7D00075370 /* Icon-Small.png */; };
@@ -23,6 +25,11 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
+		39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6584810B615FF00825C1D /* HomeNavigationController.m */; };
+		39B6586310B618F600825C1D /* HomeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586210B618F600825C1D /* HomeTableView.xib */; };
+		39B6587010B61E1E00825C1D /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586F10B61E1E00825C1D /* sync.png */; };
+		39B6587910B61F8A00825C1D /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6587810B61F8A00825C1D /* title.png */; };
+		39B658B910B623AE00825C1D /* all_tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B658B810B623AE00825C1D /* all_tasks.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,10 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Less2Do_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Less2Do_Prefix.pch; sourceTree = "<group>"; };
+		3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFirstLevelViewController.h; sourceTree = "<group>"; };
+		3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFirstLevelViewController.m; sourceTree = "<group>"; };
+		3903387410B60BF0007985A9 /* TasksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksListViewController.h; sourceTree = "<group>"; };
+		3903387510B60BF0007985A9 /* TasksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksListViewController.m; sourceTree = "<group>"; };
 		392325A810B2EE7D00075370 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		392325A910B2EE7D00075370 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		392325AA10B2EE7D00075370 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
@@ -45,6 +56,12 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
+		39B6584710B615FF00825C1D /* HomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavigationController.h; sourceTree = "<group>"; };
+		39B6584810B615FF00825C1D /* HomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavigationController.m; sourceTree = "<group>"; };
+		39B6586210B618F600825C1D /* HomeTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableView.xib; sourceTree = "<group>"; };
+		39B6586F10B61E1E00825C1D /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync.png; path = navbar/sync.png; sourceTree = "<group>"; };
+		39B6587810B61F8A00825C1D /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		39B658B810B623AE00825C1D /* all_tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all_tasks.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,8 +83,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				39B6584A10B6168600825C1D /* home */,
 				1D3623240D0F684500981E51 /* Less2DoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */,
+				3903387410B60BF0007985A9 /* TasksListViewController.h */,
+				3903387510B60BF0007985A9 /* TasksListViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -104,6 +124,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39B6586110B618D700825C1D /* home */,
 				392325A810B2EE7D00075370 /* Default.png */,
 				392325A910B2EE7D00075370 /* Icon.png */,
 				392325AA10B2EE7D00075370 /* Icon-Small.png */,
@@ -129,6 +150,9 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				39B658B810B623AE00825C1D /* all_tasks.png */,
+				39B6587810B61F8A00825C1D /* title.png */,
+				39B6587110B61E2200825C1D /* navbar */,
 				392325AC10B2EE7D00075370 /* tabbar */,
 			);
 			path = img;
@@ -144,6 +168,33 @@
 				392325B110B2EE7D00075370 /* tags.png */,
 			);
 			path = tabbar;
+			sourceTree = "<group>";
+		};
+		39B6584A10B6168600825C1D /* home */ = {
+			isa = PBXGroup;
+			children = (
+				3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */,
+				3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */,
+				39B6584710B615FF00825C1D /* HomeNavigationController.h */,
+				39B6584810B615FF00825C1D /* HomeNavigationController.m */,
+			);
+			name = home;
+			sourceTree = "<group>";
+		};
+		39B6586110B618D700825C1D /* home */ = {
+			isa = PBXGroup;
+			children = (
+				39B6586210B618F600825C1D /* HomeTableView.xib */,
+			);
+			name = home;
+			sourceTree = "<group>";
+		};
+		39B6587110B61E2200825C1D /* navbar */ = {
+			isa = PBXGroup;
+			children = (
+				39B6586F10B61E1E00825C1D /* sync.png */,
+			);
+			name = navbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +248,10 @@
 				392325B710B2EE7D00075370 /* home.png in Resources */,
 				392325B810B2EE7D00075370 /* settings.png in Resources */,
 				392325B910B2EE7D00075370 /* tags.png in Resources */,
+				39B6586310B618F600825C1D /* HomeTableView.xib in Resources */,
+				39B6587010B61E1E00825C1D /* sync.png in Resources */,
+				39B6587910B61F8A00825C1D /* title.png in Resources */,
+				39B658B910B623AE00825C1D /* all_tasks.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +265,9 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* Less2DoAppDelegate.m in Sources */,
 				28C3AD8A0F43EF2300507BA6 /* Less2Do.xcdatamodel in Sources */,
+				3903386910B6096F007985A9 /* HomeFirstLevelViewController.m in Sources */,
+				3903387610B60BF0007985A9 /* TasksListViewController.m in Sources */,
+				39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
