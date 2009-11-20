@@ -1,7 +1,7 @@
 TLess2Do
 v7
 r0
-t280427497.159028
+t280429652.108688
 cCheck dependencies
 cProcessInfoPlistFile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist Less2Do-Info.plist
 cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/MainWindow.xib
@@ -455,7 +455,7 @@ s902
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies280427497#280427497#0(0"0(0#1#0"4300885448#0"0#
+lSLF07#2@18"Check dependencies280429652#280429652#0(196"[WARN]warning: skipping file '/Users/Matthias/Documents/Projects/Less2Do/toodledo-objc/src/ToodledoAPI.xcodeproj' (unexpected file type 'wrapper.pb-project' in Frameworks & Libraries build phase)1(22@189"warning: skipping file '/Users/Matthias/Documents/Projects/Less2Do/toodledo-objc/src/ToodledoAPI.xcodeproj' (unexpected file type 'wrapper.pb-project' in Frameworks & Libraries build phase)280429652#18446744073709551615#0#0(1@0"0(0#1#0"7947009927035180032#0"0#
 
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280411253.290659

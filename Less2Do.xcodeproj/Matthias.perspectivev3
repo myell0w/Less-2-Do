@@ -296,13 +296,15 @@
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>39B6586110B618D700825C1D</string>
 								<string>39B6593B10B6B83B00825C1D</string>
+								<string>392325AB10B2EE7D00075370</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
+								<string>1C37FBAC04509CD000000102</string>
+								<string>39B659B610B7045400825C1D</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>12</integer>
-									<integer>8</integer>
-									<integer>1</integer>
+									<integer>40</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -324,7 +326,7 @@
 							<real>301</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>36 50 1637 978 0 0 1680 1028 </string>
+						<string>43 50 1637 978 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -352,7 +354,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>39B6597C10B6BC7500825C1D</string>
+										<string>39B659B710B7045400825C1D</string>
 										<key>history</key>
 										<array>
 											<string>392325C910B2F0F900075370</string>
@@ -389,7 +391,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1314, 677}}</string>
 								<key>RubberWindowFrame</key>
-								<string>36 50 1637 978 0 0 1680 1028 </string>
+								<string>43 50 1637 978 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -412,7 +414,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1343, 125}}</string>
+										<string>{{10, 27}, {1314, 228}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -468,7 +470,7 @@
 										<key>Frame</key>
 										<string>{{10, 27}, {1314, 228}}</string>
 										<key>RubberWindowFrame</key>
-										<string>36 50 1637 978 0 0 1680 1028 </string>
+										<string>43 50 1637 978 0 0 1680 1028 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -673,7 +675,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>280411253.84628397</real>
+	<real>280429652.40757102</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -695,7 +697,7 @@
 		<string>/Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>36 50 1637 978 0 0 1680 1028 </string>
+	<string>43 50 1637 978 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

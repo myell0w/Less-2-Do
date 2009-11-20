@@ -37,7 +37,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					1104,
+					1075,
 					20,
 					48,
 					43,
@@ -52,6 +52,28 @@
 					PBXFileDataSource_Errors_ColumnID,
 					PBXFileDataSource_Warnings_ColumnID,
 					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1035,
+					60,
+					20,
+					48.16259765625,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
 			PBXPerProjectTemplateStateSaveDate = 280366505;
@@ -186,6 +208,7 @@
 			39B6597A10B6BC7500825C1D /* PBXTextBookmark */ = 39B6597A10B6BC7500825C1D /* PBXTextBookmark */;
 			39B6597B10B6BC7500825C1D /* PBXTextBookmark */ = 39B6597B10B6BC7500825C1D /* PBXTextBookmark */;
 			39B6597C10B6BC7500825C1D /* PBXTextBookmark */ = 39B6597C10B6BC7500825C1D /* PBXTextBookmark */;
+			39B659B710B7045400825C1D /* PBXTextBookmark */ = 39B659B710B7045400825C1D /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3995BCB810B2EDB6009EF4DD /* Source Control */;
 		userBuildSettings = {
@@ -1168,8 +1191,8 @@
 	39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1253, 2041}}";
-			sepNavSelRange = "{1690, 0}";
-			sepNavVisRange = "{197, 1593}";
+			sepNavSelRange = "{306, 0}";
+			sepNavVisRange = "{102, 1641}";
 			sepNavWindowFrame = "{{173, 329}, {885, 589}}";
 		};
 	};
@@ -1532,5 +1555,15 @@
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 197;
+	};
+	39B659B710B7045400825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */;
+		name = "ContextsFirstLevelViewController.m: 14";
+		rLen = 0;
+		rLoc = 306;
+		rType = 0;
+		vrLen = 1641;
+		vrLoc = 102;
 	};
 }

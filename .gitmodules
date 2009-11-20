@@ -1,0 +1,3 @@
+[submodule "toodledo-objc"]
+	path = toodledo-objc
+	url = git://github.com/alexleutgoeb/toodledo-objc.git

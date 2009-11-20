@@ -33,7 +33,25 @@
 		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
+		39B659A810B7044200825C1D /* ToodledoAPI.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		39B659C210B7049100825C1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAF874B31096478600C4C137 /* libToodledoAPI.a */;
+			remoteInfo = libToodledoAPI;
+		};
+		39B659C410B7049100825C1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAA9E6ED10A88C7C001925AB /* UnitTests.octest */;
+			remoteInfo = UnitTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,6 +88,7 @@
 		39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsFirstLevelViewController.h; sourceTree = "<group>"; };
 		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; };
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
+		39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +101,7 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
+				39B659A810B7044200825C1D /* ToodledoAPI.xcodeproj in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +168,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -258,6 +279,15 @@
 			name = ci;
 			sourceTree = "<group>";
 		};
+		39B659BE10B7049100825C1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				39B659C310B7049100825C1D /* libToodledoAPI.a */,
+				39B659C510B7049100825C1D /* UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,12 +318,35 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 39B659BE10B7049100825C1D /* Products */;
+					ProjectRef = 39B659A510B7044200825C1D /* ToodledoAPI.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Less2Do */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		39B659C310B7049100825C1D /* libToodledoAPI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToodledoAPI.a;
+			remoteRef = 39B659C210B7049100825C1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		39B659C510B7049100825C1D /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = 39B659C410B7049100825C1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
