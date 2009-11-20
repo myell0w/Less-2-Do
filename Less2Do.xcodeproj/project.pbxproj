@@ -30,6 +30,9 @@
 		39B6587010B61E1E00825C1D /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586F10B61E1E00825C1D /* sync.png */; };
 		39B6587910B61F8A00825C1D /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6587810B61F8A00825C1D /* title.png */; };
 		39B658B910B623AE00825C1D /* all_tasks.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B658B810B623AE00825C1D /* all_tasks.png */; };
+		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
+		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
+		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,9 +51,9 @@
 		3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFirstLevelViewController.m; sourceTree = "<group>"; };
 		3903387410B60BF0007985A9 /* TasksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksListViewController.h; sourceTree = "<group>"; };
 		3903387510B60BF0007985A9 /* TasksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksListViewController.m; sourceTree = "<group>"; };
-		392325A810B2EE7D00075370 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		392325A910B2EE7D00075370 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		392325AA10B2EE7D00075370 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		392325A810B2EE7D00075370 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		392325A910B2EE7D00075370 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		392325AA10B2EE7D00075370 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../Icon-Small.png"; sourceTree = "<group>"; };
 		392325AD10B2EE7D00075370 /* contexts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contexts.png; sourceTree = "<group>"; };
 		392325AE10B2EE7D00075370 /* folders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folders.png; sourceTree = "<group>"; };
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
@@ -62,6 +65,11 @@
 		39B6586F10B61E1E00825C1D /* sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sync.png; path = navbar/sync.png; sourceTree = "<group>"; };
 		39B6587810B61F8A00825C1D /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		39B658B810B623AE00825C1D /* all_tasks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = all_tasks.png; sourceTree = "<group>"; };
+		39B6590210B6B36F00825C1D /* ContextsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsNavigationController.h; sourceTree = "<group>"; };
+		39B6590310B6B36F00825C1D /* ContextsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsNavigationController.m; sourceTree = "<group>"; };
+		39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsFirstLevelViewController.h; sourceTree = "<group>"; };
+		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; };
+		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +92,9 @@
 			isa = PBXGroup;
 			children = (
 				39B6584A10B6168600825C1D /* home */,
+				39B6590010B6B32600825C1D /* folder */,
+				39B658FF10B6B31200825C1D /* contexts */,
+				39B6590110B6B32D00825C1D /* tags */,
 				1D3623240D0F684500981E51 /* Less2DoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */,
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
@@ -125,9 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				39B6586110B618D700825C1D /* home */,
-				392325A810B2EE7D00075370 /* Default.png */,
-				392325A910B2EE7D00075370 /* Icon.png */,
-				392325AA10B2EE7D00075370 /* Icon-Small.png */,
+				39B6593B10B6B83B00825C1D /* contexts */,
 				392325AB10B2EE7D00075370 /* img */,
 				28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -150,8 +159,8 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				39B658B810B623AE00825C1D /* all_tasks.png */,
-				39B6587810B61F8A00825C1D /* title.png */,
+				39B6593D10B6B86200825C1D /* ci */,
+				39B6593C10B6B85400825C1D /* tablecells */,
 				39B6587110B61E2200825C1D /* navbar */,
 				392325AC10B2EE7D00075370 /* tabbar */,
 			);
@@ -173,10 +182,10 @@
 		39B6584A10B6168600825C1D /* home */ = {
 			isa = PBXGroup;
 			children = (
-				3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */,
-				3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */,
 				39B6584710B615FF00825C1D /* HomeNavigationController.h */,
 				39B6584810B615FF00825C1D /* HomeNavigationController.m */,
+				3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */,
+				3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -195,6 +204,58 @@
 				39B6586F10B61E1E00825C1D /* sync.png */,
 			);
 			name = navbar;
+			sourceTree = "<group>";
+		};
+		39B658FF10B6B31200825C1D /* contexts */ = {
+			isa = PBXGroup;
+			children = (
+				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
+				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
+				39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */,
+				39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */,
+			);
+			name = contexts;
+			sourceTree = "<group>";
+		};
+		39B6590010B6B32600825C1D /* folder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = folder;
+			sourceTree = "<group>";
+		};
+		39B6590110B6B32D00825C1D /* tags */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = tags;
+			sourceTree = "<group>";
+		};
+		39B6593B10B6B83B00825C1D /* contexts */ = {
+			isa = PBXGroup;
+			children = (
+				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
+			);
+			name = contexts;
+			sourceTree = "<group>";
+		};
+		39B6593C10B6B85400825C1D /* tablecells */ = {
+			isa = PBXGroup;
+			children = (
+				39B658B810B623AE00825C1D /* all_tasks.png */,
+			);
+			name = tablecells;
+			sourceTree = "<group>";
+		};
+		39B6593D10B6B86200825C1D /* ci */ = {
+			isa = PBXGroup;
+			children = (
+				39B6587810B61F8A00825C1D /* title.png */,
+				392325A810B2EE7D00075370 /* Default.png */,
+				392325A910B2EE7D00075370 /* Icon.png */,
+				392325AA10B2EE7D00075370 /* Icon-Small.png */,
+			);
+			name = ci;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +313,7 @@
 				39B6587010B61E1E00825C1D /* sync.png in Resources */,
 				39B6587910B61F8A00825C1D /* title.png in Resources */,
 				39B658B910B623AE00825C1D /* all_tasks.png in Resources */,
+				39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +330,8 @@
 				3903386910B6096F007985A9 /* HomeFirstLevelViewController.m in Sources */,
 				3903387610B60BF0007985A9 /* TasksListViewController.m in Sources */,
 				39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */,
+				39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */,
+				39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

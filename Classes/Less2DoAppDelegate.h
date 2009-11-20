@@ -6,7 +6,13 @@
 //  Copyright BIAC 2009. All rights reserved.
 //
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark The Application Delegate 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 @class HomeNavigationController;
+@class ContextsNavigationController;
 
 @interface Less2DoAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -14,20 +20,26 @@
     NSManagedObjectContext *managedObjectContext;	    
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+	// the main window
     UIWindow *window;
-	// Controller for the Black Tab Bar
+	// Controller for the Black Tab Bar = root Controller
 	UITabBarController *rootController;
+	
 	// Navigation Controller for Section "Home"
 	HomeNavigationController *homeController;
 	// Navigation Controller for Section "Folders"
 	UINavigationController *foldersController;
 	// Navigation Controller for Section "Contexts"
-	UINavigationController *contextsController;
+	ContextsNavigationController *contextsController;
 	// Navigation Controller for Section "Tags"
 	UINavigationController *tagsController;
 	// Navigation Controller for Section "Settings"
 	UINavigationController *settingsController;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Properties
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
@@ -37,9 +49,14 @@
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 @property (nonatomic, retain) IBOutlet HomeNavigationController *homeController;
 @property (nonatomic, retain) IBOutlet UINavigationController *foldersController;
-@property (nonatomic, retain) IBOutlet UINavigationController *contextsController;
+@property (nonatomic, retain) IBOutlet ContextsNavigationController *contextsController;
 @property (nonatomic, retain) IBOutlet UINavigationController *tagsController;
 @property (nonatomic, retain) IBOutlet UINavigationController *settingsController;
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString *)applicationDocumentsDirectory;
 

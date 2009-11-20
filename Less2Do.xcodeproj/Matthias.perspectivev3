@@ -277,7 +277,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>272</real>
+								<real>301</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -291,22 +291,23 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>39B6584A10B6168600825C1D</string>
+								<string>39B658FF10B6B31200825C1D</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>39B6586110B618D700825C1D</string>
-								<string>392325AB10B2EE7D00075370</string>
+								<string>39B6593B10B6B83B00825C1D</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
-									<integer>2</integer>
+									<integer>12</integer>
+									<integer>8</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {272, 919}}</string>
+							<string>{{0, 0}, {301, 919}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -316,11 +317,11 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {289, 937}}</string>
+						<string>{{0, 0}, {318, 937}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>272</real>
+							<real>301</real>
 						</array>
 						<key>RubberWindowFrame</key>
 						<string>36 50 1637 978 0 0 1680 1028 </string>
@@ -328,7 +329,7 @@
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>289pt</string>
+					<string>318pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -339,7 +340,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>3995BCB210B2EDB6009EF4DD</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>HomeFirstLevelViewController.m</string>
+								<string>ContextsFirstLevelViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -347,27 +348,32 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>3995BCB310B2EDB6009EF4DD</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>HomeFirstLevelViewController.m</string>
+										<string>ContextsFirstLevelViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>39B658DB10B627BD00825C1D</string>
+										<string>39B6597C10B6BC7500825C1D</string>
 										<key>history</key>
 										<array>
 											<string>392325C910B2F0F900075370</string>
 											<string>392325CA10B2F0F900075370</string>
 											<string>392325CB10B2F0F900075370</string>
 											<string>39B6588510B620FE00825C1D</string>
-											<string>39B6588610B620FE00825C1D</string>
-											<string>39B658AD10B622BF00825C1D</string>
-											<string>39B658B010B622BF00825C1D</string>
-											<string>39B658B410B6238600825C1D</string>
-											<string>39B658B510B6238600825C1D</string>
-											<string>39B658BF10B623E000825C1D</string>
-											<string>39B658C010B623E000825C1D</string>
-											<string>39B658C110B623E000825C1D</string>
-											<string>39B658D910B627BD00825C1D</string>
-											<string>39B658DA10B627BD00825C1D</string>
+											<string>39B658F810B6B21C00825C1D</string>
+											<string>39B658F910B6B21C00825C1D</string>
+											<string>39B6594210B6B98400825C1D</string>
+											<string>39B6594310B6B98400825C1D</string>
+											<string>39B6594410B6B98400825C1D</string>
+											<string>39B6595D10B6BAA500825C1D</string>
+											<string>39B6595E10B6BAA500825C1D</string>
+											<string>39B6595F10B6BAA500825C1D</string>
+											<string>39B6596710B6BB0800825C1D</string>
+											<string>39B6596810B6BB0800825C1D</string>
+											<string>39B6596A10B6BB0800825C1D</string>
+											<string>39B6597810B6BC7500825C1D</string>
+											<string>39B6597910B6BC7500825C1D</string>
+											<string>39B6597A10B6BC7500825C1D</string>
+											<string>39B6597B10B6BC7500825C1D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -381,18 +387,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1343, 780}}</string>
+								<string>{{0, 0}, {1314, 677}}</string>
 								<key>RubberWindowFrame</key>
 								<string>36 50 1637 978 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>780pt</string>
+							<string>677pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>152pt</string>
+							<string>255pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -460,7 +466,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1343, 125}}</string>
+										<string>{{10, 27}, {1314, 228}}</string>
 										<key>RubberWindowFrame</key>
 										<string>36 50 1637 978 0 0 1680 1028 </string>
 									</dict>
@@ -471,7 +477,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1343pt</string>
+					<string>1314pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -667,7 +673,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>280373181.976331</real>
+	<real>280411253.84628397</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -684,6 +690,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>39B658FD10B6B21C00825C1D</string>
+		<string>39B658F510B6B11300825C1D</string>
 		<string>/Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

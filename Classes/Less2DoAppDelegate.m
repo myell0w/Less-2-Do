@@ -20,12 +20,38 @@
 @synthesize settingsController;
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Memory management
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)dealloc {
+	
+    [managedObjectContext release];
+    [managedObjectModel release];
+    [persistentStoreCoordinator release];
+    
+	[rootController release];
+	[homeController release];
+	[foldersController release];
+	[contextsController release];
+	[tagsController release];
+	[settingsController release];
+	
+	[window release];
+	
+	[super dealloc];
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application lifecycle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
+    // add rootControllers-View as subview of main-window  
 	[window addSubview:rootController.view];
 	[window makeKeyAndVisible];
 }
@@ -49,9 +75,11 @@
     }
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Core Data stack
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /**
  Returns the managed object context for the application.
@@ -118,37 +146,17 @@
     return persistentStoreCoordinator;
 }
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Application's Documents directory
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 /**
  Returns the path to the application's Documents directory.
  */
 - (NSString *)applicationDocumentsDirectory {
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-}
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-	
-    [managedObjectContext release];
-    [managedObjectModel release];
-    [persistentStoreCoordinator release];
-    
-	[rootController release];
-	[homeController release];
-	[foldersController release];
-	[contextsController release];
-	[tagsController release];
-	[settingsController release];
-	
-	[window release];
-	
-	[super dealloc];
 }
 
 
