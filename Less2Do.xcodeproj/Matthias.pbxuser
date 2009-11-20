@@ -62,7 +62,7 @@
 					1035,
 					60,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 				);
@@ -209,6 +209,24 @@
 			39B6597B10B6BC7500825C1D /* PBXTextBookmark */ = 39B6597B10B6BC7500825C1D /* PBXTextBookmark */;
 			39B6597C10B6BC7500825C1D /* PBXTextBookmark */ = 39B6597C10B6BC7500825C1D /* PBXTextBookmark */;
 			39B659B710B7045400825C1D /* PBXTextBookmark */ = 39B659B710B7045400825C1D /* PBXTextBookmark */;
+			39B659DC10B706E500825C1D /* PBXTextBookmark */ = 39B659DC10B706E500825C1D /* PBXTextBookmark */;
+			39B659DD10B706E500825C1D /* PBXTextBookmark */ = 39B659DD10B706E500825C1D /* PBXTextBookmark */;
+			39B659DE10B706E500825C1D /* PBXTextBookmark */ = 39B659DE10B706E500825C1D /* PBXTextBookmark */;
+			39B659DF10B706E500825C1D /* XCBuildMessageTextBookmark */ = 39B659DF10B706E500825C1D /* XCBuildMessageTextBookmark */;
+			39B659E010B706E500825C1D /* PBXTextBookmark */ = 39B659E010B706E500825C1D /* PBXTextBookmark */;
+			39B659ED10B7072600825C1D /* XCBuildMessageTextBookmark */ = 39B659ED10B7072600825C1D /* XCBuildMessageTextBookmark */;
+			39B659EE10B7072600825C1D /* PBXTextBookmark */ = 39B659EE10B7072600825C1D /* PBXTextBookmark */;
+			39B659F510B707DF00825C1D /* PBXTextBookmark */ = 39B659F510B707DF00825C1D /* PBXTextBookmark */;
+			39B65A0D10B7083B00825C1D /* PBXTextBookmark */ = 39B65A0D10B7083B00825C1D /* PBXTextBookmark */;
+			39B65A2210B7089600825C1D /* PBXTextBookmark */ = 39B65A2210B7089600825C1D /* PBXTextBookmark */;
+			39B65A2710B709B000825C1D /* PBXTextBookmark */ = 39B65A2710B709B000825C1D /* PBXTextBookmark */;
+			39B65A6310B70C9300825C1D /* XCBuildMessageTextBookmark */ = 39B65A6310B70C9300825C1D /* XCBuildMessageTextBookmark */;
+			39B65A6510B70C9300825C1D /* PBXTextBookmark */ = 39B65A6510B70C9300825C1D /* PBXTextBookmark */;
+			39B65A6610B70C9300825C1D /* PBXTextBookmark */ = 39B65A6610B70C9300825C1D /* PBXTextBookmark */;
+			39B65A6710B70C9300825C1D /* PBXTextBookmark */ = 39B65A6710B70C9300825C1D /* PBXTextBookmark */;
+			39B65A6810B70C9300825C1D /* XCBuildMessageTextBookmark */ = 39B65A6810B70C9300825C1D /* XCBuildMessageTextBookmark */;
+			39B65A6910B70C9300825C1D /* PBXTextBookmark */ = 39B65A6910B70C9300825C1D /* PBXTextBookmark */;
+			39B65A6C10B70CBA00825C1D /* PBXTextBookmark */ = 39B65A6C10B70CBA00825C1D /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3995BCB810B2EDB6009EF4DD /* Source Control */;
 		userBuildSettings = {
@@ -216,17 +234,17 @@
 	};
 	3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 645}}";
-			sepNavSelRange = "{1148, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1253, 645}}";
+			sepNavSelRange = "{171, 0}";
 			sepNavVisRange = "{0, 1573}";
 			sepNavWindowFrame = "{{150, 350}, {885, 589}}";
 		};
 	};
 	3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 2119}}";
-			sepNavSelRange = "{748, 265}";
-			sepNavVisRange = "{98, 1766}";
+			sepNavIntBoundsRect = "{{0, 0}, {1253, 2119}}";
+			sepNavSelRange = "{224, 0}";
+			sepNavVisRange = "{53, 1704}";
 			sepNavWindowFrame = "{{58, 434}, {885, 589}}";
 		};
 	};
@@ -431,8 +449,8 @@
 	};
 	39B6584710B615FF00825C1D /* HomeNavigationController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 645}}";
-			sepNavSelRange = "{220, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1253, 645}}";
+			sepNavSelRange = "{168, 0}";
 			sepNavVisRange = "{0, 242}";
 		};
 	};
@@ -1169,21 +1187,22 @@
 	};
 	39B6590210B6B36F00825C1D /* ContextsNavigationController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 645}}";
+			sepNavIntBoundsRect = "{{0, 0}, {826, 461}}";
 			sepNavSelRange = "{228, 0}";
 			sepNavVisRange = "{0, 250}";
+			sepNavWindowFrame = "{{219, 287}, {885, 589}}";
 		};
 	};
 	39B6590310B6B36F00825C1D /* ContextsNavigationController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 832}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1253, 767}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 1377}";
 		};
 	};
 	39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1282, 645}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1253, 645}}";
 			sepNavSelRange = "{1161, 0}";
 			sepNavVisRange = "{0, 1586}";
 		};
@@ -1192,7 +1211,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1253, 2041}}";
 			sepNavSelRange = "{306, 0}";
-			sepNavVisRange = "{102, 1641}";
+			sepNavVisRange = "{102, 1670}";
 			sepNavWindowFrame = "{{173, 329}, {885, 589}}";
 		};
 	};
@@ -1565,5 +1584,187 @@
 		rType = 0;
 		vrLen = 1641;
 		vrLoc = 102;
+	};
+	39B659DC10B706E500825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */;
+		name = "ContextsFirstLevelViewController.m: 14";
+		rLen = 0;
+		rLoc = 306;
+		rType = 0;
+		vrLen = 1670;
+		vrLoc = 102;
+	};
+	39B659DD10B706E500825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 39B6584710B615FF00825C1D /* HomeNavigationController.h */;
+		name = "HomeNavigationController.h: 10";
+		rLen = 0;
+		rLoc = 168;
+		rType = 0;
+		vrLen = 242;
+		vrLoc = 0;
+	};
+	39B659DE10B706E500825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */;
+		name = "HomeFirstLevelViewController.h: 29";
+		rLen = 0;
+		rLoc = 1148;
+		rType = 0;
+		vrLen = 1573;
+		vrLoc = 0;
+	};
+	39B659DF10B706E500825C1D /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "GtdTask.h: No such file or directory";
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 9;
+		rType = 1;
+	};
+	39B659E010B706E500825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 11";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1679;
+		vrLoc = 98;
+	};
+	39B659ED10B7072600825C1D /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "ToodledoAPI/GtdTask.h: No such file or directory";
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 9;
+		rType = 1;
+	};
+	39B659EE10B7072600825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 12";
+		rLen = 0;
+		rLoc = 225;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 98;
+	};
+	39B659F510B707DF00825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 11";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1693;
+		vrLoc = 98;
+	};
+	39B65A0D10B7083B00825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 11";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 98;
+	};
+	39B65A2210B7089600825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 11";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1724;
+		vrLoc = 53;
+	};
+	39B65A2710B709B000825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 11";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1724;
+		vrLoc = 53;
+	};
+	39B65A6310B70C9300825C1D /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Cocoa/Cocoa.h: No such file or directory";
+		fRef = 39B65A6410B70C9300825C1D /* GtdTask.h */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 8;
+		rType = 1;
+	};
+	39B65A6410B70C9300825C1D /* GtdTask.h */ = {
+		isa = PBXFileReference;
+		name = GtdTask.h;
+		path = "toodledo-objc/src/GtdTask.h";
+		sourceTree = "<group>";
+	};
+	39B65A6510B70C9300825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */;
+		name = "ContextsNavigationController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1377;
+		vrLoc = 0;
+	};
+	39B65A6610B70C9300825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */;
+		name = "ContextsFirstLevelViewController.h: 30";
+		rLen = 0;
+		rLoc = 1161;
+		rType = 0;
+		vrLen = 1586;
+		vrLoc = 0;
+	};
+	39B65A6710B70C9300825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */;
+		name = "HomeFirstLevelViewController.h: 9";
+		rLen = 0;
+		rLoc = 171;
+		rType = 0;
+		vrLen = 1573;
+		vrLoc = 0;
+	};
+	39B65A6810B70C9300825C1D /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Statically allocated instance of Objective-C class 'GtdFolder'";
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 25;
+		rType = 1;
+	};
+	39B65A6910B70C9300825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 33";
+		rLen = 0;
+		rLoc = 907;
+		rType = 0;
+		vrLen = 1715;
+		vrLoc = 53;
+	};
+	39B65A6C10B70CBA00825C1D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */;
+		name = "HomeFirstLevelViewController.m: 10";
+		rLen = 0;
+		rLoc = 224;
+		rType = 0;
+		vrLen = 1704;
+		vrLoc = 53;
 	};
 }
