@@ -25,12 +25,13 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
-		39A1F30D10B9EDD100671B42 /* QuickAddView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F30C10B9EDD100671B42 /* QuickAddView.m */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
 		39A1F31D10B9F68A00671B42 /* Task_not_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* Task_not_completed.png */; };
 		39A1F31E10B9F68A00671B42 /* Task_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* Task_completed.png */; };
 		39A1F32510B9F89300671B42 /* Star off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* Star off.png */; };
 		39A1F32610B9F89300671B42 /* Star on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32410B9F89300671B42 /* Star on.png */; };
+		39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F33510BA006300671B42 /* QuickAddViewController.m */; };
+		39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F33610BA006300671B42 /* QuickAddViewController.xib */; };
 		39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6584810B615FF00825C1D /* HomeNavigationController.m */; };
 		39B6586310B618F600825C1D /* HomeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586210B618F600825C1D /* HomeTableView.xib */; };
 		39B6587010B61E1E00825C1D /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586F10B61E1E00825C1D /* sync.png */; };
@@ -90,13 +91,14 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
-		39A1F30B10B9EDD100671B42 /* QuickAddView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickAddView.h; sourceTree = "<group>"; };
-		39A1F30C10B9EDD100671B42 /* QuickAddView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickAddView.m; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* Task_not_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_not_completed.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* Task_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_completed.png; sourceTree = "<group>"; };
 		39A1F32310B9F89300671B42 /* Star off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star off.png"; sourceTree = "<group>"; };
 		39A1F32410B9F89300671B42 /* Star on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star on.png"; sourceTree = "<group>"; };
+		39A1F33410BA006300671B42 /* QuickAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickAddViewController.h; sourceTree = "<group>"; };
+		39A1F33510BA006300671B42 /* QuickAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickAddViewController.m; sourceTree = "<group>"; };
+		39A1F33610BA006300671B42 /* QuickAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickAddViewController.xib; path = Classes/QuickAddViewController.xib; sourceTree = "<group>"; };
 		39B6584710B615FF00825C1D /* HomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavigationController.h; sourceTree = "<group>"; };
 		39B6584810B615FF00825C1D /* HomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavigationController.m; sourceTree = "<group>"; };
 		39B6586210B618F600825C1D /* HomeTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableView.xib; sourceTree = "<group>"; };
@@ -176,13 +178,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				39A1F33010B9FED600671B42 /* add */,
+				39A1F32F10B9FEC800671B42 /* list */,
 				39B6586110B618D700825C1D /* home */,
 				39B6593B10B6B83B00825C1D /* contexts */,
 				392325AB10B2EE7D00075370 /* img */,
 				28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Less2Do-Info.plist */,
-				39A1F31810B9F11900671B42 /* TaskInList.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -229,8 +232,24 @@
 		39A1F30A10B9ECDF00671B42 /* add */ = {
 			isa = PBXGroup;
 			children = (
-				39A1F30B10B9EDD100671B42 /* QuickAddView.h */,
-				39A1F30C10B9EDD100671B42 /* QuickAddView.m */,
+				39A1F33410BA006300671B42 /* QuickAddViewController.h */,
+				39A1F33510BA006300671B42 /* QuickAddViewController.m */,
+			);
+			name = add;
+			sourceTree = "<group>";
+		};
+		39A1F32F10B9FEC800671B42 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F31810B9F11900671B42 /* TaskInList.xib */,
+			);
+			name = list;
+			sourceTree = "<group>";
+		};
+		39A1F33010B9FED600671B42 /* add */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 			);
 			name = add;
 			sourceTree = "<group>";
@@ -408,6 +427,7 @@
 				39A1F31E10B9F68A00671B42 /* Task_completed.png in Resources */,
 				39A1F32510B9F89300671B42 /* Star off.png in Resources */,
 				39A1F32610B9F89300671B42 /* Star on.png in Resources */,
+				39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +446,7 @@
 				39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */,
 				39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */,
 				39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */,
-				39A1F30D10B9EDD100671B42 /* QuickAddView.m in Sources */,
+				39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

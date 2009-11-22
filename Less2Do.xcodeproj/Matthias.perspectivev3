@@ -290,13 +290,12 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>39A1F30A10B9ECDF00671B42</string>
 								<string>39B6584A10B6168600825C1D</string>
 								<string>39B658FF10B6B31200825C1D</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>39B6586110B618D700825C1D</string>
-								<string>39B6593B10B6B83B00825C1D</string>
-								<string>392325AB10B2EE7D00075370</string>
+								<string>39A1F33010B9FED600671B42</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>39B659F810B7080D00825C1D</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -304,7 +303,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>6</integer>
+									<integer>3</integer>
 									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -339,12 +338,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>3995BCB210B2EDB6009EF4DD</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>main.m</string>
+								<string>QuickAddViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -352,34 +353,39 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>3995BCB310B2EDB6009EF4DD</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>main.m</string>
+										<string>QuickAddViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>39A1F30210B9ECB200671B42</string>
+										<string>39A1F36310BA02F300671B42</string>
 										<key>history</key>
 										<array>
 											<string>392325C910B2F0F900075370</string>
 											<string>392325CA10B2F0F900075370</string>
 											<string>392325CB10B2F0F900075370</string>
 											<string>39B6588510B620FE00825C1D</string>
-											<string>39B658F810B6B21C00825C1D</string>
-											<string>39B658F910B6B21C00825C1D</string>
 											<string>39B6594210B6B98400825C1D</string>
 											<string>39B6594310B6B98400825C1D</string>
 											<string>39B6594410B6B98400825C1D</string>
 											<string>39B6596810B6BB0800825C1D</string>
-											<string>39B6596A10B6BB0800825C1D</string>
 											<string>39B6597810B6BC7500825C1D</string>
-											<string>39B6597910B6BC7500825C1D</string>
 											<string>39B659DC10B706E500825C1D</string>
-											<string>39B659DD10B706E500825C1D</string>
 											<string>39B65A6510B70C9300825C1D</string>
 											<string>39B65A6610B70C9300825C1D</string>
-											<string>39B65AB110B7160800825C1D</string>
-											<string>39A1F2F710B9EC8A00671B42</string>
 											<string>39A1F30010B9ECB200671B42</string>
-											<string>39A1F30110B9ECB200671B42</string>
+											<string>39A1F33A10BA007500671B42</string>
+											<string>39A1F33B10BA007500671B42</string>
+											<string>39A1F33C10BA007500671B42</string>
+											<string>39A1F33D10BA007500671B42</string>
+											<string>39A1F33E10BA007500671B42</string>
+											<string>39A1F33F10BA007500671B42</string>
+											<string>39A1F34010BA007500671B42</string>
+											<string>39A1F34110BA007500671B42</string>
+											<string>39A1F34410BA007500671B42</string>
+											<string>39A1F35010BA02A600671B42</string>
+											<string>39A1F35110BA02A600671B42</string>
+											<string>39A1F36110BA02F300671B42</string>
+											<string>39A1F36210BA02F300671B42</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -679,7 +685,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>280620210.59791601</real>
+	<real>280625907.57012099</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
