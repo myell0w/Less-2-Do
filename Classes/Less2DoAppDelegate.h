@@ -12,7 +12,10 @@
 
 
 @class HomeNavigationController;
+@class FolderNavigationController:
 @class ContextsNavigationController;
+@class TagsNavigationController;
+
 
 @interface Less2DoAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -28,11 +31,11 @@
 	// Navigation Controller for Section "Home"
 	HomeNavigationController *homeController;
 	// Navigation Controller for Section "Folders"
-	UINavigationController *foldersController;
+	FolderNavigationController *foldersController;
 	// Navigation Controller for Section "Contexts"
 	ContextsNavigationController *contextsController;
 	// Navigation Controller for Section "Tags"
-	UINavigationController *tagsController;
+	TagsNavigationController *tagsController;
 	// Navigation Controller for Section "Settings"
 	UINavigationController *settingsController;
 }
@@ -48,9 +51,9 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 @property (nonatomic, retain) IBOutlet HomeNavigationController *homeController;
-@property (nonatomic, retain) IBOutlet UINavigationController *foldersController;
+@property (nonatomic, retain) IBOutlet FolderNavigationController *foldersController;
 @property (nonatomic, retain) IBOutlet ContextsNavigationController *contextsController;
-@property (nonatomic, retain) IBOutlet UINavigationController *tagsController;
+@property (nonatomic, retain) IBOutlet TagsNavigationController *tagsController;
 @property (nonatomic, retain) IBOutlet UINavigationController *settingsController;
 
 

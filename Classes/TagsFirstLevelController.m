@@ -60,7 +60,7 @@
 	// tags make up section1
 	self.controllersSection1 = array;
 	[array release];
-	
+	self.title = @"Tags";
 	[super viewDidLoad];
 }
 
@@ -86,6 +86,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	// if there is no Tag, only display the first Section
+	if ([controllersSection1 count] == 0)
+		return 1;
 	return 2;
 }
 

@@ -11,9 +11,25 @@
 
 @interface TagsFirstLevelController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	//The Table View to show
-	TableView		*tableView;
+	UITableView	*tableView;
+	// the Second-Level-Controllers in the first section of Tab "Folder" (includes all Tables)
+	NSArray *controllersSection0;
+	// the Second-Level-Controllers in the second section of Tab "Folder" (includes "Any Folder" and "No Folder")
+	NSArray *controllersSection1;
 }
 
-@property (nonatomic, retain) IBOutlet TableView *tableView;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Properties
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSArray *controllersSection0;
+@property (nonatomic, retain) NSArray *controllersSection1;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(NSArray *)sectionForIndex:(NSInteger)index;
 
 @end

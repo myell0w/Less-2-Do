@@ -44,6 +44,9 @@
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
 		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
+		D436E8B310BA86AA00EA7624 /* FolderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */; };
+		D436E8B710BA877300EA7624 /* FolderFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */; };
+		D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +123,11 @@
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
 		D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsNavigationController.m; sourceTree = "<group>"; };
 		D436E8AF10BA85B900EA7624 /* TagsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsTableView.xib; sourceTree = "<group>"; };
+		D436E8B110BA86AA00EA7624 /* FolderNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderNavigationController.h; sourceTree = "<group>"; };
+		D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderNavigationController.m; sourceTree = "<group>"; };
+		D436E8B510BA877300EA7624 /* FolderFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderFirstLevelController.h; sourceTree = "<group>"; };
+		D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderFirstLevelController.m; sourceTree = "<group>"; };
+		D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +197,7 @@
 				39A1F33010B9FED600671B42 /* add */,
 				39A1F32F10B9FEC800671B42 /* list */,
 				39B6586110B618D700825C1D /* home */,
+				D436E8C810BA8C1200EA7624 /* folder */,
 				39B6593B10B6B83B00825C1D /* contexts */,
 				D436E8AE10BA859C00EA7624 /* tags */,
 				392325AB10B2EE7D00075370 /* img */,
@@ -304,6 +313,10 @@
 		39B6590010B6B32600825C1D /* folder */ = {
 			isa = PBXGroup;
 			children = (
+				D436E8B510BA877300EA7624 /* FolderFirstLevelController.h */,
+				D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */,
+				D436E8B110BA86AA00EA7624 /* FolderNavigationController.h */,
+				D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */,
 			);
 			name = folder;
 			sourceTree = "<group>";
@@ -361,6 +374,14 @@
 				D436E8AF10BA85B900EA7624 /* TagsTableView.xib */,
 			);
 			name = tags;
+			sourceTree = "<group>";
+		};
+		D436E8C810BA8C1200EA7624 /* folder */ = {
+			isa = PBXGroup;
+			children = (
+				D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */,
+			);
+			name = folder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +471,7 @@
 				39A1F32610B9F89300671B42 /* Star on.png in Resources */,
 				39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */,
 				D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */,
+				D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +493,8 @@
 				39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */,
 				D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */,
 				D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */,
+				D436E8B310BA86AA00EA7624 /* FolderNavigationController.m in Sources */,
+				D436E8B710BA877300EA7624 /* FolderFirstLevelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
