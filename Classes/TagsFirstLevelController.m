@@ -29,6 +29,7 @@
 	//View for untagged Tasks
 	TasksListViewController *untagged = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	untagged.title = @"Untagged";
+	untagged.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:untagged];
 	[untagged release];
 	
@@ -42,18 +43,21 @@
 	// init Second-Level Views in Section Tags
 	TasksListViewController *tag1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	tag1.title = @"@Tag1";
+	tag1.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:tag1];
 	[tag1 release];
 	
 	// init Second-Level Views in Section Tags
 	TasksListViewController *tag2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	tag2.title = @"@Tag2";
+	tag2.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:tag2];
 	[tag2 release];
 	
 	// init Second-Level Views in Section Tags
 	TasksListViewController *tag3 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	tag3.title = @"@Tag3";
+	tag3.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:tag3];
 	[tag3 release];
 	

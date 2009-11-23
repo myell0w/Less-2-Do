@@ -47,6 +47,10 @@
 		D436E8B310BA86AA00EA7624 /* FolderNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */; };
 		D436E8B710BA877300EA7624 /* FolderFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */; };
 		D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */; };
+		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
+		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
+		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
+		D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E9C310BABB6900EA7624 /* SettingsTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +132,13 @@
 		D436E8B510BA877300EA7624 /* FolderFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderTableView.xib; sourceTree = "<group>"; };
+		D436E98610BAB7D200EA7624 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
+		D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
+		D436E98910BAB7F100EA7624 /* SettingsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsFirstLevelController.h; sourceTree = "<group>"; };
+		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
+		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D436E9C310BABB6900EA7624 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +165,7 @@
 				39B6590010B6B32600825C1D /* folder */,
 				39B658FF10B6B31200825C1D /* contexts */,
 				39B6590110B6B32D00825C1D /* tags */,
+				D436E98510BAB76300EA7624 /* settings */,
 				1D3623240D0F684500981E51 /* Less2DoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */,
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
@@ -200,6 +212,7 @@
 				D436E8C810BA8C1200EA7624 /* folder */,
 				39B6593B10B6B83B00825C1D /* contexts */,
 				D436E8AE10BA859C00EA7624 /* tags */,
+				D436E9C210BABB4900EA7624 /* settings */,
 				392325AB10B2EE7D00075370 /* img */,
 				28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -384,6 +397,27 @@
 			name = folder;
 			sourceTree = "<group>";
 		};
+		D436E98510BAB76300EA7624 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				D436E98610BAB7D200EA7624 /* SettingsNavigationController.h */,
+				D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */,
+				D436E98910BAB7F100EA7624 /* SettingsFirstLevelController.h */,
+				D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */,
+				D436E99310BAB94100EA7624 /* SettingsViewController.h */,
+				D436E99410BAB94100EA7624 /* SettingsViewController.m */,
+			);
+			name = settings;
+			sourceTree = "<group>";
+		};
+		D436E9C210BABB4900EA7624 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				D436E9C310BABB6900EA7624 /* SettingsTableView.xib */,
+			);
+			name = settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -472,6 +506,7 @@
 				39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */,
 				D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */,
 				D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */,
+				D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +530,9 @@
 				D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */,
 				D436E8B310BA86AA00EA7624 /* FolderNavigationController.m in Sources */,
 				D436E8B710BA877300EA7624 /* FolderFirstLevelController.m in Sources */,
+				D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */,
+				D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */,
+				D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
