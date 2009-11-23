@@ -19,10 +19,7 @@
 @synthesize contextsController;
 @synthesize tagsController;
 @synthesize settingsController;
-<<<<<<< HEAD
-=======
 @synthesize quickAddController;
->>>>>>> origin
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
