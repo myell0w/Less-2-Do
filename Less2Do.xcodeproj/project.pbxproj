@@ -41,6 +41,9 @@
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
 		39B65A2410B7092800825C1D /* libToodledoAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B65A0110B7080D00825C1D /* libToodledoAPI.a */; };
+		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
+		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
+		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,11 @@
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
+		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
+		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
+		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
+		D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsNavigationController.m; sourceTree = "<group>"; };
+		D436E8AF10BA85B900EA7624 /* TagsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,7 @@
 				39A1F32F10B9FEC800671B42 /* list */,
 				39B6586110B618D700825C1D /* home */,
 				39B6593B10B6B83B00825C1D /* contexts */,
+				D436E8AE10BA859C00EA7624 /* tags */,
 				392325AB10B2EE7D00075370 /* img */,
 				28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -302,6 +311,10 @@
 		39B6590110B6B32D00825C1D /* tags */ = {
 			isa = PBXGroup;
 			children = (
+				D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */,
+				D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */,
+				D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */,
+				D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */,
 			);
 			name = tags;
 			sourceTree = "<group>";
@@ -340,6 +353,14 @@
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D436E8AE10BA859C00EA7624 /* tags */ = {
+			isa = PBXGroup;
+			children = (
+				D436E8AF10BA85B900EA7624 /* TagsTableView.xib */,
+			);
+			name = tags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +449,7 @@
 				39A1F32510B9F89300671B42 /* Star off.png in Resources */,
 				39A1F32610B9F89300671B42 /* Star on.png in Resources */,
 				39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */,
+				D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +469,8 @@
 				39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */,
 				39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */,
 				39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */,
+				D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */,
+				D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

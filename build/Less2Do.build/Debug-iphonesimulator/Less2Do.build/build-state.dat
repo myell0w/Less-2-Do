@@ -1,10 +1,10 @@
 TLess2Do
 v7
 r0
-t280625824.224061
+t280658718.799378
 cCheck dependencies
-cProcessInfoPlistFile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist Less2Do-Info.plist
-cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/MainWindow.xib
+cProcessInfoPlistFile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist Less2Do-Info.plist
+cCompileXIB /Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib
 cCpResource build/Debug-iphonesimulator/Less2Do.app/Default.png img/../Default.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/Icon.png img/../Icon.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/Icon-Small.png img/../Icon-Small.png
@@ -13,34 +13,31 @@ cCpResource build/Debug-iphonesimulator/Less2Do.app/folders.png img/tabbar/folde
 cCpResource build/Debug-iphonesimulator/Less2Do.app/home.png img/tabbar/home.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/settings.png img/tabbar/settings.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/tags.png img/tabbar/tags.png
-cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/HomeTableView.xib
+cCompileXIB /Users/philip/Coding/XCode/Less-2-Do/HomeTableView.xib
 cCpResource build/Debug-iphonesimulator/Less2Do.app/sync.png img/navbar/sync.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/title.png img/title.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/all_tasks.png img/all_tasks.png
-cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/ContextsTableView.xib
-cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/TaskInList.xib
+cCompileXIB /Users/philip/Coding/XCode/Less-2-Do/ContextsTableView.xib
+cCompileXIB /Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib
 cCpResource build/Debug-iphonesimulator/Less2Do.app/Task_not_completed.png img/Task_not_completed.png
 cCpResource build/Debug-iphonesimulator/Less2Do.app/Task_completed.png img/Task_completed.png
 cCpResource "build/Debug-iphonesimulator/Less2Do.app/Star off.png" "img/Star off.png"
 cCpResource "build/Debug-iphonesimulator/Less2Do.app/Star on.png" "img/Star on.png"
-cCompileXIB /Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.xib
-cProcessPCH /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch.gch Less2Do_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cDataModelCompile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do.mom /Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcdatamodel
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o /Users/Matthias/Documents/Projects/Less2Do/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeFirstLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/TasksListViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/TasksListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cLd /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do normal i386
-cGenerateDSYMFile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app.dSYM /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do
-cTouch /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app
+cCompileXIB /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib
+cProcessPCH /var/folders/za/zaYA1pNVF58GloanIKzdb++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-hhzrbfjuvsxglbgsveewqpkrfozw/Less2Do_Prefix.pch.gch Less2Do_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+cDataModelCompile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do.mom /Users/philip/Coding/XCode/Less-2-Do/Less2Do.xcdatamodel
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o /Users/philip/Coding/XCode/Less-2-Do/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o /Users/philip/Coding/XCode/Less-2-Do/Classes/Less2DoAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeFirstLevelViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/HomeFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/TasksListViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/TasksListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/HomeNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+cCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 
 N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk
-c000000004ACF0FC700000000000000EE
-t1255083975
+c000000004ADC23C900000000000000EE
+t1255941065
 s238
 
 N/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk/System/Library/Frameworks/CoreData.framework/CoreData
@@ -579,6 +576,351 @@ c000000004B09B52A0000000000031630
 t1258927402
 s202288
 
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsFirstLevelViewController.h
+c000000004B0A385E0000000000000632
+t1258960990
+s1586
+i<UIKit/UIKit.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsFirstLevelViewController.m
+c000000004B0A385E0000000000001296
+t1258960990
+s4758
+i"ContextsFirstLevelViewController.h"
+i"TasksListViewController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsNavigationController.h
+c000000004B0A385E00000000000000FA
+t1258960990
+s250
+i<UIKit/UIKit.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsNavigationController.m
+c000000004B0A385E0000000000000600
+t1258960990
+s1536
+i"ContextsNavigationController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/HomeFirstLevelViewController.h
+c000000004B0A385E0000000000000625
+t1258960990
+s1573
+i<UIKit/UIKit.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/HomeFirstLevelViewController.m
+c000000004B0A385E000000000000150A
+t1258960990
+s5386
+i"HomeFirstLevelViewController.h"
+i"TasksListViewController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/HomeNavigationController.h
+c000000004B0A385E00000000000000F2
+t1258960990
+s242
+i<UIKit/UIKit.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/HomeNavigationController.m
+c000000004B0A385E00000000000005F4
+t1258960990
+s1524
+i"HomeNavigationController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/Less2DoAppDelegate.h
+c000000004B0A385E0000000000000A77
+t1258960990
+s2679
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/Less2DoAppDelegate.m
+c000000004B0A385E00000000000016C6
+t1258960990
+s5830
+i"Less2DoAppDelegate.h"
+i"HomeNavigationController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/TasksListViewController.h
+c000000004B0A385E0000000000000400
+t1258960990
+s1024
+i<Foundation/Foundation.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/Classes/TasksListViewController.m
+c000000004B0A385E0000000000000110
+t1258960990
+s272
+i"TasksListViewController.h"
+
+N/Users/philip/Coding/XCode/Less-2-Do/ContextsTableView.xib
+c000000004B0A385E0000000000004676
+t1258960990
+s18038
+
+N/Users/philip/Coding/XCode/Less-2-Do/HomeTableView.xib
+c000000004B0A385E00000000000046D7
+t1258960990
+s18135
+
+N/Users/philip/Coding/XCode/Less-2-Do/Less2Do.xcdatamodel
+c000000004B0A385E0000000000000088
+t1258960990
+s136
+
+N/Users/philip/Coding/XCode/Less-2-Do/Less2Do_Prefix.pch
+c000000004B0A385E0000000000000162
+t1258960990
+s354
+i<Availability.h>
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+i<CoreData/CoreData.h>
+
+N/Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib
+c000000004B0A4A79000000000000962C
+t1258965625
+s38444
+
+N/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app
+t1258961028
+s680
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app.dSYM
+t1258960990
+s102
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/ContextsTableView.nib
+t1258961028
+s1551
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Default.png
+t1258960990
+s46394
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/HomeTableView.nib
+t1258961028
+s1551
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Icon-Small.png
+t1258960990
+s1355
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Icon.png
+t1258960990
+s15660
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist
+t1258960990
+s591
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do
+t1258960990
+s43420
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do.mom
+t1258960990
+s488
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/MainWindow.nib
+t1258965918
+s4689
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/PkgInfo
+t1258960990
+s8
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/QuickAddViewController.nib
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Star off.png
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Star on.png
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/TaskInList.nib
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Task_completed.png
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Task_not_completed.png
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/all_tasks.png
+t1258961027
+s550
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/contexts.png
+t1258960990
+s888
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/folders.png
+t1258960990
+s342
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/home.png
+t1258960990
+s207
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/settings.png
+t1258960990
+s375
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/sync.png
+t1258961027
+s3639
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/tags.png
+t1258960990
+s489
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/title.png
+t1258961027
+s7256
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/libToodledoAPI.a
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o
+t1258961030
+s45968
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o
+t1258961030
+s31516
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeFirstLevelViewController.o
+t1258961030
+s46992
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o
+t1258961030
+s31464
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2Do.LinkFileList
+c000000004B0A4B9C0000000000000453
+t1258965916
+s1107
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o
+t1258965625
+s53548
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/TasksListViewController.o
+t1258961030
+s29880
+
+N/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o
+t1258965625
+s5964
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/../Default.png
+c000000004B0A385E000000000000B53A
+t1258960990
+s46394
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/../Icon-Small.png
+c000000004B0A385E000000000000054B
+t1258960990
+s1355
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/../Icon.png
+c000000004B0A385E0000000000003D2C
+t1258960990
+s15660
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/Star off.png
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/Star on.png
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/Task_completed.png
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/Task_not_completed.png
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/all_tasks.png
+c000000004B0A385E0000000000000226
+t1258960990
+s550
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/navbar/sync.png
+c000000004B0A385E0000000000000E37
+t1258960990
+s3639
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/tabbar/contexts.png
+c000000004B0A385E0000000000000378
+t1258960990
+s888
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/tabbar/folders.png
+c000000004B0A385E0000000000000156
+t1258960990
+s342
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/tabbar/home.png
+c000000004B0A385E00000000000000CF
+t1258960990
+s207
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/tabbar/settings.png
+c000000004B0A385E0000000000000177
+t1258960990
+s375
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/tabbar/tags.png
+c000000004B0A385E00000000000001E9
+t1258960990
+s489
+
+N/Users/philip/Coding/XCode/Less-2-Do/img/title.png
+c000000004B0A385E0000000000001C58
+t1258960990
+s7256
+
+N/Users/philip/Coding/XCode/Less-2-Do/main.m
+c000000004B0A385E0000000000000161
+t1258960990
+s353
+i<UIKit/UIKit.h>
+
 N/var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch.gch
 t1258738337
 s13887728
@@ -587,14 +929,18 @@ N/var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/Shared
 t1258469055
 s13887728
 
+N/var/folders/za/zaYA1pNVF58GloanIKzdb++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-hhzrbfjuvsxglbgsveewqpkrfozw/Less2Do_Prefix.pch.gch
+t1258961030
+s13887728
+
 NLess2Do-Info.plist
-c000000004B02B0FA0000000000000386
-t1258467578
+c000000004B0A385E0000000000000386
+t1258960990
 s902
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies280625823#280625823#0(0"0(0#1#0"4300885448#0"0#
+lSLF07#2@18"Check dependencies280658716#280658716#0(0"1(22@71"Missing dependency target "libToodledoAPI (from ToodledoAPI.xcodeproj)"280658716#18446744073709551615#0#0(1@0"0(0#1#0"4300885448#0"0#
 
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431137.683249
@@ -609,6 +955,9 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@93"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m280431137#280431137#0(0"0(0#0#85"/Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m4300885448#2061"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsFirstLevelViewController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o0#
 
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsFirstLevelViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431137.591318
 e280431137.697143
@@ -621,6 +970,9 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@89"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsNavigationController.m280431137#280431137#0(0"0(0#0#81"/Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsNavigationController.m4300885448#2053"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/ContextsNavigationController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o0#
+
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/ContextsNavigationController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/ContextsNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
 
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/FirstLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/FirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280409772.236705
@@ -651,6 +1003,9 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@89"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeFirstLevelViewController.m280431799#280431799#0(0"0(0#0#81"/Users/Matthias/Documents/Projects/Less2Do/Classes/HomeFirstLevelViewController.m4300885448#2053"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeFirstLevelViewController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeFirstLevelViewController.o0#
 
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeFirstLevelViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/HomeFirstLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431137.568625
 e280431137.683123
@@ -664,6 +1019,9 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@85"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeNavigationController.m280431137#280431137#0(0"0(0#0#77"/Users/Matthias/Documents/Projects/Less2Do/Classes/HomeNavigationController.m4300885448#2045"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/HomeNavigationController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o0#
 
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/HomeNavigationController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/HomeNavigationController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431137.361243
 e280431137.471386
@@ -676,6 +1034,9 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@79"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoAppDelegate.m280431137#280431137#0(0"0(0#0#71"/Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoAppDelegate.m4300885448#2033"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoAppDelegate.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o0#
+
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoAppDelegate.o /Users/philip/Coding/XCode/Less-2-Do/Classes/Less2DoAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
 
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2DoViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 r0
@@ -712,6 +1073,22 @@ o/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m:59:
 o/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m:59: warning: method definition for '-taskAdded:' not found
 lSLF07#2@83"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m280625823#280625824#0(425"/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m:59: warning: incomplete implementation of class 'QuickAddViewController'/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m:59: warning: method definition for '-taskDetailsEdit:' not found/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m:59: warning: method definition for '-taskAdded:' not found3(22@59"Incomplete implementation of class 'QuickAddViewController'280625823#0#149#0(6@75"/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m280625597#59#0#59#0#38"incomplete implementation of class '*'0(22@51"Method definition for '-taskDetailsEdit:' not found280625823#149#141#0(6@75"/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m280625597#59#0#59#0#35"method definition for '*' not found0(22@45"Method definition for '-taskAdded:' not found280625823#290#135#0(6@75"/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m280625597#59#0#59#0#35"method definition for '*' not found0(0#0#75"/Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m4300885448#2041"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/QuickAddViewController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o0#
 
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+s280658718.626185
+e280658718.799302
+r0
+xCompileC
+xbuild/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o
+x/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.gcc.4_2
+oi686-apple-darwin10-gcc-4.2.1: /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m: No such file or directory
+oi686-apple-darwin10-gcc-4.2.1: warning: '-x objective-c' after last input file has no effect
+oi686-apple-darwin10-gcc-4.2.1: no input files
+lSLF07#2@77"Compile /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m280658718#280658718#0(371"i686-apple-darwin10-gcc-4.2.1: /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m: No such file or directoryi686-apple-darwin10-gcc-4.2.1: warning: '-x objective-c' after last input file has no effecti686-apple-darwin10-gcc-4.2.1: no input filesCommand /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 failed with exit code 11(4@103"Command /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 failed with exit code 1280658718#18446744073709551615#0#0(1@0"0(0#0#69"/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m4300885448#2037"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/za/zaYA1pNVF58GloanIKzdb++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-hhzrbfjuvsxglbgsveewqpkrfozw/Less2Do_Prefix.pch -c /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.m -o /Users/philip/Coding/XCode/Less-2-Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/QuickAddViewController.o1#
+
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/SecondLevelViewController.o /Users/Matthias/Documents/Projects/Less2Do/Classes/SecondLevelViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280366306.080941
 e280366306.226120
@@ -738,6 +1115,9 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@84"Compile /Users/Matthias/Documents/Projects/Less2Do/Classes/TasksListViewController.m280431137#280431137#0(0"0(0#0#76"/Users/Matthias/Documents/Projects/Less2Do/Classes/TasksListViewController.m4300885448#2043"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/Classes/TasksListViewController.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/TasksListViewController.o0#
 
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/TasksListViewController.o /Users/philip/Coding/XCode/Less-2-Do/Classes/TasksListViewController.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o /Users/Matthias/Documents/Projects/Less2Do/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431137.359663
 e280431137.469121
@@ -750,6 +1130,9 @@ xi386
 xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@57"Compile /Users/Matthias/Documents/Projects/Less2Do/main.m280431137#280431137#0(0"0(0#0#49"/Users/Matthias/Documents/Projects/Less2Do/main.m4300885448#1997"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -Itoodledo-objc/src -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -include /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch -c /Users/Matthias/Documents/Projects/Less2Do/main.m -o /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o0#
+
+CCompileC build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/main.o /Users/philip/Coding/XCode/Less-2-Do/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
 
 CCompileXIB /Users/Matthias/Documents/Projects/Less2Do/Classes/Less2DoViewController.xib
 r0
@@ -805,23 +1188,59 @@ xCompileXIB
 x/Users/Matthias/Documents/Projects/Less2Do/TaskInList.xib
 lSLF07#2@25"CompileXIB TaskInList.xib280625823#280625823#0(0"0(0#0#57"/Users/Matthias/Documents/Projects/Less2Do/TaskInList.xib4300885448#494"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/TaskInList.nib /Users/Matthias/Documents/Projects/Less2Do/TaskInList.xib0#
 
-CCpResource "build/Debug-iphonesimulator/Less2Do.app/Star off.png" "img/Star off.png"
-s280625823.403128
-e280625823.435455
+CCompileXIB /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib
+s280658716.960691
+e280658717.525492
+r0
+xCompileXIB
+x/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib
+o/* com.apple.ibtool.errors */
+o/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib: error: File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib'
+lSLF07#2@45"CompileXIB Classes/QuickAddViewController.xib280658716#280658717#0(228"/* com.apple.ibtool.errors *//Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib: error: File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib'1(4@117"File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib'280658717#18446744073709551615#0#0(6@71"/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib280658717#0#0#0#0#0"0(0#0#71"/Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib4300885448#570"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/QuickAddViewController.nib /Users/philip/Coding/XCode/Less-2-Do/Classes/QuickAddViewController.xib1#
+
+CCompileXIB /Users/philip/Coding/XCode/Less-2-Do/ContextsTableView.xib
+r0
+
+CCompileXIB /Users/philip/Coding/XCode/Less-2-Do/HomeTableView.xib
+r0
+
+CCompileXIB /Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib
+s280658716.723620
+e280658718.625559
 r1
+xCompileXIB
+x/Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib
+lSLF07#2@25"CompileXIB MainWindow.xib280658716#280658718#0(0"0(0#0#51"/Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib4300885448#538"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/MainWindow.nib /Users/philip/Coding/XCode/Less-2-Do/MainWindow.xib0#
+
+CCompileXIB /Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib
+s280658716.743982
+e280658716.940732
+r0
+xCompileXIB
+x/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib
+o/* com.apple.ibtool.errors */
+o/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib: error: File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib'
+lSLF07#2@25"CompileXIB TaskInList.xib280658716#280658716#0(188"/* com.apple.ibtool.errors *//Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib: error: File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib'1(4@97"File does not exist at path 'file://localhost/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib'280658716#18446744073709551615#0#0(6@51"/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib280658716#0#0#0#0#0"0(0#0#51"/Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib4300885448#538"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 3.1.2    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/TaskInList.nib /Users/philip/Coding/XCode/Less-2-Do/TaskInList.xib1#
+
+CCpResource "build/Debug-iphonesimulator/Less2Do.app/Star off.png" "img/Star off.png"
+s280658716.956419
+e280658717.134032
+r0
 xCpResource
 xbuild/Debug-iphonesimulator/Less2Do.app/Star off.png
 ximg/Star off.png
-lSLF07#2@21"Copy img/Star off.png280625823#280625823#0(0"0(0#0#59"/Users/Matthias/Documents/Projects/Less2Do/img/Star off.png4300885448#474"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/Matthias/Documents/Projects/Less2Do/img/Star off.png" /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
+opbxcp: Star off.png: No such file or directory
+lSLF07#2@21"Copy img/Star off.png280658716#280658717#0(47"pbxcp: Star off.png: No such file or directory1(4@46"pbxcp: Star off.png: No such file or directory280658717#18446744073709551615#0#0(6@0"280658717#0#0#0#0#0"0(0#0#53"/Users/philip/Coding/XCode/Less-2-Do/img/Star off.png4300885448#518"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/philip/Coding/XCode/Less-2-Do/img/Star off.png" /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app1#
 
 CCpResource "build/Debug-iphonesimulator/Less2Do.app/Star on.png" "img/Star on.png"
-s280625823.404578
-e280625823.436128
-r1
+s280658716.957684
+e280658717.133850
+r0
 xCpResource
 xbuild/Debug-iphonesimulator/Less2Do.app/Star on.png
 ximg/Star on.png
-lSLF07#2@20"Copy img/Star on.png280625823#280625823#0(0"0(0#0#58"/Users/Matthias/Documents/Projects/Less2Do/img/Star on.png4300885448#473"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/Matthias/Documents/Projects/Less2Do/img/Star on.png" /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
+opbxcp: Star on.png: No such file or directory
+lSLF07#2@20"Copy img/Star on.png280658716#280658717#0(46"pbxcp: Star on.png: No such file or directory1(4@45"pbxcp: Star on.png: No such file or directory280658717#18446744073709551615#0#0(6@0"280658717#0#0#0#0#0"0(0#0#52"/Users/philip/Coding/XCode/Less-2-Do/img/Star on.png4300885448#517"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks "/Users/philip/Coding/XCode/Less-2-Do/img/Star on.png" /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app1#
 
 CCpResource build/Debug-iphonesimulator/Less2Do.app/Default.png Default.png
 s280161932.182360
@@ -878,22 +1297,24 @@ ximg/../Icon.png
 lSLF07#2@20"Copy img/../Icon.png280410578#280410578#0(0"0(0#0#58"/Users/Matthias/Documents/Projects/Less2Do/img/../Icon.png4300885448#471"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/Matthias/Documents/Projects/Less2Do/img/../Icon.png /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
 
 CCpResource build/Debug-iphonesimulator/Less2Do.app/Task_completed.png img/Task_completed.png
-s280625823.401398
-e280625823.431254
-r1
+s280658716.955011
+e280658717.133480
+r0
 xCpResource
 xbuild/Debug-iphonesimulator/Less2Do.app/Task_completed.png
 ximg/Task_completed.png
-lSLF07#2@27"Copy img/Task_completed.png280625823#280625823#0(0"0(0#0#65"/Users/Matthias/Documents/Projects/Less2Do/img/Task_completed.png4300885448#478"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/Matthias/Documents/Projects/Less2Do/img/Task_completed.png /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
+opbxcp: Task_completed.png: No such file or directory
+lSLF07#2@27"Copy img/Task_completed.png280658716#280658717#0(53"pbxcp: Task_completed.png: No such file or directory1(4@52"pbxcp: Task_completed.png: No such file or directory280658717#18446744073709551615#0#0(6@0"280658717#0#0#0#0#0"0(0#0#59"/Users/philip/Coding/XCode/Less-2-Do/img/Task_completed.png4300885448#522"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/philip/Coding/XCode/Less-2-Do/img/Task_completed.png /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app1#
 
 CCpResource build/Debug-iphonesimulator/Less2Do.app/Task_not_completed.png img/Task_not_completed.png
-s280625823.399331
-e280625823.431115
-r1
+s280658716.940819
+e280658717.133728
+r0
 xCpResource
 xbuild/Debug-iphonesimulator/Less2Do.app/Task_not_completed.png
 ximg/Task_not_completed.png
-lSLF07#2@31"Copy img/Task_not_completed.png280625823#280625823#0(0"0(0#0#69"/Users/Matthias/Documents/Projects/Less2Do/img/Task_not_completed.png4300885448#482"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/Matthias/Documents/Projects/Less2Do/img/Task_not_completed.png /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
+opbxcp: Task_not_completed.png: No such file or directory
+lSLF07#2@31"Copy img/Task_not_completed.png280658716#280658717#0(57"pbxcp: Task_not_completed.png: No such file or directory1(4@56"pbxcp: Task_not_completed.png: No such file or directory280658717#18446744073709551615#0#0(6@0"280658717#0#0#0#0#0"0(0#0#63"/Users/philip/Coding/XCode/Less-2-Do/img/Task_not_completed.png4300885448#526"    cd /Users/philip/Coding/XCode/Less-2-Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/philip/Coding/XCode/Less-2-Do/img/Task_not_completed.png /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app1#
 
 CCpResource build/Debug-iphonesimulator/Less2Do.app/all_tasks.png img/all_tasks.png
 s280372155.851321
@@ -979,6 +1400,9 @@ x/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.
 x/Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcdatamodel
 lSLF07#2@70"Compile /Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcdatamodel280161855#280161855#0(0"0(0#0#62"/Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcdatamodel4300885448#396"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/momc -XD_MOMC_TARGET_VERSION=10.5 /Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcdatamodel /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do.mom0#
 
+CDataModelCompile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do.mom /Users/philip/Coding/XCode/Less-2-Do/Less2Do.xcdatamodel
+r0
+
 CGenerateDSYMFile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app.dSYM /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do
 s280625824.189737
 e280625824.218165
@@ -987,6 +1411,9 @@ xGenerateDSYMFile
 x/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app.dSYM
 x/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do
 lSLF07#2@109"GenerateDSYMFile build/Debug-iphonesimulator/Less2Do.app.dSYM build/Debug-iphonesimulator/Less2Do.app/Less2Do280625824#280625824#0(0"0(0#0#90"/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do4300885448#395"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/dsymutil /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do -o /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app.dSYM0#
+
+CGenerateDSYMFile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app.dSYM /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do
+r0
 
 CLd /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do normal i386
 s280625823.978033
@@ -998,6 +1425,9 @@ xnormal
 xi386
 lSLF07#2@95"Link /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do280625823#280625824#0(0"0(0#0#0"4300885448#1084"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -L/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -filelist /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Objects-normal/i386/Less2Do.LinkFileList -mmacosx-version-min=10.5 -framework Foundation -framework UIKit -framework CoreGraphics -framework CoreData /Users/Matthias/Documents/Projects/Less2Do/toodledo-objc/src/build/Debug-iphonesimulator/libToodledoAPI.a -o /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do0#
 
+CLd /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Less2Do normal i386
+r0
+
 CProcessInfoPlistFile /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist Less2Do-Info.plist
 s280161854.496246
 e280161854.519386
@@ -1006,6 +1436,9 @@ xProcessInfoPlistFile
 x/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist
 xLess2Do-Info.plist
 lSLF07#2@26"Process Less2Do-Info.plist280161854#280161854#0(0"0(0#0#61"/Users/Matthias/Documents/Projects/Less2Do/Less2Do-Info.plist28429264708632676#491"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    builtin-infoPlistUtility Less2Do-Info.plist -genpkginfo /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist0#
+
+CProcessInfoPlistFile /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app/Info.plist Less2Do-Info.plist
+r0
 
 CProcessPCH /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-aakdrksoihjjrlgnfnulrzrzhdwh/Less2Do_Prefix.pch.gch Less2Do_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
 s280431136.282737
@@ -1033,6 +1466,9 @@ xobjective-c
 xcom.apple.compilers.gcc.4_2
 lSLF07#2@29"Precompile Less2Do_Prefix.pch280161854#280161855#0(0"0(0#0#61"/Users/Matthias/Documents/Projects/Less2Do/Less2Do_Prefix.pch4300885448#1865"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -std=c99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -D__IPHONE_OS_VERSION_MIN_REQUIRED=30000 -isysroot /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.1.2.sdk -fvisibility=hidden -mmacosx-version-min=10.5 -gdwarf-2 -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-generated-files.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-own-target-headers.hmap -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-all-target-headers.hmap -iquote /Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/Less2Do-project-headers.hmap -F/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator "-F/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks" -I/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/include -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources/i386 -I/Users/Matthias/Documents/Projects/Less2Do/build/Less2Do.build/Debug-iphonesimulator/Less2Do.build/DerivedSources -c /Users/Matthias/Documents/Projects/Less2Do/Less2Do_Prefix.pch -o /var/folders/CA/CAsYX8gRHsuZvCsH92wGlE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-cuygpnvziiiqupcogmzbxdlqnovu/Less2Do_Prefix.pch.gch0#
 
+CProcessPCH /var/folders/za/zaYA1pNVF58GloanIKzdb++++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Less2Do_Prefix-hhzrbfjuvsxglbgsveewqpkrfozw/Less2Do_Prefix.pch.gch Less2Do_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
+r0
+
 CTouch /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app
 s280625824.218256
 e280625824.224016
@@ -1040,4 +1476,7 @@ r1
 xTouch
 x/Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app
 lSLF07#2@88"Touch /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app280625824#280625824#0(0"0(0#0#0"4300885448#286"    cd /Users/Matthias/Documents/Projects/Less2Do    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/Matthias/Documents/Projects/Less2Do/build/Debug-iphonesimulator/Less2Do.app0#
+
+CTouch /Users/philip/Coding/XCode/Less-2-Do/build/Debug-iphonesimulator/Less2Do.app
+r0
 
