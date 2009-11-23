@@ -290,6 +290,7 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>39A1F45810BB21B500671B42</string>
 								<string>39A1F30A10B9ECDF00671B42</string>
 								<string>39B6584A10B6168600825C1D</string>
 								<string>39B6590010B6B32600825C1D</string>
@@ -305,6 +306,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>24</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -337,6 +340,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -354,7 +359,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>39A1F45510BAC53A00671B42</string>
+										<string>39A1F45E10BB245C00671B42</string>
 										<key>history</key>
 										<array>
 											<string>392325CA10B2F0F900075370</string>
@@ -385,7 +390,8 @@
 											<string>39A1F41B10BAC06B00671B42</string>
 											<string>39A1F43610BAC2A800671B42</string>
 											<string>39A1F45310BAC53A00671B42</string>
-											<string>39A1F45410BAC53A00671B42</string>
+											<string>39A1F45C10BB245C00671B42</string>
+											<string>39A1F45D10BB245C00671B42</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -685,7 +691,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>280675642.58384103</real>
+	<real>280699996.55865002</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -702,7 +708,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>39A1F45610BAC53A00671B42</string>
 		<string>/Users/Matthias/Documents/Projects/Less2Do/Less2Do.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
