@@ -12,7 +12,7 @@
 
 
 @class HomeNavigationController;
-@class FolderNavigationController:
+@class FolderNavigationController;
 @class ContextsNavigationController;
 @class TagsNavigationController;
 
