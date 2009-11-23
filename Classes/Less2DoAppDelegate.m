@@ -8,6 +8,7 @@
 
 #import "Less2DoAppDelegate.h"
 #import "HomeNavigationController.h"
+#import "QuickAddViewController.h"
 
 @implementation Less2DoAppDelegate
 
@@ -18,7 +19,10 @@
 @synthesize contextsController;
 @synthesize tagsController;
 @synthesize settingsController;
-
+<<<<<<< HEAD
+=======
+@synthesize quickAddController;
+>>>>>>> origin
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -37,6 +41,8 @@
 	[contextsController release];
 	[tagsController release];
 	[settingsController release];
+	
+	[quickAddController release];
 	
 	[window release];
 	
@@ -159,6 +165,15 @@
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Custom Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(IBAction)addTaskButtonPressed:(id)sender {
+	[rootController.view addSubview: quickAddController.view];
+}
 
 @end
 

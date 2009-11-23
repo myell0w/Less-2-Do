@@ -28,12 +28,14 @@
 	//View for Any Folder Tasks
 	TasksListViewController *anyfolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	anyfolder.title = @"Any Folder";
+	anyfolder.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:anyfolder];
 	[anyfolder release];
 	
 	//View for No Folder Tasks
 	TasksListViewController *nofolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	nofolder.title = @"No Folder";
+	nofolder.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:nofolder];
 	[nofolder release];
 	
@@ -47,18 +49,21 @@
 	// init Second-Level Views in Section Folder
 	TasksListViewController *folder1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	folder1.title = @"Folder1";
+	folder1.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:folder1];
 	[folder1 release];
 	
 	// init Second-Level Views in Section Folder
 	TasksListViewController *folder2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	folder2.title = @"Folder2";
+	folder2.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:folder2];
 	[folder2 release];
 	
 	// init Second-Level Views in Section Folder
 	TasksListViewController *folder3 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	folder3.title = @"Folder3";
+	folder3.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:folder3];
 	[folder3 release];
 	

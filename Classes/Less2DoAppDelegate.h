@@ -15,6 +15,11 @@
 @class FolderNavigationController;
 @class ContextsNavigationController;
 @class TagsNavigationController;
+<<<<<<< HEAD
+@class SettingsNavigationController;
+=======
+@class QuickAddViewController;
+>>>>>>> origin
 
 
 @interface Less2DoAppDelegate : NSObject <UIApplicationDelegate> {
@@ -37,7 +42,14 @@
 	// Navigation Controller for Section "Tags"
 	TagsNavigationController *tagsController;
 	// Navigation Controller for Section "Settings"
+<<<<<<< HEAD
+	SettingsNavigationController *settingsController;
+=======
 	UINavigationController *settingsController;
+	
+	// View Controller for QuickAdd
+	QuickAddViewController *quickAddController;
+>>>>>>> origin
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,14 +66,17 @@
 @property (nonatomic, retain) IBOutlet FolderNavigationController *foldersController;
 @property (nonatomic, retain) IBOutlet ContextsNavigationController *contextsController;
 @property (nonatomic, retain) IBOutlet TagsNavigationController *tagsController;
-@property (nonatomic, retain) IBOutlet UINavigationController *settingsController;
+@property (nonatomic, retain) IBOutlet SettingsNavigationController *settingsController;
+
+@property (nonatomic, retain) IBOutlet QuickAddViewController *quickAddController;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (NSString *)applicationDocumentsDirectory;
+-(NSString *)applicationDocumentsDirectory;
+-(IBAction)addTaskButtonPressed:(id)sender;
 
 @end
 
