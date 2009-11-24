@@ -5,15 +5,10 @@
 //  Created by Gerhard Schraml on 24.11.09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
-
-#import "Less2DoAppDelegate.h"
-
+#include <Foundation/Foundation.h>
 
 @interface ContextDAO : NSObject {
 
 }
-
-+(NSArray *)getAllContexts;
-+(int)addContextWithName:(NSString*)theName;
-
+-(NSArray*)getAllFuckingContexts;
 @end
