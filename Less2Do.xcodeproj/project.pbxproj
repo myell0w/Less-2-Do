@@ -101,7 +101,6 @@
 		39A1F33410BA006300671B42 /* QuickAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickAddViewController.h; sourceTree = "<group>"; };
 		39A1F33510BA006300671B42 /* QuickAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickAddViewController.m; sourceTree = "<group>"; };
 		39A1F33610BA006300671B42 /* QuickAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickAddViewController.xib; path = Classes/QuickAddViewController.xib; sourceTree = "<group>"; };
-		39A1F45910BB21C900671B42 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		39B6584710B615FF00825C1D /* HomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavigationController.h; sourceTree = "<group>"; };
 		39B6584810B615FF00825C1D /* HomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavigationController.m; sourceTree = "<group>"; };
 		39B6586210B618F600825C1D /* HomeTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableView.xib; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
+		CF0142CD10BC67E900785D67 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 		39A1F45810BB21B500671B42 /* log */ = {
 			isa = PBXGroup;
 			children = (
-				39A1F45910BB21C900671B42 /* Log.h */,
+				CF0142CD10BC67E900785D67 /* Log.h */,
 			);
 			name = log;
 			sourceTree = "<group>";
