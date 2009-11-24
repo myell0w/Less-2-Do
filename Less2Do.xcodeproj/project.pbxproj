@@ -40,6 +40,13 @@
 		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
+		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
+		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
+		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
+		A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389B10BC5C6D004F0F39 /* ABContact.m */; };
+		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
+		A3E338C310BC6134004F0F39 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E338C210BC6134004F0F39 /* Context.m */; };
+		A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
 		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
@@ -115,6 +122,20 @@
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
+		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
+		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
+		A3E3389410BC5C6D004F0F39 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Entities/Tag.h; sourceTree = "<group>"; };
+		A3E3389510BC5C6D004F0F39 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Entities/Tag.m; sourceTree = "<group>"; };
+		A3E3389610BC5C6D004F0F39 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = Entities/Task.h; sourceTree = "<group>"; };
+		A3E3389710BC5C6D004F0F39 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = Entities/Task.m; sourceTree = "<group>"; };
+		A3E3389A10BC5C6D004F0F39 /* ABContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ABContact.h; path = Entities/ABContact.h; sourceTree = "<group>"; };
+		A3E3389B10BC5C6D004F0F39 /* ABContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABContact.m; path = Entities/ABContact.m; sourceTree = "<group>"; };
+		A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedInfo.h; path = Entities/ExtendedInfo.h; sourceTree = "<group>"; };
+		A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedInfo.m; path = Entities/ExtendedInfo.m; sourceTree = "<group>"; };
+		A3E338C110BC6134004F0F39 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = ../../../.Trash/Context.h; sourceTree = SOURCE_ROOT; };
+		A3E338C210BC6134004F0F39 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = ../../../.Trash/Context.m; sourceTree = SOURCE_ROOT; };
+		A3E3393310BC76F3004F0F39 /* ContextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDAO.h; sourceTree = "<group>"; };
+		A3E3393410BC76F3004F0F39 /* ContextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAO.m; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -152,6 +173,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A3E3393210BC76D7004F0F39 /* DAO */,
+				A3E338A410BC5C80004F0F39 /* Entities */,
 				39A1F45810BB21B500671B42 /* log */,
 				39A1F30A10B9ECDF00671B42 /* add */,
 				39B6584A10B6168600825C1D /* home */,
@@ -382,6 +405,34 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A3E338A410BC5C80004F0F39 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A3E3389210BC5C6D004F0F39 /* Folder.h */,
+				A3E3389310BC5C6D004F0F39 /* Folder.m */,
+				A3E3389410BC5C6D004F0F39 /* Tag.h */,
+				A3E3389510BC5C6D004F0F39 /* Tag.m */,
+				A3E3389610BC5C6D004F0F39 /* Task.h */,
+				A3E3389710BC5C6D004F0F39 /* Task.m */,
+				A3E338C110BC6134004F0F39 /* Context.h */,
+				A3E338C210BC6134004F0F39 /* Context.m */,
+				A3E3389A10BC5C6D004F0F39 /* ABContact.h */,
+				A3E3389B10BC5C6D004F0F39 /* ABContact.m */,
+				A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */,
+				A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		A3E3393210BC76D7004F0F39 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				A3E3393310BC76F3004F0F39 /* ContextDAO.h */,
+				A3E3393410BC76F3004F0F39 /* ContextDAO.m */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
 		D436E8AE10BA859C00EA7624 /* tags */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +584,13 @@
 				D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */,
 				D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */,
 				D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */,
+				A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */,
+				A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */,
+				A3E338A010BC5C6D004F0F39 /* Task.m in Sources */,
+				A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */,
+				A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */,
+				A3E338C310BC6134004F0F39 /* Context.m in Sources */,
+				A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

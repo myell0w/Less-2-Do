@@ -42,13 +42,46 @@
 	[array addObject:context1];
 	[context1 release];
 	
+	[ContextDAO addContextWithName:@"Johannes' Wohnung"];
+	
 	// init Second-Level Views in Section Home
-	TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	context2.title = @"telephone";
 	context2.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:context2];
-	[context2 release];
+	[context2 release];*/
 	
+	/* ------------ KEINE AHNUNG -------------- */
+	
+	/* zuerst eines anlegen */
+	/*NSError *saveError;
+	Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:moc];
+	newContext.name = @"bussi";
+	[moc save:&saveError];*/
+	/* ende anlegen */
+	
+	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
+	NSArray *objects = [ContextDAO getAllContexts];
+	
+	if (objects == nil) {
+		NSLog(@"There was an error!");
+		// Do whatever error handling is appropriate
+	}
+	if ([objects count] > 0)
+	{
+		// for schleife objekte erzeugen und array addObject:currentContext
+		for (int i=0; i<[objects count]; i++) {
+			Context *context = [objects objectAtIndex:i];
+			TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+			context2.title = context.name;
+			context2.image = [UIImage imageNamed:@"all_tasks.png"];
+			[array addObject:context2];
+			[context2 release];
+		}
+	}
+	
+	
+	/* -------------- ENDE KEINE AHNUNG ------------- */
 	
 	self.controllersSection1 = array;
 		
