@@ -40,7 +40,6 @@
 		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
-		39B65A2410B7092800825C1D /* libToodledoAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B65A0110B7080D00825C1D /* libToodledoAPI.a */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
 		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
@@ -67,13 +66,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = FAA9E6ED10A88C7C001925AB;
 			remoteInfo = UnitTests;
-		};
-		39B65A2510B7095F00825C1D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FAF874B21096478600C4C137;
-			remoteInfo = libToodledoAPI;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -151,7 +143,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
-				39B65A2410B7092800825C1D /* libToodledoAPI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +433,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				39B65A2610B7095F00825C1D /* PBXTargetDependency */,
 			);
 			name = Less2Do;
 			productName = Less2Do;
@@ -547,14 +537,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		39B65A2610B7095F00825C1D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = libToodledoAPI;
-			targetProxy = 39B65A2510B7095F00825C1D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
