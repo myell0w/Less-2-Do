@@ -45,8 +45,8 @@
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
 		A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389B10BC5C6D004F0F39 /* ABContact.m */; };
 		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
-		A3E338C310BC6134004F0F39 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E338C210BC6134004F0F39 /* Context.m */; };
 		A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
+		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
 		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
@@ -131,11 +131,11 @@
 		A3E3389B10BC5C6D004F0F39 /* ABContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ABContact.m; path = Entities/ABContact.m; sourceTree = "<group>"; };
 		A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedInfo.h; path = Entities/ExtendedInfo.h; sourceTree = "<group>"; };
 		A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedInfo.m; path = Entities/ExtendedInfo.m; sourceTree = "<group>"; };
-		A3E338C110BC6134004F0F39 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = ../../../.Trash/Context.h; sourceTree = SOURCE_ROOT; };
-		A3E338C210BC6134004F0F39 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = ../../../.Trash/Context.m; sourceTree = SOURCE_ROOT; };
 		A3E3393310BC76F3004F0F39 /* ContextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDAO.h; sourceTree = "<group>"; };
 		A3E3393410BC76F3004F0F39 /* ContextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAO.m; sourceTree = "<group>"; };
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Classes/Entities/Context.h; sourceTree = SOURCE_ROOT; };
+		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Classes/Entities/Context.m; sourceTree = SOURCE_ROOT; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -381,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				39B658B810B623AE00825C1D /* all_tasks.png */,
+				CFB932F310BC872B004EAF93 /* Context.h */,
+				CFB932F410BC872B004EAF93 /* Context.m */,
 			);
 			name = tablecells;
 			sourceTree = "<group>";
@@ -414,8 +416,6 @@
 				A3E3389510BC5C6D004F0F39 /* Tag.m */,
 				A3E3389610BC5C6D004F0F39 /* Task.h */,
 				A3E3389710BC5C6D004F0F39 /* Task.m */,
-				A3E338C110BC6134004F0F39 /* Context.h */,
-				A3E338C210BC6134004F0F39 /* Context.m */,
 				A3E3389A10BC5C6D004F0F39 /* ABContact.h */,
 				A3E3389B10BC5C6D004F0F39 /* ABContact.m */,
 				A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */,
@@ -589,8 +589,8 @@
 				A3E338A010BC5C6D004F0F39 /* Task.m in Sources */,
 				A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */,
 				A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */,
-				A3E338C310BC6134004F0F39 /* Context.m in Sources */,
 				A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */,
+				CFB932F510BC872B004EAF93 /* Context.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
