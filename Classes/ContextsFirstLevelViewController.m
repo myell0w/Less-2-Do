@@ -42,8 +42,8 @@
 	[array addObject:context1];
 	[context1 release];
 	
-	[ContextDAO addContextWithName:@"Johannes' Wohnung"];
-	
+	//[ContextDAO addContextWithName:@"Johannes' Wohnung"];
+	ALog(@"%s", "Keine Wohnungen mehr");
 	// init Second-Level Views in Section Home
 	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	context2.title = @"telephone";

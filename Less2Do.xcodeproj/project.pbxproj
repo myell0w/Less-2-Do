@@ -135,6 +135,7 @@
 		A3E338C210BC6134004F0F39 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = ../../../.Trash/Context.m; sourceTree = SOURCE_ROOT; };
 		A3E3393310BC76F3004F0F39 /* ContextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDAO.h; sourceTree = "<group>"; };
 		A3E3393410BC76F3004F0F39 /* ContextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAO.m; sourceTree = "<group>"; };
+		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -303,7 +304,7 @@
 		39A1F45810BB21B500671B42 /* log */ = {
 			isa = PBXGroup;
 			children = (
-				CF0142CD10BC67E900785D67 /* Log.h */,
+				A3E3398810BC7EDE004F0F39 /* Log.h */,
 			);
 			name = log;
 			sourceTree = "<group>";
