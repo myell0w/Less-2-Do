@@ -134,8 +134,8 @@
 		A3E3393310BC76F3004F0F39 /* ContextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDAO.h; sourceTree = "<group>"; };
 		A3E3393410BC76F3004F0F39 /* ContextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAO.m; sourceTree = "<group>"; };
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
-		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Classes/Entities/Context.h; sourceTree = SOURCE_ROOT; };
-		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Classes/Entities/Context.m; sourceTree = SOURCE_ROOT; };
+		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Entities/Context.h; sourceTree = "<group>"; };
+		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Entities/Context.m; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -381,8 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				39B658B810B623AE00825C1D /* all_tasks.png */,
-				CFB932F310BC872B004EAF93 /* Context.h */,
-				CFB932F410BC872B004EAF93 /* Context.m */,
 			);
 			name = tablecells;
 			sourceTree = "<group>";
@@ -411,6 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				A3E3389210BC5C6D004F0F39 /* Folder.h */,
+				CFB932F310BC872B004EAF93 /* Context.h */,
+				CFB932F410BC872B004EAF93 /* Context.m */,
 				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				A3E3389410BC5C6D004F0F39 /* Tag.h */,
 				A3E3389510BC5C6D004F0F39 /* Tag.m */,
