@@ -40,6 +40,13 @@
 		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
+		39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */; };
+		39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */; };
+		39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */; };
+		39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */; };
+		39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D01410BEE3F3000A0C70 /* CustomCell.m */; };
+		39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */; };
+		39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */; };
 		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
@@ -120,6 +127,17 @@
 		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; };
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
+		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
+		39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
+		39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTaskViewController.xib; path = Classes/EditTaskViewController.xib; sourceTree = "<group>"; };
+		39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTitleCell.h; sourceTree = "<group>"; };
+		39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTitleCell.m; sourceTree = "<group>"; };
+		39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTitleCell.xib; sourceTree = "<group>"; };
+		39C6D01310BEE3F3000A0C70 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		39C6D01410BEE3F3000A0C70 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskPriorityCell.h; sourceTree = "<group>"; };
+		39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskPriorityCell.m; sourceTree = "<group>"; };
+		39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskPriorityCell.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
 		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
@@ -173,15 +191,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A3E3393210BC76D7004F0F39 /* DAO */,
-				A3E338A410BC5C80004F0F39 /* Entities */,
+				39C6CF9210BECEA8000A0C70 /* ui */,
+				39C6CF9010BECE95000A0C70 /* db */,
 				39A1F45810BB21B500671B42 /* log */,
-				39A1F30A10B9ECDF00671B42 /* add */,
-				39B6584A10B6168600825C1D /* home */,
-				39B6590010B6B32600825C1D /* folder */,
-				39B658FF10B6B31200825C1D /* contexts */,
-				39B6590110B6B32D00825C1D /* tags */,
-				D436E98510BAB76300EA7624 /* settings */,
 				1D3623240D0F684500981E51 /* Less2DoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */,
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
@@ -222,13 +234,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				39A1F33010B9FED600671B42 /* add */,
-				39A1F32F10B9FEC800671B42 /* list */,
-				39B6586110B618D700825C1D /* home */,
-				D436E8C810BA8C1200EA7624 /* folder */,
-				39B6593B10B6B83B00825C1D /* contexts */,
-				D436E8AE10BA859C00EA7624 /* tags */,
-				D436E9C210BABB4900EA7624 /* settings */,
+				39C6D00D10BEDF5C000A0C70 /* ui */,
 				392325AB10B2EE7D00075370 /* img */,
 				28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -276,13 +282,15 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
-		39A1F30A10B9ECDF00671B42 /* add */ = {
+		39A1F30A10B9ECDF00671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
 				39A1F33410BA006300671B42 /* QuickAddViewController.h */,
 				39A1F33510BA006300671B42 /* QuickAddViewController.m */,
+				39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */,
+				39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */,
 			);
-			name = add;
+			name = task;
 			sourceTree = "<group>";
 		};
 		39A1F32F10B9FEC800671B42 /* list */ = {
@@ -293,12 +301,13 @@
 			name = list;
 			sourceTree = "<group>";
 		};
-		39A1F33010B9FED600671B42 /* add */ = {
+		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 			);
-			name = add;
+			name = task;
 			sourceTree = "<group>";
 		};
 		39A1F45810BB21B500671B42 /* log */ = {
@@ -405,7 +414,67 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A3E338A410BC5C80004F0F39 /* Entities */ = {
+		39C6CF9010BECE95000A0C70 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				A3E338A410BC5C80004F0F39 /* entities */,
+				A3E3393210BC76D7004F0F39 /* dao */,
+			);
+			name = db;
+			sourceTree = "<group>";
+		};
+		39C6CF9210BECEA8000A0C70 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				39C6D00210BEDED2000A0C70 /* cells */,
+				39B6590010B6B32600825C1D /* folder */,
+				39B658FF10B6B31200825C1D /* contexts */,
+				39B6590110B6B32D00825C1D /* tags */,
+				D436E98510BAB76300EA7624 /* settings */,
+				39B6584A10B6168600825C1D /* home */,
+				39A1F30A10B9ECDF00671B42 /* task */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		39C6D00210BEDED2000A0C70 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */,
+				39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */,
+				39C6D01310BEE3F3000A0C70 /* CustomCell.h */,
+				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
+				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
+				39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		39C6D00D10BEDF5C000A0C70 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				39C6D00E10BEDF70000A0C70 /* cells */,
+				39A1F33010B9FED600671B42 /* task */,
+				39A1F32F10B9FEC800671B42 /* list */,
+				39B6586110B618D700825C1D /* home */,
+				D436E8C810BA8C1200EA7624 /* folder */,
+				39B6593B10B6B83B00825C1D /* contexts */,
+				D436E8AE10BA859C00EA7624 /* tags */,
+				D436E9C210BABB4900EA7624 /* settings */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
+		39C6D00E10BEDF70000A0C70 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */,
+				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		A3E338A410BC5C80004F0F39 /* entities */ = {
 			isa = PBXGroup;
 			children = (
 				A3E3389210BC5C6D004F0F39 /* Folder.h */,
@@ -421,16 +490,16 @@
 				A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */,
 				A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */,
 			);
-			name = Entities;
+			name = entities;
 			sourceTree = "<group>";
 		};
-		A3E3393210BC76D7004F0F39 /* DAO */ = {
+		A3E3393210BC76D7004F0F39 /* dao */ = {
 			isa = PBXGroup;
 			children = (
 				A3E3393310BC76F3004F0F39 /* ContextDAO.h */,
 				A3E3393410BC76F3004F0F39 /* ContextDAO.m */,
 			);
-			name = DAO;
+			name = dao;
 			sourceTree = "<group>";
 		};
 		D436E8AE10BA859C00EA7624 /* tags */ = {
@@ -558,6 +627,9 @@
 				D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */,
 				D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */,
 				D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */,
+				39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */,
+				39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */,
+				39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +663,10 @@
 				A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */,
 				A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */,
 				CFB932F510BC872B004EAF93 /* Context.m in Sources */,
+				39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */,
+				39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */,
+				39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */,
+				39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

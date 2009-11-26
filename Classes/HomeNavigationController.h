@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class QuickAddViewController;
+@class EditTaskViewController;
 
 @interface HomeNavigationController : UINavigationController {
-
+	// View Controller for QuickAdd
+	QuickAddViewController *quickAddController;
+	// child-view for adding a task
+	EditTaskViewController *addTaskController;
 }
+
+-(IBAction)addTaskButtonPressed:(id)sender;
 
 @end

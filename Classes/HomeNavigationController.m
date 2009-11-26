@@ -7,9 +7,12 @@
 //
 
 #import "HomeNavigationController.h"
+#import "QuickAddViewController.h"
+#import "EditTaskViewController.h"
 
 
 @implementation HomeNavigationController
+
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -52,11 +55,41 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+	[quickAddController release];
+	quickAddController = nil;
+	[addTaskController release];
+	addTaskController = nil;
 }
 
 
 - (void)dealloc {
+	[quickAddController release];
+	[addTaskController release];
+	
     [super dealloc];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Custom Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(IBAction)addTaskButtonPressed:(id)sender {
+	//TODO: add QuickAdd, skipped for MR2
+	//quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
+	//[self.view addSubview: quickAddController.view];
+	//self.navigationItem.titleView =quickAddController.view;
+	
+	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
+	addTaskController.title = @"Add Task";
+	[self pushViewController:addTaskController animated:YES];
+	
+	
+	/*addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
+	[addTaskController release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];*/
 }
 
 

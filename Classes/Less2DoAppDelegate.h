@@ -16,7 +16,6 @@
 @class ContextsNavigationController;
 @class TagsNavigationController;
 @class SettingsNavigationController;
-@class QuickAddViewController;
 
 
 @interface Less2DoAppDelegate : NSObject <UIApplicationDelegate> {
@@ -40,9 +39,6 @@
 	TagsNavigationController *tagsController;
 	// Navigation Controller for Section "Settings"
 	SettingsNavigationController *settingsController;
-	
-	// View Controller for QuickAdd
-	QuickAddViewController *quickAddController;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,15 +57,12 @@
 @property (nonatomic, retain) IBOutlet TagsNavigationController *tagsController;
 @property (nonatomic, retain) IBOutlet SettingsNavigationController *settingsController;
 
-@property (nonatomic, retain) IBOutlet QuickAddViewController *quickAddController;
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(NSString *)applicationDocumentsDirectory;
--(IBAction)addTaskButtonPressed:(id)sender;
 
 @end
 
