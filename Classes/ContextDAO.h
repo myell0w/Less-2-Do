@@ -13,7 +13,7 @@
 	
 }
 
-+(NSArray *)getAllContexts;
++(NSArray *)allContexts;
 +(int)addContextWithName:(NSString*)theName;
 
 @end

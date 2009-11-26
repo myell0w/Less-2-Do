@@ -11,7 +11,7 @@
 
 @implementation ContextDAO
 
-+(NSArray *)getAllContexts
++(NSArray *)allContexts
 {	
 	NSError *error;
 	Less2DoAppDelegate *del = [[UIApplication sharedApplication] delegate];

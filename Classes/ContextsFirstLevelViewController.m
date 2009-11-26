@@ -61,7 +61,7 @@
 	/* ende anlegen */
 	
 	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
-	NSArray *objects = [ContextDAO getAllContexts];
+	NSArray *objects = [ContextDAO allContexts];
 	
 	if (objects == nil) {
 		NSLog(@"There was an error!");
