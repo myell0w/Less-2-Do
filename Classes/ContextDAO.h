@@ -15,5 +15,6 @@
 
 +(NSArray *)allContexts;
 +(int)addContextWithName:(NSString*)theName;
++(BOOL)deleteContext:(Context *)context;
 
 @end

@@ -73,6 +73,11 @@
 	[request release];
 	
 	return 0;
-};
+}
+
++(BOOL)deleteContext:(Context *)context
+{
+	return NO;
+}
 
 @end
