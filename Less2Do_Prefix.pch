@@ -13,5 +13,7 @@
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
 	#import "Context.h"
+	#import "Folder.h"
     #import "Log.h"
+	#import "DAOError.h"
 #endif

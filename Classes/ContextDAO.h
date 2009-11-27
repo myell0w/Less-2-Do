@@ -8,12 +8,13 @@
 
 #import "Less2DoAppDelegate.h"
 
-
 @interface ContextDAO : NSObject {
 	
 }
 
-+(NSArray *)getAllContexts;
-+(int)addContextWithName:(NSString*)theName;
++(NSArray*)allContexts:(NSError**)error;
++(Context*)addContextWithName:(NSString*)theName error:(NSError**)error;
++(BOOL)deleteContext:(Context*)context error:(NSError**)error;
++(BOOL)updateContext:(Context*)oldContext newContext:(Context*)newContext error:(NSError**)error;
 
 @end

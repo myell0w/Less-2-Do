@@ -13,7 +13,7 @@
 #define CELL_ID_DUEDATE  @"CellIDDueDate"
 #define CELL_ID_DUETIME  @"CellIDDueTime"
 
-@interface EditTaskViewController : UITableViewController {
+@interface EditTaskViewController : UITableViewController <UIActionSheetDelegate> {
 	Task *task;
 }
 

@@ -42,7 +42,8 @@
 	[array addObject:context1];
 	[context1 release];
 	
-	[ContextDAO addContextWithName:@"Johannes' Wohnung"];
+	NSError *error;
+	[ContextDAO addContextWithName:@"Gerhard" error:&error];
 	ALog(@"%s", "Keine Wohnungen mehr");
 	// init Second-Level Views in Section Home
 	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -61,7 +62,7 @@
 	/* ende anlegen */
 	
 	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
-	NSArray *objects = [ContextDAO getAllContexts];
+	NSArray *objects = [ContextDAO allContexts:&error];
 	
 	if (objects == nil) {
 		NSLog(@"There was an error!");
