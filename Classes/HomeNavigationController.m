@@ -30,12 +30,12 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editDetails) name:@"TaskDetailEditNotification" object:nil];
     [super viewDidLoad];
 }
-*/
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -75,14 +75,31 @@
 
 -(IBAction)addTaskButtonPressed:(id)sender {
 	//TODO: add QuickAdd, skipped for MR2
-	//quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
-	//[self.view addSubview: quickAddController.view];
-	//self.navigationItem.titleView =quickAddController.view;
+	if (quickAddController == nil) {
+		quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
+		quickAddController.view.frame = CGRectMake(0,63,320,44);
+		[self.view addSubview: quickAddController.view];
+		self.navigationItem.titleView =quickAddController.view;
+	} else {
+		[quickAddController.view removeFromSuperview];
+		[quickAddController release];
+		quickAddController = nil;
+	}
+	
 	
 	//addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
 	//addTaskController.title = @"Add Task";
 	//[self pushViewController:addTaskController animated:YES];
-	
+}
+
+- (IBAction)editDetails {
+	// hide quickadd-bar
+	if (quickAddController != nil) {
+		[quickAddController.view removeFromSuperview];
+		[quickAddController release];
+		quickAddController = nil;		
+	}
+
 	// Present a Model View for adding a Task
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
@@ -90,6 +107,5 @@
 	[self presentModalViewController:nc animated:YES];
 	[nc release];
 }
-
 
 @end

@@ -24,5 +24,7 @@
 
 // is called, when the "+"-Button in the top-right is clicked (Quickadd/Add new task)
 -(IBAction)addTaskButtonPressed:(id)sender;
+// is called when the user wants to edit the details of a QuickAdd-Task
+-(IBAction)editDetails;
 
 @end

@@ -21,7 +21,7 @@
 	// the task to add/edit
 	Task *task;
 	// the textfield that stores the title
-	//UITextField *titleControl;
+	UITextField *titleControl;
 	// the segmented-control that stores the priority
 	//UISegmentedControl *priorityControl;
 	
@@ -32,6 +32,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @property (nonatomic, retain) Task *task;
+@property (nonatomic, retain) UITextField *titleControl;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods

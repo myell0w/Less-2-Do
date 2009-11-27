@@ -29,21 +29,21 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *all = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	all.title = @"All Tasks";
-	all.image = [UIImage imageNamed:@"all_tasks.png"];
+	all.image = [UIImage imageNamed:@"home_all.png"];
 	[array addObject:all];
 	[all release];
 	
 	// init Second-Level Views in Section Home
 	TasksListViewController *starred = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	starred.title = @"Starred";
-	starred.image = [UIImage imageNamed:@"all_tasks.png"];
+	starred.image = [UIImage imageNamed:@"home_starred.png"];
 	[array addObject:starred];
 	[starred release];
 
 	// init Second-Level Views in Section Home
 	TasksListViewController *watch = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	watch.title = @"Watchlist";
-	watch.image = [UIImage imageNamed:@"all_tasks.png"];
+	watch.image = [UIImage imageNamed:@"home_watchlist.png"];
 	[array addObject:watch];
 	[watch release];
 	
@@ -55,21 +55,21 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *overdue = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	overdue.title = @"Overdue";
-	overdue.image = [UIImage imageNamed:@"all_tasks.png"];
+	overdue.image = [UIImage imageNamed:@"home_overdue.png"];
 	[array addObject:overdue];
 	[overdue release];
 
 	// init Second-Level Views in Section Home
 	TasksListViewController *today = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	today.title = @"Today";
-	today.image = [UIImage imageNamed:@"all_tasks.png"];
+	today.image = [UIImage imageNamed:@"home_today.png"];
 	[array addObject:today];
 	[today release];
 
 	// init Second-Level Views in Section Home
 	TasksListViewController *week = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	week.title = @"This Week";
-	week.image = [UIImage imageNamed:@"all_tasks.png"];
+	week.image = [UIImage imageNamed:@"home_this_week.png"];
 	[array addObject:week];
 	[week release];
 

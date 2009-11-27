@@ -16,6 +16,7 @@
 @implementation EditTaskViewController
 
 @synthesize task;
+@synthesize titleControl;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -53,10 +54,13 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	self.task = nil;
+	self.titleControl = nil;
 }
 
 - (void)dealloc {
 	[task release];
+	[titleControl release];
+	
     [super dealloc];
 }
 
@@ -132,6 +136,8 @@
 		[titleText setDelegate:self];
 		titleText.text = @"Do this and that...";
 		[cell.contentView addSubview:titleText];
+		
+		self.titleControl = titleText;
 		[titleText release];
 		
 		// init Completed-Checkbox
@@ -169,7 +175,7 @@
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
 	// These rows can't be selected:
-	if ([cellID isEqualToString:CELL_ID_PRIORITY])
+	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY])
 		return nil;
 	
 	return indexPath;
@@ -178,13 +184,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
+	[titleControl resignFirstResponder];
+	
 	// if selecting duedate or duetime, push another detail-view controller
 	if ([cellID isEqualToString:CELL_ID_DUEDATE]) {
 		TaskEditDueDateViewController *ddvc = [[TaskEditDueDateViewController alloc] initWithNibName:@"TaskEditDueDateViewController" bundle:nil];
+		ddvc.title = @"Due Date";
 		[self.navigationController pushViewController:ddvc animated:YES];
 		[ddvc release];
 	} else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
 		TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] initWithNibName:@"TaskEditDueTimeViewController" bundle:nil];
+		dtvc.title = @"Due Time";
 		[self.navigationController pushViewController:dtvc animated:YES];
 		[dtvc release];
 	}

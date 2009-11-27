@@ -15,6 +15,13 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28C3AD8A0F43EF2300507BA6 /* Less2Do.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		390110F110C076FA00A51296 /* priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 390110F010C076FA00A51296 /* priority_2.png */; };
+		3901114110C07C2900A51296 /* home_starred.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113B10C07C2900A51296 /* home_starred.png */; };
+		3901114210C07C2900A51296 /* home_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113C10C07C2900A51296 /* home_all.png */; };
+		3901114310C07C2900A51296 /* home_watchlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113D10C07C2900A51296 /* home_watchlist.png */; };
+		3901114410C07C2900A51296 /* home_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113E10C07C2900A51296 /* home_today.png */; };
+		3901114510C07C2900A51296 /* home_overdue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113F10C07C2900A51296 /* home_overdue.png */; };
+		3901114610C07C2900A51296 /* home_this_week.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901114010C07C2900A51296 /* home_this_week.png */; };
 		3902C47C10BEF151006BBF52 /* UICheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3902C47B10BEF151006BBF52 /* UICheckBox.m */; };
 		3902C55310C01F09006BBF52 /* TaskEditDueDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3902C55110C01F09006BBF52 /* TaskEditDueDateViewController.m */; };
 		3902C55410C01F09006BBF52 /* TaskEditDueDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */; };
@@ -52,7 +59,6 @@
 		39D0532510C036DF0020D7D9 /* TaskEditDueTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */; };
 		39D0535510C03EA50020D7D9 /* priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535110C03EA50020D7D9 /* priority_0.png */; };
 		39D0535610C03EA50020D7D9 /* priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535210C03EA50020D7D9 /* priority_1.png */; };
-		39D0535710C03EA50020D7D9 /* priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535310C03EA50020D7D9 /* priority_2.png */; };
 		39D0535810C03EA50020D7D9 /* priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535410C03EA50020D7D9 /* priority_3.png */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -111,6 +117,13 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Less2Do_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Less2Do_Prefix.pch; sourceTree = "<group>"; };
+		390110F010C076FA00A51296 /* priority_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_2.png; sourceTree = "<group>"; };
+		3901113B10C07C2900A51296 /* home_starred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_starred.png; sourceTree = "<group>"; };
+		3901113C10C07C2900A51296 /* home_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_all.png; sourceTree = "<group>"; };
+		3901113D10C07C2900A51296 /* home_watchlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_watchlist.png; sourceTree = "<group>"; };
+		3901113E10C07C2900A51296 /* home_today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_today.png; sourceTree = "<group>"; };
+		3901113F10C07C2900A51296 /* home_overdue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_overdue.png; sourceTree = "<group>"; };
+		3901114010C07C2900A51296 /* home_this_week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_this_week.png; sourceTree = "<group>"; };
 		3902C47A10BEF151006BBF52 /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
 		3902C47B10BEF151006BBF52 /* UICheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICheckBox.m; sourceTree = "<group>"; };
 		3902C55010C01F09006BBF52 /* TaskEditDueDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditDueDateViewController.h; sourceTree = "<group>"; };
@@ -161,7 +174,6 @@
 		39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditDueTimeViewController.xib; path = Classes/TaskEditDueTimeViewController.xib; sourceTree = "<group>"; };
 		39D0535110C03EA50020D7D9 /* priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_0.png; sourceTree = "<group>"; };
 		39D0535210C03EA50020D7D9 /* priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_1.png; sourceTree = "<group>"; };
-		39D0535310C03EA50020D7D9 /* priority_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_2.png; sourceTree = "<group>"; };
 		39D0535410C03EA50020D7D9 /* priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_3.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
@@ -324,7 +336,7 @@
 			children = (
 				39D0535110C03EA50020D7D9 /* priority_0.png */,
 				39D0535210C03EA50020D7D9 /* priority_1.png */,
-				39D0535310C03EA50020D7D9 /* priority_2.png */,
+				390110F010C076FA00A51296 /* priority_2.png */,
 				39D0535410C03EA50020D7D9 /* priority_3.png */,
 				39A1F32310B9F89300671B42 /* star_off.png */,
 				39A1F32410B9F89300671B42 /* star_on.png */,
@@ -463,6 +475,12 @@
 		39B6593C10B6B85400825C1D /* tablecells */ = {
 			isa = PBXGroup;
 			children = (
+				3901113B10C07C2900A51296 /* home_starred.png */,
+				3901113C10C07C2900A51296 /* home_all.png */,
+				3901113D10C07C2900A51296 /* home_watchlist.png */,
+				3901113E10C07C2900A51296 /* home_today.png */,
+				3901113F10C07C2900A51296 /* home_overdue.png */,
+				3901114010C07C2900A51296 /* home_this_week.png */,
 				39B658B810B623AE00825C1D /* all_tasks.png */,
 			);
 			name = tablecells;
@@ -758,8 +776,14 @@
 				39D0532510C036DF0020D7D9 /* TaskEditDueTimeViewController.xib in Resources */,
 				39D0535510C03EA50020D7D9 /* priority_0.png in Resources */,
 				39D0535610C03EA50020D7D9 /* priority_1.png in Resources */,
-				39D0535710C03EA50020D7D9 /* priority_2.png in Resources */,
 				39D0535810C03EA50020D7D9 /* priority_3.png in Resources */,
+				390110F110C076FA00A51296 /* priority_2.png in Resources */,
+				3901114110C07C2900A51296 /* home_starred.png in Resources */,
+				3901114210C07C2900A51296 /* home_all.png in Resources */,
+				3901114310C07C2900A51296 /* home_watchlist.png in Resources */,
+				3901114410C07C2900A51296 /* home_today.png in Resources */,
+				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
+				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
