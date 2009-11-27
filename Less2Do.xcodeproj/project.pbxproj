@@ -54,6 +54,7 @@
 		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
 		A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
 		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
+		CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF3177710C00B79004222B6 /* FolderDAO.m */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
 		D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E8AF10BA85B900EA7624 /* TagsTableView.xib */; };
@@ -155,6 +156,8 @@
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Entities/Context.h; sourceTree = "<group>"; };
 		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Entities/Context.m; sourceTree = "<group>"; };
+		CFF3177610C00B79004222B6 /* FolderDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDAO.h; sourceTree = "<group>"; };
+		CFF3177710C00B79004222B6 /* FolderDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDAO.m; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
 		D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsNavigationController.h; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 				A3E3393310BC76F3004F0F39 /* ContextDAO.h */,
 				A3E3393410BC76F3004F0F39 /* ContextDAO.m */,
 				A34471E710BF239000851DCD /* DAOError.h */,
+				CFF3177610C00B79004222B6 /* FolderDAO.h */,
+				CFF3177710C00B79004222B6 /* FolderDAO.m */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -669,6 +674,7 @@
 				39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */,
 				39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */,
 				39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */,
+				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
