@@ -8,7 +8,6 @@
 
 #import "EditTaskViewController.h"
 #import "CustomCell.h"
-#import "TaskTitleCell.h"
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
 #import "UICheckBox.h"
@@ -133,12 +132,14 @@
     // Set up the cell...
 	if ([reuseID isEqualToString:CELL_ID_TITLE]) {
 		// init Title
-		CGRect titleLabelRect = CGRectMake(52, 11, 218, 21);
-		UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
-		titleLabel.font = [UIFont boldSystemFontOfSize:16];
-		titleLabel.text = @"Do this and that...";
-		[cell.contentView addSubview:titleLabel];
-		[titleLabel release];
+		CGRect titleLabelRect = CGRectMake(52, 13, 210, 21);
+		UITextField *titleText = [[UITextField alloc] initWithFrame:titleLabelRect];
+		titleText.font = [UIFont boldSystemFontOfSize:16];
+		titleText.returnKeyType = UIReturnKeyDone;
+		[titleText setDelegate:self];
+		titleText.text = @"Do this and that...";
+		[cell.contentView addSubview:titleText];
+		[titleText release];
 		
 		// init Completed-Checkbox
 		CGRect completedRect = CGRectMake(9, 6, 32, 32);
@@ -164,6 +165,7 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
+	// set font
 	cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14];
 	
     return cell;
@@ -236,6 +238,11 @@
 	if (buttonIndex != [actionSheet cancelButtonIndex]) {
 		[self dismissModalViewControllerAnimated:YES];
 	}
+}
+												   
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder]; //dismiss the keyboard
+	return YES;
 }
 
 @end

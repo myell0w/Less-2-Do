@@ -45,8 +45,6 @@
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
 		39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */; };
 		39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */; };
-		39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */; };
-		39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */; };
 		39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D01410BEE3F3000A0C70 /* CustomCell.m */; };
 		39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */; };
 		39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */; };
@@ -153,9 +151,6 @@
 		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
 		39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTaskViewController.xib; path = Classes/EditTaskViewController.xib; sourceTree = "<group>"; };
-		39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTitleCell.h; sourceTree = "<group>"; };
-		39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTitleCell.m; sourceTree = "<group>"; };
-		39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTitleCell.xib; sourceTree = "<group>"; };
 		39C6D01310BEE3F3000A0C70 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		39C6D01410BEE3F3000A0C70 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskPriorityCell.h; sourceTree = "<group>"; };
@@ -521,8 +516,6 @@
 		39C6D00210BEDED2000A0C70 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */,
-				39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */,
 				39C6D01310BEE3F3000A0C70 /* CustomCell.h */,
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
@@ -549,7 +542,6 @@
 		39C6D00E10BEDF70000A0C70 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */,
 				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
 			);
 			name = cells;
@@ -761,7 +753,6 @@
 				D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */,
 				D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */,
 				39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */,
-				39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */,
 				39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */,
 				3902C55410C01F09006BBF52 /* TaskEditDueDateViewController.xib in Resources */,
 				39D0532510C036DF0020D7D9 /* TaskEditDueTimeViewController.xib in Resources */,
@@ -810,7 +801,6 @@
 				A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */,
 				CFB932F510BC872B004EAF93 /* Context.m in Sources */,
 				39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */,
-				39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */,
 				39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */,
 				39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */,
 				3902C47C10BEF151006BBF52 /* UICheckBox.m in Sources */,
