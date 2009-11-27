@@ -54,7 +54,6 @@
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
 	[quickAddController release];
 	quickAddController = nil;
 	[addTaskController release];
@@ -84,7 +83,7 @@
 	//addTaskController.title = @"Add Task";
 	//[self pushViewController:addTaskController animated:YES];
 	
-	
+	// Present a Model View for adding a Task
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
 	[addTaskController release];

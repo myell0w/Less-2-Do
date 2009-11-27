@@ -25,13 +25,6 @@
 	
 	//init Second-Level Views in Section Tags
 	
-	//View for Any Folder Tasks
-	TasksListViewController *anyfolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	anyfolder.title = @"Any Folder";
-	anyfolder.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:anyfolder];
-	[anyfolder release];
-	
 	//View for No Folder Tasks
 	TasksListViewController *nofolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	nofolder.title = @"No Folder";

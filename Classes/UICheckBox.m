@@ -8,58 +8,87 @@
 
 #import "UICheckBox.h"
 
+#define DEFAULT_ON_IMAGE	@"task_on.png"
+#define DEFAULT_OFF_IMAGE	@"task_off.png"
 
 @implementation UICheckBox
 
-@synthesize onImage;
-@synthesize offImage;
+@synthesize backgroundImage;
+@synthesize imageNameOn;
+@synthesize imageNameOff;
 
 
-- (id)initWithFrame:(CGRect)rect
-		andOffImage:(NSString *)offImageName
-		 andOnImage:(NSString *)onImageName {
-	[super initWithFrame:rect];
+- (id)initWithFrame:(CGRect)frame 
+		 andOnImage:(NSString *)imageOn 
+		andOffImage:(NSString *)imageOff {
+	if (self = [super initWithFrame:frame]) {
+		on = NO;
+		
+		self.imageNameOn = imageOn;
+		self.imageNameOff = imageOff;
+		self.backgroundColor = [UIColor clearColor];
+		self.clipsToBounds = YES;
+		self.autoresizesSubviews = NO;
+		self.autoresizingMask = 0;
+		self.opaque = YES;
+		
+		[self setupUserInterface];
+    }
 	
-	UIImage *off = [UIImage imageNamed:offImageName];
-	UIImage *on = [UIImage imageNamed:onImageName];
-	
-	//self.buttonType = UIButtonTypeCustom;
-	self.offImage = off;
-	self.onImage = on;
-	self.selected = FALSE;
-	
-	[off release];
-	[on release];
-	
-	[self addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-	
-	return self;
+    return self;
 }
 
-- (id)initWithFrame:(CGRect)rect
-		andOffImage:(NSString *)offImageName 
-		 andOnImage:(NSString *)onImageName andState:(BOOL)state {
-	[self initWithFrame:rect andOffImage:offImageName andOnImage:onImageName];
+- (id)initWithFrame:(CGRect)frame {
+	return [self initWithFrame:frame andOnImage:DEFAULT_ON_IMAGE andOffImage:DEFAULT_OFF_IMAGE];
+}
+
+- (void)dealloc {
+	[backgroundImage release];
+	[imageNameOn release];
+	[imageNameOff release];
 	
-	self.selected = state;
+	[super dealloc];
+}
+
+// Setup the user interface
+- (void)setupUserInterface {
+	// Background image
+	UIImage *image = [UIImage imageNamed:imageNameOff];
+	UIImageView* imageView = [[UIImageView alloc] 
+							  initWithFrame:CGRectMake(0,0,image.size.width,image.size.height)];
 	
-	return self;
+	imageView.image = image;
+	imageView.backgroundColor = [UIColor clearColor];
+	imageView.contentMode = UIViewContentModeLeft;
+	self.backgroundImage = imageView;
+	
+	[image release];
+	[imageView release];
+	
+	
+	// Check for user input
+	[self addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
+	// add image-view
+	[self addSubview:self.backgroundImage];
 }
 
--(id)initWithFrame:(CGRect)rect {
-	return [self initWithFrame:rect andOffImage:@"Star off" andOnImage:@"Star on"];
-}
-
--(IBAction)changeSelection {
-	self.selected = !self.selected;
-}
-
-- (void)drawRect:(CGRect)rect {
-	if (self.selected) {
-		[onImage drawInRect:rect];
+- (void)setOn:(BOOL)isOn {
+	on = isOn;
+	
+	if (on)	{
+		self.backgroundImage.image = [UIImage imageNamed:imageNameOn];
 	} else {
-		[offImage drawInRect:rect];
+		self.backgroundImage.image = [UIImage imageNamed:imageNameOff];
 	}
+}
+
+- (BOOL)isOn {
+	return on;
+}
+
+// Toggle state
+- (void)toggle {
+	[self setOn:!on];
 }
 
 @end

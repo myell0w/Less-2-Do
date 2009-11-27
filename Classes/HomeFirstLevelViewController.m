@@ -123,6 +123,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
+	// customize cell-appearance:
 	cell.textLabel.text = c.title;
 	cell.detailTextLabel.text = detail;
 	cell.imageView.image = c.image;
@@ -142,6 +143,7 @@
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
 	
+	// Show a List of Tasks
 	TasksListViewController *next = [[self sectionForIndex:section] objectAtIndex:row];
 	
 	[self.navigationController pushViewController:next animated:YES];

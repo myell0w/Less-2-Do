@@ -11,6 +11,7 @@
 #import "TaskTitleCell.h"
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
+#import "UICheckBox.h"
 
 
 @implementation EditTaskViewController
@@ -120,7 +121,9 @@
 	
     if (cell == nil) {
 		//TODO: delete if/else
-		if ([reuseID isEqualToString:CELL_ID_TITLE] || [reuseID isEqualToString:CELL_ID_PRIORITY]) {
+		if ([reuseID isEqualToString:CELL_ID_TITLE]){
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
+		} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
 			cell = [CustomCell loadFromNib:reuseID withOwner:self];
 		} else {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
@@ -129,8 +132,26 @@
     
     // Set up the cell...
 	if ([reuseID isEqualToString:CELL_ID_TITLE]) {
-		TaskTitleCell *tc = (TaskTitleCell *)cell;
-		tc.title.text = @"yeah";
+		// init Title
+		CGRect titleLabelRect = CGRectMake(52, 11, 218, 21);
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:titleLabelRect];
+		titleLabel.font = [UIFont boldSystemFontOfSize:16];
+		titleLabel.text = @"Do this and that...";
+		[cell.contentView addSubview:titleLabel];
+		[titleLabel release];
+		
+		// init Completed-Checkbox
+		CGRect completedRect = CGRectMake(9, 6, 32, 32);
+		UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:completedRect];
+		[cell.contentView addSubview:completedCB];
+		[completedCB release];
+		
+		// init Starred-Checkbox
+		CGRect starredRect = CGRectMake(260, 6, 32, 32);
+		UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:starredRect andOnImage:@"star_on.png" andOffImage:@"star_off.png"];
+		[cell.contentView addSubview:starredCB];
+		[starredCB release];
+		
 	} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
 		
 	} else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
@@ -142,6 +163,8 @@
 		cell.detailTextLabel.text = @"None";
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
+	
+	cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14];
 	
     return cell;
 }

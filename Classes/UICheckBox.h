@@ -8,18 +8,41 @@
 
 #import <UIKit/UIKit.h>
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Custom Control representing a CheckBox
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 @interface UICheckBox : UIControl {
-	UIImage *offImage;
-	UIImage *onImage;
+	// the image to display
+	UIImageView* backgroundImage;
+	// the state of the checkbox
+	BOOL on;
+	// the name of the On-Image
+	NSString *imageNameOn;
+	// the name of the Off-Image
+	NSString *imageNameOff;
 }
 
-@property (nonatomic, retain) UIImage *offImage;
-@property (nonatomic, retain) UIImage *onImage;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Properties
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (id)initWithFrame:(CGRect)frame andOffImage:(NSString *)offImageName andOnImage:(NSString *)onImageName;
-- (id)initWithFrame:(CGRect)frame andOffImage:(NSString *)offImageName andOnImage:(NSString *)onImageName andState:(BOOL)state;
+@property (nonatomic, retain, readwrite) UIImageView* backgroundImage;
+@property (nonatomic, copy) NSString *imageNameOn;
+@property (nonatomic, copy) NSString *imageNameOff;
 
--(IBAction)changeSelection;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (id)initWithFrame:(CGRect)frame;  
+- (id)initWithFrame:(CGRect)frame andOnImage:(NSString *)imageOn andOffImage:(NSString *)imageOff;
+
+- (void)setOn:(BOOL)on; 
+- (BOOL)isOn;
+
+- (void)setupUserInterface;
+- (void)toggle;
 
 @end
