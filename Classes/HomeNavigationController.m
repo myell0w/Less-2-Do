@@ -74,14 +74,37 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(IBAction)addTaskButtonPressed:(id)sender {
-	//TODO: add QuickAdd, skipped for MR2
 	if (quickAddController == nil) {
+		// start animation
+		[UIView beginAnimations:@"QuickAddAnimationShow" context:nil];
+		[UIView setAnimationDuration:0.2];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+		
 		quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
 		quickAddController.view.frame = CGRectMake(0,63,320,44);
+		
+		[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:quickAddController.view cache:YES];
+		[quickAddController viewWillAppear:YES];		
 		[self.view addSubview: quickAddController.view];
-		self.navigationItem.titleView =quickAddController.view;
+		[quickAddController  viewDidAppear:YES];
+		
+		// end animation
+		[UIView commitAnimations];
 	} else {
+		// start animation
+		[UIView beginAnimations:@"QuickAddAnimationHide" context:nil];
+		[UIView setAnimationDuration:0.2];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+		[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:quickAddController.view cache:YES];
+		[quickAddController viewWillDisappear:YES];		
+		
 		[quickAddController.view removeFromSuperview];
+		[quickAddController  viewDidDisappear:YES];
+		
+		// end animation
+		[UIView commitAnimations];
+		
+		// release memory
 		[quickAddController release];
 		quickAddController = nil;
 	}
