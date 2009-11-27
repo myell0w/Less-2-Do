@@ -72,7 +72,10 @@
 
 -(IBAction)taskDetailsEdit:(id)sender {
 	//TODO: implement
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self];
+	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task.text, @"Title", nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
+	
+	[dict release];
 
 }
 

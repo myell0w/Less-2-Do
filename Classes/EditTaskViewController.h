@@ -22,6 +22,9 @@
 	Task *task;
 	// the textfield that stores the title
 	UITextField *titleControl;
+	// data got from super-view
+	NSDictionary *data;
+	
 	// the segmented-control that stores the priority
 	//UISegmentedControl *priorityControl;
 	
@@ -33,6 +36,7 @@
 
 @property (nonatomic, retain) Task *task;
 @property (nonatomic, retain) UITextField *titleControl;
+@property (nonatomic, retain) NSDictionary *data;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods

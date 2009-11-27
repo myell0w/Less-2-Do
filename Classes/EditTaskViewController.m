@@ -17,6 +17,7 @@
 
 @synthesize task;
 @synthesize titleControl;
+@synthesize data;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -55,11 +56,13 @@
 	// e.g. self.myOutlet = nil;
 	self.task = nil;
 	self.titleControl = nil;
+	self.data = nil;
 }
 
 - (void)dealloc {
 	[task release];
 	[titleControl release];
+	[data release];
 	
     [super dealloc];
 }
@@ -134,7 +137,11 @@
 		titleText.font = [UIFont boldSystemFontOfSize:16];
 		titleText.returnKeyType = UIReturnKeyDone;
 		[titleText setDelegate:self];
-		titleText.text = @"Do this and that...";
+		
+		id dataTitle = [data objectForKey:@"Title"];
+		if (dataTitle != nil) {
+			titleText.text = [dataTitle description];	
+		}
 		[cell.contentView addSubview:titleText];
 		
 		self.titleControl = titleText;

@@ -33,7 +33,11 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editDetails) name:@"TaskDetailEditNotification" object:nil];
+	// register as observer for Notification sent by QuickAddViewController, when the user want's
+	// to edit the details of a QuickAdd-Task --> if so, editDetails: is called
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(editDetails:) 
+												 name:@"TaskDetailEditNotification" object:nil];
     [super viewDidLoad];
 }
 
@@ -75,18 +79,17 @@
 
 -(IBAction)addTaskButtonPressed:(id)sender {
 	if (quickAddController == nil) {
+		quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
+		quickAddController.view.frame = CGRectMake(0,63,320,0);//44);
+		
+		[self.view addSubview: quickAddController.view];
+		
 		// start animation
 		[UIView beginAnimations:@"QuickAddAnimationShow" context:nil];
 		[UIView setAnimationDuration:0.2];
-		[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 		
-		quickAddController = [[QuickAddViewController alloc] initWithNibName:@"QuickAddViewController" bundle:nil];
 		quickAddController.view.frame = CGRectMake(0,63,320,44);
-		
-		[UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:quickAddController.view cache:YES];
-		[quickAddController viewWillAppear:YES];		
-		[self.view addSubview: quickAddController.view];
-		[quickAddController  viewDidAppear:YES];
 		
 		// end animation
 		[UIView commitAnimations];
@@ -94,28 +97,24 @@
 		// start animation
 		[UIView beginAnimations:@"QuickAddAnimationHide" context:nil];
 		[UIView setAnimationDuration:0.2];
-		[UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-		[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:quickAddController.view cache:YES];
-		[quickAddController viewWillDisappear:YES];		
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 		
-		[quickAddController.view removeFromSuperview];
-		[quickAddController  viewDidDisappear:YES];
+		quickAddController.view.frame = CGRectMake(0,63,320,0);
 		
 		// end animation
 		[UIView commitAnimations];
 		
 		// release memory
+		[quickAddController.view removeFromSuperview];
 		[quickAddController release];
 		quickAddController = nil;
 	}
-	
-	
-	//addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
-	//addTaskController.title = @"Add Task";
-	//[self pushViewController:addTaskController animated:YES];
 }
 
-- (IBAction)editDetails {
+// is called, when the user want's to edit the details of a QuickAdd-Task
+- (IBAction)editDetails:(NSNotification *)notification {
+	NSDictionary *dict = [notification userInfo];
+	
 	// hide quickadd-bar
 	if (quickAddController != nil) {
 		[quickAddController.view removeFromSuperview];
@@ -125,6 +124,7 @@
 
 	// Present a Model View for adding a Task
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
+	addTaskController.data = dict;
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
 	[addTaskController release];
 	[self presentModalViewController:nc animated:YES];

@@ -103,6 +103,7 @@
 					<bytes key="NSRGB">MC4yMDc5Mzk3MjcxIDAuMjI4MjYwODY5NiAwLjIwOTE4OTUwMDIAA</bytes>
 				</object>
 				<bool key="IBUIAutoresizesSubviews">NO</bool>
+				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUIContentMode">5</int>
 			</object>
@@ -135,6 +136,14 @@
 						<int key="IBEventType">20</int>
 					</object>
 					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">task</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="652011143"/>
+					</object>
+					<int key="connectionID">31</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -216,7 +225,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
