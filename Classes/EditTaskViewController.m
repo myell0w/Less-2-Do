@@ -135,6 +135,7 @@
 		CGRect titleLabelRect = CGRectMake(52, 13, 210, 21);
 		UITextField *titleText = [[UITextField alloc] initWithFrame:titleLabelRect];
 		titleText.font = [UIFont boldSystemFontOfSize:16];
+		titleText.placeholder = @"Enter Task-Title...";
 		titleText.returnKeyType = UIReturnKeyDone;
 		[titleText setDelegate:self];
 		
