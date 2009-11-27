@@ -45,6 +45,14 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 {
 	NSError *saveError;
 	
+	ALog(@"THERE");
+	if(theName == nil || [theName length] == 0) {
+		ALog(@"here");
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
+		return nil;
+	}
+		
+	
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];

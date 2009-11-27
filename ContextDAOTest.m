@@ -7,19 +7,35 @@
 //
 
 #import "GHUnit.h"
+#import "ContextDAO.h"
+#import "Context.h"
+#import "DAOError.h"
 
-@interface ContextDAOTest : GHTestCase
+@interface ContextDAOTest : GHTestCase {
+	
+}
 
-- (void)testAddContext;
+- (void)testAddContextWithNameWithoutTitle;
 
 @end
 
 @implementation ContextDAOTest
 
--(void)testAddContext {	
-	int value1 = 2;
-	int value2 = 1; //change this value to see what happens when the 
-	GHAssertTrue(value1 == value2, @"Value1 != Value2. Expected %i, got %i", value1, value2);
+- (void)setUp {
+	/* whatever has to be set up */
+}
+
+- (void)tearDown {
+	/* whatever has to be teared down */
+	/* e.g. releasing set up objects and set them to nil */
+}
+
+// Tests adding a folder without a folder parameter
+- (void)testAddContextWithNameWithoutTitle {
+	/*NSError *error = nil;
+	Context *returnValue = [ContextDAO addContextWithName:nil error:&error];
+	GHAssertTrue([error code] == DAOMissingParametersError, @"Context must not be added without name");
+	GHAssertTrue(returnValue == nil, @"Return value must be nil.");*/
 }
 
 @end

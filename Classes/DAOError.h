@@ -14,6 +14,7 @@ extern NSString *const DAOErrorDomain;
 @protocol DAOError
 
 typedef enum {
+	DAOMissingParametersError = 1,
 	DAONotFetchedError = 10,
 	DAONotAddedError   = 11,
 	DAONotDeletedError = 12,
