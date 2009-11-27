@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#define CELL_ID_TITLE @"TaskTitleCell"
+#define CELL_ID_TITLE    @"TaskTitleCell"
 #define CELL_ID_PRIORITY @"TaskPriorityCell"
-#define CELL_ID_DUEDATE @"CellIDDueDate"
-#define CELL_ID_DUETIME @"CellIDDueTime"
+#define CELL_ID_DUEDATE  @"CellIDDueDate"
+#define CELL_ID_DUETIME  @"CellIDDueTime"
 
 @interface EditTaskViewController : UITableViewController {
 	Task *task;
@@ -20,5 +20,7 @@
 @property (nonatomic, retain) Task *task;
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
+-(IBAction)save:(id)sender;
+-(IBAction)cancel:(id)sender;
 
 @end

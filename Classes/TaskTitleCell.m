@@ -32,9 +32,11 @@
 
 
 - (void)dealloc {
-	[title dealloc];
+	[title release];
+	[imageCompleted release];
+	[imageStarred release];
+	
     [super dealloc];
 }
-
 
 @end

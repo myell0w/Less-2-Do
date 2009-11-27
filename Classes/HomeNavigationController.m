@@ -80,16 +80,16 @@
 	//[self.view addSubview: quickAddController.view];
 	//self.navigationItem.titleView =quickAddController.view;
 	
+	//addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
+	//addTaskController.title = @"Add Task";
+	//[self pushViewController:addTaskController animated:YES];
+	
+	
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
-	addTaskController.title = @"Add Task";
-	[self pushViewController:addTaskController animated:YES];
-	
-	
-	/*addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
 	[addTaskController release];
 	[self presentModalViewController:nc animated:YES];
-	[nc release];*/
+	[nc release];
 }
 
 

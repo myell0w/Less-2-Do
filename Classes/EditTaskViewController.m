@@ -9,6 +9,8 @@
 #import "EditTaskViewController.h"
 #import "CustomCell.h"
 #import "TaskTitleCell.h"
+#import "TaskEditDueDateViewController.h"
+#import "TaskEditDueTimeViewController.h"
 
 
 @implementation EditTaskViewController
@@ -24,14 +26,28 @@
 }
 */
 
-/*
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)viewDidLoad {
+	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+															   style:UIBarButtonItemStylePlain 
+															  target:self 
+															  action:@selector(cancel:)];
+	
+	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:@"Save" 
+															 style:UIBarButtonItemStyleDone
+															target:self 
+															action:@selector(save:)];
+	
+	self.navigationItem.title = @"Add Task";
+	self.navigationItem.leftBarButtonItem = cancel;
+	self.navigationItem.rightBarButtonItem = save;
+	[save release];
+	[cancel release];
+	
+	
+    [super viewDidLoad];
 }
-*/
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,7 +147,29 @@
 }
 
 
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
+	
+	// These rows can't be selected:
+	if ([cellID isEqualToString:CELL_ID_PRIORITY])
+		return nil;
+	
+	return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
+	
+	if ([cellID isEqualToString:CELL_ID_DUEDATE]) {
+		TaskEditDueDateViewController *ddvc = [[TaskEditDueDateViewController alloc] initWithNibName:@"TaskEditDueDateViewController" bundle:nil];
+		[self.navigationController pushViewController:ddvc animated:YES];
+		[ddvc release];
+	} else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
+		TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] initWithNibName:@"TaskEditDueTimeViewController" bundle:nil];
+		[self.navigationController pushViewController:dtvc animated:YES];
+		[dtvc release];
+	}
+	
     // Navigation logic may go here. Create and push another view controller.
 	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
 	// [self.navigationController pushViewController:anotherViewController];
@@ -180,6 +218,8 @@
 
 
 - (void)dealloc {
+	[task release];
+	
     [super dealloc];
 }
 
@@ -198,6 +238,14 @@
 		return CELL_ID_DUETIME;
 	
 	return nil;
+}
+
+-(IBAction)save:(id)sender {
+	
+}
+
+-(IBAction)cancel:(id)sender {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 @end

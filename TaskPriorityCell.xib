@@ -75,7 +75,7 @@
 									<object class="IBUISegmentedControl" id="310274798">
 										<reference key="NSNextResponder" ref="695019559"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{121, 7}, {174, 30}}</string>
+										<string key="NSFrame">{{97, 7}, {193, 30}}</string>
 										<reference key="NSSuperview" ref="695019559"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -84,10 +84,10 @@
 										<int key="IBSelectedSegmentIndex">0</int>
 										<object class="NSArray" key="IBSegmentTitles">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<string>H</string>
-											<string>M</string>
-											<string>L</string>
-											<string>-</string>
+											<string/>
+											<string/>
+											<string/>
+											<string/>
 										</object>
 										<object class="NSMutableArray" key="IBSegmentWidths">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -112,10 +112,22 @@
 										</object>
 										<object class="NSMutableArray" key="IBSegmentImages">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<object class="NSNull" id="4"/>
-											<reference ref="4"/>
-											<reference ref="4"/>
-											<reference ref="4"/>
+											<object class="NSCustomResource">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">priority_3.png</string>
+											</object>
+											<object class="NSCustomResource">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">priority_2.png</string>
+											</object>
+											<object class="NSCustomResource">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">priority_1.png</string>
+											</object>
+											<object class="NSCustomResource">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">priority_0.png</string>
+											</object>
 										</object>
 									</object>
 								</object>
