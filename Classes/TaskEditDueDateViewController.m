@@ -15,31 +15,15 @@
 @synthesize dateLabel;
 @synthesize dueDate;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark View Lifecycle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[self selectionChanged:nil];
     [super viewDidLoad];
 }
-
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -56,7 +40,6 @@
 	self.dueDate = nil;
 }
 
-
 - (void)dealloc {
 	[datePicker release];
 	[dateLabel release];
@@ -64,6 +47,10 @@
 	
     [super dealloc];
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Action-Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(IBAction)selectionChanged:(id)sender {
 	self.dueDate = [datePicker date];
@@ -75,6 +62,7 @@
 	[format release];
 }
 
+// set due-date to current date
 -(IBAction)setToday {
 	NSDate *d = [[NSDate alloc] init];
 	
@@ -85,6 +73,7 @@
 	[self selectionChanged:nil];
 }
 
+// set due-date to next day
 -(IBAction)setTomorrow {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24];
 	
@@ -95,6 +84,7 @@
 	[self selectionChanged:nil];
 }
 
+// set due-date to next week
 -(IBAction)setNextWeek {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24*7];
 	
@@ -105,6 +95,7 @@
 	[self selectionChanged:nil];
 }
 
+// set due-date to none
 -(IBAction)setNone {
 	self.dueDate = nil;
 	self.dateLabel.text = @"No Due Date";

@@ -17,15 +17,9 @@
 
 @synthesize task;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark View Lifecycle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)viewDidLoad {
 	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
@@ -47,6 +41,25 @@
 	
     [super viewDidLoad];
 }
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+	self.task = nil;
+}
+
+- (void)dealloc {
+	[task release];
+    [super dealloc];
+}
+
 
 
 /*
@@ -70,29 +83,9 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-	self.task = nil;
-}
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table view methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	//TODO:change
@@ -185,6 +178,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
+	// if selecting duedate or duetime, push another detail-view controller
 	if ([cellID isEqualToString:CELL_ID_DUEDATE]) {
 		TaskEditDueDateViewController *ddvc = [[TaskEditDueDateViewController alloc] initWithNibName:@"TaskEditDueDateViewController" bundle:nil];
 		[self.navigationController pushViewController:ddvc animated:YES];
@@ -195,13 +189,6 @@
 		[dtvc release];
 	}
 }
-
-- (void)dealloc {
-	[task release];
-	
-    [super dealloc];
-}
-
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
@@ -219,10 +206,12 @@
 	return nil;
 }
 
+// save the task
 -(IBAction)save:(id)sender {
 	
 }
 
+// cancel the adding/editing
 -(IBAction)cancel:(id)sender {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Really Cancel?"
 															 delegate:self
@@ -234,12 +223,22 @@
 	[actionSheet release];
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark ActionSheet-Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 -(void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	// if the user really wants to abort, delete the modal view and show the parent view again
 	if (buttonIndex != [actionSheet cancelButtonIndex]) {
 		[self dismissModalViewControllerAnimated:YES];
 	}
 }
-												   
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TextField-Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// if the user presses "Done" on the Keyboard, hide it
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	[textField resignFirstResponder]; //dismiss the keyboard
 	return YES;
