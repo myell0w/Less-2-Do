@@ -49,6 +49,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (Task *)createTaskFromParsingTitle:(NSString *)title {
+	NSMutableString *taskDescription = [[NSMutableString alloc] initWithFormat:title];
 	// Den delegate vom Less2DoAppDelegate
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	// Den ManagedObjectContext durch den delegate
@@ -60,7 +61,7 @@
 	
 	//TODO: parse title and set other attributes (f.e. !!! = Priority 3, !! = Priority 2 ...)
 	// filter out priority
-	NSRange range = [title rangeOfString:@"!!!"];
+	NSRange range = [taskDescription rangeOfString:@"!!!"];
 	// !!! not found?
 	if (range.location == NSNotFound) {
 		range = [title rangeOfString:@"!!"];
@@ -73,6 +74,7 @@
 	// found any priority?
 	if (range.location != NSNotFound) {
 		t.priority = [[NSNumber alloc] initWithInt:range.length-1];
+		[taskDescription deleteCharactersInRange:range];
 	} else {
 		t.priority = [[NSNumber alloc] initWithInt:PRIORITY_NONE];
 	}
@@ -81,10 +83,10 @@
 	range = [title rangeOfString:@"*"];
 	if (range.location != NSNotFound) {
 		t.star = [[NSNumber alloc] initWithBool:YES];
+		[taskDescription deleteCharactersInRange:range];
 	}
 	
-	// TODO: delete !!! and * from title
-	t.name = [title copy];
+	t.name = [taskDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	return t;
 }
