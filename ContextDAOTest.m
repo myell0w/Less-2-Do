@@ -6,10 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "GHUnit.h"
 #import "ContextDAO.h"
 #import "Context.h"
-#import "DAOError.h"
 
 @interface ContextDAOTest : GHTestCase {
 	
@@ -30,12 +28,29 @@
 	/* e.g. releasing set up objects and set them to nil */
 }
 
-// Tests adding a folder without a folder parameter
+// Tests adding a context without a context parameter
 - (void)testAddContextWithNameWithoutTitle {
-	/*NSError *error = nil;
+	NSError *error = nil;
 	Context *returnValue = [ContextDAO addContextWithName:nil error:&error];
 	GHAssertTrue([error code] == DAOMissingParametersError, @"Context must not be added without name");
-	GHAssertTrue(returnValue == nil, @"Return value must be nil.");*/
+	GHAssertTrue(returnValue == nil, @"Return value must be nil.");
+}
+
+- (void)testDeleteContext {
+	NSError *error = nil;
+	Context *returnValue = [ContextDAO addContextWithName:@"Test generated" error:&error];
+	/*if (returnValue == nil) {
+		GHFail(@"add not successful");
+	}
+	else {
+		GHFail(@"add successful");
+	}*/
+	GHAssertTrue(returnValue == nil, @"Context not added");
+	GHAssertTrue(returnValue != nil, @"Context successfully added");
+
+	//BOOL deleteSuccessful = [ContextDAO deleteContext:returnValue error:&error];
+	//GHAssertTrue([error code] == DAOMissingParametersError, @"Context must not be added without name");
+	//GHAssertTrue(returnValue == nil, @"Return value must be nil.");
 }
 
 @end
