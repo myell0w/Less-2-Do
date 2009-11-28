@@ -9,6 +9,11 @@
 @class Folder;
 @class Tag;
 
+#define PRIORITY_NONE   -1
+#define PRIORITY_LOW    0
+#define PRIORITY_MEDIUM 1
+#define PRIORITY_HIGH   2
+
 @interface Task :  NSManagedObject  
 {
 }
@@ -36,6 +41,7 @@
 @property (nonatomic, retain) NSSet* tags;
 @property (nonatomic, retain) NSManagedObject * abContact;
 @property (nonatomic, retain) NSSet* extendedInfo;
+
 
 @end
 

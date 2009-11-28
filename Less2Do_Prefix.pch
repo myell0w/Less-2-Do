@@ -14,6 +14,7 @@
     #import <CoreData/CoreData.h>
 	#import "Context.h"
 	#import "Folder.h"
+	#import "Task.h"
     #import "Log.h"
 	#import "DAOError.h"
 #endif

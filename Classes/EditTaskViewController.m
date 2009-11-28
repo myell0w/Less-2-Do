@@ -17,7 +17,7 @@
 
 @synthesize task;
 @synthesize titleControl;
-@synthesize data;
+@synthesize tempData;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -56,13 +56,13 @@
 	// e.g. self.myOutlet = nil;
 	self.task = nil;
 	self.titleControl = nil;
-	self.data = nil;
+	self.tempData = nil;
 }
 
 - (void)dealloc {
 	[task release];
 	[titleControl release];
-	[data release];
+	[tempData release];
 	
     [super dealloc];
 }
@@ -123,7 +123,8 @@
 		if ([reuseID isEqualToString:CELL_ID_TITLE]){
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
 		} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
-			cell = [CustomCell loadFromNib:reuseID withOwner:self];
+			//cell = [CustomCell loadFromNib:reuseID withOwner:self];
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
 		} else {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
 		}
@@ -134,14 +135,14 @@
 		// init Title
 		CGRect titleLabelRect = CGRectMake(52, 13, 210, 21);
 		UITextField *titleText = [[UITextField alloc] initWithFrame:titleLabelRect];
-		titleText.font = [UIFont boldSystemFontOfSize:16];
+		titleText.font = [UIFont boldSystemFontOfSize:15];
 		titleText.placeholder = @"Enter Task-Title...";
 		titleText.returnKeyType = UIReturnKeyDone;
 		[titleText setDelegate:self];
 		
-		id dataTitle = [data objectForKey:@"Title"];
-		if (dataTitle != nil) {
-			titleText.text = [dataTitle description];	
+		// value for title set?
+		if (task.name != nil) {
+			titleText.text = task.name;	
 		}
 		[cell.contentView addSubview:titleText];
 		
@@ -161,7 +162,32 @@
 		[starredCB release];
 		
 	} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
+		CGRect priorityRect = CGRectMake(97, 7, 193, 29);
+		NSArray *img = [[NSArray alloc] 
+						initWithObjects:[UIImage imageNamed:@"priority_3.png"],
+										[UIImage imageNamed:@"priority_2.png"],
+										[UIImage imageNamed:@"priority_1.png"],
+										[UIImage imageNamed:@"priority_0.png"],nil];
+		UISegmentedControl *priorityControl = [[UISegmentedControl alloc] initWithItems:img];
+		priorityControl.frame = priorityRect;
+		priorityControl.segmentedControlStyle = UISegmentedControlStyleBar;
 		
+		// priority set?
+		if (task.priority != nil) {
+			int priorityValue = [task.priority intValue];
+			
+			if (priorityValue >= PRIORITY_HIGH) {
+				priorityControl.selectedSegmentIndex = 0;
+			}
+			else {
+				priorityControl.selectedSegmentIndex = 2 - priorityValue;
+			}
+
+		}
+		
+		cell.textLabel.text = @"Priority";
+		[cell.contentView addSubview:priorityControl];
+		[priorityControl release];
 	} else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
 		cell.textLabel.text = @"Due Date";
 		cell.detailTextLabel.text = @"None";
