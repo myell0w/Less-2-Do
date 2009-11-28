@@ -7,6 +7,7 @@
 //
 
 #import "Less2DoAppDelegate.h"
+#import "Context.h"
 
 @interface ContextDAO : NSObject {
 	

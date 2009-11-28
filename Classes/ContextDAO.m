@@ -12,6 +12,15 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 
 @implementation ContextDAO
 
+/* 
+ parameters:
+	- (NSError**) error: reference to NSError object
+ return value:
+	successful: (Context*) the created context object
+	error: nil
+		possible values for (NSError**)error:
+			- DAONotFetchedError: when the object list could not be fetched from the persistent store
+ */
 +(NSArray *)allContexts:(NSError**)error
 {	
 	NSError *fetchError;
@@ -41,32 +50,41 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 	return objects;
 }
 
+/*
+ parameters:
+	- (NSString*) theName: the name of the new context
+	- (NSError**) error: reference to NSError object
+ return value:
+	successful: (Context*) the created context object
+	error: nil
+		possible values for (NSError**)error:
+			- DAOMissingParametersError: when parameter theName is nil or empty
+			- DAONotAddedError: when the new object could not be save to the persistend store
+ */
 +(Context*)addContextWithName:(NSString*)theName error:(NSError**)error
 {
 	NSError *saveError;
-	
-	ALog(@"THERE");
+		
+	/* show if parameter is set */
 	if(theName == nil || [theName length] == 0) {
-		ALog(@"here");
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return nil;
 	}
 		
-	
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
+		
 	/* get entity description - needed for creating */
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Context"
-											  inManagedObjectContext:managedObjectContext];
+												entityForName:@"Context"
+												inManagedObjectContext:managedObjectContext];
 	
 	/* create new object and set values */
 	Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 	[newContext retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte context müsste dann wohl vom aufrufer released werden
 	newContext.name = theName;
-	
+		
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
 	if (saveSuccessful == NO) {
@@ -77,9 +95,26 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 	return newContext;
 }
 
+/*
+ parameters:
+	- (NSString*) context: the context object to delete
+	- (NSError**) error: reference to NSError object
+ return value: BOOL
+	successful: YES
+	error: NO
+		possible values for (NSError**)error:
+			- DAOMissingParametersError: when parameter context is nil
+			- DAONotDeletedError: when the new object could not be deleted from the persistend store
+ */
 +(BOOL)deleteContext:(Context *)context error:(NSError**)error
 {
 	NSError *deleteError;
+	
+	/* show if parameter is set */
+	if(context == nil) {
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
+		return NO;
+	}
 	
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -91,16 +126,34 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 	/* commit deleting and check for errors */
 	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
 	if (deleteSuccessful == NO) {
-		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
+		//*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
+		*error = deleteError;
 		return NO;
 	}
 	
 	return YES;
 }
 
+/*
+ parameters:
+	- (NSString*) context: the context object to delete
+	- (NSError**) error: reference to NSError object
+ return value: BOOL
+	successful: YES
+	error: NO
+		possible values for (NSError**)error:
+			- DAOMissingParametersError: when at least one of the parameters (oldContext, newContext)  is nil
+			- DAONotEditError: when the new object could not be updated in the persistend store
+ */
 +(BOOL)updateContext:(Context*)oldContext newContext:(Context*)newContext error:(NSError**)error
 {
 	NSError *updateError;
+	
+	/* show if parameters are set */
+	if(oldContext == nil || newContext == nil) {
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
+		return NO;
+	}
 	
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];

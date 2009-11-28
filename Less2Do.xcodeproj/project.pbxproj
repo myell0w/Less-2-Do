@@ -60,6 +60,11 @@
 		39D0535510C03EA50020D7D9 /* priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535110C03EA50020D7D9 /* priority_0.png */; };
 		39D0535610C03EA50020D7D9 /* priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535210C03EA50020D7D9 /* priority_1.png */; };
 		39D0535810C03EA50020D7D9 /* priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535410C03EA50020D7D9 /* priority_3.png */; };
+		A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
+		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
+		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
+		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -103,7 +108,26 @@
 			remoteGlobalIDString = FAA9E6ED10A88C7C001925AB;
 			remoteInfo = UnitTests;
 		};
+		A30A5F0510C155B600673F02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* Less2Do */;
+			remoteInfo = Less2Do;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A30A5EFC10C1544D00673F02 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +200,7 @@
 		39D0535210C03EA50020D7D9 /* priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_1.png; sourceTree = "<group>"; };
 		39D0535410C03EA50020D7D9 /* priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_3.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
+		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A38B3AB510BFF91100D5D87F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A38B3ABF10BFFA8000D5D87F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,9 +274,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38B3AC910BFFAAA00D5D87F /* UIKit.framework in Frameworks */,
+				A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */,
 				A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */,
 				A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */,
-				A38B3AC910BFFAAA00D5D87F /* UIKit.framework in Frameworks */,
 				A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */,
 				A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */,
 			);
@@ -303,6 +329,7 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* Less2Do_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -691,10 +718,12 @@
 				A38B3ABB10BFFA8000D5D87F /* Resources */,
 				A38B3ABC10BFFA8000D5D87F /* Sources */,
 				A38B3ABD10BFFA8000D5D87F /* Frameworks */,
+				A30A5EFC10C1544D00673F02 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A30A5F0610C155B600673F02 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -791,6 +820,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,12 +868,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
+				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
+				A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */,
 				A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */,
 				A38B3B0510BFFC9E00D5D87F /* ContextDAOTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A30A5F0610C155B600673F02 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Less2Do */;
+			targetProxy = A30A5F0510C155B600673F02 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -891,7 +932,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
+				GCC_PREFIX_HEADER = Tests_Prefix.pch;
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -903,8 +944,8 @@
 					Foundation,
 					"-framework",
 					UIKit,
-					"-ObjC",
 					"-all_load",
+					"-ObjC",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;

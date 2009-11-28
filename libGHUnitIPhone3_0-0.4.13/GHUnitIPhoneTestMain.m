@@ -6,7 +6,7 @@
 //  Copyright 2009. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 
 #import "GHUnit.h"
 #import "GHTesting.h"
