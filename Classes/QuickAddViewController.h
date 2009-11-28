@@ -26,7 +26,7 @@
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (Task *)taskFromParsingTitle:(NSString *)title;
+- (Task *)createTaskFromParsingTitle:(NSString *)title;
 
 - (IBAction)taskAdded:(id)sender;
 - (IBAction)taskDetailsEdit:(id)sender;

@@ -124,7 +124,7 @@
 
 	// Present a Model View for adding a Task
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
-	addTaskController.task = [dict objectForKey:@"Task"];
+	addTaskController.task = [[dict objectForKey:@"Task"] retain];
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:addTaskController];
 	[addTaskController release];
 	[self presentModalViewController:nc animated:YES];

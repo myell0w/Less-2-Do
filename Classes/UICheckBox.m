@@ -67,7 +67,9 @@
 	
 	
 	// Check for user input
-	[self addTarget:self action:@selector(toggle) forControlEvents:UIControlEventTouchUpInside];
+	[self addTarget:self 
+			 action:@selector(toggle) 
+   forControlEvents:UIControlEventTouchUpInside];
 	// add image-view
 	[self addSubview:self.backgroundImage];
 }

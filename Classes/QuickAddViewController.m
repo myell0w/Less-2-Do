@@ -48,7 +48,7 @@
 #pragma mark Action-Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (Task *)taskFromParsingTitle:(NSString *)title {
+- (Task *)createTaskFromParsingTitle:(NSString *)title {
 	// Den delegate vom Less2DoAppDelegate
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	// Den ManagedObjectContext durch den delegate
@@ -73,9 +73,18 @@
 	// found any priority?
 	if (range.location != NSNotFound) {
 		t.priority = [[NSNumber alloc] initWithInt:range.length-1];
+	} else {
+		t.priority = [[NSNumber alloc] initWithInt:PRIORITY_NONE];
 	}
 	
-	t.name = title;
+	// filter out starred
+	range = [title rangeOfString:@"*"];
+	if (range.location != NSNotFound) {
+		t.star = [[NSNumber alloc] initWithBool:YES];
+	}
+	
+	// TODO: delete !!! and * from title
+	t.name = [title copy];
 	
 	return t;
 }
@@ -87,10 +96,11 @@
 
 -(IBAction)taskDetailsEdit:(id)sender {
 	// send notification to HomeNavigationController --> opens modal DetailsEdit-Screen
-	Task *task = [self taskFromParsingTitle:taskControl.text];
+	Task *task = [self createTaskFromParsingTitle:taskControl.text];
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
 	
+	[task release];
 	[dict release];
 }
 

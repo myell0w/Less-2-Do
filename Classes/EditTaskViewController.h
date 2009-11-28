@@ -13,6 +13,13 @@
 #define CELL_ID_DUEDATE  @"TaskDueDateCell"
 #define CELL_ID_DUETIME  @"TaskDueTimeCell"
 
+#define TAG_TITLE		1
+#define TAG_COMPLETED   2
+#define TAG_STARRED		3
+#define TAG_PRIORITY	4
+#define TAG_DUEDATE		5
+#define TAG_DUETIME		6
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table-View-Controller for Adding/Editing a Task
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,14 +27,10 @@
 @interface EditTaskViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate> {
 	// the task to add/edit
 	Task *task;
-	// the textfield that stores the title
-	UITextField *titleControl;
 	// temporary data
-	NSDictionary *tempData;
-	
-	// the segmented-control that stores the priority
-	//UISegmentedControl *priorityControl;
-	
+	NSMutableDictionary *tempData;
+	// the text-field being edited
+	UITextField *textFieldBeingEdited;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,18 +38,22 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @property (nonatomic, retain) Task *task;
-@property (nonatomic, retain) UITextField *titleControl;
-@property (nonatomic, retain) NSDictionary *tempData;
+@property (nonatomic, retain) NSMutableDictionary *tempData;
+@property (nonatomic, retain) UITextField *textFieldBeingEdited;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // returns the cellID for a given indexPath
--(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
+- (NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
 // action-method for storing the task
--(IBAction)save:(id)sender;
+- (IBAction)save:(id)sender;
 // action-method for aborting the insertion/editing
--(IBAction)cancel:(id)sender;
+- (IBAction)cancel:(id)sender;
+// priority-value of segmented Control was changed
+- (IBAction)priorityValueChanged:(id)sender;
+// value of either completed or starred was changed
+- (IBAction)checkBoxValueChanged:(id)sender;
 
 @end
