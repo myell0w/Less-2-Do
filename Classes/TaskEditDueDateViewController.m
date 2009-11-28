@@ -13,7 +13,6 @@
 
 @synthesize datePicker;
 @synthesize dateLabel;
-@synthesize dueDate;
 @synthesize task;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +21,17 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	[self selectionChanged:nil];
+	if (task.dueDate != nil) {
+		datePicker.date = task.dueDate;
+		NSDateFormatter *format = [[NSDateFormatter alloc] init];
+		[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+		
+		dateLabel.text = [format stringFromDate:task.dueDate];
+		[format release];
+	} else {
+		dateLabel.text = @"No Due Date";
+	}
+	
     [super viewDidLoad];
 }
 
@@ -38,13 +47,13 @@
 	// e.g. self.myOutlet = nil;
 	self.datePicker = nil;
 	self.dateLabel = nil;
-	self.dueDate = nil;
+	self.task = nil;
 }
 
 - (void)dealloc {
 	[datePicker release];
 	[dateLabel release];
-	[dueDate release];
+	[task release];
 	
     [super dealloc];
 }
@@ -54,12 +63,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(IBAction)selectionChanged:(id)sender {
-	self.dueDate = [datePicker date];
+	task.dueDate = [datePicker date];
 	NSDateFormatter *format = [[NSDateFormatter alloc] init];
 	[format setDateFormat:@"EEEE, YYYY-MM-dd"];
 	
-	dateLabel.text = [format stringFromDate:dueDate];
-	task.dueDate = self.dueDate;
+	dateLabel.text = [format stringFromDate:task.dueDate];
 	
 	[format release];
 }
@@ -68,7 +76,7 @@
 -(IBAction)setToday {
 	NSDate *d = [[NSDate alloc] init];
 	
-	self.dueDate = d;
+	task.dueDate = d;
 	datePicker.date = d;
 	[d release];
 	
@@ -79,7 +87,7 @@
 -(IBAction)setTomorrow {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24];
 	
-	self.dueDate = d;
+	task.dueDate = d;
 	datePicker.date = d;
 	[d release];
 	
@@ -90,7 +98,7 @@
 -(IBAction)setNextWeek {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24*7];
 	
-	self.dueDate = d;
+	task.dueDate = d;
 	datePicker.date = d;
 	[d release];
 	
@@ -99,8 +107,7 @@
 
 // set due-date to none
 -(IBAction)setNone {
-	self.dueDate = nil;
-	self.task.dueDate = nil;
+	task.dueDate = nil;
 	self.dateLabel.text = @"No Due Date";
 }
 

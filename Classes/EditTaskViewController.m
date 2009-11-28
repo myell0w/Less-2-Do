@@ -254,7 +254,7 @@
 					if (tempValue != nil) {
 						[cb setOn:[tempValue boolValue]];
 					} else {
-						if (task.completionDate != nil) {
+						if (task.completionDate != nil || task.isCompleted != nil) {
 							[cb setOn:YES];
 						} else {
 							[cb setOn:NO];
@@ -365,7 +365,12 @@
 		} else if ([key intValue] == TAG_STARRED) {
 			task.star = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_COMPLETED) {
-			task.completionDate = [[NSDate alloc] init];
+			if ([[tempData objectForKey:key] boolValue]) {
+				task.completionDate = [[NSDate alloc] init];
+				task.isCompleted = [[NSNumber alloc] initWithBool:YES];
+			} else {
+				task.isCompleted = [[NSNumber alloc] initWithBool:NO];
+			}
 		} else if ([key intValue] == TAG_PRIORITY) {
 			task.priority = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUEDATE) {
