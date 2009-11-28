@@ -14,6 +14,7 @@
 @synthesize datePicker;
 @synthesize dateLabel;
 @synthesize dueDate;
+@synthesize task;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -58,6 +59,7 @@
 	[format setDateFormat:@"EEEE, YYYY-MM-dd"];
 	
 	dateLabel.text = [format stringFromDate:dueDate];
+	task.dueDate = self.dueDate;
 	
 	[format release];
 }
@@ -98,6 +100,7 @@
 // set due-date to none
 -(IBAction)setNone {
 	self.dueDate = nil;
+	self.task.dueDate = nil;
 	self.dateLabel.text = @"No Due Date";
 }
 

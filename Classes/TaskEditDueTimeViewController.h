@@ -19,6 +19,8 @@
 	UILabel *dateLabel;
 	// stores the selected time, or nil, if no time is selected
 	NSDate *dueTime;
+	// the task which date is edited
+	Task *task;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UILabel *dateLabel;
 @property (nonatomic, retain) NSDate *dueTime;
+@property (nonatomic, retain) Task *task;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods

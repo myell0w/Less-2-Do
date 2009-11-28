@@ -38,6 +38,11 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 											 selector:@selector(editDetails:) 
 												 name:@"TaskDetailEditNotification" object:nil];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(quickAddTask:) 
+												 name:@"TaskQuickAddNotification" object:nil];
+	
     [super viewDidLoad];
 }
 
@@ -129,6 +134,23 @@
 	[addTaskController release];
 	[self presentModalViewController:nc animated:YES];
 	[nc release];
+}
+
+- (IBAction)quickAddTask:(NSNotification *) notification {
+	NSDictionary *dict = [notification userInfo];
+	Task *task = [[dict objectForKey:@"Task"] retain];
+	
+	// hide quickadd-bar
+	if (quickAddController != nil) {
+		[quickAddController.view removeFromSuperview];
+		[quickAddController release];
+		quickAddController = nil;		
+	}
+	
+	if ([task.name length] > 0) {
+		//TODO: store task
+		ALog("Task to quickadd: %@", task);
+	}
 }
 
 @end

@@ -77,13 +77,11 @@
     [super dealloc];
 }
 
-
-
-/*
 - (void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
     [super viewWillAppear:animated];
 }
-*/
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -255,13 +253,13 @@
 					//TODO:
 					if (tempValue != nil) {
 						[cb setOn:[tempValue boolValue]];
-					} /*else {
-						if (task.completed != nil && task.star != 0) {
+					} else {
+						if (task.completionDate != nil) {
 							[cb setOn:YES];
 						} else {
 							[cb setOn:NO];
 						}
-					}*/
+					}
 					break;
 				default:
 					break;
@@ -284,16 +282,20 @@
 		}
 	}
 	
-	/*
-	if ([reuseID isEqualToString:CELL_ID_TITLE]) {
+	
+	
+	if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
+		if (task.dueDate != nil) {
+			NSDateFormatter *format = [[NSDateFormatter alloc] init];
+			[format setDateFormat:@"EEEE, YYYY-MM-dd"];
 			
-	} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
-		
-	} else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
-		
-	} else if ([reuseID isEqualToString:CELL_ID_DUETIME]) {
-		
-	}*/
+			cell.detailTextLabel.text = [format stringFromDate:task.dueDate];
+			
+			[format release];
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
 	
     return cell;
 }
@@ -318,6 +320,7 @@
 											   initWithNibName:@"TaskEditDueDateViewController" 
 											   bundle:nil];
 		ddvc.title = @"Due Date";
+		ddvc.task = self.task;
 		[self.navigationController pushViewController:ddvc animated:YES];
 		[ddvc release];
 	} else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
@@ -325,6 +328,7 @@
 											   initWithNibName:@"TaskEditDueTimeViewController" 
 											   bundle:nil];
 		dtvc.title = @"Due Time";
+		dtvc.task = self.task;
 		[self.navigationController pushViewController:dtvc animated:YES];
 		[dtvc release];
 	}
@@ -361,7 +365,7 @@
 		} else if ([key intValue] == TAG_STARRED) {
 			task.star = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_COMPLETED) {
-			//task.completed = [tempData objectForKey:key];
+			task.completionDate = [[NSDate alloc] init];
 		} else if ([key intValue] == TAG_PRIORITY) {
 			task.priority = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUEDATE) {

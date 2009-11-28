@@ -19,6 +19,8 @@
 	UILabel *dateLabel;
 	// stores the selected due-date or nil, if none is selected
 	NSDate *dueDate;
+	// the task which date is edited
+	Task *task;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,16 +30,17 @@
 @property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, retain) IBOutlet UILabel *dateLabel;
 @property (nonatomic, retain) NSDate *dueDate;
+@property (nonatomic, retain) Task *task;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
--(IBAction)selectionChanged:(id)sender;
+- (IBAction)selectionChanged:(id)sender;
 
--(IBAction)setToday;
--(IBAction)setTomorrow;
--(IBAction)setNextWeek;
--(IBAction)setNone;
+- (IBAction)setToday;
+- (IBAction)setTomorrow;
+- (IBAction)setNextWeek;
+- (IBAction)setNone;
 
 @end

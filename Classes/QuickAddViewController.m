@@ -91,7 +91,13 @@
 
 
 -(IBAction)taskAdded:(id)sender {
-	//TODO: implement
+	// send notification to HomeNavigationController --> saves Task and dismisses QuickAddController
+	Task *task = [self createTaskFromParsingTitle:taskControl.text];
+	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskQuickAddNotification" object:self userInfo:dict];
+	
+	[task release];
+	[dict release];
 }
 
 -(IBAction)taskDetailsEdit:(id)sender {

@@ -14,6 +14,7 @@
 @synthesize datePicker;
 @synthesize dateLabel;
 @synthesize dueTime;
+@synthesize task;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -93,6 +94,7 @@
 
 -(IBAction)setNone {
 	self.dueTime = nil;
+	//self.task.dueTime = nil;
 	self.dateLabel.text = @"No Due Time";
 }
 
