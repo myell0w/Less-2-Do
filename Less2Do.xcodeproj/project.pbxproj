@@ -15,6 +15,16 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28C3AD8A0F43EF2300507BA6 /* Less2Do.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		390110F110C076FA00A51296 /* priority_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 390110F010C076FA00A51296 /* priority_2.png */; };
+		3901114110C07C2900A51296 /* home_starred.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113B10C07C2900A51296 /* home_starred.png */; };
+		3901114210C07C2900A51296 /* home_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113C10C07C2900A51296 /* home_all.png */; };
+		3901114310C07C2900A51296 /* home_watchlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113D10C07C2900A51296 /* home_watchlist.png */; };
+		3901114410C07C2900A51296 /* home_today.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113E10C07C2900A51296 /* home_today.png */; };
+		3901114510C07C2900A51296 /* home_overdue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901113F10C07C2900A51296 /* home_overdue.png */; };
+		3901114610C07C2900A51296 /* home_this_week.png in Resources */ = {isa = PBXBuildFile; fileRef = 3901114010C07C2900A51296 /* home_this_week.png */; };
+		3902C47C10BEF151006BBF52 /* UICheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3902C47B10BEF151006BBF52 /* UICheckBox.m */; };
+		3902C55310C01F09006BBF52 /* TaskEditDueDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3902C55110C01F09006BBF52 /* TaskEditDueDateViewController.m */; };
+		3902C55410C01F09006BBF52 /* TaskEditDueDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */; };
 		3903386910B6096F007985A9 /* HomeFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */; };
 		3903387610B60BF0007985A9 /* TasksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903387510B60BF0007985A9 /* TasksListViewController.m */; };
 		392325B210B2EE7D00075370 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325A810B2EE7D00075370 /* Default.png */; };
@@ -26,10 +36,10 @@
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
-		39A1F31D10B9F68A00671B42 /* Task_not_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* Task_not_completed.png */; };
-		39A1F31E10B9F68A00671B42 /* Task_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* Task_completed.png */; };
-		39A1F32510B9F89300671B42 /* Star off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* Star off.png */; };
-		39A1F32610B9F89300671B42 /* Star on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32410B9F89300671B42 /* Star on.png */; };
+		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
+		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
+		39A1F32510B9F89300671B42 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* star_off.png */; };
+		39A1F32610B9F89300671B42 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32410B9F89300671B42 /* star_on.png */; };
 		39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F33510BA006300671B42 /* QuickAddViewController.m */; };
 		39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F33610BA006300671B42 /* QuickAddViewController.xib */; };
 		39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6584810B615FF00825C1D /* HomeNavigationController.m */; };
@@ -42,11 +52,14 @@
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
 		39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */; };
 		39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */; };
-		39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */; };
-		39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */; };
 		39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D01410BEE3F3000A0C70 /* CustomCell.m */; };
 		39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */; };
 		39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */; };
+		39D0532410C036DF0020D7D9 /* TaskEditDueTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */; };
+		39D0532510C036DF0020D7D9 /* TaskEditDueTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */; };
+		39D0535510C03EA50020D7D9 /* priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535110C03EA50020D7D9 /* priority_0.png */; };
+		39D0535610C03EA50020D7D9 /* priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535210C03EA50020D7D9 /* priority_1.png */; };
+		39D0535810C03EA50020D7D9 /* priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535410C03EA50020D7D9 /* priority_3.png */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -105,6 +118,18 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Less2Do_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Less2Do_Prefix.pch; sourceTree = "<group>"; };
+		390110F010C076FA00A51296 /* priority_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_2.png; sourceTree = "<group>"; };
+		3901113B10C07C2900A51296 /* home_starred.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_starred.png; sourceTree = "<group>"; };
+		3901113C10C07C2900A51296 /* home_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_all.png; sourceTree = "<group>"; };
+		3901113D10C07C2900A51296 /* home_watchlist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_watchlist.png; sourceTree = "<group>"; };
+		3901113E10C07C2900A51296 /* home_today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_today.png; sourceTree = "<group>"; };
+		3901113F10C07C2900A51296 /* home_overdue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_overdue.png; sourceTree = "<group>"; };
+		3901114010C07C2900A51296 /* home_this_week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_this_week.png; sourceTree = "<group>"; };
+		3902C47A10BEF151006BBF52 /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
+		3902C47B10BEF151006BBF52 /* UICheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICheckBox.m; sourceTree = "<group>"; };
+		3902C55010C01F09006BBF52 /* TaskEditDueDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditDueDateViewController.h; sourceTree = "<group>"; };
+		3902C55110C01F09006BBF52 /* TaskEditDueDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditDueDateViewController.m; sourceTree = "<group>"; };
+		3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditDueDateViewController.xib; path = Classes/TaskEditDueDateViewController.xib; sourceTree = "<group>"; };
 		3903386710B6096F007985A9 /* HomeFirstLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeFirstLevelViewController.h; sourceTree = "<group>"; };
 		3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFirstLevelViewController.m; sourceTree = "<group>"; };
 		3903387410B60BF0007985A9 /* TasksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksListViewController.h; sourceTree = "<group>"; };
@@ -118,10 +143,10 @@
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
-		39A1F31B10B9F68A00671B42 /* Task_not_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_not_completed.png; sourceTree = "<group>"; };
-		39A1F31C10B9F68A00671B42 /* Task_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Task_completed.png; sourceTree = "<group>"; };
-		39A1F32310B9F89300671B42 /* Star off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star off.png"; sourceTree = "<group>"; };
-		39A1F32410B9F89300671B42 /* Star on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star on.png"; sourceTree = "<group>"; };
+		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
+		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
+		39A1F32310B9F89300671B42 /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_off.png; sourceTree = "<group>"; };
+		39A1F32410B9F89300671B42 /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_on.png; sourceTree = "<group>"; };
 		39A1F33410BA006300671B42 /* QuickAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickAddViewController.h; sourceTree = "<group>"; };
 		39A1F33510BA006300671B42 /* QuickAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickAddViewController.m; sourceTree = "<group>"; };
 		39A1F33610BA006300671B42 /* QuickAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickAddViewController.xib; path = Classes/QuickAddViewController.xib; sourceTree = "<group>"; };
@@ -140,14 +165,17 @@
 		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
 		39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTaskViewController.xib; path = Classes/EditTaskViewController.xib; sourceTree = "<group>"; };
-		39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTitleCell.h; sourceTree = "<group>"; };
-		39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTitleCell.m; sourceTree = "<group>"; };
-		39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTitleCell.xib; sourceTree = "<group>"; };
 		39C6D01310BEE3F3000A0C70 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		39C6D01410BEE3F3000A0C70 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskPriorityCell.h; sourceTree = "<group>"; };
 		39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskPriorityCell.m; sourceTree = "<group>"; };
 		39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskPriorityCell.xib; sourceTree = "<group>"; };
+		39D0532110C036DF0020D7D9 /* TaskEditDueTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditDueTimeViewController.h; sourceTree = "<group>"; };
+		39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditDueTimeViewController.m; sourceTree = "<group>"; };
+		39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditDueTimeViewController.xib; path = Classes/TaskEditDueTimeViewController.xib; sourceTree = "<group>"; };
+		39D0535110C03EA50020D7D9 /* priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_0.png; sourceTree = "<group>"; };
+		39D0535210C03EA50020D7D9 /* priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_1.png; sourceTree = "<group>"; };
+		39D0535410C03EA50020D7D9 /* priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_3.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A38B3AB510BFF91100D5D87F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -309,10 +337,14 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				39A1F32310B9F89300671B42 /* Star off.png */,
-				39A1F32410B9F89300671B42 /* Star on.png */,
-				39A1F31B10B9F68A00671B42 /* Task_not_completed.png */,
-				39A1F31C10B9F68A00671B42 /* Task_completed.png */,
+				39D0535110C03EA50020D7D9 /* priority_0.png */,
+				39D0535210C03EA50020D7D9 /* priority_1.png */,
+				390110F010C076FA00A51296 /* priority_2.png */,
+				39D0535410C03EA50020D7D9 /* priority_3.png */,
+				39A1F32310B9F89300671B42 /* star_off.png */,
+				39A1F32410B9F89300671B42 /* star_on.png */,
+				39A1F31B10B9F68A00671B42 /* task_off.png */,
+				39A1F31C10B9F68A00671B42 /* task_on.png */,
 				39B6593D10B6B86200825C1D /* ci */,
 				39B6593C10B6B85400825C1D /* tablecells */,
 				39B6587110B61E2200825C1D /* navbar */,
@@ -340,6 +372,10 @@
 				39A1F33510BA006300671B42 /* QuickAddViewController.m */,
 				39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */,
 				39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */,
+				3902C55010C01F09006BBF52 /* TaskEditDueDateViewController.h */,
+				3902C55110C01F09006BBF52 /* TaskEditDueDateViewController.m */,
+				39D0532110C036DF0020D7D9 /* TaskEditDueTimeViewController.h */,
+				39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */,
 			);
 			name = task;
 			sourceTree = "<group>";
@@ -355,6 +391,8 @@
 		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
+				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
 				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 			);
@@ -442,6 +480,12 @@
 		39B6593C10B6B85400825C1D /* tablecells */ = {
 			isa = PBXGroup;
 			children = (
+				3901113B10C07C2900A51296 /* home_starred.png */,
+				3901113C10C07C2900A51296 /* home_all.png */,
+				3901113D10C07C2900A51296 /* home_watchlist.png */,
+				3901113E10C07C2900A51296 /* home_today.png */,
+				3901113F10C07C2900A51296 /* home_overdue.png */,
+				3901114010C07C2900A51296 /* home_this_week.png */,
 				39B658B810B623AE00825C1D /* all_tasks.png */,
 			);
 			name = tablecells;
@@ -486,6 +530,8 @@
 				D436E98510BAB76300EA7624 /* settings */,
 				39B6584A10B6168600825C1D /* home */,
 				39A1F30A10B9ECDF00671B42 /* task */,
+				3902C47A10BEF151006BBF52 /* UICheckBox.h */,
+				3902C47B10BEF151006BBF52 /* UICheckBox.m */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -493,8 +539,6 @@
 		39C6D00210BEDED2000A0C70 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				39C6D00A10BEDF3C000A0C70 /* TaskTitleCell.h */,
-				39C6D00B10BEDF3C000A0C70 /* TaskTitleCell.m */,
 				39C6D01310BEE3F3000A0C70 /* CustomCell.h */,
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
@@ -521,7 +565,6 @@
 		39C6D00E10BEDF70000A0C70 /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				39C6D00F10BEDFD7000A0C70 /* TaskTitleCell.xib */,
 				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
 			);
 			name = cells;
@@ -724,17 +767,28 @@
 				39B658B910B623AE00825C1D /* all_tasks.png in Resources */,
 				39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */,
 				39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */,
-				39A1F31D10B9F68A00671B42 /* Task_not_completed.png in Resources */,
-				39A1F31E10B9F68A00671B42 /* Task_completed.png in Resources */,
-				39A1F32510B9F89300671B42 /* Star off.png in Resources */,
-				39A1F32610B9F89300671B42 /* Star on.png in Resources */,
+				39A1F31D10B9F68A00671B42 /* task_off.png in Resources */,
+				39A1F31E10B9F68A00671B42 /* task_on.png in Resources */,
+				39A1F32510B9F89300671B42 /* star_off.png in Resources */,
+				39A1F32610B9F89300671B42 /* star_on.png in Resources */,
 				39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */,
 				D436E8B010BA85B900EA7624 /* TagsTableView.xib in Resources */,
 				D436E8CA10BA8C2E00EA7624 /* FolderTableView.xib in Resources */,
 				D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */,
 				39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */,
-				39C6D01010BEDFD7000A0C70 /* TaskTitleCell.xib in Resources */,
 				39C6D05E10BEE8B9000A0C70 /* TaskPriorityCell.xib in Resources */,
+				3902C55410C01F09006BBF52 /* TaskEditDueDateViewController.xib in Resources */,
+				39D0532510C036DF0020D7D9 /* TaskEditDueTimeViewController.xib in Resources */,
+				39D0535510C03EA50020D7D9 /* priority_0.png in Resources */,
+				39D0535610C03EA50020D7D9 /* priority_1.png in Resources */,
+				39D0535810C03EA50020D7D9 /* priority_3.png in Resources */,
+				390110F110C076FA00A51296 /* priority_2.png in Resources */,
+				3901114110C07C2900A51296 /* home_starred.png in Resources */,
+				3901114210C07C2900A51296 /* home_all.png in Resources */,
+				3901114310C07C2900A51296 /* home_watchlist.png in Resources */,
+				3901114410C07C2900A51296 /* home_today.png in Resources */,
+				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
+				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,9 +830,11 @@
 				A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */,
 				CFB932F510BC872B004EAF93 /* Context.m in Sources */,
 				39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */,
-				39C6D00C10BEDF3C000A0C70 /* TaskTitleCell.m in Sources */,
 				39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */,
 				39C6D05C10BEE82E000A0C70 /* TaskPriorityCell.m in Sources */,
+				3902C47C10BEF151006BBF52 /* UICheckBox.m in Sources */,
+				3902C55310C01F09006BBF52 /* TaskEditDueDateViewController.m in Sources */,
+				39D0532410C036DF0020D7D9 /* TaskEditDueTimeViewController.m in Sources */,
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
 				D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */,
 			);
@@ -841,7 +897,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (

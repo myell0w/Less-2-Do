@@ -13,14 +13,26 @@
 
 @synthesize task;
 
--(IBAction)taskAdded:(id)sender {
-	//TODO: implement
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark View Lifecycle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
 }
 
--(IBAction)taskDetailsEdit:(id)sender {
-	//TODO: implement
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
 }
 
+
+- (void)dealloc {
+    [super dealloc];
+}
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -48,21 +60,23 @@
 }
 */
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Action-Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+-(IBAction)taskAdded:(id)sender {
+	//TODO: implement
+}
+
+-(IBAction)taskDetailsEdit:(id)sender {
+	//TODO: implement
+	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task.text, @"Title", nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
 	
-	// Release any cached data, images, etc that aren't in use.
-}
+	[dict release];
 
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 

@@ -8,30 +8,66 @@
 
 #import "EditTaskViewController.h"
 #import "CustomCell.h"
-#import "TaskTitleCell.h"
+#import "TaskEditDueDateViewController.h"
+#import "TaskEditDueTimeViewController.h"
+#import "UICheckBox.h"
 
 
 @implementation EditTaskViewController
 
 @synthesize task;
+@synthesize titleControl;
+@synthesize data;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark View Lifecycle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
 - (void)viewDidLoad {
+	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+															   style:UIBarButtonItemStylePlain 
+															  target:self 
+															  action:@selector(cancel:)];
+	
+	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithTitle:@"Save" 
+															 style:UIBarButtonItemStyleDone
+															target:self 
+															action:@selector(save:)];
+	
+	self.navigationItem.title = @"Add Task";
+	self.navigationItem.leftBarButtonItem = cancel;
+	self.navigationItem.rightBarButtonItem = save;
+	[save release];
+	[cancel release];
+	
+	
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-*/
+
+- (void)didReceiveMemoryWarning {
+	// Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+	
+	// Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+	// Release any retained subviews of the main view.
+	// e.g. self.myOutlet = nil;
+	self.task = nil;
+	self.titleControl = nil;
+	self.data = nil;
+}
+
+- (void)dealloc {
+	[task release];
+	[titleControl release];
+	[data release];
+	
+    [super dealloc];
+}
+
+
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,29 +90,9 @@
 }
 */
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-	self.task = nil;
-}
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table view methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	//TODO:change
@@ -104,7 +120,9 @@
 	
     if (cell == nil) {
 		//TODO: delete if/else
-		if ([reuseID isEqualToString:CELL_ID_TITLE] || [reuseID isEqualToString:CELL_ID_PRIORITY]) {
+		if ([reuseID isEqualToString:CELL_ID_TITLE]){
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
+		} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
 			cell = [CustomCell loadFromNib:reuseID withOwner:self];
 		} else {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
@@ -113,8 +131,35 @@
     
     // Set up the cell...
 	if ([reuseID isEqualToString:CELL_ID_TITLE]) {
-		TaskTitleCell *tc = (TaskTitleCell *)cell;
-		tc.title.text = @"yeah";
+		// init Title
+		CGRect titleLabelRect = CGRectMake(52, 13, 210, 21);
+		UITextField *titleText = [[UITextField alloc] initWithFrame:titleLabelRect];
+		titleText.font = [UIFont boldSystemFontOfSize:16];
+		titleText.placeholder = @"Enter Task-Title...";
+		titleText.returnKeyType = UIReturnKeyDone;
+		[titleText setDelegate:self];
+		
+		id dataTitle = [data objectForKey:@"Title"];
+		if (dataTitle != nil) {
+			titleText.text = [dataTitle description];	
+		}
+		[cell.contentView addSubview:titleText];
+		
+		self.titleControl = titleText;
+		[titleText release];
+		
+		// init Completed-Checkbox
+		CGRect completedRect = CGRectMake(9, 6, 32, 32);
+		UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:completedRect];
+		[cell.contentView addSubview:completedCB];
+		[completedCB release];
+		
+		// init Starred-Checkbox
+		CGRect starredRect = CGRectMake(260, 6, 32, 32);
+		UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:starredRect andOnImage:@"star_on.png" andOffImage:@"star_off.png"];
+		[cell.contentView addSubview:starredCB];
+		[starredCB release];
+		
 	} else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
 		
 	} else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
@@ -127,62 +172,41 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
+	// set font
+	cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14];
+	
     return cell;
 }
 
 
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
+	
+	// These rows can't be selected:
+	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY])
+		return nil;
+	
+	return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
+	
+	[titleControl resignFirstResponder];
+	
+	// if selecting duedate or duetime, push another detail-view controller
+	if ([cellID isEqualToString:CELL_ID_DUEDATE]) {
+		TaskEditDueDateViewController *ddvc = [[TaskEditDueDateViewController alloc] initWithNibName:@"TaskEditDueDateViewController" bundle:nil];
+		ddvc.title = @"Due Date";
+		[self.navigationController pushViewController:ddvc animated:YES];
+		[ddvc release];
+	} else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
+		TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] initWithNibName:@"TaskEditDueTimeViewController" bundle:nil];
+		dtvc.title = @"Due Time";
+		[self.navigationController pushViewController:dtvc animated:YES];
+		[dtvc release];
+	}
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
@@ -198,6 +222,44 @@
 		return CELL_ID_DUETIME;
 	
 	return nil;
+}
+
+// save the task
+-(IBAction)save:(id)sender {
+	
+}
+
+// cancel the adding/editing
+-(IBAction)cancel:(id)sender {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Really Cancel?"
+															 delegate:self
+													cancelButtonTitle:@"No"
+											   destructiveButtonTitle:@"Yes"
+													otherButtonTitles:nil];
+	
+	[actionSheet showInView:self.view];
+	[actionSheet release];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark ActionSheet-Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	// if the user really wants to abort, delete the modal view and show the parent view again
+	if (buttonIndex != [actionSheet cancelButtonIndex]) {
+		[self dismissModalViewControllerAnimated:YES];
+	}
+}
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark TextField-Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// if the user presses "Done" on the Keyboard, hide it
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder]; //dismiss the keyboard
+	return YES;
 }
 
 @end

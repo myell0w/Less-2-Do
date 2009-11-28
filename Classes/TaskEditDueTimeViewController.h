@@ -1,40 +1,44 @@
 //
-//  HomeFirstLevelViewController.h
+//  TaskEditDueTimeViewController.h
 //  Less2Do
 //
-//  Created by Matthias Tretter on 20.11.09.
+//  Created by Matthias Tretter on 27.11.09.
 //  Copyright 2009 BIAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Table View Controller for first Level of Tab "Home"
+#pragma mark View Controller for editing the Due Time of a Task
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-@interface HomeFirstLevelViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-	// the table View to show
-	UITableView *tableView;
-	// the Second-Level-Controllers in the first section of Tab "Home"
-	NSArray *controllersSection0;
-	// the Second-Level-Controllers in the second section of Tab "Home" 
-	NSArray *controllersSection1;
+@interface TaskEditDueTimeViewController : UIViewController {
+	// datepicker to select the time
+	UIDatePicker *datePicker;
+	// label to show the selected time
+	UILabel *dateLabel;
+	// stores the selected time, or nil, if no time is selected
+	NSDate *dueTime;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Properties
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSArray *controllersSection0;
-@property (nonatomic, retain) NSArray *controllersSection1;
+@property (nonatomic, retain) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic, retain) IBOutlet UILabel *dateLabel;
+@property (nonatomic, retain) NSDate *dueTime;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// returns the section Array for the given Section-Index
--(NSArray *)sectionForIndex:(NSInteger)index;
+-(IBAction)selectionChanged:(id)sender;
+
+-(IBAction)setNow;
+-(IBAction)setOneHourFromNow;
+-(IBAction)setTwoHoursFromNow;
+-(IBAction)setNone;
+
 
 @end

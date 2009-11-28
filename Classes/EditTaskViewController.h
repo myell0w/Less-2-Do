@@ -8,17 +8,45 @@
 
 #import <UIKit/UIKit.h>
 
-#define CELL_ID_TITLE @"TaskTitleCell"
+#define CELL_ID_TITLE    @"TaskTitleCell"
 #define CELL_ID_PRIORITY @"TaskPriorityCell"
-#define CELL_ID_DUEDATE @"CellIDDueDate"
-#define CELL_ID_DUETIME @"CellIDDueTime"
+#define CELL_ID_DUEDATE  @"TaskDueDateCell"
+#define CELL_ID_DUETIME  @"TaskDueTimeCell"
 
-@interface EditTaskViewController : UITableViewController {
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Table-View-Controller for Adding/Editing a Task
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@interface EditTaskViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate> {
+	// the task to add/edit
 	Task *task;
+	// the textfield that stores the title
+	UITextField *titleControl;
+	// data got from super-view
+	NSDictionary *data;
+	
+	// the segmented-control that stores the priority
+	//UISegmentedControl *priorityControl;
+	
 }
 
-@property (nonatomic, retain) Task *task;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Properties
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+@property (nonatomic, retain) Task *task;
+@property (nonatomic, retain) UITextField *titleControl;
+@property (nonatomic, retain) NSDictionary *data;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// returns the cellID for a given indexPath
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
+// action-method for storing the task
+-(IBAction)save:(id)sender;
+// action-method for aborting the insertion/editing
+-(IBAction)cancel:(id)sender;
 
 @end

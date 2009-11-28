@@ -1,40 +1,48 @@
 //
-//  HomeFirstLevelViewController.h
+//  UICheckBox.h
 //  Less2Do
 //
-//  Created by Matthias Tretter on 20.11.09.
+//  Created by Matthias Tretter on 26.11.09.
 //  Copyright 2009 BIAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Table View Controller for first Level of Tab "Home"
+#pragma mark Custom Control representing a CheckBox
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-@interface HomeFirstLevelViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-	// the table View to show
-	UITableView *tableView;
-	// the Second-Level-Controllers in the first section of Tab "Home"
-	NSArray *controllersSection0;
-	// the Second-Level-Controllers in the second section of Tab "Home" 
-	NSArray *controllersSection1;
+@interface UICheckBox : UIControl {
+	// the image to display
+	UIImageView* backgroundImage;
+	// the state of the checkbox
+	BOOL on;
+	// the name of the On-Image
+	NSString *imageNameOn;
+	// the name of the Off-Image
+	NSString *imageNameOff;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Properties
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) NSArray *controllersSection0;
-@property (nonatomic, retain) NSArray *controllersSection1;
+@property (nonatomic, retain, readwrite) UIImageView* backgroundImage;
+@property (nonatomic, copy) NSString *imageNameOn;
+@property (nonatomic, copy) NSString *imageNameOff;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// returns the section Array for the given Section-Index
--(NSArray *)sectionForIndex:(NSInteger)index;
+- (id)initWithFrame:(CGRect)frame;  
+- (id)initWithFrame:(CGRect)frame andOnImage:(NSString *)imageOn andOffImage:(NSString *)imageOff;
+
+- (void)setOn:(BOOL)on; 
+- (BOOL)isOn;
+
+- (void)setupUserInterface;
+- (void)toggle;
 
 @end
