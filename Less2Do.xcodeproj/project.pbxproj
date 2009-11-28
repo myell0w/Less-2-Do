@@ -91,6 +91,7 @@
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
 		D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E9C310BABB6900EA7624 /* SettingsTableView.xib */; };
+		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +256,8 @@
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D436E9C310BABB6900EA7624 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
+		D45C314D10C015BF00B59FE0 /* ContextDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDetailController.h; sourceTree = "<group>"; };
+		D45C314E10C015BF00B59FE0 /* ContextDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDetailController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +464,8 @@
 		39B658FF10B6B31200825C1D /* contexts */ = {
 			isa = PBXGroup;
 			children = (
+				D45C314D10C015BF00B59FE0 /* ContextDetailController.h */,
+				D45C314E10C015BF00B59FE0 /* ContextDetailController.m */,
 				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
 				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
 				39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */,
@@ -861,6 +866,7 @@
 				3902C55310C01F09006BBF52 /* TaskEditDueDateViewController.m in Sources */,
 				39D0532410C036DF0020D7D9 /* TaskEditDueTimeViewController.m in Sources */,
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
+				D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

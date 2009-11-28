@@ -18,6 +18,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(IBAction)toggleEdit:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    if (self.tableView.editing) {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
+	}
+    else {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+	}
+}
 
 -(void)viewDidLoad {
 	// array to hold the second-level controllers
@@ -147,6 +159,12 @@
 	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
+	if(section==0)
+		cell.editingAccessoryType = UITableViewCellAccessoryNone;
+	else
+		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+
+	
 	[detail release];
 	
 	return cell;
@@ -166,6 +184,25 @@
 	[self.navigationController pushViewController:next animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	// TODO: DetailView laden
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([indexPath section] == 0)
+		return UITableViewCellEditingStyleNone;
+	return UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([indexPath section] == 0)
+		return NO;
+	return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	// TODO: Zeile löschen
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -

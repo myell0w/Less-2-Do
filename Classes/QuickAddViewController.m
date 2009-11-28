@@ -7,15 +7,23 @@
 //
 
 #import "QuickAddViewController.h"
+#import "Less2DoAppDelegate.h"
 
 
 @implementation QuickAddViewController
 
-@synthesize task;
+@synthesize taskControl;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+	[taskControl becomeFirstResponder];
+    [super viewDidLoad];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -26,44 +34,51 @@
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	self.taskControl = nil;
 }
 
 
 - (void)dealloc {
+	[taskControl release];
     [super dealloc];
 }
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-		self.view.bounds = CGRectMake(0, 20, 320, 44);
-    }
-    return self;
-} */
-
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Action-Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (Task *)taskFromParsingTitle:(NSString *)title {
+	// Den delegate vom Less2DoAppDelegate
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	// Den ManagedObjectContext durch den delegate
+	NSManagedObjectContext *_context = [delegate managedObjectContext];
+	// create a Task
+	Task *t = (Task *)[NSEntityDescription 
+						  insertNewObjectForEntityForName:@"Task" 
+						  inManagedObjectContext:_context]; 
+	
+	//TODO: parse title and set other attributes (f.e. !!! = Priority 3, !! = Priority 2 ...)
+	// filter out priority
+	NSRange range = [title rangeOfString:@"!!!"];
+	// !!! not found?
+	if (range.location == NSNotFound) {
+		range = [title rangeOfString:@"!!"];
+	}
+	// !! not found?
+	if (range.location == NSNotFound) {
+		range = [title rangeOfString:@"!"];
+	}
+	
+	// found any priority?
+	if (range.location != NSNotFound) {
+		t.priority = [[NSNumber alloc] initWithInt:range.length-1];
+	}
+	
+	t.name = title;
+	
+	return t;
+}
 
 
 -(IBAction)taskAdded:(id)sender {
@@ -71,12 +86,12 @@
 }
 
 -(IBAction)taskDetailsEdit:(id)sender {
-	//TODO: implement
-	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task.text, @"Title", nil];
+	// send notification to HomeNavigationController --> opens modal DetailsEdit-Screen
+	Task *task = [self taskFromParsingTitle:taskControl.text];
+	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
 	
 	[dict release];
-
 }
 
 
