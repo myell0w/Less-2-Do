@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSDate * startTimeAnnoy;
 @property (nonatomic, retain) NSDate * dueDate;
+@property (nonatomic, retain) NSDate * dueTime;
 @property (nonatomic, retain) NSNumber * repeat;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * priority;

@@ -19,6 +19,7 @@
 @dynamic duration;
 @dynamic startTimeAnnoy;
 @dynamic dueDate;
+@dynamic dueTime;
 @dynamic repeat;
 @dynamic name;
 @dynamic priority;
