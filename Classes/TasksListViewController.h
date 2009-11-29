@@ -15,8 +15,8 @@
 @interface TasksListViewController : UITableViewController {
 	// image that is shown in the table cell
 	UIImage *image;
-	// the number of Tasks in that list
-	NSInteger taskCount;
+	// the tasks to show
+	NSMutableArray *tasks;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +24,13 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @property (nonatomic, retain) UIImage *image;
-@property NSInteger taskCount;
+@property (nonatomic, retain) NSMutableArray *tasks;
+
+// returns the number of tasks shown in this TableView
+- (int) taskCount;
+// set Up a Cell
+- (void)setUpCell:(UITableViewCell *)cell;
+// value of either completed or starred was changed
+- (IBAction)checkBoxValueChanged:(id)sender;
 
 @end

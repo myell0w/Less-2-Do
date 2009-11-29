@@ -117,7 +117,7 @@
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
+	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",[c taskCount]];
 	
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];

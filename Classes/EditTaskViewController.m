@@ -129,61 +129,13 @@
 		// Init Title-Cell
 		if ([reuseID isEqualToString:CELL_ID_TITLE]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
-			
-			// init Textfield for Title
-			UITextField *titleText = [[UITextField alloc] initWithFrame:TITLE_LABEL_RECT];
-			titleText.font = [UIFont boldSystemFontOfSize:TITLE_FONT_SIZE];
-			titleText.placeholder = @"Enter Task-Title...";
-			titleText.returnKeyType = UIReturnKeyDone;
-			titleText.tag = TAG_TITLE;
-			[titleText setDelegate:self];
-			// add Textfield to Cell
-			[cell.contentView addSubview:titleText];
-			[titleText release];
-			
-			// init Completed-Checkbox
-			UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:COMPLETED_RECT];
-			completedCB.tag = TAG_COMPLETED;
-			[completedCB addTarget:self 
-							action:@selector(checkBoxValueChanged:) 
-				  forControlEvents:UIControlEventTouchUpInside];
-			[cell.contentView addSubview:completedCB];
-			[completedCB release];
-
-			// init Starred-Checkbox
-			UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:STARRED_RECT 
-														   andOnImage:@"star_on.png" 
-														  andOffImage:@"star_off.png"];
-			starredCB.tag = TAG_STARRED;
-			[starredCB addTarget:self 
-						  action:@selector(checkBoxValueChanged:) 
-				forControlEvents:UIControlEventTouchUpInside];
-			[cell.contentView addSubview:starredCB];
-			[starredCB release];
+			[self setUpTitleCell:cell];
 		} 
 		
 		// Init Priority-Cell
 		else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
-			// init segmented-control
-			NSArray *img = [[NSArray alloc] 
-							initWithObjects:[UIImage imageNamed:@"priority_3.png"],
-							[UIImage imageNamed:@"priority_2.png"],
-							[UIImage imageNamed:@"priority_1.png"],
-							[UIImage imageNamed:@"priority_0.png"],nil];
-			UISegmentedControl *priorityControl = [[UISegmentedControl alloc] initWithItems:img];
-			priorityControl.frame = PRIORITY_RECT;
-			priorityControl.segmentedControlStyle = UISegmentedControlStyleBar;
-			priorityControl.selectedSegmentIndex = 3;
-			priorityControl.tag = TAG_PRIORITY;
-			
-			[priorityControl addTarget:self
-								 action:@selector(priorityValueChanged:)
-					   forControlEvents:UIControlEventValueChanged];
-			// add to cell
-			cell.textLabel.text = @"Priority";
-			[cell.contentView addSubview:priorityControl];
-			[priorityControl release];			
+			[self setUpPriorityCell:cell];
 		} 
 		
 		// Init Duedate-Cell
@@ -334,67 +286,6 @@
 	}
 }
 
--(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
-	int row = [indexPath row];
-	int section = [indexPath section];
-	
-	if (section == 0 && row == 0)
-		return CELL_ID_TITLE;
-	else if (section == 0 && row == 1)
-		return CELL_ID_PRIORITY;
-	else if (section == 0 && row == 2)
-		return CELL_ID_DUEDATE;
-	else if (section == 0 && row == 3)
-		return CELL_ID_DUETIME;
-	
-	return nil;
-}
-
-// save the task
--(IBAction)save:(id)sender {
-	// TODO:
-	if (textFieldBeingEdited != nil) {
-		NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:textFieldBeingEdited.tag];
-		[tempData setObject:textFieldBeingEdited.text forKey:tagAsNum];
-		[tagAsNum release];
-	}
-	
-	for (NSNumber *key in [tempData allKeys]) {
-		if ([key intValue] == TAG_TITLE) {
-			task.name = [tempData objectForKey:key];
-		} else if ([key intValue] == TAG_STARRED) {
-			task.star = [tempData objectForKey:key];
-		} else if ([key intValue] == TAG_COMPLETED) {
-			if ([[tempData objectForKey:key] boolValue]) {
-				task.completionDate = [[NSDate alloc] init];
-				task.isCompleted = [[NSNumber alloc] initWithBool:YES];
-			} else {
-				task.isCompleted = [[NSNumber alloc] initWithBool:NO];
-			}
-		} else if ([key intValue] == TAG_PRIORITY) {
-			task.priority = [tempData objectForKey:key];
-		} else if ([key intValue] == TAG_DUEDATE) {
-			//task.dueDate = [tempData objectForKey:key];
-		} else if ([key intValue] == TAG_DUETIME) {
-			//task.due = [tempData objectForKey:key];
-		}
-	}
-	
-	ALog("Task to save: %@", task);
-}
-
-// cancel the adding/editing
--(IBAction)cancel:(id)sender {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Really Cancel?"
-															 delegate:self
-													cancelButtonTitle:@"No"
-											   destructiveButtonTitle:@"Yes"
-													otherButtonTitles:nil];
-	
-	[actionSheet showInView:self.view];
-	[actionSheet release];
-}
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark ActionSheet-Delegate Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -463,6 +354,126 @@
 	
 	[tagAsNum release];
 	[value release];
+}
+
+// save the task
+-(IBAction)save:(id)sender {
+	// TODO:
+	if (textFieldBeingEdited != nil) {
+		NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:textFieldBeingEdited.tag];
+		[tempData setObject:textFieldBeingEdited.text forKey:tagAsNum];
+		[tagAsNum release];
+	}
+	
+	for (NSNumber *key in [tempData allKeys]) {
+		if ([key intValue] == TAG_TITLE) {
+			task.name = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_STARRED) {
+			task.star = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_COMPLETED) {
+			if ([[tempData objectForKey:key] boolValue]) {
+				task.completionDate = [[NSDate alloc] init];
+				task.isCompleted = [[NSNumber alloc] initWithBool:YES];
+			} else {
+				task.isCompleted = [[NSNumber alloc] initWithBool:NO];
+			}
+		} else if ([key intValue] == TAG_PRIORITY) {
+			task.priority = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_DUEDATE) {
+			//task.dueDate = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_DUETIME) {
+			//task.due = [tempData objectForKey:key];
+		}
+	}
+	
+	ALog("Task to save: %@", task);
+}
+
+// cancel the adding/editing
+-(IBAction)cancel:(id)sender {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Really Cancel?"
+															 delegate:self
+													cancelButtonTitle:@"No"
+											   destructiveButtonTitle:@"Yes"
+													otherButtonTitles:nil];
+	
+	[actionSheet showInView:self.view];
+	[actionSheet release];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark CUstom Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
+	int row = [indexPath row];
+	int section = [indexPath section];
+	
+	if (section == 0 && row == 0)
+		return CELL_ID_TITLE;
+	else if (section == 0 && row == 1)
+		return CELL_ID_PRIORITY;
+	else if (section == 0 && row == 2)
+		return CELL_ID_DUEDATE;
+	else if (section == 0 && row == 3)
+		return CELL_ID_DUETIME;
+	
+	return nil;
+}
+
+- (void) setUpTitleCell:(UITableViewCell *)cell {
+	// init Textfield for Title
+	UITextField *titleText = [[UITextField alloc] initWithFrame:TITLE_LABEL_RECT];
+	titleText.font = [UIFont boldSystemFontOfSize:TITLE_FONT_SIZE];
+	titleText.placeholder = @"Enter Task-Title...";
+	titleText.returnKeyType = UIReturnKeyDone;
+	titleText.tag = TAG_TITLE;
+	[titleText setDelegate:self];
+	// add Textfield to Cell
+	[cell.contentView addSubview:titleText];
+	[titleText release];
+	
+	// init Completed-Checkbox
+	UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:COMPLETED_RECT];
+	completedCB.tag = TAG_COMPLETED;
+	[completedCB addTarget:self 
+					action:@selector(checkBoxValueChanged:) 
+		  forControlEvents:UIControlEventTouchUpInside];
+	[cell.contentView addSubview:completedCB];
+	[completedCB release];
+	
+	// init Starred-Checkbox
+	UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:STARRED_RECT 
+												   andOnImage:@"star_on.png" 
+												  andOffImage:@"star_off.png"];
+	starredCB.tag = TAG_STARRED;
+	[starredCB addTarget:self 
+				  action:@selector(checkBoxValueChanged:) 
+		forControlEvents:UIControlEventTouchUpInside];
+	[cell.contentView addSubview:starredCB];
+	[starredCB release];
+}
+
+- (void)setUpPriorityCell:(UITableViewCell *)cell {
+	// init segmented-control
+	NSArray *img = [[NSArray alloc] 
+					initWithObjects:[UIImage imageNamed:@"priority_3.png"],
+					[UIImage imageNamed:@"priority_2.png"],
+					[UIImage imageNamed:@"priority_1.png"],
+					[UIImage imageNamed:@"priority_0.png"],nil];
+	UISegmentedControl *priorityControl = [[UISegmentedControl alloc] initWithItems:img];
+	priorityControl.frame = PRIORITY_RECT;
+	priorityControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	priorityControl.selectedSegmentIndex = 3;
+	priorityControl.tag = TAG_PRIORITY;
+	
+	[priorityControl addTarget:self
+						action:@selector(priorityValueChanged:)
+			  forControlEvents:UIControlEventValueChanged];
+	// add to cell
+	cell.textLabel.text = @"Priority";
+	[cell.contentView addSubview:priorityControl];
+	[priorityControl release];
 }
 
 @end

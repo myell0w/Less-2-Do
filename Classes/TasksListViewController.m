@@ -7,11 +7,193 @@
 //
 
 #import "TasksListViewController.h"
+#import "UICheckBox.h"
+#import "Less2DoAppDelegate.h"
 
+#define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
+#define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
+#define COMPLETED_RECT    CGRectMake(6, 6, 32, 32)
+#define STARRED_RECT	  CGRectMake(275, 6, 34, 34)
+#define PRIORITY_RECT     CGRectMake(250,14,19,16)
+#define FOLDER_COLOR_RECT CGRectMake(314,2,6,40)
+
+#define TITLE_FONT_SIZE 15
+#define TITLE_DETAIL_FONT_SIZE 11
+
+#define TAG_TITLE		 1
+#define TAG_TITLE_DETAIL 2
+#define TAG_COMPLETED	 3
+#define TAG_STARRED		 4
+#define TAG_PRIORITY	 5
+#define TAG_FOLDER_COLOR 6
 
 @implementation TasksListViewController
 
 @synthesize image;
-@synthesize taskCount;
+@synthesize tasks;
+
+
+- (void)viewDidLoad {
+	// Den delegate vom Less2DoAppDelegate
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	// Den ManagedObjectContext durch den delegate
+	NSManagedObjectContext *_context = [delegate managedObjectContext];
+	// create a Task
+	Task *t1 = (Task *)[NSEntityDescription 
+					   insertNewObjectForEntityForName:@"Task" 
+					   inManagedObjectContext:_context];
+	Task *t2 = (Task *)[NSEntityDescription 
+						insertNewObjectForEntityForName:@"Task" 
+						inManagedObjectContext:_context];
+	Task *t3 = (Task *)[NSEntityDescription 
+						insertNewObjectForEntityForName:@"Task" 
+						inManagedObjectContext:_context];
+	Task *t4 = (Task *)[NSEntityDescription 
+						insertNewObjectForEntityForName:@"Task" 
+						inManagedObjectContext:_context];
+	
+	NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:t1,t2,t3,t4,nil];
+	self.tasks = arr;
+	[arr release];
+}
+
+- (void)viewDidUnload {
+	self.image = nil;
+	self.tasks = nil;
+}
+
+- (void)dealloc {
+	[image release];
+	[tasks release];
+	
+	[super dealloc];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Table view methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	//TODO:change
+    return 1;
+}
+
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [tasks count];
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *reuseID = @"TaskInListCellID";
+	UITableViewCell *cell = nil;
+	
+	cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseID];
+	
+	if (cell == nil) {
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID] autorelease];
+		[self setUpCell:cell];
+	}
+	
+   
+	UICheckBox *completedCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_COMPLETED];
+	[completedCB setOn:YES];
+	
+	UICheckBox *starredCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_STARRED];
+	[starredCB setOn:YES];
+	
+	UILabel *titleLabel = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE];
+	titleLabel.text = @"programme L2D";
+	
+	UILabel *titleDetail = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_DETAIL];
+	titleDetail.text = @"due: We, 23.12.09, 2 pm";
+	
+	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
+	folderColorView.backgroundColor = [UIColor redColor];
+	
+	UIImageView *priorityView = (UIImageView *)[cell.contentView viewWithTag:TAG_PRIORITY];
+	priorityView.image = [UIImage imageNamed:@"priority_2.png"];
+	
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark Custom Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (int)taskCount {
+	return [tasks count];
+}
+
+- (void)setUpCell:(UITableViewCell *)cell {
+	// init Label for Detail-Text
+	UILabel *titleDetail = [[UILabel alloc] initWithFrame:TITLE_DETAIL_RECT];
+	titleDetail.font = [UIFont boldSystemFontOfSize:TITLE_DETAIL_FONT_SIZE];
+	titleDetail.tag = TAG_TITLE_DETAIL;
+	// add Label to Cell
+	[cell.contentView addSubview:titleDetail];
+	[titleDetail release];
+	
+	// init Label for Title
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:TITLE_LABEL_RECT];
+	titleLabel.font = [UIFont boldSystemFontOfSize:TITLE_FONT_SIZE];
+	titleLabel.tag = TAG_TITLE;
+	// add Label to Cell
+	[cell.contentView addSubview:titleLabel];
+	[titleLabel release];
+
+	// init Completed-Checkbox
+	UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:COMPLETED_RECT];
+	completedCB.tag = TAG_COMPLETED;
+	[completedCB addTarget:self 
+					action:@selector(checkBoxValueChanged:) 
+		  forControlEvents:UIControlEventTouchUpInside];
+	[cell.contentView addSubview:completedCB];
+	[completedCB release];
+	
+	// init Starred-Checkbox
+	UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:STARRED_RECT 
+												   andOnImage:@"star_on.png" 
+												  andOffImage:@"star_off.png"];
+	starredCB.tag = TAG_STARRED;
+	[starredCB addTarget:self 
+				  action:@selector(checkBoxValueChanged:) 
+		forControlEvents:UIControlEventTouchUpInside];
+	[cell.contentView addSubview:starredCB];
+	[starredCB release];
+	
+	// init Priority-Image
+	UIImageView *priorityView = [[UIImageView alloc] initWithFrame:PRIORITY_RECT];
+	priorityView.tag = TAG_PRIORITY;
+	[cell.contentView addSubview:priorityView];
+	[priorityView release];
+	
+	// init Folder-Color-View
+	UIView *folderColorView = [[UIView alloc] initWithFrame:FOLDER_COLOR_RECT];
+	folderColorView.tag = TAG_FOLDER_COLOR;
+	[cell.contentView addSubview:folderColorView];
+	[folderColorView release];
+}
+
+// temporary store changed values in Dictionary (to keep old data stored in task)
+- (IBAction)checkBoxValueChanged:(id)sender {
+	UICheckBox *cb = (UICheckBox *)sender;
+	
+	NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:cb.tag];	
+	NSNumber *value = [[NSNumber alloc] initWithBool:[cb isOn]];
+	
+	//[tempData setObject:value forKey:tagAsNum];	
+	//ALog("Temporary Value stored in Dict: %@ = %@", tagAsNum, value);
+	
+	[tagAsNum release];
+	[value release];
+}
+
 
 @end

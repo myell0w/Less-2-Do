@@ -56,4 +56,8 @@
 // value of either completed or starred was changed
 - (IBAction)checkBoxValueChanged:(id)sender;
 
+// setUp-Functions for Cells
+- (void) setUpTitleCell:(UITableViewCell *)cell;
+- (void) setUpPriorityCell:(UITableViewCell *)cell;
+
 @end

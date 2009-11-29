@@ -361,6 +361,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3901160210C1E82800A51296 /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F31810B9F11900671B42 /* TaskInList.xib */,
+			);
+			name = temp;
+			sourceTree = "<group>";
+		};
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,7 +400,7 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
-		39A1F30A10B9ECDF00671B42 /* task */ = {
+		39A1F30A10B9ECDF00671B42 /* editTask */ = {
 			isa = PBXGroup;
 			children = (
 				39A1F33410BA006300671B42 /* QuickAddViewController.h */,
@@ -404,18 +412,10 @@
 				39D0532110C036DF0020D7D9 /* TaskEditDueTimeViewController.h */,
 				39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */,
 			);
-			name = task;
+			name = editTask;
 			sourceTree = "<group>";
 		};
-		39A1F32F10B9FEC800671B42 /* list */ = {
-			isa = PBXGroup;
-			children = (
-				39A1F31810B9F11900671B42 /* TaskInList.xib */,
-			);
-			name = list;
-			sourceTree = "<group>";
-		};
-		39A1F33010B9FED600671B42 /* task */ = {
+		39A1F33010B9FED600671B42 /* editTask */ = {
 			isa = PBXGroup;
 			children = (
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
@@ -423,7 +423,7 @@
 				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 			);
-			name = task;
+			name = editTask;
 			sourceTree = "<group>";
 		};
 		39A1F45810BB21B500671B42 /* log */ = {
@@ -556,7 +556,7 @@
 				39B6590110B6B32D00825C1D /* tags */,
 				D436E98510BAB76300EA7624 /* settings */,
 				39B6584A10B6168600825C1D /* home */,
-				39A1F30A10B9ECDF00671B42 /* task */,
+				39A1F30A10B9ECDF00671B42 /* editTask */,
 				3902C47A10BEF151006BBF52 /* UICheckBox.h */,
 				3902C47B10BEF151006BBF52 /* UICheckBox.m */,
 			);
@@ -577,9 +577,9 @@
 		39C6D00D10BEDF5C000A0C70 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				3901160210C1E82800A51296 /* temp */,
 				39C6D00E10BEDF70000A0C70 /* cells */,
-				39A1F33010B9FED600671B42 /* task */,
-				39A1F32F10B9FEC800671B42 /* list */,
+				39A1F33010B9FED600671B42 /* editTask */,
 				39B6586110B618D700825C1D /* home */,
 				D436E8C810BA8C1200EA7624 /* folder */,
 				39B6593B10B6B83B00825C1D /* contexts */,
