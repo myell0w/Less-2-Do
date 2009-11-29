@@ -162,81 +162,81 @@
     
     // Set up the cell-values ...
 	
-	for (UIView *aView in cell.contentView.subviews) {
-		tagAsNum = [[NSNumber alloc] initWithInt:aView.tag];
-		tempValue = [tempData objectForKey:tagAsNum];
-		
-		// Textfield Title?
-		if ([aView isMemberOfClass:[UITextField class]]) {
-			UITextField *txt = (UITextField *)aView;
+	if ([reuseID isEqualToString:CELL_ID_TITLE]) {
+		// TextField for Title
+		UITextField *titleText = (UITextField *)[cell.contentView viewWithTag:TAG_TITLE];
+		if (titleText != nil) {
+			tagAsNum = [[NSNumber alloc] initWithInt:TAG_TITLE];
+			tempValue = [tempData objectForKey:tagAsNum];
 			
-			if (txt.tag == TAG_TITLE) {
-				if (tempValue != nil) {
-					txt.text = [tempValue description];
-				} else {
-					txt.text = task.name;
-				}
-				
-				[tagAsNum release];
+			if (tempValue != nil) {
+				titleText.text = [tempValue description];
+			} else {
+				titleText.text = task.name;
 			}
 			
-			// value already stored -> can set reference to nil
-			if (txt == textFieldBeingEdited)
-				textFieldBeingEdited = nil;
+			[tagAsNum release];
 		}
 		
-		// Checkbox --> Completed/Starred?
-		else if ([aView isMemberOfClass:[UICheckBox class]]) {
-			UICheckBox *cb = (UICheckBox *)aView;
-			
-			switch (cb.tag) {
-				case TAG_STARRED:
-					if (tempValue != nil) {
-						[cb setOn:[tempValue boolValue]];
-					} else {
-						if (task.star != nil) {
-							[cb setOn:[task.star boolValue]];
-						} else {
-							[cb setOn:NO];
-						}
-					}
-					break;
-				case TAG_COMPLETED:
-					//TODO:
-					if (tempValue != nil) {
-						[cb setOn:[tempValue boolValue]];
-					} else {
-						if (task.completionDate != nil || task.isCompleted != nil) {
-							[cb setOn:YES];
-						} else {
-							[cb setOn:NO];
-						}
-					}
-					break;
-				default:
-					break;
-			}
-		}
 		
-		// Segmented Control --> Priority
-		else if ([aView isMemberOfClass:[UISegmentedControl class]]) {
-			UISegmentedControl *sc = (UISegmentedControl *)aView;
+		// Completed-Checkbox
+		UICheckBox *completedCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_COMPLETED];
+		if (completedCB != nil) {
+			tagAsNum = [[NSNumber alloc] initWithInt:TAG_COMPLETED];
+			tempValue = [tempData objectForKey:tagAsNum];
 			
-			if (sc.tag == TAG_PRIORITY) {
-				if (tempValue != nil) {
-					int idx = 2 - [tempValue intValue];
-					sc.selectedSegmentIndex = idx > 0 ? idx : 0;
+			if (tempValue != nil) {
+				[completedCB setOn:[tempValue boolValue]];
+			} else {
+				if (task.completionDate != nil || task.isCompleted != nil) {
+					[completedCB setOn:YES];
 				} else {
-					int idx = 2 - [task.priority intValue];
-					sc.selectedSegmentIndex = idx > 0 ? idx : 0;
+					[completedCB setOn:NO];
 				}
 			}
+			
+			[tagAsNum release];
 		}
+		
+		// Starred-Checkbox
+		UICheckBox *starredCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_STARRED];
+		if (starredCB != nil) {
+			tagAsNum = [[NSNumber alloc] initWithInt:TAG_STARRED];
+			tempValue = [tempData objectForKey:tagAsNum];
+			
+			if (tempValue != nil) {
+				[starredCB setOn:[tempValue boolValue]];
+			} else {
+				if (task.star != nil) {
+					[starredCB setOn:[task.star boolValue]];
+				} else {
+					[starredCB setOn:NO];
+				}
+			}
+			
+			[tagAsNum release];
+		}		
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_PRIORITY]) {
+		// Priority-Segmented-Control
+		UISegmentedControl *prioritySC = (UISegmentedControl *)[cell.contentView viewWithTag:TAG_PRIORITY];
+		if (prioritySC != nil) {
+			tagAsNum = [[NSNumber alloc] initWithInt:TAG_PRIORITY];
+			tempValue = [tempData objectForKey:tagAsNum];
+			
+			if (tempValue != nil) {
+				int idx = 2 - [tempValue intValue];
+				prioritySC.selectedSegmentIndex = idx > 0 ? idx : 0;
+			} else {
+				int idx = 2 - [task.priority intValue];
+				prioritySC.selectedSegmentIndex = idx > 0 ? idx : 0;
+			}		
+			[tagAsNum release];
+		}		
+	}
 	
-	
-	if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
+	else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
 		if (task.dueDate != nil) {
 			NSDateFormatter *format = [[NSDateFormatter alloc] init];
 			[format setDateFormat:@"EEEE, YYYY-MM-dd"];
