@@ -16,9 +16,9 @@
 
 
 +(NSArray*)allTasks:(NSError**)error;
-/*
-+(Task*)addTask:(Task *)theTask error:(NSError**)error;
 
++(Task*)addTask:(Task *)theTask error:(NSError**)error;
+/*
 +(BOOL)deleteTask:(Task*)theTask error:(NSError**)error;
 +(BOOL)updateTask:(Task*)oldTask newTask:(Folder*)newTast error:(NSError**)error;
 */

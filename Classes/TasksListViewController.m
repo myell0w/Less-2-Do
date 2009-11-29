@@ -9,6 +9,7 @@
 #import "TasksListViewController.h"
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
+#import "TaskDAO.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
 #define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
@@ -34,6 +35,47 @@
 
 
 - (void)viewDidLoad {
+	NSMutableArray *array = [[NSMutableArray alloc] init];
+	NSError *error;
+	
+	//[ContextDAO addContextWithName:@"Gerhard" error:&error];
+	// init Second-Level Views in Section Home
+	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+	 context2.title = @"telephone";
+	 context2.image = [UIImage imageNamed:@"all_tasks.png"];
+	 [array addObject:context2];
+	 [context2 release];*/
+	
+	/* ------------ KEINE AHNUNG -------------- */
+	
+	/* zuerst eines anlegen */
+	/*NSError *saveError;
+	 Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:moc];
+	 newContext.name = @"bussi";
+	 [moc save:&saveError];*/
+	/* ende anlegen */
+	
+	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
+	
+	self.tasks = array;
+	[array release];
+	
+	NSArray *objects = [TaskDAO allTasks:&error];
+	
+	if (objects == nil) {
+		NSLog(@"There was an error!");
+		// Do whatever error handling is appropriate
+	}
+	if ([objects count] > 0)
+	{
+		// for schleife objekte erzeugen und array addObject:currentContext
+		for (int i=0; i<[objects count]; i++) {
+			Task *task = [objects objectAtIndex:i];
+			[self.tasks addObject:task];
+		}
+	}
+	
+	/*
 	// Den delegate vom Less2DoAppDelegate
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	// Den ManagedObjectContext durch den delegate
@@ -54,7 +96,7 @@
 	
 	NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:t1,t2,t3,t4,nil];
 	self.tasks = arr;
-	[arr release];
+	[arr release];*/
 }
 
 - (void)viewDidUnload {
@@ -89,6 +131,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *reuseID = @"TaskInListCellID";
 	UITableViewCell *cell = nil;
+	int row = [indexPath row];
+	Task *t = [tasks objectAtIndex:row];
 	
 	cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseID];
 	
@@ -99,22 +143,26 @@
 	
    
 	UICheckBox *completedCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_COMPLETED];
-	[completedCB setOn:YES];
+	[completedCB setOn:[t.isCompleted boolValue]];
 	
 	UICheckBox *starredCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_STARRED];
-	[starredCB setOn:YES];
+	[starredCB setOn:[t.star boolValue]];
 	
 	UILabel *titleLabel = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE];
-	titleLabel.text = @"programme L2D";
+	titleLabel.text = t.name;
 	
+	// TODO: read out real data
 	UILabel *titleDetail = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_DETAIL];
 	titleDetail.text = @"due: We, 23.12.09, 2 pm";
 	
 	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
 	folderColorView.backgroundColor = [UIColor redColor];
 	
+	int priorityIdx = [t.priority intValue] + 1;
+	NSString *priorityName = [[NSString alloc] initWithFormat:@"priority_%d.png",priorityIdx];
 	UIImageView *priorityView = (UIImageView *)[cell.contentView viewWithTag:TAG_PRIORITY];
-	priorityView.image = [UIImage imageNamed:@"priority_2.png"];
+	priorityView.image = [UIImage imageNamed:priorityName];
+	[priorityName release];
 	
 	return cell;
 }
