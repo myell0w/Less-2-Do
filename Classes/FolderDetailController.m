@@ -1,29 +1,29 @@
 //
-//  TagDetailController.m
+//  FolderDetailController.m
 //  Less2Do
 //
 //  Created by Philip Messlehner on 30.11.09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "TagDetailController.h"
-#import "TagsFirstLevelController.h"
+#import "FolderDetailController.h"
+#import "FolderFirstLevelController.h"
 #import "TasksListViewController.h"
-#import "TagDAO.h"
-#import "Tag.h"
+#import "FolderDAO.h"
+#import "Folder.h"
 
-@implementation TagDetailController
+@implementation FolderDetailController
 
-@synthesize tag;
+@synthesize folder;
 @synthesize fieldLabels;
 @synthesize tempValues;
 @synthesize textFieldBeingEdited;
 
-- (id) initWithStyle:(UITableViewStyle)aStyle andTag:(Tag *)aTag {
+- (id) initWithStyle:(UITableViewStyle)aStyle andFolder:(Folder *)aFolder {
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	tag = aTag;
+	folder = aFolder;
 	return self;
 }
 
@@ -42,11 +42,11 @@
 	}
 	
 	// Update
-	if (tag != nil) {
+	if (folder != nil) {
 		for (NSNumber *key in [tempValues allKeys]) {
 			switch ([key intValue]) {
 				case NAME_ROW_INDEX:
-					tag.name = [tempValues objectForKey:key];
+					folder.name = [tempValues objectForKey:key];
 					break;
 				default:
 					break;
@@ -54,35 +54,35 @@
 		}
 		
 		NSError *error;
-		DLog ("Try to update Tag '%@'", tag.name);
-		if(![TagDAO updateTag:tag newTag:tag error:&error]) {
-			ALog ("Error occured while updating Tag");
+		DLog ("Try to update Folder '%@'", folder.name);
+		if(![FolderDAO updateFolder:folder newFolder:folder error:&error]) {
+			ALog ("Error occured while updating Folder");
 		}
 		else {
-			ALog ("Tag updated");
+			ALog ("Folder updated");
 		}
 	}
 	// Insert
 	else {
 		NSError *error;
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		NSString *tagName = [tempValues objectForKey:key];
+		NSString *folderName = [tempValues objectForKey:key];
 		[key release];
-		tag = [TagDAO addTagWithName:tagName error:&error];
+		folder = [FolderDAO addFolderWithName:folderName error:&error];
 		
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
 			UIViewController *oneController = [allControllers objectAtIndex:[allControllers count]-2];
 			
-			if([oneController isKindOfClass:[TagsFirstLevelController class]]) {
-				TagsFirstLevelController *parent = (TagsFirstLevelController *) oneController;
-				TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-				tagView.title = tag.name;
-				tagView.image = [UIImage imageNamed:@"all_tasks.png"];
-				[parent.controllersSection1 addObject:tagView];
-				[parent.list addObject:tag];
-				[tagView release];
+			if([oneController isKindOfClass:[FolderFirstLevelController class]]) {
+				FolderFirstLevelController *parent = (FolderFirstLevelController *) oneController;
+				TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+				folderView.title = folder.name;
+				folderView.image = [UIImage imageNamed:@"all_tasks.png"];
+				[parent.controllersSection1 addObject:folderView];
+				[parent.list addObject:folder];
+				[folderView release];
 			}
 		}
 		
@@ -126,7 +126,7 @@
 - (void) dealloc {
 	[textFieldBeingEdited release];
 	[tempValues release];
-	[tag release];
+	[folder release];
 	[fieldLabels release];
 	
 	[super dealloc];
@@ -139,7 +139,7 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellID = @"TagsEditCellID";
+	static NSString *cellID = @"FoldersEditCellID";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	
@@ -178,10 +178,10 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (tag == nil)
-				textField.text = @"New Tag";
+			else if (folder == nil)
+				textField.text = @"New Folder";
 			else
-				textField.text = tag.name;
+				textField.text = folder.name;
 			break;
 		default:
 			break;
