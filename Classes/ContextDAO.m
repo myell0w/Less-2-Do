@@ -7,6 +7,7 @@
 //
 
 #import "ContextDAO.h"
+#import "Less2DoAppDelegate.h"
 
 //NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 
@@ -26,8 +27,11 @@
 	NSError *fetchError;
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	Less2DoAppDelegate *delegate = [[Less2DoAppDelegate alloc] init];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	/*
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -46,6 +50,7 @@
 	}
 	
 	[request release];
+	[delegate release];
 	
 	return objects;
 }
@@ -72,8 +77,10 @@
 	}
 		
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	NSManagedObjectContext *managedObjectContext = [[[Less2DoAppDelegate alloc] init] managedObjectContext];
+	//Less2DoAppDelegate *delegate = [[Less2DoAppDelegate alloc] init];
+	//Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	//NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 		
 	/* get entity description - needed for creating */
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -117,8 +124,10 @@
 	}
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	NSManagedObjectContext *managedObjectContext = [[[Less2DoAppDelegate alloc] init] managedObjectContext];
+	//Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	//NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
 	/* mark object to be deleted */
 	[managedObjectContext deleteObject:context];

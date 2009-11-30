@@ -6,7 +6,6 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "Less2DoAppDelegate.h"
 #import "Context.h"
 
 @interface ContextDAO : NSObject {
