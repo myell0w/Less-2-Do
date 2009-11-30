@@ -55,7 +55,7 @@
 		
 		NSError *error;
 		DLog ("Try to update Context '%@'", context.name);
-		if(![ContextDAO updateContext:context newContext:context error:&error]) {
+		if(![ContextDAO updateContext:context error:&error]) {
 			 ALog ("Error occured while updating Context");
 		}
 		else {

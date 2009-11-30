@@ -63,6 +63,7 @@
 	[array addObject:context1];
 	[context1 release];*/
 	NSError *error;
+	
 	//[ContextDAO addContextWithName:@"Testtag" error:&error];
 	NSArray *objects = [ContextDAO allContexts:&error];
 	
@@ -93,13 +94,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[self.tableView reloadData];
-}
-
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {

@@ -94,6 +94,7 @@
 		D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E9C310BABB6900EA7624 /* SettingsTableView.xib */; };
 		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
 		D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */; };
+		D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +265,8 @@
 		D45C314E10C015BF00B59FE0 /* ContextDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDetailController.m; sourceTree = "<group>"; };
 		D46A63F710C3EBDD00FBC5EB /* TagDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagDetailController.h; sourceTree = "<group>"; };
 		D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailController.m; sourceTree = "<group>"; };
+		D46A641810C3F21700FBC5EB /* FolderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailController.h; sourceTree = "<group>"; };
+		D46A641910C3F21700FBC5EB /* FolderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,6 +490,8 @@
 				D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */,
 				D436E8B110BA86AA00EA7624 /* FolderNavigationController.h */,
 				D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */,
+				D46A641810C3F21700FBC5EB /* FolderDetailController.h */,
+				D46A641910C3F21700FBC5EB /* FolderDetailController.m */,
 			);
 			name = folder;
 			sourceTree = "<group>";
@@ -879,6 +884,7 @@
 				D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */,
 				CF25612110C2820500019621 /* TaskDAO.m in Sources */,
 				D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */,
+				D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

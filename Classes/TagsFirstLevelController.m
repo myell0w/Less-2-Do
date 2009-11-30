@@ -69,9 +69,9 @@
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
-			Tag *context = [[objects objectAtIndex:i] retain];
+			Tag *tag = [[objects objectAtIndex:i] retain];
 			TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-			tagView.title = context.name;
+			tagView.title = tag.name;
 			tagView.image = [UIImage imageNamed:@"all_tasks.png"];
 			[array addObject:tagView];
 			[tagView release];
@@ -192,9 +192,9 @@
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
-		DLog ("Removed Tag '%@' from SectionController", context.name);
+		DLog ("Removed Tag '%@' from SectionController", tag.name);
 		// TODO: Remove Tag
-		/*if(![ContextDAO deleteContext:context error:&error]) {
+		/*if(![CTagDAO deleteTag:tag error:&error]) {
 			ALog("Error occured while deleting Tag");
 		}
 		else
