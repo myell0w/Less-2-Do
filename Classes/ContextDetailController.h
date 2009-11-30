@@ -26,6 +26,8 @@
 @property (nonatomic, retain) NSMutableDictionary *tempValues;
 @property (nonatomic, retain) UITextField *textFieldBeingEdited;
 
+- (id)initWithStyle:(UITableViewStyle)aStyle andContext:(Context *)aContext;
+
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)textFieldDone:(id)sender;

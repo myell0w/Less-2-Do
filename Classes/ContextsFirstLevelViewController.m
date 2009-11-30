@@ -8,10 +8,11 @@
 
 #import "ContextsFirstLevelViewController.h"
 #import "TasksListViewController.h"
+#import "ContextDetailController.h"
 
 @implementation ContextsFirstLevelViewController
 
-@synthesize tableView;
+@synthesize list;
 @synthesize controllersSection0;
 @synthesize controllersSection1;
 
@@ -31,9 +32,17 @@
 	}
 }
 
+- (IBAction)toggleAdd:(id)sender {
+	ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	contextDetail.title = @"New Context";
+	[self.navigationController pushViewController:contextDetail animated:YES];
+	[contextDetail release];
+}
+
 -(void)viewDidLoad {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
+	list = [[NSMutableArray alloc] init];
 	
 	// init Second-Level Views in Section Contexts
 	TasksListViewController *no = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -47,33 +56,14 @@
 	[array release];
 	array = [[NSMutableArray alloc] init];
 	
-	// init Second-Level Views in Section Home
+	/* init Second-Level Views in Section Home
 	TasksListViewController *context1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	context1.title = @"home";
 	context1.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:context1];
-	[context1 release];
-	
+	[context1 release];*/
 	NSError *error;
-	[ContextDAO addContextWithName:@"Gerhard" error:&error];
-	ALog(@"%s", "Keine Wohnungen mehr");
-	// init Second-Level Views in Section Home
-	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	context2.title = @"telephone";
-	context2.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:context2];
-	[context2 release];*/
-	
-	/* ------------ KEINE AHNUNG -------------- */
-	
-	/* zuerst eines anlegen */
-	/*NSError *saveError;
-	Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:moc];
-	newContext.name = @"bussi";
-	[moc save:&saveError];*/
-	/* ende anlegen */
-	
-	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
+	//[ContextDAO addContextWithName:@"Testtag" error:&error];
 	NSArray *objects = [ContextDAO allContexts:&error];
 	
 	if (objects == nil) {
@@ -84,26 +74,27 @@
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
-			Context *context = [objects objectAtIndex:i];
-			TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-			context2.title = context.name;
-			context2.image = [UIImage imageNamed:@"all_tasks.png"];
-			[array addObject:context2];
-			[context2 release];
+			Context *context = [[objects objectAtIndex:i] retain];
+			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+			contextView.title = context.name;
+			contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+			[array addObject:contextView];
+			[contextView release];
 		}
 	}
-	
-	
-	/* -------------- ENDE KEINE AHNUNG ------------- */
+
+	[list addObjectsFromArray:objects];
+	ALog ("%d Items in ContextList", [list count]);
 	
 	self.controllersSection1 = array;
-		
 	self.title = @"Contexts";
-	
 	[array release];
 	[super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -114,14 +105,14 @@
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	self.tableView = nil;
+	self.list = nil;
 	self.controllersSection0 = nil;
 	self.controllersSection1 = nil;
 }
 
 
 - (void)dealloc {
-	[tableView release];
+	[list release];
 	[controllersSection0 release];
 	[controllersSection1 release];
 	
@@ -134,6 +125,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if([list count] == 0)
+		return 1;
 	return 2;
 }
 
@@ -141,7 +134,7 @@
 	return [[self sectionForIndex:section] count];
 }
 
--(UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellID = @"ContextsSecondLevelCellID";
 	
 	NSUInteger row = [indexPath row];
@@ -154,15 +147,19 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
-	cell.textLabel.text = c.title;
 	cell.detailTextLabel.text = detail;
 	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	if(section==0)
+	if(section==0) {
+		cell.textLabel.text = c.title;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;
-	else
+	}
+	else {
+		Context *context = [list objectAtIndex:row];
+		cell.textLabel.text = context.name;
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	}
 
 	
 	[detail release];
@@ -185,7 +182,21 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	// TODO: DetailView laden
+	if([indexPath section] == 1) {
+		NSUInteger row = [indexPath row];
+		DLog ("%d Items in ContextList", [list count]);
+		Context *context = [list objectAtIndex:row];
+		DLog ("Try to load DetailView for Context '%@'", context.name);
+		
+		[self.tableView setEditing:NO animated:NO];
+		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+		
+		ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped andContext:context];
+		contextDetail.title = context.name;
+		[self.navigationController pushViewController:contextDetail animated:YES];
+		[contextDetail release];
+	}
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -200,8 +211,31 @@
 	return YES;
 }
 
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-	// TODO: Zeile löschen
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Table View Data Source Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		NSUInteger row = [indexPath row];	
+		NSError *error;
+		Context *context = [list objectAtIndex:row];
+		DLog ("Try to delete Context '%@'", context.name);
+		[self.controllersSection1 removeObjectAtIndex:row];
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+							  withRowAnimation:UITableViewRowAnimationFade];
+		DLog ("Removed Context '%@' from SectionController", context.name);
+		if(![ContextDAO deleteContext:context error:&error]) {
+			// TODO: Errorhandling
+			//ALog("Error occured while deleting Context\r\n%@: %@", [error code], [error localizedDescription]);
+			ALog("Error occured while deleting Context");
+		}
+		else
+			ALog("Deleted Context");
+		[self.list removeObjectAtIndex:row];
+		[tableView reloadData];
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -16,21 +16,21 @@
 
 
 @interface ContextsFirstLevelViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-	// the table View to show
-	UITableView *tableView;
+	// Array which holds the different Contexts
+	NSMutableArray *list;
 	// the Second-Level-Controllers in the first section of Tab "Home"
 	NSArray *controllersSection0;
 	// the Second-Level-Controllers in the second section of Tab "Home" 
-	NSArray *controllersSection1;
+	NSMutableArray *controllersSection1;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Properties
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) NSMutableArray *list;
 @property (nonatomic, retain) NSArray *controllersSection0;
-@property (nonatomic, retain) NSArray *controllersSection1;
+@property (nonatomic, retain) NSMutableArray *controllersSection1;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
@@ -38,5 +38,6 @@
 
 -(NSArray *)sectionForIndex:(NSInteger)index;
 - (IBAction) toggleEdit:(id)sender;
+- (IBAction) toggleAdd:(id)sender;
 
 @end

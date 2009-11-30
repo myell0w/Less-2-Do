@@ -7,6 +7,9 @@
 //
 
 #import "ContextDetailController.h"
+#import "ContextsFirstLevelViewController.h"
+#import "TasksListViewController.h"
+#import "ContextDAO.h"
 #import "Context.h"
 
 @implementation ContextDetailController
@@ -38,21 +41,54 @@
 		[tagAsNum release];
 	}
 	
-	for (NSNumber *key in [tempValues allKeys]) {
-		switch ([key intValue]) {
-			case NAME_ROW_INDEX:
-				context.name = [tempValues objectForKey:key];
-				break;
-			default:
-				break;
+	// Update
+	if (context != nil) {
+		for (NSNumber *key in [tempValues allKeys]) {
+			switch ([key intValue]) {
+				case NAME_ROW_INDEX:
+					context.name = [tempValues objectForKey:key];
+					break;
+				default:
+					break;
+			}
 		}
+		
+		NSError *error;
+		DLog ("Try to update Context '%@'", context.name);
+		if(![ContextDAO updateContext:context newContext:context error:&error]) {
+			 ALog ("Error occured while updating Context");
+		}
+		else {
+			 ALog ("Context updated");
+		}
+	}
+	// Insert
+	else {
+		NSError *error;
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		NSString *contextName = [tempValues objectForKey:key];
+		[key release];
+		context = [ContextDAO addContextWithName:contextName error:&error];
+		
+		NSArray *allControllers = self.navigationController.viewControllers;
+		
+		if ([allControllers count]>1) {
+			UIViewController *oneController = [allControllers objectAtIndex:[allControllers count]-2];
+			
+			if([oneController isKindOfClass:[ContextsFirstLevelViewController class]]) {
+				ContextsFirstLevelViewController *parent = (ContextsFirstLevelViewController *) oneController;
+				TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+				contextView.title = context.name;
+				contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+				[parent.controllersSection1 addObject:contextView];
+				[parent.list addObject:context];
+				[contextView release];
+			}
+		}
+		
 	}
 	
 	[self.navigationController popViewControllerAnimated:YES];
-	
-	NSArray *allControllers = self.navigationController.viewControllers;
-	UITableViewController *parent = [allControllers lastObject];
-	[parent.tableView reloadData];
 }
 
 
@@ -142,6 +178,8 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
+			else if (context == nil)
+				textField.text = @"New Context";
 			else
 				textField.text = context.name;
 			break;
