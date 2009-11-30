@@ -62,7 +62,6 @@
 	imageView.contentMode = UIViewContentModeLeft;
 	self.backgroundImage = imageView;
 	
-	[image release];
 	[imageView release];
 	
 	
