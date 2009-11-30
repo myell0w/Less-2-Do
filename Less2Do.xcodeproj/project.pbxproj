@@ -93,6 +93,7 @@
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
 		D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E9C310BABB6900EA7624 /* SettingsTableView.xib */; };
 		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
+		D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,6 +262,8 @@
 		D436E9C310BABB6900EA7624 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
 		D45C314D10C015BF00B59FE0 /* ContextDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDetailController.h; sourceTree = "<group>"; };
 		D45C314E10C015BF00B59FE0 /* ContextDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDetailController.m; sourceTree = "<group>"; };
+		D46A63F710C3EBDD00FBC5EB /* TagDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagDetailController.h; sourceTree = "<group>"; };
+		D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +498,8 @@
 				D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */,
 				D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */,
 				D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */,
+				D46A63F710C3EBDD00FBC5EB /* TagDetailController.h */,
+				D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */,
 			);
 			name = tags;
 			sourceTree = "<group>";
@@ -873,6 +878,7 @@
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
 				D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */,
 				CF25612110C2820500019621 /* TaskDAO.m in Sources */,
+				D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

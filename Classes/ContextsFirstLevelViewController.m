@@ -67,8 +67,7 @@
 	NSArray *objects = [ContextDAO allContexts:&error];
 	
 	if (objects == nil) {
-		NSLog(@"There was an error!");
-		// Do whatever error handling is appropriate
+		ALog(@"Error while reading Contexts!");
 	}
 	if ([objects count] > 0)
 	{
@@ -84,7 +83,7 @@
 	}
 
 	[list addObjectsFromArray:objects];
-	ALog ("%d Items in ContextList", [list count]);
+	DLog ("%d Items in ContextList", [list count]);
 	
 	self.controllersSection1 = array;
 	self.title = @"Contexts";
@@ -167,6 +166,27 @@
 	return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+		
+		NSUInteger row = [indexPath row];	
+		NSError *error;
+		Context *context = [list objectAtIndex:row];
+		DLog ("Try to delete Context '%@'", context.name);
+		[self.controllersSection1 removeObjectAtIndex:row];
+		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+							  withRowAnimation:UITableViewRowAnimationFade];
+		DLog ("Removed Context '%@' from SectionController", context.name);
+		if(![ContextDAO deleteContext:context error:&error]) {
+			ALog("Error occured while deleting Context");
+		}
+		else
+			ALog("Deleted Context");
+		[self.list removeObjectAtIndex:row];
+		[tableView reloadData];
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table View Delegate Methods
@@ -209,33 +229,6 @@
 	if ([indexPath section] == 0)
 		return NO;
 	return YES;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Table View Data Source Methods
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-		
-		NSUInteger row = [indexPath row];	
-		NSError *error;
-		Context *context = [list objectAtIndex:row];
-		DLog ("Try to delete Context '%@'", context.name);
-		[self.controllersSection1 removeObjectAtIndex:row];
-		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-							  withRowAnimation:UITableViewRowAnimationFade];
-		DLog ("Removed Context '%@' from SectionController", context.name);
-		if(![ContextDAO deleteContext:context error:&error]) {
-			// TODO: Errorhandling
-			//ALog("Error occured while deleting Context\r\n%@: %@", [error code], [error localizedDescription]);
-			ALog("Error occured while deleting Context");
-		}
-		else
-			ALog("Deleted Context");
-		[self.list removeObjectAtIndex:row];
-		[tableView reloadData];
-	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
