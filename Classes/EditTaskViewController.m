@@ -249,6 +249,19 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_DUETIME]) {
+		if (task.dueTime != nil) {
+			NSDateFormatter *format = [[NSDateFormatter alloc] init];
+			[format setDateFormat:@"h:mm a"];
+			
+			cell.detailTextLabel.text = [format stringFromDate:task.dueTime];
+			
+			[format release];
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
+	
     return cell;
 }
 
@@ -358,6 +371,8 @@
 
 // save the task
 -(IBAction)save:(id)sender {
+	NSError *error = nil;
+	
 	// TODO:
 	if (textFieldBeingEdited != nil) {
 		NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:textFieldBeingEdited.tag];
@@ -380,13 +395,17 @@
 		} else if ([key intValue] == TAG_PRIORITY) {
 			task.priority = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUEDATE) {
-			//task.dueDate = [tempData objectForKey:key];
+			task.dueDate = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUETIME) {
-			//task.due = [tempData objectForKey:key];
+			task.dueTime = [tempData objectForKey:key];
 		}
 	}
 	
 	ALog("Task to save: %@", task);
+	[TaskDAO addTask:task error:&error];
+	
+	//TODO:error handling
+	ALog("Task was saved!");
 }
 
 // cancel the adding/editing

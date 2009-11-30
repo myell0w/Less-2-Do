@@ -38,75 +38,43 @@
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	NSError *error;
 	
-	//[ContextDAO addContextWithName:@"Gerhard" error:&error];
-	// init Second-Level Views in Section Home
-	/*TasksListViewController *context2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	 context2.title = @"telephone";
-	 context2.image = [UIImage imageNamed:@"all_tasks.png"];
-	 [array addObject:context2];
-	 [context2 release];*/
-	
-	/* ------------ KEINE AHNUNG -------------- */
-	
-	/* zuerst eines anlegen */
-	/*NSError *saveError;
-	 Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:moc];
-	 newContext.name = @"bussi";
-	 [moc save:&saveError];*/
-	/* ende anlegen */
-	
-	//ContextDAO *contextDAO = [[ContextDAO alloc] init];
-	
 	self.tasks = array;
 	[array release];
 	
 	NSArray *objects = [TaskDAO allTasks:&error];
 	
 	if (objects == nil) {
-		NSLog(@"There was an error!");
+		ALog(@"There was an error!");
 		// Do whatever error handling is appropriate
 	}
-	if ([objects count] > 0)
-	{
-		// for schleife objekte erzeugen und array addObject:currentContext
-		for (int i=0; i<[objects count]; i++) {
-			Task *task = [objects objectAtIndex:i];
-			[self.tasks addObject:task];
+	else {
+		// for schleife objekte erzeugen und array addObject:current Task
+		for (Task *t in objects) {
+			[self.tasks addObject:t];
 		}
 	}
 	
-	/*
-	// Den delegate vom Less2DoAppDelegate
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	// Den ManagedObjectContext durch den delegate
-	NSManagedObjectContext *_context = [delegate managedObjectContext];
-	// create a Task
-	Task *t1 = (Task *)[NSEntityDescription 
-					   insertNewObjectForEntityForName:@"Task" 
-					   inManagedObjectContext:_context];
-	Task *t2 = (Task *)[NSEntityDescription 
-						insertNewObjectForEntityForName:@"Task" 
-						inManagedObjectContext:_context];
-	Task *t3 = (Task *)[NSEntityDescription 
-						insertNewObjectForEntityForName:@"Task" 
-						inManagedObjectContext:_context];
-	Task *t4 = (Task *)[NSEntityDescription 
-						insertNewObjectForEntityForName:@"Task" 
-						inManagedObjectContext:_context];
-	
-	NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:t1,t2,t3,t4,nil];
-	self.tasks = arr;
-	[arr release];*/
+	formatDate = [[NSDateFormatter alloc] init];
+	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
+	formatTime = [[NSDateFormatter alloc] init];
+	[formatTime setDateFormat:@"h:mm a"];
 }
 
 - (void)viewDidUnload {
 	self.image = nil;
 	self.tasks = nil;
+	
+	[formatDate release];
+	formatDate = nil;
+	[formatTime release];
+	formatTime = nil;
 }
 
 - (void)dealloc {
 	[image release];
 	[tasks release];
+	[formatDate release];
+	[formatTime release];
 	
 	[super dealloc];
 }
@@ -141,24 +109,39 @@
 		[self setUpCell:cell];
 	}
 	
+	// set up values:
    
 	UICheckBox *completedCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_COMPLETED];
-	[completedCB setOn:[t.isCompleted boolValue]];
-	
+	[completedCB setOn:t.isCompleted != nil ? [t.isCompleted boolValue] : NO];
+		
 	UICheckBox *starredCB = (UICheckBox *)[cell.contentView viewWithTag:TAG_STARRED];
-	[starredCB setOn:[t.star boolValue]];
+	[starredCB setOn:t.star != nil ? [t.star boolValue] : NO];
 	
 	UILabel *titleLabel = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE];
-	titleLabel.text = t.name;
+	if (t.name != nil) {
+		titleLabel.text = t.name;
+	} else {
+		titleLabel.text = @"(No Title)";
+	}
+	
+	UILabel *titleDetail = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_DETAIL];
+	NSString *dueDateAndTime = nil;
+	if (t.dueDate != nil) {
+		dueDateAndTime = [[NSString alloc] initWithFormat:@"due: %@, %@",
+						  [formatDate stringFromDate:t.dueDate],
+						  t.dueTime != nil ? [formatTime stringFromDate:t.dueTime] : @"no time"];
+	} else {
+		dueDateAndTime = @"no due date";
+	}
+
+	titleDetail.text = dueDateAndTime;
+	[dueDateAndTime release];
 	
 	// TODO: read out real data
-	UILabel *titleDetail = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_DETAIL];
-	titleDetail.text = @"due: We, 23.12.09, 2 pm";
-	
 	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
 	folderColorView.backgroundColor = [UIColor redColor];
 	
-	int priorityIdx = [t.priority intValue] + 1;
+	int priorityIdx = t.priority != nil ? [t.priority intValue] + 1 : -1;
 	NSString *priorityName = [[NSString alloc] initWithFormat:@"priority_%d.png",priorityIdx];
 	UIImageView *priorityView = (UIImageView *)[cell.contentView viewWithTag:TAG_PRIORITY];
 	priorityView.image = [UIImage imageNamed:priorityName];
@@ -168,7 +151,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	ALog("selected row: %@", indexPath);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,6 +179,7 @@
 	[cell.contentView addSubview:titleLabel];
 	[titleLabel release];
 
+	
 	// init Completed-Checkbox
 	UICheckBox *completedCB = [[UICheckBox alloc] initWithFrame:COMPLETED_RECT];
 	completedCB.tag = TAG_COMPLETED;
@@ -204,6 +188,7 @@
 		  forControlEvents:UIControlEventTouchUpInside];
 	[cell.contentView addSubview:completedCB];
 	[completedCB release];
+	
 	
 	// init Starred-Checkbox
 	UICheckBox *starredCB = [[UICheckBox alloc] initWithFrame:STARRED_RECT 
@@ -229,18 +214,30 @@
 	[folderColorView release];
 }
 
-// temporary store changed values in Dictionary (to keep old data stored in task)
+// save changed value immediately (completed/starred)
 - (IBAction)checkBoxValueChanged:(id)sender {
+	// get the sender-control
 	UICheckBox *cb = (UICheckBox *)sender;
+	// the cell in which the sender is located (2x superview, because: cell - contentView - checkbox)
+	UITableViewCell *cell = (UITableViewCell *)[[cb superview] superview];
+	// the row index of the cell
+	NSUInteger buttonRow = [[self.tableView indexPathForCell:cell] row];
 	
-	NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:cb.tag];	
-	NSNumber *value = [[NSNumber alloc] initWithBool:[cb isOn]];
+	Task *t = [tasks objectAtIndex:buttonRow];
 	
-	//[tempData setObject:value forKey:tagAsNum];	
-	//ALog("Temporary Value stored in Dict: %@ = %@", tagAsNum, value);
+	switch (cb.tag) {
+		case TAG_STARRED:
+			t.star = [[NSNumber alloc] initWithBool:[cb isOn]];
+			break;
+		case TAG_COMPLETED:
+			t.isCompleted = [[NSNumber alloc] initWithBool:[cb isOn]];
+			if ([cb isOn]) {
+				t.completionDate = [[NSDate alloc] init];
+			}
+			break;
+	}
 	
-	[tagAsNum release];
-	[value release];
+	ALog("New Task: %@", t);
 }
 
 
