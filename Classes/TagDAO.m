@@ -1,37 +1,35 @@
 //
-//  ContextDAO.m
+//  TagDAO.m
 //  Less2Do
 //
-//  Created by Gerhard Schraml on 24.11.09.
+//  Created by Blackandcold on 24.11.09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "ContextDAO.h"
+#import "TagDAO.h"
 
-//NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
-
-@implementation ContextDAO
+@implementation TagDAO
 
 /* 
  parameters:
-	- (NSError**) error: reference to NSError object
+ - (NSError**) error: reference to NSError object
  return value:
-	successful: (Context*) the created context object
-	error: nil
-		possible values for (NSError**)error:
-			- DAONotFetchedError: when the object list could not be fetched from the persistent store
+ successful: (Tag*) the created Tag object
+ error: nil
+ possible values for (NSError**)error:
+ - DAONotFetchedError: when the object list could not be fetched from the persistent store
  */
-+(NSArray *)allContexts:(NSError**)error
++(NSArray *)allTags:(NSError**)error
 {	
 	NSError *fetchError;
 	
-	/* get managed object context */
+	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Context"
+											  entityForName:@"Tag"
 											  inManagedObjectContext:managedObjectContext];
 	
 	/* create new fetch request */
@@ -52,39 +50,39 @@
 
 /*
  parameters:
-	- (NSString*) theName: the name of the new context
-	- (NSError**) error: reference to NSError object
+ - (NSString*) theName: the name of the new Tag
+ - (NSError**) error: reference to NSError object
  return value:
-	successful: (Context*) the created context object
-	error: nil
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when parameter theName is nil or empty
-			- DAONotAddedError: when the new object could not be save to the persistend store
+ successful: (Tag*) the created Tag object
+ error: nil
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when parameter theName is nil or empty
+ - DAONotAddedError: when the new object could not be save to the persistend store
  */
-+(Context*)addContextWithName:(NSString*)theName error:(NSError**)error
++(Tag*)addTagWithName:(NSString*)theName error:(NSError**)error
 {
 	NSError *saveError;
-		
+	
 	/* show if parameter is set */
 	if(theName == nil || [theName length] == 0) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return nil;
 	}
-		
-	/* get managed object context */
+	
+	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-		
+	
 	/* get entity description - needed for creating */
 	NSEntityDescription *entityDescription = [NSEntityDescription
-												entityForName:@"Context"
-												inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Tag"
+											  inManagedObjectContext:managedObjectContext];
 	
 	/* create new object and set values */
-	Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
-	[newContext retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte context müsste dann wohl vom aufrufer released werden
-	newContext.name = theName;
-		
+	Tag *newTag = [[Tag alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
+	[newTag retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte Tag müsste dann wohl vom aufrufer released werden
+	newTag.name = theName;
+	
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
 	if (saveSuccessful == NO) {
@@ -92,36 +90,36 @@
 		return nil;
 	}
 	
-	return newContext;
+	return newTag;
 }
 
 /*
  parameters:
-	- (NSString*) context: the context object to delete
-	- (NSError**) error: reference to NSError object
+ - (NSString*) Tag: the Tag object to delete
+ - (NSError**) error: reference to NSError object
  return value: BOOL
-	successful: YES
-	error: NO
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when parameter context is nil
-			- DAONotDeletedError: when the new object could not be deleted from the persistend store
+ successful: YES
+ error: NO
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when parameter Tag is nil
+ - DAONotDeletedError: when the new object could not be deleted from the persistend store
  */
-+(BOOL)deleteContext:(Context *)context error:(NSError**)error
++(BOOL)deleteTag:(Tag *)Tag error:(NSError**)error
 {
 	NSError *deleteError;
 	
 	/* show if parameter is set */
-	if(context == nil) {
+	if(Tag == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return NO;
 	}
 	
-	/* get managed object context */
+	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
 	/* mark object to be deleted */
-	[managedObjectContext deleteObject:context];
+	[managedObjectContext deleteObject:Tag];
 	
 	/* commit deleting and check for errors */
 	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
@@ -136,33 +134,31 @@
 
 /*
  parameters:
-	- (NSString*) context: the context object to delete
-	- (NSError**) error: reference to NSError object
+ - (NSString*) Tag: the Tag object to delete
+ - (NSError**) error: reference to NSError object
  return value: BOOL
-	successful: YES
-	error: NO
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when at least one of the parameters (oldContext, newContext)  is nil
-			- DAONotEditError: when the new object could not be updated in the persistend store
+ successful: YES
+ error: NO
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when at least one of the parameters (oldTag, newTag)  is nil
+ - DAONotEditError: when the new object could not be updated in the persistend store
  */
-+(BOOL)updateContext:(Context*)oldContext newContext:(Context*)newContext error:(NSError**)error
++(BOOL)updateTag:(Tag*)oldTag newTag:(Tag*)newTag error:(NSError**)error
 {
 	NSError *updateError;
 	
 	/* show if parameters are set */
-	if(oldContext == nil || newContext == nil) {
+	if(oldTag == nil || newTag == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return NO;
 	}
 	
-	/* get managed object context */
+	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
-	oldContext.name = newContext.name;
-	oldContext.gpsX = newContext.gpsX;
-	oldContext.gpsY = newContext.gpsY;
-	oldContext.tasks = newContext.tasks;
+	oldTag.name = newTag.name;
+	oldTag.tasks = newTag.tasks;
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];

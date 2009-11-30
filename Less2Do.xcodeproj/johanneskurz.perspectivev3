@@ -270,7 +270,48 @@
 		</dict>
 	</array>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>CFF710BE10C3FB1500313030</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>TagDAO.m</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>CFF710BF10C3FB1500313030</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>TagDAO.m</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>CFF710C010C3FB1500313030</string>
+						<key>history</key>
+						<array>
+							<string>CFF7109810C3F8E700313030</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {1053, 595}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>62 237 1053 636 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1393</integer>
@@ -351,15 +392,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>40</integer>
-									<integer>33</integer>
-									<integer>19</integer>
+									<integer>45</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 156}, {185, 764}}</string>
+							<string>{{0, 94}, {185, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -387,12 +426,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>CF12684610BC85DF0023F8A2</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TaskDAO.m</string>
+								<string>Less2DoAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -400,27 +441,35 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>CF12684710BC85DF0023F8A2</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TaskDAO.m</string>
+										<string>Less2DoAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>CF25612F10C2882A00019621</string>
+										<string>CFF710B410C3FB1500313030</string>
 										<key>history</key>
 										<array>
 											<string>CF12685010BC86BE0023F8A2</string>
 											<string>CFB9330310BC8793004EAF93</string>
 											<string>CFF3177B10C00BF9004222B6</string>
 											<string>CFF317AB10C010E0004222B6</string>
-											<string>CFF317C410C011E3004222B6</string>
 											<string>CFF317C510C011E3004222B6</string>
-											<string>CF25612710C2882A00019621</string>
-											<string>CF25612810C2882A00019621</string>
-											<string>CF25612910C2882A00019621</string>
-											<string>CF25612A10C2882A00019621</string>
-											<string>CF25612B10C2882A00019621</string>
 											<string>CF25612C10C2882A00019621</string>
 											<string>CF25612D10C2882A00019621</string>
-											<string>CF25612E10C2882A00019621</string>
+											<string>CFF7108A10C3F88400313030</string>
+											<string>CFF710A610C3FB1500313030</string>
+											<string>CFF710A710C3FB1500313030</string>
+											<string>CFF710A810C3FB1500313030</string>
+											<string>CFF710A910C3FB1500313030</string>
+											<string>CFF710AA10C3FB1500313030</string>
+											<string>CFF710AB10C3FB1500313030</string>
+											<string>CFF710AC10C3FB1500313030</string>
+											<string>CFF710AD10C3FB1500313030</string>
+											<string>CFF710AE10C3FB1500313030</string>
+											<string>CFF710AF10C3FB1500313030</string>
+											<string>CFF710B010C3FB1500313030</string>
+											<string>CFF710B110C3FB1500313030</string>
+											<string>CFF710B210C3FB1500313030</string>
+											<string>CFF710B310C3FB1500313030</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -434,23 +483,21 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1186, 440}}</string>
+								<string>{{0, 0}, {1186, 431}}</string>
 								<key>RubberWindowFrame</key>
 								<string>47 55 1393 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>440pt</string>
+							<string>431pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>337pt</string>
+							<string>346pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -461,9 +508,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1186, 310}}</string>
-										<key>RubberWindowFrame</key>
-										<string>47 55 1393 823 0 0 1440 878 </string>
+										<string>{{10, 27}, {1186, 319}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -479,7 +524,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 31}, {603, 297}}</string>
+										<string>{{10, 27}, {1186, 319}}</string>
 									</dict>
 									<key>Module</key>
 									<string>PBXProjectFindModule</string>
@@ -517,7 +562,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1186, 310}}</string>
+										<string>{{10, 27}, {1186, 319}}</string>
+										<key>RubberWindowFrame</key>
+										<string>47 55 1393 823 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -545,11 +592,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>CF25613010C2882A00019621</string>
+				<string>CFF710B510C3FB1500313030</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>CF25613110C2882A00019621</string>
+				<string>CFF710B610C3FB1500313030</string>
 				<string>CF12684610BC85DF0023F8A2</string>
-				<string>CF25613210C2882A00019621</string>
+				<string>CFF710B710C3FB1500313030</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -698,14 +745,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>CF25613310C2882A00019621</string>
+				<string>CFF710B810C3FB1500313030</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>CF25613410C2882A00019621</string>
-				<string>CF25613510C2882A00019621</string>
-				<string>CF25613610C2882A00019621</string>
-				<string>CF25613710C2882A00019621</string>
-				<string>CF25613810C2882A00019621</string>
+				<string>CFF710B910C3FB1500313030</string>
+				<string>CFF710BA10C3FB1500313030</string>
+				<string>CFF710BB10C3FB1500313030</string>
+				<string>CFF710BC10C3FB1500313030</string>
+				<string>CFF710BD10C3FB1500313030</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -722,7 +769,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>281184298.85378599</real>
+	<real>281279253.15763199</real>
 	<key>ToolbarConfigUserDefaultsMinorVersion</key>
 	<string>2</string>
 	<key>ToolbarDisplayMode</key>
@@ -739,6 +786,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>CFF710BE10C3FB1500313030</string>
 		<string>/Users/johanneskurz/Code/Less-2-Do/Less2Do.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
