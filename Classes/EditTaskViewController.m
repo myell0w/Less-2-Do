@@ -406,6 +406,7 @@
 	
 	//TODO:error handling
 	ALog("Task was saved!");
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 // cancel the adding/editing

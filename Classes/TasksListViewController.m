@@ -60,6 +60,11 @@
 	[formatTime setDateFormat:@"h:mm a"];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
+	[super viewWillAppear:animated];
+}
+
 - (void)viewDidUnload {
 	self.image = nil;
 	self.tasks = nil;
