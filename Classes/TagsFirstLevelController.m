@@ -9,7 +9,7 @@
 #import "TagsFirstLevelController.h"
 #import "TagDetailController.h"
 #import "TasksListViewController.h"
-
+#import "TagDAO.h"
 
 @implementation TagsFirstLevelController
 @synthesize list;
@@ -173,7 +173,7 @@
 	}
 	else {
 		Tag *tag = [list objectAtIndex:row];
-		//TODO: cell.textLabel.text = tag.name;
+		cell.textLabel.text = tag.name;
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	
@@ -193,12 +193,11 @@
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
 		DLog ("Removed Tag '%@' from SectionController", tag.name);
-		// TODO: Remove Tag
-		/*if(![CTagDAO deleteTag:tag error:&error]) {
+		if(![TagDAO deleteTag:tag error:&error]) {
 			ALog("Error occured while deleting Tag");
 		}
 		else
-			ALog("Deleted Tag");*/
+			ALog("Deleted Tag");
 		[self.list removeObjectAtIndex:row];
 		[tableView reloadData];
 	}
@@ -229,7 +228,7 @@
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
 		TagDetailController *tagDetail = [[TagDetailController alloc] initWithStyle:UITableViewStyleGrouped andTag:tag];
-		//TODO: tagDetail.title = tag.name;
+		tagDetail.title = tag.name;
 		[self.navigationController pushViewController:tagDetail animated:YES];
 		[tagDetail release];
 	}
