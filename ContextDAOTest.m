@@ -67,7 +67,7 @@
 	GHAssertTrue(deleteSuccessful, @"Delete context not successful");
 	
 	contexts = [ContextDAO allContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)2, @"Delete context not successful");
+	GHAssertEquals([contexts count], (NSUInteger)0, @"Delete context not successful");
 }
 
 @end
