@@ -136,21 +136,21 @@
 
 /*
  parameters:
-	- (NSString*) context: the context object to delete
+	- (NSString*) context: the context object to update (commit)
 	- (NSError**) error: reference to NSError object
  return value: BOOL
 	successful: YES
 	error: NO
 		possible values for (NSError**)error:
-			- DAOMissingParametersError: when at least one of the parameters (oldContext, newContext)  is nil
+			- DAOMissingParametersError: when context is nil
 			- DAONotEditError: when the new object could not be updated in the persistend store
  */
-+(BOOL)updateContext:(Context*)oldContext newContext:(Context*)newContext error:(NSError**)error
++(BOOL)updateContext:(Context*)context error:(NSError**)error
 {
 	NSError *updateError;
 	
 	/* show if parameters are set */
-	if(oldContext == nil || newContext == nil) {
+	if(context == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return NO;
 	}
@@ -158,11 +158,6 @@
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	oldContext.name = newContext.name;
-	oldContext.gpsX = newContext.gpsX;
-	oldContext.gpsY = newContext.gpsY;
-	oldContext.tasks = newContext.tasks;
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];

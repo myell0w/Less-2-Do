@@ -16,6 +16,6 @@
 +(NSArray*)allContexts:(NSError**)error;
 +(Context*)addContextWithName:(NSString*)theName error:(NSError**)error;
 +(BOOL)deleteContext:(Context*)context error:(NSError**)error;
-+(BOOL)updateContext:(Context*)oldContext newContext:(Context*)newContext error:(NSError**)error;
++(BOOL)updateContext:(Context*)context /*newContext:(Context*)newContext*/ error:(NSError**)error;
 
 @end
