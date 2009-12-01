@@ -120,6 +120,13 @@
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
 		};
+		A3C7240F10C4906B0025747C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA649BBA10C30B250051F758 /* libToodledoAPIMac.a */;
+			remoteInfo = libToodledoAPIMac;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -309,8 +316,6 @@
 				39A1F45810BB21B500671B42 /* log */,
 				1D3623240D0F684500981E51 /* Less2DoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */,
-				3903387410B60BF0007985A9 /* TasksListViewController.h */,
-				3903387510B60BF0007985A9 /* TasksListViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -410,6 +415,15 @@
 				392325B110B2EE7D00075370 /* tags.png */,
 			);
 			path = tabbar;
+			sourceTree = "<group>";
+		};
+		398E438D10C480CA0066AA09 /* viewTasks */ = {
+			isa = PBXGroup;
+			children = (
+				3903387410B60BF0007985A9 /* TasksListViewController.h */,
+				3903387510B60BF0007985A9 /* TasksListViewController.m */,
+			);
+			name = viewTasks;
 			sourceTree = "<group>";
 		};
 		39A1F30A10B9ECDF00671B42 /* editTask */ = {
@@ -549,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				A3C7241010C4906B0025747C /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -566,6 +581,7 @@
 		39C6CF9210BECEA8000A0C70 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				398E438D10C480CA0066AA09 /* viewTasks */,
 				39C6D00210BEDED2000A0C70 /* cells */,
 				39B6590010B6B32600825C1D /* folder */,
 				39B658FF10B6B31200825C1D /* contexts */,
@@ -792,6 +808,13 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A3C7241010C4906B0025747C /* libToodledoAPIMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToodledoAPIMac.a;
+			remoteRef = A3C7240F10C4906B0025747C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

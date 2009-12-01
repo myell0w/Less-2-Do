@@ -62,7 +62,6 @@
 	imageView.contentMode = UIViewContentModeLeft;
 	self.backgroundImage = imageView;
 	
-	[image release];
 	[imageView release];
 	
 	
@@ -90,7 +89,9 @@
 
 // Toggle state
 - (void)toggle {
+	ALog("Will toggle Checkbox, value before: %d", on);
 	[self setOn:!on];
+	ALog("Did toggle Checkbox, value after: %d", on);
 }
 
 @end

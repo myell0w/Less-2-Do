@@ -67,6 +67,8 @@
 	quickAddController = nil;
 	[addTaskController release];
 	addTaskController = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

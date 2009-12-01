@@ -1,9 +1,9 @@
 //
-//  ContextDAO.m
-//  Less2Do
+// ContextDAO.m
+// Less2Do
 //
-//  Created by Gerhard Schraml on 24.11.09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+// Created by Gerhard Schraml on 24.11.09.
+// Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
 #import "ContextDAO.h"
@@ -12,22 +12,35 @@
 
 @implementation ContextDAO
 
-/* 
+/*
  parameters:
-	- (NSError**) error: reference to NSError object
+ - (NSError**) error: reference to NSError object
  return value:
-	successful: (Context*) the created context object
-	error: nil
-		possible values for (NSError**)error:
-			- DAONotFetchedError: when the object list could not be fetched from the persistent store
+ successful: (Context*) the created context object
+ error: nil
+ possible values for (NSError**)error:
+ - DAONotFetchedError: when the object list could not be fetched from the persistent store
  */
 +(NSArray *)allContexts:(NSError**)error
-{	
+{
 	NSError *fetchError;
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	 */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -52,39 +65,52 @@
 
 /*
  parameters:
-	- (NSString*) theName: the name of the new context
-	- (NSError**) error: reference to NSError object
+ - (NSString*) theName: the name of the new context
+ - (NSError**) error: reference to NSError object
  return value:
-	successful: (Context*) the created context object
-	error: nil
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when parameter theName is nil or empty
-			- DAONotAddedError: when the new object could not be save to the persistend store
+ successful: (Context*) the created context object
+ error: nil
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when parameter theName is nil or empty
+ - DAONotAddedError: when the new object could not be save to the persistend store
  */
 +(Context*)addContextWithName:(NSString*)theName error:(NSError**)error
 {
 	NSError *saveError;
-		
+	
 	/* show if parameter is set */
 	if(theName == nil || [theName length] == 0) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return nil;
 	}
-		
+	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-		
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	 */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	
 	/* get entity description - needed for creating */
 	NSEntityDescription *entityDescription = [NSEntityDescription
-												entityForName:@"Context"
-												inManagedObjectContext:managedObjectContext];
+											  entityForName:@"Context"
+											  inManagedObjectContext:managedObjectContext];
 	
 	/* create new object and set values */
 	Context *newContext = [[Context alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 	[newContext retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte context müsste dann wohl vom aufrufer released werden
 	newContext.name = theName;
-		
+	
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
 	if (saveSuccessful == NO) {
@@ -97,14 +123,14 @@
 
 /*
  parameters:
-	- (NSString*) context: the context object to delete
-	- (NSError**) error: reference to NSError object
+ - (NSString*) context: the context object to delete
+ - (NSError**) error: reference to NSError object
  return value: BOOL
-	successful: YES
-	error: NO
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when parameter context is nil
-			- DAONotDeletedError: when the new object could not be deleted from the persistend store
+ successful: YES
+ error: NO
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when parameter context is nil
+ - DAONotDeletedError: when the new object could not be deleted from the persistend store
  */
 +(BOOL)deleteContext:(Context *)context error:(NSError**)error
 {
@@ -117,8 +143,21 @@
 	}
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	 */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
 	
 	/* mark object to be deleted */
 	[managedObjectContext deleteObject:context];
@@ -136,14 +175,14 @@
 
 /*
  parameters:
-	- (NSString*) context: the context object to update (commit)
-	- (NSError**) error: reference to NSError object
+ - (NSString*) context: the context object to update (commit)
+ - (NSError**) error: reference to NSError object
  return value: BOOL
-	successful: YES
-	error: NO
-		possible values for (NSError**)error:
-			- DAOMissingParametersError: when context is nil
-			- DAONotEditError: when the new object could not be updated in the persistend store
+ successful: YES
+ error: NO
+ possible values for (NSError**)error:
+ - DAOMissingParametersError: when context is nil
+ - DAONotEditError: when the new object could not be updated in the persistend store
  */
 +(BOOL)updateContext:(Context*)context error:(NSError**)error
 {
@@ -156,8 +195,21 @@
 	}
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	 */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];

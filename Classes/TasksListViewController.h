@@ -17,6 +17,10 @@
 	UIImage *image;
 	// the tasks to show
 	NSMutableArray *tasks;
+	// date formatter for due-date
+	NSDateFormatter *formatDate;
+	// date formatter for due-time
+	NSDateFormatter *formatTime;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

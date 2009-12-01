@@ -90,19 +90,20 @@
 	
 	//TODO: Default values if -1 or simmilar
 	
+	// edited by Matthias, 30.11.09 23:46: no nil for boolean-values, made NO instead
 	newTask.frequencyAnnoy = theTask.frequencyAnnoy; 
-	newTask.isCompleted = theTask.isCompleted;
+	newTask.isCompleted = theTask.isCompleted != nil ? theTask.isCompleted : [[NSNumber alloc] initWithBool:NO];
 	newTask.duration = theTask.duration;
 	newTask.startTimeAnnoy = theTask.startTimeAnnoy;
 	newTask.dueDate = theTask.dueDate;
 	newTask.dueTime = theTask.dueDate;
 	newTask.repeat = theTask.repeat;
-	newTask.priority = theTask.priority;
+	newTask.priority = theTask.priority != nil ? theTask.priority : [[NSNumber alloc] initWithInt:-1];
 	newTask.modificationDate = theTask.modificationDate;
 	newTask.reminder = theTask.reminder;
 	newTask.timerValue = theTask.timerValue;
 	newTask.completionDate = theTask.completionDate;
-	newTask.star = theTask.star;
+	newTask.star = theTask.star != nil ? theTask.star : [[NSNumber alloc] initWithBool:NO];
 	newTask.note = theTask.note; //TODO: Strings erzeugen?
 	newTask.startDateAnnoy = theTask.startDateAnnoy;
 	newTask.creationDate = theTask.creationDate;
