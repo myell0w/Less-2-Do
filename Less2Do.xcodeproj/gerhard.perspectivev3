@@ -278,20 +278,17 @@
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>A3C723D510C48EBE0025747C</string>
-								<string>A3C723D610C48EBE0025747C</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>35</integer>
-									<integer>21</integer>
+									<integer>48</integer>
 									<integer>4</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 43}, {344, 764}}</string>
+							<string>{{0, 270}, {344, 764}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -326,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>A3E3383E10BC4160004F0F39</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ContextDAO.m</string>
+								<string>Less2DoAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -334,22 +331,22 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>A3E3383F10BC4160004F0F39</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ContextDAO.m</string>
+										<string>Less2DoAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>A3C723FA10C48F8C0025747C</string>
+										<string>A3C7242D10C493E00025747C</string>
 										<key>history</key>
 										<array>
 											<string>A3CF9F0F10C414D80096B8CD</string>
 											<string>A3517ECB10C4403600DEEB5C</string>
 											<string>A3517ECC10C4403600DEEB5C</string>
 											<string>A3517ECE10C4403600DEEB5C</string>
-											<string>A3C7239810C487D50025747C</string>
-											<string>A3C7239B10C48ADF0025747C</string>
 											<string>A3C723EE10C48F780025747C</string>
 											<string>A3C723EF10C48F780025747C</string>
 											<string>A3C723F910C48F8A0025747C</string>
+											<string>A3C7241A10C491430025747C</string>
+											<string>A3C7241E10C4917D0025747C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -363,18 +360,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1022, 481}}</string>
+								<string>{{0, 0}, {1022, 473}}</string>
 								<key>RubberWindowFrame</key>
 								<string>52 55 1388 823 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>481pt</string>
+							<string>473pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>296pt</string>
+							<string>304pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -388,7 +385,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1022, 269}}</string>
+										<string>{{10, 27}, {1022, 277}}</string>
 										<key>RubberWindowFrame</key>
 										<string>52 55 1388 823 0 0 1440 878 </string>
 									</dict>
@@ -472,11 +469,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A3C7238A10C487940025747C</string>
+				<string>A3C7240910C4906B0025747C</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>A3C7238B10C487940025747C</string>
+				<string>A3C7240A10C4906B0025747C</string>
 				<string>A3E3383E10BC4160004F0F39</string>
-				<string>A3C7238C10C487940025747C</string>
+				<string>A3C7240B10C4906B0025747C</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -625,13 +622,13 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>A3C7238D10C487940025747C</string>
+				<string>A3C7241310C490790025747C</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>A3C7238E10C487940025747C</string>
-				<string>A3C7238F10C487940025747C</string>
-				<string>A3C7239010C487940025747C</string>
-				<string>A3C7239110C487940025747C</string>
+				<string>A3C7241410C490790025747C</string>
+				<string>A3C7241510C490790025747C</string>
+				<string>A3C7241610C490790025747C</string>
+				<string>A3C7241710C490790025747C</string>
 				<string>A3E3383E10BC4160004F0F39</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
