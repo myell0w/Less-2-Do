@@ -33,8 +33,15 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
+	/*ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	contextDetail.title = @"Add Context";
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
+	[contextDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];*/
+	
 	ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
-	contextDetail.title = @"New Context";
+	contextDetail.title = @"Add Context";
 	[self.navigationController pushViewController:contextDetail animated:YES];
 	[contextDetail release];
 }
@@ -93,6 +100,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	ALog ("View Contextlist appeared");
 	[self.tableView reloadData];
 	[super viewWillAppear:animated];
 }
