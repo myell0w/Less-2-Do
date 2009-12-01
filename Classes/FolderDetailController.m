@@ -41,21 +41,18 @@
 		[tagAsNum release];
 	}
 	
+	// Only Saves when text was entered
+	NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+	NSString *folderName = [tempValues objectForKey:key];
+	[key release];
+	
 	// Update
 	if (folder != nil) {
-		for (NSNumber *key in [tempValues allKeys]) {
-			switch ([key intValue]) {
-				case NAME_ROW_INDEX:
-					folder.name = [tempValues objectForKey:key];
-					break;
-				default:
-					break;
-			}
-		}
+		folder.name = folderName;
 		
 		NSError *error;
 		DLog ("Try to update Folder '%@'", folder.name);
-		if(![FolderDAO updateFolder:folder newFolder:folder error:&error]) {
+		if(![FolderDAO updateFolder:folder error:&error]) {
 			ALog ("Error occured while updating Folder");
 		}
 		else {
@@ -65,11 +62,8 @@
 	// Insert
 	else {
 		NSError *error;
-		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		NSString *folderName = [tempValues objectForKey:key];
-		[key release];
 		folder = [FolderDAO addFolderWithName:folderName error:&error];
-		
+
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
@@ -85,7 +79,6 @@
 				[folderView release];
 			}
 		}
-		
 	}
 	
 	[self.navigationController popViewControllerAnimated:YES];
@@ -179,7 +172,7 @@
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
 			else if (folder == nil)
-				textField.text = @"New Folder";
+				textField.placeholder = @"Enter Folder-Name";
 			else
 				textField.text = folder.name;
 			break;
@@ -192,7 +185,7 @@
 	
 	textField.tag = row;
 	[rowAsNum release];
-	
+
 	return cell;
 }
 

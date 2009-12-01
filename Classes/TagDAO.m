@@ -143,12 +143,12 @@
  - DAOMissingParametersError: when at least one of the parameters (oldTag, newTag)  is nil
  - DAONotEditError: when the new object could not be updated in the persistend store
  */
-+(BOOL)updateTag:(Tag*)oldTag newTag:(Tag*)newTag error:(NSError**)error
++(BOOL)updateTag:(Tag*)tag error:(NSError**)error
 {
 	NSError *updateError;
 	
 	/* show if parameters are set */
-	if(oldTag == nil || newTag == nil) {
+	if(tag == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return NO;
 	}
@@ -156,9 +156,6 @@
 	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	oldTag.name = newTag.name;
-	oldTag.tasks = newTag.tasks;
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];

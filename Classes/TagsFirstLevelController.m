@@ -58,9 +58,9 @@
 	[array release];
 	array = [[NSMutableArray alloc] init];
 	
-	/* TODO: Load Tasks
+	// TODO: Load Tasks
 	NSError *error;
-	NSArray *objects = [TagDAO allContexts:&error];
+	NSArray *objects = [TagDAO allTags:&error];
 	
 	if (objects == nil) {
 		ALog(@"Error while reading Contexts!");
@@ -84,9 +84,9 @@
 	self.controllersSection1 = array;
 	self.title = @"Tags";
 	[array release];
-	[super viewDidLoad]; */
+	[super viewDidLoad]; 
 	
-	// init Second-Level Views in Section Tags
+	/* init Second-Level Views in Section Tags
 	TasksListViewController *tag1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	tag1.title = @"@Tag1";
 	tag1.image = [UIImage imageNamed:@"all_tasks.png"];
@@ -111,7 +111,7 @@
 	self.controllersSection1 = array;
 	[array release];
 	self.title = @"Tags";
-	[super viewDidLoad];
+	[super viewDidLoad];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -41,17 +41,14 @@
 		[tagAsNum release];
 	}
 	
+	// Only Saves when text was entered
+	NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+	NSString *tagName = [tempValues objectForKey:key];
+	[key release];
+	
 	// Update
 	if (tag != nil) {
-		for (NSNumber *key in [tempValues allKeys]) {
-			switch ([key intValue]) {
-				case NAME_ROW_INDEX:
-					tag.name = [tempValues objectForKey:key];
-					break;
-				default:
-					break;
-			}
-		}
+		tag.name = tagName;
 		
 		NSError *error;
 		DLog ("Try to update Tag '%@'", tag.name);
@@ -65,9 +62,6 @@
 	// Insert
 	else {
 		NSError *error;
-		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		NSString *tagName = [tempValues objectForKey:key];
-		[key release];
 		tag = [TagDAO addTagWithName:tagName error:&error];
 		
 		NSArray *allControllers = self.navigationController.viewControllers;
@@ -192,7 +186,7 @@
 	
 	textField.tag = row;
 	[rowAsNum release];
-	
+
 	return cell;
 }
 

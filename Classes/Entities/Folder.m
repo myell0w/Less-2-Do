@@ -15,5 +15,8 @@
 @dynamic order;
 @dynamic name;
 @dynamic tasks;
+@dynamic r;
+@dynamic g;
+@dynamic b;
 
 @end
