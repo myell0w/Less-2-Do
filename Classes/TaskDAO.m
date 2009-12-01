@@ -71,17 +71,17 @@
 +(Task *)addTask:(Task *)theTask error:(NSError**)error
 {
 	NSError *saveError;
-	
+
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
-	/* get entity description - needed for creating */
+	/* get entity description - needed for creating
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Task"
 											  inManagedObjectContext:managedObjectContext];
 	
-	/* create new object and set values */
+
 	Task *newTask = [[Task alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 
 	[newTask retain];	
@@ -113,7 +113,7 @@
 	newTask.extendedInfo = theTask.extendedInfo;
 
 	
-	/* commit inserting and check for errors */
+	 commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
 	
 	if (saveSuccessful == NO) 
@@ -122,7 +122,7 @@
 		return nil;
 	}
 	
-	return newTask;
+	return theTask;
 }
 
 /* TODO: Implement
