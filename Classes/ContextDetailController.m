@@ -40,18 +40,13 @@
 		[tagAsNum release];
 	}
 	
-	// Only Saves when text was entered
-	NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-	NSString *contextName = [tempValues objectForKey:key];
-	[key release];
-	
-	if(contextName == nil)
-		return;
-	
 	// Update
 	if (context != nil) {
-		context.name = contextName;
-		
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key])
+			context.name = [tempValues objectForKey:key];
+		[key release];
+				
 		NSError *error;
 		DLog ("Try to update Context '%@'", context.name);
 		if(![ContextDAO updateContext:context error:&error]) {
@@ -77,6 +72,14 @@
 	}
 	// Insert
 	else {
+		// Only Saves when text was entered
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		NSString *contextName = [tempValues objectForKey:key];
+		[key release];
+
+		if(contextName == nil)
+			return;
+		
 		NSError *error;
 		context = [ContextDAO addContextWithName:contextName error:&error];
 		

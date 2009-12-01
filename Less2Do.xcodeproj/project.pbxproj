@@ -96,6 +96,8 @@
 		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
 		D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */; };
 		D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailController.m */; };
+		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
+		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,13 +121,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
-		};
-		CF49DA0910C5613F0073AD7F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758 /* libToodledoAPIMac.a */;
-			remoteInfo = libToodledoAPIMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -277,6 +272,9 @@
 		D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailController.m; sourceTree = "<group>"; };
 		D46A641810C3F21700FBC5EB /* FolderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailController.h; sourceTree = "<group>"; };
 		D46A641910C3F21700FBC5EB /* FolderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailController.m; sourceTree = "<group>"; };
+		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
+		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
+		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,7 +561,6 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				CF49DA0A10C5613F0073AD7F /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -602,6 +599,8 @@
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
 				39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */,
+				D4E4762810C571E600665220 /* ColorChooserCell.h */,
+				D4E4762910C571E600665220 /* ColorChooserCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -625,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
+				D4E4762C10C5733D00665220 /* ColorChooserCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -810,13 +810,6 @@
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CF49DA0A10C5613F0073AD7F /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = CF49DA0910C5613F0073AD7F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -861,6 +854,7 @@
 				3901114410C07C2900A51296 /* home_today.png in Resources */,
 				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
 				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
+				D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +908,7 @@
 				D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */,
 				D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
+				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,18 +41,16 @@
 		[tagAsNum release];
 	}
 	
-	// Only Saves when text was entered
-	NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-	NSString *tagName = [tempValues objectForKey:key];
-	[key release];
-	
 	// Update
 	if (tag != nil) {
-		tag.name = tagName;
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key])
+			tag.name = [tempValues objectForKey:key];
+		[key release];
 		
 		NSError *error;
 		DLog ("Try to update Tag '%@'", tag.name);
-		if(![TagDAO updateTag:tag newTag:tag error:&error]) {
+		if(![TagDAO updateTag:tag error:&error]) {
 			ALog ("Error occured while updating Tag");
 		}
 		else {
@@ -61,6 +59,14 @@
 	}
 	// Insert
 	else {
+		// Only Saves when text was entered
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		NSString *tagName = [tempValues objectForKey:key];
+		[key release];
+		
+		if(tagName == nil)
+			return;
+		
 		NSError *error;
 		tag = [TagDAO addTagWithName:tagName error:&error];
 		
@@ -141,6 +147,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
 		
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,10,75,25)];
+		
 		label.textAlignment = UITextAlignmentRight;
 		label.tag = LABEL_TAG;
 		label.font = [UIFont boldSystemFontOfSize:14];
@@ -173,7 +180,7 @@
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
 			else if (tag == nil)
-				textField.text = @"New Tag";
+				textField.placeholder = @"Enter Tag-Name";
 			else
 				textField.text = tag.name;
 			break;
