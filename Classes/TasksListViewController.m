@@ -61,6 +61,23 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	//TODO: delete, only for MR2
+	NSError *error;
+	NSArray *objects = [TaskDAO allTasks:&error];
+	
+	if (objects == nil) {
+		ALog(@"There was an error!");
+		// Do whatever error handling is appropriate
+	}
+	else {
+		[self.tasks removeAllObjects];
+		// for schleife objekte erzeugen und array addObject:current Task
+		for (Task *t in objects) {
+			[self.tasks addObject:t];
+		}
+	}
+	
+	
 	[self.tableView reloadData];
 	[super viewWillAppear:animated];
 }
@@ -164,6 +181,24 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (int)taskCount {
+	//TODO: delete, only for MR2
+	NSError *error;
+	NSArray *objects = [TaskDAO allTasks:&error];
+	
+	if (objects == nil) {
+		ALog(@"There was an error!");
+		// Do whatever error handling is appropriate
+	}
+	else {
+		[self.tasks removeAllObjects];
+		// for schleife objekte erzeugen und array addObject:current Task
+		for (Task *t in objects) {
+			[self.tasks addObject:t];
+		}
+	}
+	
+	
+	[self.tableView reloadData];
 	return [tasks count];
 }
 

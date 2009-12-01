@@ -35,6 +35,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // returns the section Array for the given Section-Index
--(NSArray *)sectionForIndex:(NSInteger)index;
+- (NSArray *)sectionForIndex:(NSInteger)index;
+
+- (IBAction)taskAdded;
 
 @end

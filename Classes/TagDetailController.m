@@ -52,7 +52,7 @@
 		
 		NSError *error;
 		DLog ("Try to update Tag '%@'", tag.name);
-		if(![TagDAO updateTag:tag newTag:tag error:&error]) {
+		if(![TagDAO updateTag:tag error:&error]) {
 			ALog ("Error occured while updating Tag");
 		}
 		else {

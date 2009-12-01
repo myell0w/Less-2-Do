@@ -406,6 +406,8 @@
 	
 	//TODO:error handling
 	ALog("Task was saved!");
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
+	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
