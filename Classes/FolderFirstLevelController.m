@@ -60,12 +60,12 @@
 	
 	// TODO: Load Folder
 	NSError *error;
-	[FolderDAO addFolderWithName:@"Foldername" error:&error];
 	NSArray *objects = [FolderDAO allFolders:&error];
 	
 	if (objects == nil) {
 		ALog(@"Error while reading Folders!");
 	}
+	
 	if ([objects count] > 0)
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
@@ -85,34 +85,14 @@
 	self.controllersSection1 = array;
 	self.title = @"Folder";
 	[array release];
+	
+	UIView *textField = [self.tableView viewWithTag:NAME_ROW_INDEX];
+	if(textField != nil) {
+		ALog ("Textfield found");
+		[textField resignFirstResponder];
+	}
+	
 	[super viewDidLoad];
-	
-	/* init Second-Level Views in Section Folder
-	TasksListViewController *folder1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	folder1.title = @"Folder1";
-	folder1.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:folder1];
-	[folder1 release];
-	
-	// init Second-Level Views in Section Folder
-	TasksListViewController *folder2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	folder2.title = @"Folder2";
-	folder2.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:folder2];
-	[folder2 release];
-	
-	// init Second-Level Views in Section Folder
-	TasksListViewController *folder3 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	folder3.title = @"Folder3";
-	folder3.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:folder3];
-	[folder3 release];
-	
-	// folder make up section1
-	self.controllersSection1 = array;
-	[array release];
-	self.title = @"Folder";
-	[super viewDidLoad];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -142,7 +122,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	// if there is no Folder, only display the first Section
-	if ([controllersSection1 count] == 0)
+	if ([list count] == 0)
 		return 1;
 	return 2;
 }
