@@ -81,6 +81,10 @@
 	[super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
+}
+
 -(void)viewDidUnload {
 	self.tableView = nil;
 	self.controllersSection0 = nil;
