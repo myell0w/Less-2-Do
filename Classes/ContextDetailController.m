@@ -73,6 +73,7 @@
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
+			//Magic
 			UIViewController *oneController = [allControllers objectAtIndex:[allControllers count]-2];
 			
 			if([oneController isKindOfClass:[ContextsFirstLevelViewController class]]) {
