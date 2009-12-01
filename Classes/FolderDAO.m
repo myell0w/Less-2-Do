@@ -91,17 +91,13 @@
 	return YES;
 }
 
-+(BOOL)updateFolder:(Folder*)oldFolder newFolder:(Folder*)newFolder error:(NSError**)error
++(BOOL)updateFolder:(Folder*)folder error:(NSError**)error
 {
 	NSError *updateError;
 	
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	oldFolder.name = newFolder.name;
-	oldFolder.order = newFolder.order;
-	oldFolder.tasks = newFolder.tasks;
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];
@@ -114,7 +110,7 @@
 }
 
 
-+(Folder*)addFolderWithName:(NSString*)theName theOrder:(NSNumber *)theOrder error:(NSError**)error
++(Folder*)addFolderWithName:(NSString*)theName theTasks:(NSSet *)theTasks error:(NSError**)error
 {
 	NSError *saveError;
 	
@@ -131,8 +127,8 @@
 	Folder *newFolder = [[Folder alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 	[newFolder retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte context müsste dann wohl vom aufrufer released werden
 	newFolder.name = theName;
-	newFolder.order = theOrder;
-	newFolder.tasks = nil;
+	newFolder.order = 0;
+	newFolder.tasks = theTasks;
 	
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
@@ -144,7 +140,41 @@
 	return newFolder;
 }
 
-+(Folder*)addFolderWithName:(NSString*)theName theOrder:(NSNumber *)theOrder theTasks:(NSSet *)theTasks error:(NSError**)error
++(Folder*)addFolderWithName:(NSString*)theName red:(NSNumber*)red green:(NSNumber*)green blue:(NSNumber*)blue error:(NSError**)error
+{
+	NSError *saveError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* get entity description - needed for creating */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Folder"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new object and set values */
+	Folder *newFolder = [[Folder alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
+	[newFolder retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte context müsste dann wohl vom aufrufer released werden
+	newFolder.name = theName;
+	newFolder.order = 0;
+	newFolder.tasks = nil;
+	newFolder.r = red;
+	newFolder.g = green;
+	newFolder.b = blue;
+	
+	
+	/* commit inserting and check for errors */
+	BOOL saveSuccessful = [managedObjectContext save:&saveError];
+	if (saveSuccessful == NO) {
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotAddedError userInfo:nil];
+		return nil;
+	}
+	
+	return newFolder;
+}
+
++(Folder*)addFolderWithName:(NSString*)theName theTasks:(NSSet *)theTasks theOrder:(NSNumber *)theOrder error:(NSError**)error
 {
 	NSError *saveError;
 	
