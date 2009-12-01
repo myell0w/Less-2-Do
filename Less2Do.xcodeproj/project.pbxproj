@@ -35,6 +35,7 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
+		393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
@@ -172,6 +173,8 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
+		393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOHelper.h; sourceTree = "<group>"; };
+		393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAOHelper.m; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
@@ -691,6 +694,8 @@
 				CF25612010C2820500019621 /* TaskDAO.m */,
 				CFF7108210C3F6CC00313030 /* TagDAO.h */,
 				CFF7108310C3F6CC00313030 /* TagDAO.m */,
+				393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */,
+				393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -909,6 +914,7 @@
 				D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
 				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
+				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
