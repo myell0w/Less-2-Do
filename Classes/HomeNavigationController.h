@@ -28,4 +28,6 @@
 - (IBAction)editDetails:(NSNotification *) notification;
 // is called when the user wants to add a QuickAdd-Task
 - (IBAction)quickAddTask:(NSNotification *) notification;
+// hides the quickadd-bar
+- (IBAction)hideQuickAdd;
 @end

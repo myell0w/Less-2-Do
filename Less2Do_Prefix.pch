@@ -18,4 +18,5 @@
     #import "Log.h"
 	#import "TaskDAO.h"
 	#import "DAOError.h"
+	#import "DAOHelper.h"
 #endif

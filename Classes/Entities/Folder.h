@@ -15,6 +15,9 @@
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet* tasks;
+@property (nonatomic, retain) NSNumber * r;
+@property (nonatomic, retain) NSNumber * g;
+@property (nonatomic, retain) NSNumber * b;
 
 @end
 

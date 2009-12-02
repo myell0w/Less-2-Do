@@ -71,47 +71,16 @@
 +(Task *)addTask:(Task *)theTask error:(NSError**)error
 {
 	NSError *saveError;
-	
+
 	/* get managed object context */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
-	/* get entity description - needed for creating */
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Task"
-											  inManagedObjectContext:managedObjectContext];
+	/* DEFAULT VALUES */
 	
-	/* create new object and set values */
-	Task *newTask = [[Task alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
-
-	[newTask retain];	
 	
-	newTask.name = theTask.name;
 	
-	//TODO: Default values if -1 or simmilar
 	
-	// edited by Matthias, 30.11.09 23:46: no nil for boolean-values, made NO instead
-	newTask.frequencyAnnoy = theTask.frequencyAnnoy; 
-	newTask.isCompleted = theTask.isCompleted != nil ? theTask.isCompleted : [[NSNumber alloc] initWithBool:NO];
-	newTask.duration = theTask.duration;
-	newTask.startTimeAnnoy = theTask.startTimeAnnoy;
-	newTask.dueDate = theTask.dueDate;
-	newTask.dueTime = theTask.dueDate;
-	newTask.repeat = theTask.repeat;
-	newTask.priority = theTask.priority != nil ? theTask.priority : [[NSNumber alloc] initWithInt:-1];
-	newTask.modificationDate = theTask.modificationDate;
-	newTask.reminder = theTask.reminder;
-	newTask.timerValue = theTask.timerValue;
-	newTask.completionDate = theTask.completionDate;
-	newTask.star = theTask.star != nil ? theTask.star : [[NSNumber alloc] initWithBool:NO];
-	newTask.note = theTask.note; //TODO: Strings erzeugen?
-	newTask.startDateAnnoy = theTask.startDateAnnoy;
-	newTask.creationDate = theTask.creationDate;
-	newTask.endTimeAnnoy = theTask.endTimeAnnoy;
-	newTask.folder = theTask.folder;
-	newTask.tags = theTask.tags;
-	newTask.extendedInfo = theTask.extendedInfo;
-
 	
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
@@ -122,18 +91,67 @@
 		return nil;
 	}
 	
-	return newTask;
+	return theTask;
 }
 
-/* TODO: Implement
++(BOOL)updateTask:(Task *)theTask error:(NSError**)error
+{
+	NSError *saveError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* commit updateing and check for errors */
+	BOOL saveSuccessful = [managedObjectContext save:&saveError];
+	
+	if (saveSuccessful == NO) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotAddedError userInfo:nil];
+		return NO;
+	}
+	
+	return YES;
+}
+
+
 
 +(BOOL)deleteTask:(Task*)theTask error:(NSError**)error
 {
-}
+	NSError *deleteError;
+	
+	/* show if parameter is set */
+	if(theTask == nil) {
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
+		return NO;
+	}
+	
 
-+(BOOL)updateTask:(Task*)oldTask newTask:(Folder*)newTast error:(NSError**)error
-{
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) 
+	{
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	
+	/* mark object to be deleted */
+	[managedObjectContext deleteObject:theTask];
+	
+	/* commit deleting and check for errors */
+	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
+	if (deleteSuccessful == NO) {
+		*error = deleteError;
+		return NO;
+	}
+	
+	return YES;
 }
-*/
 
 @end

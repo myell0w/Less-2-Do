@@ -35,6 +35,7 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
+		393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
@@ -96,6 +97,8 @@
 		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
 		D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */; };
 		D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailController.m */; };
+		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
+		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +180,8 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
+		393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOHelper.h; sourceTree = "<group>"; };
+		393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAOHelper.m; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
@@ -194,7 +199,7 @@
 		39B6590210B6B36F00825C1D /* ContextsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsNavigationController.h; sourceTree = "<group>"; };
 		39B6590310B6B36F00825C1D /* ContextsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsNavigationController.m; sourceTree = "<group>"; };
 		39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsFirstLevelViewController.h; sourceTree = "<group>"; };
-		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; };
+		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
 		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
@@ -277,6 +282,9 @@
 		D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailController.m; sourceTree = "<group>"; };
 		D46A641810C3F21700FBC5EB /* FolderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailController.h; sourceTree = "<group>"; };
 		D46A641910C3F21700FBC5EB /* FolderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailController.m; sourceTree = "<group>"; };
+		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
+		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
+		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,7 +571,6 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				A3C7241010C4906B0025747C /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -602,6 +609,8 @@
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
 				39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */,
+				D4E4762810C571E600665220 /* ColorChooserCell.h */,
+				D4E4762910C571E600665220 /* ColorChooserCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -625,6 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
+				D4E4762C10C5733D00665220 /* ColorChooserCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -691,6 +701,8 @@
 				CF25612010C2820500019621 /* TaskDAO.m */,
 				CFF7108210C3F6CC00313030 /* TagDAO.h */,
 				CFF7108310C3F6CC00313030 /* TagDAO.m */,
+				393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */,
+				393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -810,13 +822,6 @@
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A3C7241010C4906B0025747C /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = A3C7240F10C4906B0025747C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -861,6 +866,7 @@
 				3901114410C07C2900A51296 /* home_today.png in Resources */,
 				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
 				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
+				D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +920,8 @@
 				D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */,
 				D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
+				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
+				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

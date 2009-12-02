@@ -33,8 +33,15 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
+	/*ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	contextDetail.title = @"Add Context";
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
+	[contextDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];*/
+	
 	ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
-	contextDetail.title = @"New Context";
+	contextDetail.title = @"Add Context";
 	[self.navigationController pushViewController:contextDetail animated:YES];
 	[contextDetail release];
 }
@@ -199,9 +206,9 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	if([indexPath section] == 1) {
 		NSUInteger row = [indexPath row];
-		DLog ("%d Items in ContextList", [list count]);
+		ALog ("%d Items in ContextList", [list count]);
 		Context *context = [list objectAtIndex:row];
-		DLog ("Try to load DetailView for Context '%@'", context.name);
+		//ALog ("Try to load DetailView for Context '%@'", context.name);
 		
 		[self.tableView setEditing:NO animated:NO];
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];

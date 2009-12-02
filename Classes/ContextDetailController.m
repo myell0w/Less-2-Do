@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	context = aContext;
+	self.context = aContext;
 	return self;
 }
 
@@ -33,7 +33,6 @@
 }
 
 - (IBAction) save:(id)sender {
-	
 	// Save was touched while Editing a Textfield -> store the Input in tempValues
 	if(textFieldBeingEdited != nil) {
 		NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:textFieldBeingEdited.tag];
@@ -43,16 +42,17 @@
 	
 	// Update
 	if (context != nil) {
-		for (NSNumber *key in [tempValues allKeys]) {
-			switch ([key intValue]) {
-				case NAME_ROW_INDEX:
-					context.name = [tempValues objectForKey:key];
-					break;
-				default:
-					break;
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
 			}
+			context.name = [tempValues objectForKey:key];
 		}
-		
+		[key release];
+				
 		NSError *error;
 		DLog ("Try to update Context '%@'", context.name);
 		if(![ContextDAO updateContext:context error:&error]) {
@@ -61,18 +61,38 @@
 		else {
 			 ALog ("Context updated");
 		}
-	}
-	// Insert
-	else {
-		NSError *error;
-		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		NSString *contextName = [tempValues objectForKey:key];
-		[key release];
-		context = [ContextDAO addContextWithName:contextName error:&error];
 		
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
+		if ([allControllers count]>=1) {
+			//Magic
+			UIViewController *oneController = [allControllers objectAtIndex:[allControllers count]-1];
+			
+			if([oneController isKindOfClass:[ContextsFirstLevelViewController class]]) {
+				ContextsFirstLevelViewController *parent = (ContextsFirstLevelViewController *) oneController;
+				[parent.tableView reloadData];
+			}
+		}		
+		
+		//[self.navigationController popViewControllerAnimated:YES];
+	}
+	// Insert
+	else {
+		// Only Saves when text was entered
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		NSString *contextName = [tempValues objectForKey:key];
+		[key release];
+
+		if(contextName == nil || [contextName length] == 0)
+			return;
+		
+		NSError *error;
+		context = [ContextDAO addContextWithName:contextName error:&error];
+		ALog ("Context inserted");
+		NSArray *allControllers = self.navigationController.viewControllers;
+		
 		if ([allControllers count]>1) {
+			//Magic
 			UIViewController *oneController = [allControllers objectAtIndex:[allControllers count]-2];
 			
 			if([oneController isKindOfClass:[ContextsFirstLevelViewController class]]) {
@@ -85,7 +105,7 @@
 				[contextView release];
 			}
 		}
-		
+		//[self dismissModalViewControllerAnimated:YES];
 	}
 	
 	[self.navigationController popViewControllerAnimated:YES];
@@ -99,6 +119,7 @@
 
 #pragma mark -
 - (void) viewDidLoad {
+	ALog ("ContextDetailView started didLoad");
 	NSArray *array = [[NSArray alloc] initWithObjects:@"Name:", nil];
 	self.fieldLabels = array;
 	[array release];
@@ -120,6 +141,13 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	self.tempValues = dict;
 	[dict release];
+	
+	UIView *textField = [self.tableView viewWithTag:NAME_ROW_INDEX];
+	if(textField != nil) {
+		ALog ("Textfield found");
+		[textField resignFirstResponder];
+	}
+
 	[super viewDidLoad];
 }
 
@@ -142,6 +170,7 @@
 	static NSString *cellID = @"ContextsEditCellID";
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+	NSUInteger row = [indexPath row];
 	
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
@@ -155,14 +184,14 @@
 		
 		UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 12, 200, 25)];
 		textField.clearsOnBeginEditing = NO;
+		textField.tag = row;
 		[textField setDelegate:self];
 		textField.returnKeyType = UIReturnKeyDone;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 		[cell.contentView addSubview:textField];
 		
 	}
-	
-	NSUInteger row = [indexPath row];	
 	
 	UILabel *label = (UILabel *)[cell viewWithTag:LABEL_TAG];
 	UITextField *textField = nil;
@@ -178,10 +207,9 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (context == nil)
-				textField.text = @"New Context";
-			else
+			else if (context != nil)
 				textField.text = context.name;
+			textField.placeholder = @"Enter Context-Name";
 			break;
 		default:
 			break;

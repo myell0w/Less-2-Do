@@ -7,6 +7,7 @@
 //
 
 #import "HomeFirstLevelViewController.h"
+#import "HomeNavigationController.h"
 #import "TasksListViewController.h"
 
 
@@ -77,14 +78,25 @@
 	self.controllersSection1 = array;
 	self.title = @"Home";
 	
+	// register as observer for Notification sent by QuickAddViewController and EditTaskViewController
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(taskAdded) 
+												 name:@"TaskAddedNotification" object:nil];
+	
 	[array release];
 	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[self.tableView reloadData];
 }
 
 -(void)viewDidUnload {
 	self.tableView = nil;
 	self.controllersSection0 = nil;
 	self.controllersSection1 = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	[super viewDidUnload];
 }
@@ -142,11 +154,14 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
+	HomeNavigationController *nc = (HomeNavigationController *)self.navigationController;
+	
+	[nc hideQuickAdd];
 	
 	// Show a List of Tasks
 	TasksListViewController *next = [[self sectionForIndex:section] objectAtIndex:row];
 	
-	[self.navigationController pushViewController:next animated:YES];
+	[nc pushViewController:next animated:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -162,4 +177,9 @@
 		return controllersSection1;
 	}
 }
+
+- (IBAction)taskAdded {
+	[self.tableView reloadData];
+}
+
 @end

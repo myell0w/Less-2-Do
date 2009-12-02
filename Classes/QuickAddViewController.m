@@ -50,14 +50,7 @@
 
 - (Task *)createTaskFromParsingTitle:(NSString *)title {
 	NSMutableString *taskDescription = [[NSMutableString alloc] initWithFormat:title];
-	// Den delegate vom Less2DoAppDelegate
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	// Den ManagedObjectContext durch den delegate
-	NSManagedObjectContext *_context = [delegate managedObjectContext];
-	// create a Task
-	Task *t = (Task *)[NSEntityDescription 
-						  insertNewObjectForEntityForName:@"Task" 
-						  inManagedObjectContext:_context]; 
+	Task *t = (Task *)[DAOHelper objectOfType:@"Task"];
 	
 	//TODO: parse title and set other attributes
 	

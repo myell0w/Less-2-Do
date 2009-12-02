@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	folder = aFolder;
+	self.folder = aFolder;
 	return self;
 }
 
@@ -41,21 +41,24 @@
 		[tagAsNum release];
 	}
 	
+
+	
 	// Update
 	if (folder != nil) {
-		for (NSNumber *key in [tempValues allKeys]) {
-			switch ([key intValue]) {
-				case NAME_ROW_INDEX:
-					folder.name = [tempValues objectForKey:key];
-					break;
-				default:
-					break;
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
 			}
+			folder.name = [tempValues objectForKey:key];
 		}
+		[key release];
 		
 		NSError *error;
 		DLog ("Try to update Folder '%@'", folder.name);
-		if(![FolderDAO updateFolder:folder newFolder:folder error:&error]) {
+		if(![FolderDAO updateFolder:folder error:&error]) {
 			ALog ("Error occured while updating Folder");
 		}
 		else {
@@ -64,12 +67,17 @@
 	}
 	// Insert
 	else {
-		NSError *error;
+		// Only Saves when text was entered
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
 		NSString *folderName = [tempValues objectForKey:key];
 		[key release];
-		folder = [FolderDAO addFolderWithName:folderName error:&error];
 		
+		if (folderName == nil || [folderName length] == 0)
+			  return;
+		
+		NSError *error;
+		folder = [FolderDAO addFolderWithName:folderName error:&error];		
+		ALog ("Folder inserted");
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
@@ -85,7 +93,6 @@
 				[folderView release];
 			}
 		}
-		
 	}
 	
 	[self.navigationController popViewControllerAnimated:YES];
@@ -139,60 +146,88 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellID = @"FoldersEditCellID";
+	NSUInteger row = [indexPath row];
+	UITableViewCell *cell;
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+	// Name Row
+	if (row == NAME_ROW_INDEX) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"FoldersTextCellID"];
 		
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,10,75,25)];
-		label.textAlignment = UITextAlignmentRight;
-		label.tag = LABEL_TAG;
-		label.font = [UIFont boldSystemFontOfSize:14];
-		[cell.contentView addSubview:label];
-		[label release];
+		if (cell == nil) {
+			cell = [self createNameCell];
+		}
 		
-		UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 12, 200, 25)];
-		textField.clearsOnBeginEditing = NO;
-		[textField setDelegate:self];
-		textField.returnKeyType = UIReturnKeyDone;
-		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
-		[cell.contentView addSubview:textField];
+		UILabel *label = (UILabel *)[cell viewWithTag:LABEL_TAG];
+		UITextField *textField = nil;
+		for (UIView *oneView in cell.contentView.subviews) {
+			if([oneView isMemberOfClass:[UITextField class]])
+				textField = (UITextField *)oneView;
+		}
 		
+		label.text = [fieldLabels objectAtIndex:row];
+		NSNumber *rowAsNum = [[NSNumber alloc] initWithInt:row];
+		
+		switch (row) {
+			case NAME_ROW_INDEX:
+				if([[tempValues allKeys] containsObject:rowAsNum])
+					textField.text = [tempValues objectForKey:rowAsNum];
+				else if (folder != nil)
+					textField.text = folder.name;
+				textField.placeholder = @"Enter Folder-Name";
+				break;
+			default:
+				break;
+		}
+		
+		if(textFieldBeingEdited == textField)
+			textFieldBeingEdited = nil;
+		
+		textField.tag = row;
+		[rowAsNum release];
+	}
+
+	if (row == COLOR_ROW_INDEX) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"FoldersColorCellID"];
+		
+		if (cell == nil) {
+			cell = [self createNameCell];
+		}
+		
+		UILabel *label = (UILabel *)[cell viewWithTag:LABEL_TAG];
+		UITextField *textField = nil;
+		for (UIView *oneView in cell.contentView.subviews) {
+			if([oneView isMemberOfClass:[UITextField class]])
+				textField = (UITextField *)oneView;
+		}
+		
+		label.text = [fieldLabels objectAtIndex:row];
+		NSNumber *rowAsNum = [[NSNumber alloc] initWithInt:row];
+		
+		
+		
+		[rowAsNum release];
 	}
 	
-	NSUInteger row = [indexPath row];	
+	return cell;
+}
+
+- (UITableViewCell *)createNameCell {
+	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"FolderStandardCellID"] autorelease];
 	
-	UILabel *label = (UILabel *)[cell viewWithTag:LABEL_TAG];
-	UITextField *textField = nil;
-	for (UIView *oneView in cell.contentView.subviews) {
-		if([oneView isMemberOfClass:[UITextField class]])
-			textField = (UITextField *)oneView;
-	}
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,10,75,25)];
+	label.textAlignment = UITextAlignmentRight;
+	label.tag = LABEL_TAG;
+	label.font = [UIFont boldSystemFontOfSize:14];
+	[cell.contentView addSubview:label];
+	[label release];
 	
-	label.text = [fieldLabels objectAtIndex:row];
-	NSNumber *rowAsNum = [[NSNumber alloc] initWithInt:row];
-	
-	switch (row) {
-		case NAME_ROW_INDEX:
-			if([[tempValues allKeys] containsObject:rowAsNum])
-				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (folder == nil)
-				textField.text = @"New Folder";
-			else
-				textField.text = folder.name;
-			break;
-		default:
-			break;
-	}
-	
-	if(textFieldBeingEdited == textField)
-		textFieldBeingEdited = nil;
-	
-	textField.tag = row;
-	[rowAsNum release];
-	
+	UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(90, 12, 200, 25)];
+	textField.clearsOnBeginEditing = NO;
+	[textField setDelegate:self];
+	textField.returnKeyType = UIReturnKeyDone;
+	textField.autocorrectionType = UITextAutocorrectionTypeNo;
+	[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
+	[cell.contentView addSubview:textField];
 	return cell;
 }
 

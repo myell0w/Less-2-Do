@@ -67,6 +67,8 @@
 	quickAddController = nil;
 	[addTaskController release];
 	addTaskController = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -95,6 +97,8 @@
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 		
 		quickAddController.view.frame = CGRectMake(0,63,320,44);
+		// move table view down (44 px)
+		((UITableViewController *)self.topViewController).tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
 		
 		// end animation
 		[UIView commitAnimations];
@@ -110,9 +114,7 @@
 		[UIView commitAnimations];
 		
 		// release memory
-		[quickAddController.view removeFromSuperview];
-		[quickAddController release];
-		quickAddController = nil;
+		[self hideQuickAdd];
 	}
 }
 
@@ -120,13 +122,8 @@
 - (IBAction)editDetails:(NSNotification *)notification {
 	NSDictionary *dict = [notification userInfo];
 	
-	// hide quickadd-bar
-	if (quickAddController != nil) {
-		[quickAddController.view removeFromSuperview];
-		[quickAddController release];
-		quickAddController = nil;		
-	}
-
+	[self hideQuickAdd];
+	
 	// Present a Model View for adding a Task
 	addTaskController = [[EditTaskViewController alloc] initWithNibName:@"EditTaskViewController" bundle:nil];
 	addTaskController.task = [[dict objectForKey:@"Task"] retain];
@@ -136,24 +133,32 @@
 	[nc release];
 }
 
-- (IBAction)quickAddTask:(NSNotification *) notification {
-	NSDictionary *dict = [notification userInfo];
-	Task *task = [[dict objectForKey:@"Task"] retain];
-	
+- (IBAction)quickAddTask:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    Task *task = [[dict objectForKey:@"Task"] retain];
+    
+    // hide quickadd-bar
+    [self hideQuickAdd];
+    
+    if ([task.name length] > 0) {
+        //TODO: store task
+        NSError *error;
+        ALog("Task to quickadd: %@", task);
+        
+        [TaskDAO addTask:task error:&error];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
+    }
+}
+
+- (IBAction)hideQuickAdd {
 	// hide quickadd-bar
 	if (quickAddController != nil) {
+		((UITableViewController *)self.topViewController).tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+		
 		[quickAddController.view removeFromSuperview];
 		[quickAddController release];
 		quickAddController = nil;		
-	}
-	
-	if ([task.name length] > 0) {
-		//TODO: store task
-		NSError *error;
-		ALog("Task to quickadd: %@", task);
-		
-		[TaskDAO addTask:task error:&error];
-	}
+	}	
 }
 
 @end

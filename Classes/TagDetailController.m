@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	tag = aTag;
+	self.tag = aTag;
 	return self;
 }
 
@@ -43,19 +43,20 @@
 	
 	// Update
 	if (tag != nil) {
-		for (NSNumber *key in [tempValues allKeys]) {
-			switch ([key intValue]) {
-				case NAME_ROW_INDEX:
-					tag.name = [tempValues objectForKey:key];
-					break;
-				default:
-					break;
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
 			}
+			tag.name = [tempValues objectForKey:key];
 		}
+		[key release];
 		
 		NSError *error;
 		DLog ("Try to update Tag '%@'", tag.name);
-		if(![TagDAO updateTag:tag newTag:tag error:&error]) {
+		if(![TagDAO updateTag:tag error:&error]) {
 			ALog ("Error occured while updating Tag");
 		}
 		else {
@@ -64,10 +65,15 @@
 	}
 	// Insert
 	else {
-		NSError *error;
+		// Only Saves when text was entered
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
 		NSString *tagName = [tempValues objectForKey:key];
 		[key release];
+		
+		if(tagName == nil || [tagName length] == 0)
+			return;
+		
+		NSError *error;
 		tag = [TagDAO addTagWithName:tagName error:&error];
 		
 		NSArray *allControllers = self.navigationController.viewControllers;
@@ -147,6 +153,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
 		
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10,10,75,25)];
+		
 		label.textAlignment = UITextAlignmentRight;
 		label.tag = LABEL_TAG;
 		label.font = [UIFont boldSystemFontOfSize:14];
@@ -157,6 +164,7 @@
 		textField.clearsOnBeginEditing = NO;
 		[textField setDelegate:self];
 		textField.returnKeyType = UIReturnKeyDone;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 		[cell.contentView addSubview:textField];
 		
@@ -178,10 +186,9 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (tag == nil)
-				textField.text = @"New Tag";
-			else
+			else if (tag != nil)
 				textField.text = tag.name;
+			textField.placeholder = @"Enter Tag-Name";
 			break;
 		default:
 			break;
@@ -192,7 +199,7 @@
 	
 	textField.tag = row;
 	[rowAsNum release];
-	
+
 	return cell;
 }
 
