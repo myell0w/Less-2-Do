@@ -216,6 +216,7 @@
 	
 	[self.navigationController pushViewController:next animated:YES];
 }
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	if([indexPath section] == 1) {
 		NSUInteger row = [indexPath row];

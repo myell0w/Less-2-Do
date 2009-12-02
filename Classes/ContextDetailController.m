@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	context = aContext;
+	self.context = aContext;
 	return self;
 }
 
@@ -43,8 +43,14 @@
 	// Update
 	if (context != nil) {
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		if ([[tempValues allKeys] containsObject:key])
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
+			}
 			context.name = [tempValues objectForKey:key];
+		}
 		[key release];
 				
 		NSError *error;
@@ -77,12 +83,12 @@
 		NSString *contextName = [tempValues objectForKey:key];
 		[key release];
 
-		if(contextName == nil)
+		if(contextName == nil || [contextName length] == 0)
 			return;
 		
 		NSError *error;
 		context = [ContextDAO addContextWithName:contextName error:&error];
-		
+		ALog ("Context inserted");
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
@@ -113,6 +119,7 @@
 
 #pragma mark -
 - (void) viewDidLoad {
+	ALog ("ContextDetailView started didLoad");
 	NSArray *array = [[NSArray alloc] initWithObjects:@"Name:", nil];
 	self.fieldLabels = array;
 	[array release];

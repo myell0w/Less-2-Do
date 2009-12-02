@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	tag = aTag;
+	self.tag = aTag;
 	return self;
 }
 
@@ -44,8 +44,14 @@
 	// Update
 	if (tag != nil) {
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		if ([[tempValues allKeys] containsObject:key])
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
+			}
 			tag.name = [tempValues objectForKey:key];
+		}
 		[key release];
 		
 		NSError *error;
@@ -64,7 +70,7 @@
 		NSString *tagName = [tempValues objectForKey:key];
 		[key release];
 		
-		if(tagName == nil)
+		if(tagName == nil || [tagName length] == 0)
 			return;
 		
 		NSError *error;

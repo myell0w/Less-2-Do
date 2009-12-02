@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	folder = aFolder;
+	self.folder = aFolder;
 	return self;
 }
 
@@ -46,8 +46,14 @@
 	// Update
 	if (folder != nil) {
 		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-		if ([[tempValues allKeys] containsObject:key])
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
+			}
 			folder.name = [tempValues objectForKey:key];
+		}
 		[key release];
 		
 		NSError *error;
@@ -66,12 +72,12 @@
 		NSString *folderName = [tempValues objectForKey:key];
 		[key release];
 		
-		NSError *error;
-		folder = [FolderDAO addFolderWithName:folderName error:&error];
+		if (folderName == nil || [folderName length] == 0)
+			  return;
 		
-		if (folderName == nil)
-			return;
-
+		NSError *error;
+		folder = [FolderDAO addFolderWithName:folderName error:&error];		
+		ALog ("Folder inserted");
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {

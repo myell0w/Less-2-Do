@@ -40,6 +40,7 @@
 }
 
 - (void)viewDidLoad {
+	ALog ("FolderDetailView start DidLoad");
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	list = [[NSMutableArray alloc] init];
@@ -197,6 +198,24 @@
 	TasksListViewController *next = [[self sectionForIndex:section] objectAtIndex:row];
 	
 	[self.navigationController pushViewController:next animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	if([indexPath section] == 1) {
+		NSUInteger row = [indexPath row];
+		DLog ("%d Items in FolderList", [list count]);
+		Folder *folder = [list objectAtIndex:row];
+		DLog ("Try to load DetailView for Folder '%@'", folder.name);
+		
+		[self.tableView setEditing:NO animated:NO];
+		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+		
+		FolderDetailController *folderDetail = [[FolderDetailController alloc] initWithStyle:UITableViewStyleGrouped andFolder:folder];
+		folderDetail.title = folder.name;
+		[self.navigationController pushViewController:folderDetail animated:YES];
+		[folderDetail release];
+	}
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
