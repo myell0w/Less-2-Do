@@ -23,7 +23,7 @@
 	if(![super initWithStyle:aStyle])
 		return nil;
 	
-	context = aContext;
+	self.context = aContext;
 	return self;
 }
 
@@ -40,18 +40,19 @@
 		[tagAsNum release];
 	}
 	
-	// Only Saves when text was entered
-	NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
-	NSString *contextName = [tempValues objectForKey:key];
-	[key release];
-	
-	if(contextName == nil)
-		return;
-	
 	// Update
 	if (context != nil) {
-		context.name = contextName;
-		
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		if ([[tempValues allKeys] containsObject:key]) {
+			if([[tempValues objectForKey:key] length]==0) {
+				[key release];
+				ALog ("Invalid Input");
+				return;
+			}
+			context.name = [tempValues objectForKey:key];
+		}
+		[key release];
+				
 		NSError *error;
 		DLog ("Try to update Context '%@'", context.name);
 		if(![ContextDAO updateContext:context error:&error]) {
@@ -77,9 +78,17 @@
 	}
 	// Insert
 	else {
+		// Only Saves when text was entered
+		NSNumber *key = [[NSNumber alloc] initWithInt:NAME_ROW_INDEX];
+		NSString *contextName = [tempValues objectForKey:key];
+		[key release];
+
+		if(contextName == nil || [contextName length] == 0)
+			return;
+		
 		NSError *error;
 		context = [ContextDAO addContextWithName:contextName error:&error];
-		
+		ALog ("Context inserted");
 		NSArray *allControllers = self.navigationController.viewControllers;
 		
 		if ([allControllers count]>1) {
@@ -110,6 +119,7 @@
 
 #pragma mark -
 - (void) viewDidLoad {
+	ALog ("ContextDetailView started didLoad");
 	NSArray *array = [[NSArray alloc] initWithObjects:@"Name:", nil];
 	self.fieldLabels = array;
 	[array release];
@@ -177,6 +187,7 @@
 		textField.tag = row;
 		[textField setDelegate:self];
 		textField.returnKeyType = UIReturnKeyDone;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 		[cell.contentView addSubview:textField];
 		
@@ -196,10 +207,9 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (context == nil)
-				textField.placeholder = @"Enter Context-Name";
-			else
+			else if (context != nil)
 				textField.text = context.name;
+			textField.placeholder = @"Enter Context-Name";
 			break;
 		default:
 			break;

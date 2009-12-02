@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define NAME_ROW_INDEX				0
+#define COLOR_ROW_INDEX				1
 #define NUMBER_OF_EDITABLE_ROWS		1
 	
 #define LABEL_TAG					4096
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) UITextField *textFieldBeingEdited;
 
 - (id)initWithStyle:(UITableViewStyle)aStyle andFolder:(Folder *)aFolder;
+- (UITableViewCell *)createNameCell;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;

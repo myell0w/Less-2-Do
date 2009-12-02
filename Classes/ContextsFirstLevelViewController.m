@@ -100,7 +100,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	ALog ("View Contextlist appeared");
 	[self.tableView reloadData];
 	[super viewWillAppear:animated];
 }
@@ -207,9 +206,9 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	if([indexPath section] == 1) {
 		NSUInteger row = [indexPath row];
-		DLog ("%d Items in ContextList", [list count]);
+		ALog ("%d Items in ContextList", [list count]);
 		Context *context = [list objectAtIndex:row];
-		DLog ("Try to load DetailView for Context '%@'", context.name);
+		//ALog ("Try to load DetailView for Context '%@'", context.name);
 		
 		[self.tableView setEditing:NO animated:NO];
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];

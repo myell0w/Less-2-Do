@@ -135,7 +135,7 @@
 
 - (IBAction)quickAddTask:(NSNotification *) notification {
 	NSDictionary *dict = [notification userInfo];
-	Task *task = [[dict objectForKey:@"Task"] retain];
+	Task *task = [dict objectForKey:@"Task"];
 	
 	// hide quickadd-bar
 	[self hideQuickAdd];
