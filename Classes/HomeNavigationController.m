@@ -138,11 +138,7 @@
 	Task *task = [[dict objectForKey:@"Task"] retain];
 	
 	// hide quickadd-bar
-	if (quickAddController != nil) {
-		[quickAddController.view removeFromSuperview];
-		[quickAddController release];
-		quickAddController = nil;		
-	}
+	[self hideQuickAdd];
 	
 	if ([task.name length] > 0) {
 		//TODO: store task
