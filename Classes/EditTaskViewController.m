@@ -449,6 +449,7 @@
 	titleText.font = [UIFont boldSystemFontOfSize:TITLE_FONT_SIZE];
 	titleText.placeholder = @"Enter Task-Title...";
 	titleText.returnKeyType = UIReturnKeyDone;
+	titleText.autocorrectionType = UITextAutocorrectionTypeNo;
 	titleText.tag = TAG_TITLE;
 	[titleText setDelegate:self];
 	// add Textfield to Cell
