@@ -171,10 +171,9 @@
 			case NAME_ROW_INDEX:
 				if([[tempValues allKeys] containsObject:rowAsNum])
 					textField.text = [tempValues objectForKey:rowAsNum];
-				else if (folder == nil)
-					textField.placeholder = @"Enter Folder-Name";
-				else
+				else if (folder != nil)
 					textField.text = folder.name;
+				textField.placeholder = @"Enter Folder-Name";
 				break;
 			default:
 				break;
@@ -226,6 +225,7 @@
 	textField.clearsOnBeginEditing = NO;
 	[textField setDelegate:self];
 	textField.returnKeyType = UIReturnKeyDone;
+	textField.autocorrectionType = UITextAutocorrectionTypeNo;
 	[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	[cell.contentView addSubview:textField];
 	return cell;

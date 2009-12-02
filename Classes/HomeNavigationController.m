@@ -133,25 +133,21 @@
 	[nc release];
 }
 
-- (IBAction)quickAddTask:(NSNotification *) notification {
-	NSDictionary *dict = [notification userInfo];
-	Task *task = [[dict objectForKey:@"Task"] retain];
-	
-	// hide quickadd-bar
-	if (quickAddController != nil) {
-		[quickAddController.view removeFromSuperview];
-		[quickAddController release];
-		quickAddController = nil;		
-	}
-	
-	if ([task.name length] > 0) {
-		//TODO: store task
-		NSError *error;
-		ALog("Task to quickadd: %@", task);
-		
-		[TaskDAO addTask:task error:&error];
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
-	}
+- (IBAction)quickAddTask:(NSNotification *)notification {
+    NSDictionary *dict = [notification userInfo];
+    Task *task = [[dict objectForKey:@"Task"] retain];
+    
+    // hide quickadd-bar
+    [self hideQuickAdd];
+    
+    if ([task.name length] > 0) {
+        //TODO: store task
+        NSError *error;
+        ALog("Task to quickadd: %@", task);
+        
+        [TaskDAO addTask:task error:&error];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
+    }
 }
 
 - (IBAction)hideQuickAdd {

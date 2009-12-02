@@ -187,6 +187,7 @@
 		textField.tag = row;
 		[textField setDelegate:self];
 		textField.returnKeyType = UIReturnKeyDone;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 		[cell.contentView addSubview:textField];
 		
@@ -206,10 +207,9 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (context == nil)
-				textField.placeholder = @"Enter Context-Name";
-			else
+			else if (context != nil)
 				textField.text = context.name;
+			textField.placeholder = @"Enter Context-Name";
 			break;
 		default:
 			break;

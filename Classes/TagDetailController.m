@@ -164,6 +164,7 @@
 		textField.clearsOnBeginEditing = NO;
 		[textField setDelegate:self];
 		textField.returnKeyType = UIReturnKeyDone;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[textField addTarget:self action:@selector(textFieldDone:) forControlEvents:UIControlEventEditingDidEndOnExit];
 		[cell.contentView addSubview:textField];
 		
@@ -185,10 +186,9 @@
 		case NAME_ROW_INDEX:
 			if([[tempValues allKeys] containsObject:rowAsNum])
 				textField.text = [tempValues objectForKey:rowAsNum];
-			else if (tag == nil)
-				textField.placeholder = @"Enter Tag-Name";
-			else
+			else if (tag != nil)
 				textField.text = tag.name;
+			textField.placeholder = @"Enter Tag-Name";
 			break;
 		default:
 			break;
