@@ -16,7 +16,7 @@
 
 +(NSArray*)allTags:(NSError**)error;
 +(Tag*)addTagWithName:(NSString*)theName error:(NSError**)error;
-+(BOOL)deleteTag:(Tag*)Tag error:(NSError**)error;
++(BOOL)deleteTag:(Tag*)tag error:(NSError**)error;
 +(BOOL)updateTag:(Tag*)tag error:(NSError**)error;
 
 @end
