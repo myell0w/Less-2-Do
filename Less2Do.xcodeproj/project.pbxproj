@@ -94,9 +94,9 @@
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
 		D436E9C410BABB6900EA7624 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D436E9C310BABB6900EA7624 /* SettingsTableView.xib */; };
-		D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailController.m */; };
-		D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */; };
-		D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailController.m */; };
+		D45C314F10C015BF00B59FE0 /* ContextDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailViewController.m */; };
+		D46A63F910C3EBDD00FBC5EB /* TagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailViewController.m */; };
+		D46A641A10C3F21700FBC5EB /* FolderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailViewController.m */; };
 		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
 		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
 /* End PBXBuildFile section */
@@ -276,12 +276,12 @@
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D436E9C310BABB6900EA7624 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
-		D45C314D10C015BF00B59FE0 /* ContextDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDetailController.h; sourceTree = "<group>"; };
-		D45C314E10C015BF00B59FE0 /* ContextDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDetailController.m; sourceTree = "<group>"; };
-		D46A63F710C3EBDD00FBC5EB /* TagDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagDetailController.h; sourceTree = "<group>"; };
-		D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailController.m; sourceTree = "<group>"; };
-		D46A641810C3F21700FBC5EB /* FolderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailController.h; sourceTree = "<group>"; };
-		D46A641910C3F21700FBC5EB /* FolderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailController.m; sourceTree = "<group>"; };
+		D45C314D10C015BF00B59FE0 /* ContextDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDetailViewController.h; sourceTree = "<group>"; };
+		D45C314E10C015BF00B59FE0 /* ContextDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDetailViewController.m; sourceTree = "<group>"; };
+		D46A63F710C3EBDD00FBC5EB /* TagDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagDetailViewController.h; sourceTree = "<group>"; };
+		D46A63F810C3EBDD00FBC5EB /* TagDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailViewController.m; sourceTree = "<group>"; };
+		D46A641810C3F21700FBC5EB /* FolderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailViewController.h; sourceTree = "<group>"; };
+		D46A641910C3F21700FBC5EB /* FolderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailViewController.m; sourceTree = "<group>"; };
 		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
 		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
@@ -498,12 +498,12 @@
 		39B658FF10B6B31200825C1D /* contexts */ = {
 			isa = PBXGroup;
 			children = (
-				D45C314D10C015BF00B59FE0 /* ContextDetailController.h */,
-				D45C314E10C015BF00B59FE0 /* ContextDetailController.m */,
-				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
-				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
+				D45C314D10C015BF00B59FE0 /* ContextDetailViewController.h */,
+				D45C314E10C015BF00B59FE0 /* ContextDetailViewController.m */,
 				39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */,
 				39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */,
+				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
+				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -511,12 +511,12 @@
 		39B6590010B6B32600825C1D /* folder */ = {
 			isa = PBXGroup;
 			children = (
+				D46A641810C3F21700FBC5EB /* FolderDetailViewController.h */,
+				D46A641910C3F21700FBC5EB /* FolderDetailViewController.m */,
 				D436E8B510BA877300EA7624 /* FolderFirstLevelController.h */,
 				D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */,
 				D436E8B110BA86AA00EA7624 /* FolderNavigationController.h */,
 				D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */,
-				D46A641810C3F21700FBC5EB /* FolderDetailController.h */,
-				D46A641910C3F21700FBC5EB /* FolderDetailController.m */,
 			);
 			name = folder;
 			sourceTree = "<group>";
@@ -524,12 +524,12 @@
 		39B6590110B6B32D00825C1D /* tags */ = {
 			isa = PBXGroup;
 			children = (
+				D46A63F710C3EBDD00FBC5EB /* TagDetailViewController.h */,
+				D46A63F810C3EBDD00FBC5EB /* TagDetailViewController.m */,
 				D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */,
 				D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */,
 				D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */,
 				D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */,
-				D46A63F710C3EBDD00FBC5EB /* TagDetailController.h */,
-				D46A63F810C3EBDD00FBC5EB /* TagDetailController.m */,
 			);
 			name = tags;
 			sourceTree = "<group>";
@@ -923,10 +923,10 @@
 				3902C55310C01F09006BBF52 /* TaskEditDueDateViewController.m in Sources */,
 				39D0532410C036DF0020D7D9 /* TaskEditDueTimeViewController.m in Sources */,
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
-				D45C314F10C015BF00B59FE0 /* ContextDetailController.m in Sources */,
+				D45C314F10C015BF00B59FE0 /* ContextDetailViewController.m in Sources */,
 				CF25612110C2820500019621 /* TaskDAO.m in Sources */,
-				D46A63F910C3EBDD00FBC5EB /* TagDetailController.m in Sources */,
-				D46A641A10C3F21700FBC5EB /* FolderDetailController.m in Sources */,
+				D46A63F910C3EBDD00FBC5EB /* TagDetailViewController.m in Sources */,
+				D46A641A10C3F21700FBC5EB /* FolderDetailViewController.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
 				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
 				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,

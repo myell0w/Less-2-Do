@@ -7,7 +7,7 @@
 //
 
 #import "TagsFirstLevelController.h"
-#import "TagDetailController.h"
+#import "TagDetailViewController.h"
 #import "TasksListViewController.h"
 #import "TagDAO.h"
 
@@ -33,10 +33,12 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	TagDetailController *tagDetail = [[TagDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	TagDetailViewController *tagDetail = [[TagDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];	
 	tagDetail.title = @"New Tag";
-	[self.navigationController pushViewController:tagDetail animated:YES];
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:tagDetail];
 	[tagDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];
 }
 
 - (void)viewDidLoad {
@@ -84,34 +86,7 @@
 	self.controllersSection1 = array;
 	self.title = @"Tags";
 	[array release];
-	[super viewDidLoad]; 
-	
-	/* init Second-Level Views in Section Tags
-	TasksListViewController *tag1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	tag1.title = @"@Tag1";
-	tag1.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:tag1];
-	[tag1 release];
-	
-	// init Second-Level Views in Section Tags
-	TasksListViewController *tag2 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	tag2.title = @"@Tag2";
-	tag2.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:tag2];
-	[tag2 release];
-	
-	// init Second-Level Views in Section Tags
-	TasksListViewController *tag3 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	tag3.title = @"@Tag3";
-	tag3.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:tag3];
-	[tag3 release];
-	
-	// tags make up section1
-	self.controllersSection1 = array;
-	[array release];
-	self.title = @"Tags";
-	[super viewDidLoad];*/
+	[super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -228,7 +203,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		TagDetailController *tagDetail = [[TagDetailController alloc] initWithStyle:UITableViewStyleGrouped andTag:tag];
+		TagDetailViewController *tagDetail = [[TagDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andTag:tag];
 		tagDetail.title = tag.name;
 		[self.navigationController pushViewController:tagDetail animated:YES];
 		[tagDetail release];
