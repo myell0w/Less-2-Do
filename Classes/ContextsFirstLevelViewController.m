@@ -8,7 +8,7 @@
 
 #import "ContextsFirstLevelViewController.h"
 #import "TasksListViewController.h"
-#import "ContextDetailController.h"
+#import "ContextDetailViewController.h"
 
 @implementation ContextsFirstLevelViewController
 
@@ -33,17 +33,12 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	/*ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	ContextDetailViewController *contextDetail = [[ContextDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
 	contextDetail.title = @"Add Context";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
 	[contextDetail release];
 	[self presentModalViewController:nc animated:YES];
-	[nc release];*/
-	
-	ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped];
-	contextDetail.title = @"Add Context";
-	[self.navigationController pushViewController:contextDetail animated:YES];
-	[contextDetail release];
+	[nc release];
 }
 
 -(void)viewDidLoad {
@@ -214,7 +209,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		ContextDetailController *contextDetail = [[ContextDetailController alloc] initWithStyle:UITableViewStyleGrouped andContext:context];
+		ContextDetailViewController *contextDetail = [[ContextDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andContext:context];
 		contextDetail.title = context.name;
 		[self.navigationController pushViewController:contextDetail animated:YES];
 		[contextDetail release];

@@ -9,7 +9,7 @@
 #import "FolderFirstLevelController.h"
 #import "TasksListViewController.h"
 #import "FolderDAO.h"
-#import "FolderDetailController.h"
+#import "FolderDetailViewController.h"
 
 @implementation FolderFirstLevelController
 @synthesize list;
@@ -33,10 +33,12 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	FolderDetailController *folderDetail = [[FolderDetailController alloc] initWithStyle:UITableViewStyleGrouped];
+	FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
 	folderDetail.title = @"New Folder";
-	[self.navigationController pushViewController:folderDetail animated:YES];
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:folderDetail];
 	[folderDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];
 }
 
 - (void)viewDidLoad {
@@ -211,7 +213,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		FolderDetailController *folderDetail = [[FolderDetailController alloc] initWithStyle:UITableViewStyleGrouped andFolder:folder];
+		FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andFolder:folder];
 		folderDetail.title = folder.name;
 		[self.navigationController pushViewController:folderDetail animated:YES];
 		[folderDetail release];
@@ -228,6 +230,35 @@
 	if ([indexPath section] == 0)
 		return NO;
 	return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+	if([indexPath section] == 0)
+		return NO;
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSNumber *fromRow = [[NSNumber alloc] initWithInt:[fromIndexPath row]];
+    NSNumber *toRow = [[NSNumber alloc] initWithInt:[toIndexPath row]];
+    
+	Folder *fromObject = [self.list objectAtIndex:[fromIndexPath row]];
+	fromObject.order = toRow;
+	Folder *toObject = [self.list objectAtIndex:[toIndexPath row]];
+	fromObject.order = fromRow;
+	
+	NSError *error;
+	DLog ("Try to update Folders (ordering)");
+	if(![FolderDAO updateFolder:fromObject error:&error] || ![FolderDAO updateFolder:toObject error:&error] ) {
+		ALog ("Error occured while updating Folder (ordering)");
+	}
+	else {
+		ALog ("Folder updated (ordering)");
+		ALog ("Folder: %@, Order: %d", toObject.name, toObject.order);
+		ALog ("Folder: %@, Order: %d", fromObject.name, fromObject.order);
+	}
+	
+	[fromRow release];
+	[toRow release];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

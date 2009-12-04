@@ -79,7 +79,7 @@
 	GHAssertNotNil(newContext3, @"Add context3 not successful");
 	
 	NSArray *contexts = [ContextDAO allContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)3, @"Add context not successful");
+	GHAssertEquals([contexts count], (NSUInteger)5, @"Add context not successful");
 }
 
 /* Tests deleting a context with nil as parameter */
