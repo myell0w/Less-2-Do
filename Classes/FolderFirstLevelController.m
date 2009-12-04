@@ -188,6 +188,36 @@
 	}
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+	if([indexPath section] == 0)
+		return NO;
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    //TODO: DAO Instructions to reorder
+	/*NSNumber *fromRow = [[NSNumber alloc] initWithInt:[fromIndexPath row]];
+    NSNumber *toRow = [[NSNumber alloc] initWithInt:[toIndexPath row]];
+    
+	Folder *fromObject = [self.list objectAtIndex:[fromIndexPath row]];
+	fromObject.order = toRow;
+	Folder *toObject = [self.list objectAtIndex:[toIndexPath row]];
+	fromObject.order = fromRow;
+	
+	NSError *error;
+	DLog ("Try to update Folders (ordering)");
+	if(![FolderDAO updateFolder:fromObject error:&error] || ![FolderDAO updateFolder:toObject error:&error] ) {
+		ALog ("Error occured while updating Folder (ordering)");
+	}
+	else {
+		ALog ("Folder updated (ordering)");
+		ALog ("Folder: %@, Order: %d", toObject.name, toObject.order);
+		ALog ("Folder: %@, Order: %d", fromObject.name, fromObject.order);
+	}
+	
+	[fromRow release];
+	[toRow release];*/
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Table View Delegate Methods
@@ -232,33 +262,10 @@
 	return YES;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-	if([indexPath section] == 0)
-		return NO;
-    return YES;
-}
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    NSNumber *fromRow = [[NSNumber alloc] initWithInt:[fromIndexPath row]];
-    NSNumber *toRow = [[NSNumber alloc] initWithInt:[toIndexPath row]];
-    
-	Folder *fromObject = [self.list objectAtIndex:[fromIndexPath row]];
-	fromObject.order = toRow;
-	Folder *toObject = [self.list objectAtIndex:[toIndexPath row]];
-	fromObject.order = fromRow;
-	
-	NSError *error;
-	DLog ("Try to update Folders (ordering)");
-	if(![FolderDAO updateFolder:fromObject error:&error] || ![FolderDAO updateFolder:toObject error:&error] ) {
-		ALog ("Error occured while updating Folder (ordering)");
-	}
-	else {
-		ALog ("Folder updated (ordering)");
-		ALog ("Folder: %@, Order: %d", toObject.name, toObject.order);
-		ALog ("Folder: %@, Order: %d", fromObject.name, fromObject.order);
-	}
-	
-	[fromRow release];
-	[toRow release];
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
+	if ([proposedDestinationIndexPath section] == 0)
+		return sourceIndexPath;
+	return proposedDestinationIndexPath;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
