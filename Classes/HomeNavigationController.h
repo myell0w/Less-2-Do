@@ -31,3 +31,4 @@
 // hides the quickadd-bar
 - (IBAction)hideQuickAdd;
 @end
+
