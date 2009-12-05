@@ -104,7 +104,7 @@
  - DAOMissingParametersError: when parameter Tag is nil
  - DAONotDeletedError: when the new object could not be deleted from the persistend store
  */
-+(BOOL)deleteTag:(Tag *)Tag error:(NSError**)error
++(BOOL)deleteTag:(Tag *)tag error:(NSError**)error
 {
 	NSError *deleteError;
 	
@@ -114,12 +114,13 @@
 		return NO;
 	}
 	
+	tag
 	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
 	
 	/* mark object to be deleted */
-	[managedObjectContext deleteObject:Tag];
+	[managedObjectContext deleteObject:tag];
 	
 	/* commit deleting and check for errors */
 	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
