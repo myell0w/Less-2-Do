@@ -109,12 +109,11 @@
 	NSError *deleteError;
 	
 	/* show if parameter is set */
-	if(Tag == nil) {
+	if(tag == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
 		return NO;
 	}
 	
-	tag
 	/* get managed object Tag */
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
