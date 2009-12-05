@@ -9,6 +9,7 @@
 #import "EditTaskViewController.h"
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
+#import "TaskEditNotesViewController.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -19,11 +20,14 @@
 #define TITLE_FONT_SIZE  15
 #define NORMAL_FONT_SIZE 14
 
+#define MAX_NOTE_COUNT 20
+
 @implementation EditTaskViewController
 
 @synthesize task;
 @synthesize tempData;
 @synthesize textFieldBeingEdited;
+@synthesize mode;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -104,14 +108,21 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	//TODO:change
-    return 1;
+    return 3;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//TODO: change
-    return 4;
+	if (section == 0)
+		return 4;
+	else if (section == 1)
+		return 3;
+	else if (section == 2)
+		return 1;
+	
+	return 0;
 }
 
 
@@ -152,6 +163,42 @@
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
 			
 			cell.textLabel.text = @"Due Time";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init-Folder-Cell
+		else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Folder";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init-Context-Cell
+		else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Context";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init-Tags-Cell
+		else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Tags";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init-Notes-Cell
+		else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Notes";
 			cell.detailTextLabel.text = @"None";
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
@@ -262,6 +309,44 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
+		if (task.folder != nil) {
+			
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
+	
+	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
+		if (task.context != nil) {
+			
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
+	
+	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
+		if (task.tags != nil && [task.tags count] > 0) {
+			
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
+	
+	else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
+		if (task.note != nil && [task.note length] > 0) {
+			if ([task.note length] > MAX_NOTE_COUNT) {
+				NSString *note = [[NSString alloc]initWithFormat:@"%@...", [task.note substringToIndex:MAX_NOTE_COUNT]];
+				cell.detailTextLabel.text = note;
+				[note release];
+			} else {
+				cell.detailTextLabel.text = task.note;
+			}
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+	}
+	
     return cell;
 }
 
@@ -279,7 +364,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
-	// if selecting duedate or duetime, push another detail-view controller
+	//  push another detail-view controller
 	if ([cellID isEqualToString:CELL_ID_DUEDATE]) {
 		TaskEditDueDateViewController *ddvc = [[TaskEditDueDateViewController alloc] 
 											   initWithNibName:@"TaskEditDueDateViewController" 
@@ -288,7 +373,9 @@
 		ddvc.task = self.task;
 		[self.navigationController pushViewController:ddvc animated:YES];
 		[ddvc release];
-	} else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
+	} 
+	
+	else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
 		TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
 											   initWithNibName:@"TaskEditDueTimeViewController" 
 											   bundle:nil];
@@ -297,6 +384,90 @@
 		[self.navigationController pushViewController:dtvc animated:YES];
 		[dtvc release];
 	}
+	
+	else if ([cellID isEqualToString:CELL_ID_FOLDER]) {
+		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
+//											   initWithNibName:@"TaskEditDueTimeViewController" 
+//											   bundle:nil];
+//		dtvc.title = @"Due Time";
+//		dtvc.task = self.task;
+//		[self.navigationController pushViewController:dtvc animated:YES];
+//		[dtvc release];
+	}
+	
+	else if ([cellID isEqualToString:CELL_ID_CONTEXT]) {
+		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
+//											   initWithNibName:@"TaskEditDueTimeViewController" 
+//											   bundle:nil];
+//		dtvc.title = @"Due Time";
+//		dtvc.task = self.task;
+//		[self.navigationController pushViewController:dtvc animated:YES];
+//		[dtvc release];
+	}
+	
+	else if ([cellID isEqualToString:CELL_ID_TAGS]) {
+		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
+//											   initWithNibName:@"TaskEditDueTimeViewController" 
+//											   bundle:nil];
+//		dtvc.title = @"Due Time";
+//		dtvc.task = self.task;
+//		[self.navigationController pushViewController:dtvc animated:YES];
+//		[dtvc release];
+	}
+	
+	else if ([cellID isEqualToString:CELL_ID_NOTES]) {
+		TaskEditNotesViewController *nvc = [[TaskEditNotesViewController alloc] 
+													   initWithNibName:@"TaskEditNotesViewController" 
+													   bundle:nil];
+		nvc.title = @"Notes";
+		nvc.task = self.task;
+		[self.navigationController pushViewController:nvc animated:YES];
+		[nvc release];
+	}	
+}
+
+// specify the height of your footer section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    // no footer in add-mode
+	if (mode == TaskControllerAddMode) 
+		return 0;
+	
+	return section == 2 ? 60 : 0;
+}
+
+// custom view for footer. will be adjusted to default or specified footer height
+// Notice: this will work only for one section within the table view
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if(footerView == nil && mode == TaskControllerEditMode) {
+        //allocate the view if it doesn't exist yet
+        footerView  = [[UIView alloc] init];
+		
+        //we would like to show a gloosy red button, so get the image first
+        UIImage *image = [[UIImage imageNamed:@"button_red.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+        //create the button
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+        //the button should be as big as a table view cell
+        [button setFrame:CGRectMake(10, 10, 300, 44)];
+		
+        //set title, font size and font color
+        [button setTitle:@"Delete Task" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		
+        //set action of the button
+        [button addTarget:self action:@selector(deleteTask:)
+		 forControlEvents:UIControlEventTouchUpInside];
+		
+        //add the button to the view
+        [footerView addSubview:button];
+    }
+	
+    //return the view for the footer
+    return footerView;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -304,10 +475,21 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-	// if the user really wants to abort, delete the modal view and show the parent view again
-	if (buttonIndex != [actionSheet cancelButtonIndex]) {
-		[self dismissModalViewControllerAnimated:YES];
+	// Action-Sheet to cancel add-action?
+	if ([actionSheet.title isEqualToString:@"Really Cancel?"]) {
+		// if the user really wants to abort, delete the modal view and show the parent view again
+		if (buttonIndex != [actionSheet cancelButtonIndex]) {
+			[self dismissModalViewControllerAnimated:YES];
+		}
 	}
+	// Action-Sheet to delete a task?
+	else if ([actionSheet.title isEqualToString:@"Delete Task?"]) {
+		// if the user really wants to delete a task...
+		if (buttonIndex != [actionSheet cancelButtonIndex]) {
+			//TODO: delete task
+		}
+	}
+				 
 }
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -398,6 +580,14 @@
 			task.dueDate = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUETIME) {
 			task.dueTime = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_FOLDER) {
+			task.folder = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_CONTEXT) {
+			task.context = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_TAGS) {
+			task.tags = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_NOTES) {
+			task.note = [tempData objectForKey:key];
 		}
 	}
 	
@@ -423,8 +613,22 @@
 	[actionSheet release];
 }
 
+- (IBAction)deleteTask:(id)sender {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Delete Task?"
+															 delegate:self
+													cancelButtonTitle:@"Don't Delete"
+											   destructiveButtonTitle:@"Delete"
+													otherButtonTitles:nil];
+	
+	[actionSheet showInView:self.view];
+	[actionSheet release];
+	
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark CUstom Methods
+#pragma mark Custom Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
@@ -439,6 +643,16 @@
 		return CELL_ID_DUEDATE;
 	else if (section == 0 && row == 3)
 		return CELL_ID_DUETIME;
+	
+	else if (section == 1 && row == 0)
+		return CELL_ID_FOLDER;
+	else if (section == 1 && row == 1)
+		return CELL_ID_CONTEXT;
+	else if (section == 1 && row == 2)
+		return CELL_ID_TAGS;
+	
+	else if (section == 2 && row == 0)
+		return CELL_ID_NOTES;
 	
 	return nil;
 }

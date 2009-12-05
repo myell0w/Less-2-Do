@@ -12,6 +12,10 @@
 #define CELL_ID_PRIORITY @"TaskPriorityCell"
 #define CELL_ID_DUEDATE  @"TaskDueDateCell"
 #define CELL_ID_DUETIME  @"TaskDueTimeCell"
+#define CELL_ID_FOLDER   @"TaskFolderCell"
+#define CELL_ID_CONTEXT  @"TaskContextCell"
+#define CELL_ID_TAGS     @"TaskTagsCell"
+#define CELL_ID_NOTES	 @"TaskNotesCell"
 
 #define TAG_TITLE		1
 #define TAG_COMPLETED   2
@@ -19,18 +23,31 @@
 #define TAG_PRIORITY	4
 #define TAG_DUEDATE		5
 #define TAG_DUETIME		6
+#define TAG_FOLDER      7
+#define TAG_CONTEXT		8
+#define TAG_TAGS		9
+#define TAG_NOTES		10
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table-View-Controller for Adding/Editing a Task
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface EditTaskViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate> {
+typedef enum _TaskControllerMode {
+	TaskControllerEditMode,
+	TaskControllerAddMode
+} TaskControllerMode;
+
+@interface EditTaskViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate, UITableViewDelegate> {
 	// the task to add/edit
 	Task *task;
 	// temporary data
 	NSMutableDictionary *tempData;
 	// the text-field being edited
 	UITextField *textFieldBeingEdited;
+	// the mode in which the controller is in (edit/add)
+	TaskControllerMode mode;
+	// footer view
+	UIView *footerView;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +57,7 @@
 @property (nonatomic, retain) Task *task;
 @property (nonatomic, retain) NSMutableDictionary *tempData;
 @property (nonatomic, retain) UITextField *textFieldBeingEdited;
+@property TaskControllerMode mode;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
@@ -55,6 +73,8 @@
 - (IBAction)priorityValueChanged:(id)sender;
 // value of either completed or starred was changed
 - (IBAction)checkBoxValueChanged:(id)sender;
+// delete a task (only in edit mode)
+- (IBAction)deleteTask:(id)sender;
 
 // setUp-Functions for Cells
 - (void) setUpTitleCell:(UITableViewCell *)cell;

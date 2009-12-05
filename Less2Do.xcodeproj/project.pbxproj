@@ -27,6 +27,9 @@
 		3902C55410C01F09006BBF52 /* TaskEditDueDateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */; };
 		3903386910B6096F007985A9 /* HomeFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */; };
 		3903387610B60BF0007985A9 /* TasksListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3903387510B60BF0007985A9 /* TasksListViewController.m */; };
+		391D723C10C9DECA00A115E1 /* TaskEditNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391D723A10C9DECA00A115E1 /* TaskEditNotesViewController.m */; };
+		391D723D10C9DECA00A115E1 /* TaskEditNotesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */; };
+		391D72E210C9EC9B00A115E1 /* button_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 391D72E110C9EC9B00A115E1 /* button_red.png */; };
 		392325B210B2EE7D00075370 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325A810B2EE7D00075370 /* Default.png */; };
 		392325B310B2EE7D00075370 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325A910B2EE7D00075370 /* Icon.png */; };
 		392325B410B2EE7D00075370 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AA10B2EE7D00075370 /* Icon-Small.png */; };
@@ -172,6 +175,10 @@
 		3903386810B6096F007985A9 /* HomeFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFirstLevelViewController.m; sourceTree = "<group>"; };
 		3903387410B60BF0007985A9 /* TasksListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksListViewController.h; sourceTree = "<group>"; };
 		3903387510B60BF0007985A9 /* TasksListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksListViewController.m; sourceTree = "<group>"; };
+		391D723910C9DECA00A115E1 /* TaskEditNotesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditNotesViewController.h; sourceTree = "<group>"; };
+		391D723A10C9DECA00A115E1 /* TaskEditNotesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditNotesViewController.m; sourceTree = "<group>"; };
+		391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditNotesViewController.xib; path = Classes/TaskEditNotesViewController.xib; sourceTree = "<group>"; };
+		391D72E110C9EC9B00A115E1 /* button_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_red.png; sourceTree = "<group>"; };
 		392325A810B2EE7D00075370 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		392325A910B2EE7D00075370 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		392325AA10B2EE7D00075370 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../Icon-Small.png"; sourceTree = "<group>"; };
@@ -397,6 +404,7 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				391D72E110C9EC9B00A115E1 /* button_red.png */,
 				39D0535110C03EA50020D7D9 /* priority_0.png */,
 				39D0535210C03EA50020D7D9 /* priority_1.png */,
 				390110F010C076FA00A51296 /* priority_2.png */,
@@ -445,6 +453,8 @@
 				3902C55110C01F09006BBF52 /* TaskEditDueDateViewController.m */,
 				39D0532110C036DF0020D7D9 /* TaskEditDueTimeViewController.h */,
 				39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */,
+				391D723910C9DECA00A115E1 /* TaskEditNotesViewController.h */,
+				391D723A10C9DECA00A115E1 /* TaskEditNotesViewController.m */,
 			);
 			name = editTask;
 			sourceTree = "<group>";
@@ -452,6 +462,7 @@
 		39A1F33010B9FED600671B42 /* editTask */ = {
 			isa = PBXGroup;
 			children = (
+				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
 				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
@@ -875,6 +886,8 @@
 				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
 				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
 				D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */,
+				391D723D10C9DECA00A115E1 /* TaskEditNotesViewController.xib in Resources */,
+				391D72E210C9EC9B00A115E1 /* button_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,6 +943,7 @@
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
 				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
 				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
+				391D723C10C9DECA00A115E1 /* TaskEditNotesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
