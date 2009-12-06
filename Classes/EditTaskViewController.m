@@ -10,6 +10,9 @@
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
 #import "TaskEditNotesViewController.h"
+#import "TaskEditTagsViewController.h"
+#import "TaskEditFolderViewController.h"
+#import "TaskEditContextViewController.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -386,33 +389,34 @@
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_FOLDER]) {
-		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
-//											   initWithNibName:@"TaskEditDueTimeViewController" 
-//											   bundle:nil];
-//		dtvc.title = @"Due Time";
-//		dtvc.task = self.task;
-//		[self.navigationController pushViewController:dtvc animated:YES];
-//		[dtvc release];
+		TaskEditFolderViewController *fvc = [[TaskEditFolderViewController alloc] 
+										   initWithNibName:@"TaskEditFolderViewController" 
+										   bundle:nil];
+		fvc.title = @"Folder";
+		fvc.task = self.task;
+		[self.navigationController pushViewController:fvc animated:YES];
+		[fvc release];
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_CONTEXT]) {
-		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
-//											   initWithNibName:@"TaskEditDueTimeViewController" 
-//											   bundle:nil];
-//		dtvc.title = @"Due Time";
-//		dtvc.task = self.task;
-//		[self.navigationController pushViewController:dtvc animated:YES];
-//		[dtvc release];
+		TaskEditContextViewController *cvc = [[TaskEditContextViewController alloc] 
+										   initWithNibName:@"TaskEditContextViewController" 
+										   bundle:nil];
+		cvc.title = @"Context";
+		cvc.task = self.task;
+		[self.navigationController pushViewController:cvc animated:YES];
+		[cvc release];
+		
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_TAGS]) {
-		//TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
-//											   initWithNibName:@"TaskEditDueTimeViewController" 
-//											   bundle:nil];
-//		dtvc.title = @"Due Time";
-//		dtvc.task = self.task;
-//		[self.navigationController pushViewController:dtvc animated:YES];
-//		[dtvc release];
+		TaskEditTagsViewController *tvc = [[TaskEditTagsViewController alloc] 
+											   initWithNibName:@"TaskEditTagsViewController" 
+											   bundle:nil];
+		tvc.title = @"Tags";
+		tvc.task = self.task;
+		[self.navigationController pushViewController:tvc animated:YES];
+		[tvc release];
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_NOTES]) {

@@ -64,6 +64,12 @@
 		39D0535510C03EA50020D7D9 /* priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535110C03EA50020D7D9 /* priority_0.png */; };
 		39D0535610C03EA50020D7D9 /* priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535210C03EA50020D7D9 /* priority_1.png */; };
 		39D0535810C03EA50020D7D9 /* priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535410C03EA50020D7D9 /* priority_3.png */; };
+		39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E31A2F10CC3657002F0D86 /* TaskEditTagsViewController.m */; };
+		39E31A3510CC387A002F0D86 /* TaskEditTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */; };
+		39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */; };
+		39E31B0A10CC4C4B002F0D86 /* TaskEditFolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */; };
+		39E31B0E10CC4C57002F0D86 /* TaskEditContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E31B0C10CC4C57002F0D86 /* TaskEditContextViewController.m */; };
+		39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */; };
 		A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
@@ -223,6 +229,15 @@
 		39D0535110C03EA50020D7D9 /* priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_0.png; sourceTree = "<group>"; };
 		39D0535210C03EA50020D7D9 /* priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_1.png; sourceTree = "<group>"; };
 		39D0535410C03EA50020D7D9 /* priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_3.png; sourceTree = "<group>"; };
+		39E31A2E10CC3657002F0D86 /* TaskEditTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditTagsViewController.h; sourceTree = "<group>"; };
+		39E31A2F10CC3657002F0D86 /* TaskEditTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditTagsViewController.m; sourceTree = "<group>"; };
+		39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskEditTagsViewController.xib; sourceTree = "<group>"; };
+		39E31B0610CC4C4B002F0D86 /* TaskEditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditFolderViewController.h; sourceTree = "<group>"; };
+		39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditFolderViewController.m; sourceTree = "<group>"; };
+		39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditFolderViewController.xib; path = Classes/TaskEditFolderViewController.xib; sourceTree = "<group>"; };
+		39E31B0B10CC4C57002F0D86 /* TaskEditContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditContextViewController.h; sourceTree = "<group>"; };
+		39E31B0C10CC4C57002F0D86 /* TaskEditContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditContextViewController.m; sourceTree = "<group>"; };
+		39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditContextViewController.xib; path = Classes/TaskEditContextViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
@@ -442,7 +457,7 @@
 			name = viewTasks;
 			sourceTree = "<group>";
 		};
-		39A1F30A10B9ECDF00671B42 /* editTask */ = {
+		39A1F30A10B9ECDF00671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
 				39A1F33410BA006300671B42 /* QuickAddViewController.h */,
@@ -455,11 +470,17 @@
 				39D0532210C036DF0020D7D9 /* TaskEditDueTimeViewController.m */,
 				391D723910C9DECA00A115E1 /* TaskEditNotesViewController.h */,
 				391D723A10C9DECA00A115E1 /* TaskEditNotesViewController.m */,
+				39E31A2E10CC3657002F0D86 /* TaskEditTagsViewController.h */,
+				39E31A2F10CC3657002F0D86 /* TaskEditTagsViewController.m */,
+				39E31B0610CC4C4B002F0D86 /* TaskEditFolderViewController.h */,
+				39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */,
+				39E31B0B10CC4C57002F0D86 /* TaskEditContextViewController.h */,
+				39E31B0C10CC4C57002F0D86 /* TaskEditContextViewController.m */,
 			);
-			name = editTask;
+			name = task;
 			sourceTree = "<group>";
 		};
-		39A1F33010B9FED600671B42 /* editTask */ = {
+		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
@@ -467,8 +488,11 @@
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
 				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
+				39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */,
+				39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */,
+				39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */,
 			);
-			name = editTask;
+			name = task;
 			sourceTree = "<group>";
 		};
 		39A1F45810BB21B500671B42 /* log */ = {
@@ -607,7 +631,7 @@
 				39B6590110B6B32D00825C1D /* tags */,
 				D436E98510BAB76300EA7624 /* settings */,
 				39B6584A10B6168600825C1D /* home */,
-				39A1F30A10B9ECDF00671B42 /* editTask */,
+				39A1F30A10B9ECDF00671B42 /* task */,
 				3902C47A10BEF151006BBF52 /* UICheckBox.h */,
 				3902C47B10BEF151006BBF52 /* UICheckBox.m */,
 			);
@@ -632,7 +656,7 @@
 			children = (
 				3901160210C1E82800A51296 /* temp */,
 				39C6D00E10BEDF70000A0C70 /* cells */,
-				39A1F33010B9FED600671B42 /* editTask */,
+				39A1F33010B9FED600671B42 /* task */,
 				39B6586110B618D700825C1D /* home */,
 				D436E8C810BA8C1200EA7624 /* folder */,
 				39B6593B10B6B83B00825C1D /* contexts */,
@@ -888,6 +912,9 @@
 				D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */,
 				391D723D10C9DECA00A115E1 /* TaskEditNotesViewController.xib in Resources */,
 				391D72E210C9EC9B00A115E1 /* button_red.png in Resources */,
+				39E31A3510CC387A002F0D86 /* TaskEditTagsViewController.xib in Resources */,
+				39E31B0A10CC4C4B002F0D86 /* TaskEditFolderViewController.xib in Resources */,
+				39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +971,9 @@
 				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
 				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
 				391D723C10C9DECA00A115E1 /* TaskEditNotesViewController.m in Sources */,
+				39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */,
+				39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */,
+				39E31B0E10CC4C57002F0D86 /* TaskEditContextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,4 +19,8 @@
 @dynamic g;
 @dynamic b;
 
+- (NSString *)description {
+	return self.name;
+}
+
 @end

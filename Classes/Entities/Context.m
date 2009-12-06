@@ -18,4 +18,8 @@
 @dynamic gpsX;
 @dynamic tasks;
 
+- (NSString *)description {
+	return self.name;
+}
+
 @end

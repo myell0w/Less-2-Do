@@ -15,4 +15,8 @@
 @dynamic name;
 @dynamic tasks;
 
+-(NSString *)description {
+	return self.name;
+}
+
 @end
