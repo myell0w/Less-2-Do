@@ -78,10 +78,18 @@
 											  entityForName:@"Tag"
 											  inManagedObjectContext:managedObjectContext];
 	
+	NSEntityDescription *taskEntityDescription = [NSEntityDescription
+											  entityForName:@"Task"
+											  inManagedObjectContext:managedObjectContext];
+	
 	/* create new object and set values */
 	Tag *newTag = [[Tag alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:managedObjectContext];
 	[newTag retain]; // TODO da bin ich mir nicht so sicher - der zurückgelieferte Tag müsste dann wohl vom aufrufer released werden
+	Task  *newTask = [[Task alloc] initWithEntity:taskEntityDescription insertIntoManagedObjectContext:managedObjectContext];
+	[newTask retain];
 	newTag.name = theName;
+	[newTag addTasksObject:newTask];
+	
 	
 	/* commit inserting and check for errors */
 	BOOL saveSuccessful = [managedObjectContext save:&saveError];
