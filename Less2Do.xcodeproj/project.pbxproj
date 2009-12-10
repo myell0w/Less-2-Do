@@ -106,18 +106,13 @@
 		D45C314F10C015BF00B59FE0 /* ContextDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45C314E10C015BF00B59FE0 /* ContextDetailViewController.m */; };
 		D46A63F910C3EBDD00FBC5EB /* TagDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A63F810C3EBDD00FBC5EB /* TagDetailViewController.m */; };
 		D46A641A10C3F21700FBC5EB /* FolderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A641910C3F21700FBC5EB /* FolderDetailViewController.m */; };
+		D4A724DE10CEA98B00371B31 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A724DC10CEA98B00371B31 /* EditFolderViewController.m */; };
+		D4A724DF10CEA98B00371B31 /* EditFolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A724DD10CEA98B00371B31 /* EditFolderViewController.xib */; };
 		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
 		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		395C0E3E10C667B700287919 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758;
-			remoteInfo = libToodledoAPIMac;
-		};
 		39B65A0010B7080D00825C1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
@@ -304,6 +299,9 @@
 		D46A63F810C3EBDD00FBC5EB /* TagDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagDetailViewController.m; sourceTree = "<group>"; };
 		D46A641810C3F21700FBC5EB /* FolderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDetailViewController.h; sourceTree = "<group>"; };
 		D46A641910C3F21700FBC5EB /* FolderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDetailViewController.m; sourceTree = "<group>"; };
+		D4A724DB10CEA98B00371B31 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
+		D4A724DC10CEA98B00371B31 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
+		D4A724DD10CEA98B00371B31 /* EditFolderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditFolderViewController.xib; path = Classes/EditFolderViewController.xib; sourceTree = "<group>"; };
 		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
 		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
@@ -552,6 +550,8 @@
 				D436E8B610BA877300EA7624 /* FolderFirstLevelController.m */,
 				D436E8B110BA86AA00EA7624 /* FolderNavigationController.h */,
 				D436E8B210BA86AA00EA7624 /* FolderNavigationController.m */,
+				D4A724DB10CEA98B00371B31 /* EditFolderViewController.h */,
+				D4A724DC10CEA98B00371B31 /* EditFolderViewController.m */,
 			);
 			name = folder;
 			sourceTree = "<group>";
@@ -606,7 +606,6 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				395C0E3F10C667B700287919 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -754,6 +753,7 @@
 		D436E8C810BA8C1200EA7624 /* folder */ = {
 			isa = PBXGroup;
 			children = (
+				D4A724DD10CEA98B00371B31 /* EditFolderViewController.xib */,
 				D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */,
 			);
 			name = folder;
@@ -844,13 +844,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		395C0E3F10C667B700287919 /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = 395C0E3E10C667B700287919 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -915,6 +908,7 @@
 				39E31A3510CC387A002F0D86 /* TaskEditTagsViewController.xib in Resources */,
 				39E31B0A10CC4C4B002F0D86 /* TaskEditFolderViewController.xib in Resources */,
 				39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */,
+				D4A724DF10CEA98B00371B31 /* EditFolderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,6 +968,7 @@
 				39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */,
 				39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */,
 				39E31B0E10CC4C57002F0D86 /* TaskEditContextViewController.m in Sources */,
+				D4A724DE10CEA98B00371B31 /* EditFolderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
