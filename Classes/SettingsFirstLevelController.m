@@ -11,9 +11,8 @@
 
 @implementation SettingsFirstLevelController
 
-@synthesize tableView;
-@synthesize controllersSection0;
-@synthesize controllersSection1;
+@synthesize controllersSection0 = _controllersSection0;
+@synthesize controllersSection1 = _controllersSection1;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -82,9 +81,8 @@
 }
 
 -(void)dealloc {
-	[tableView release];
-	[controllersSection0 release];
-	[controllersSection1 release];
+	[_controllersSection0 release];
+	[_controllersSection1 release];
 	
 	[super dealloc];
 }
@@ -108,7 +106,7 @@
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
 	SettingsViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
@@ -143,9 +141,9 @@
 // returns either controllersSection0 or 1, depending on the section-index
 -(NSArray *) sectionForIndex:(NSInteger)index {
 	if (index == 0) {
-		return controllersSection0;
+		return self.controllersSection0;
 	} else {
-		return controllersSection1;
+		return self.controllersSection1;
 	}
 }
 

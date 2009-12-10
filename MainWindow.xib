@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="70"/>
+			<integer value="77"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -51,18 +51,18 @@
 			<object class="IBUITabBarController" id="250039370">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="417852258">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="702490328">
-						<string key="IBUITitle">Tags</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="887480160">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="932832869">
+						<string key="IBUITitle">Settings</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">tags.png</string>
+							<string key="NSResourceName">settings.png</string>
 						</object>
 						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="250039370"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="295259195">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="749391150">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -72,22 +72,13 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="593634768">
-							<string key="IBUITitle">Tags</string>
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="367229416">
+						<object class="IBUIViewController" id="921407598">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="618069853">
 								<reference key="IBUINavigationBar"/>
-								<string key="IBUITitle">Tags</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="558846913">
-									<string key="IBUITitle">Edit</string>
-									<int key="IBUIStyle">1</int>
-								</object>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="405181728">
-									<int key="IBUIStyle">1</int>
-									<int key="IBUISystemItemIdentifier">4</int>
-								</object>
+								<string key="IBUITitle">Settings</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="417852258"/>
-							<string key="IBUINibName">TagsTableView</string>
+							<reference key="IBUIParentViewController" ref="887480160"/>
+							<string key="IBUINibName">SettingsTableView</string>
 						</object>
 					</object>
 				</object>
@@ -213,19 +204,18 @@
 							</object>
 						</object>
 					</object>
-					<reference ref="417852258"/>
-					<object class="IBUINavigationController" id="887480160">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="932832869">
-							<string key="IBUITitle">Settings</string>
+					<object class="IBUINavigationController" id="417852258">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="702490328">
+							<string key="IBUITitle">Tags</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">settings.png</string>
+								<string key="NSResourceName">tags.png</string>
 							</object>
 							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="250039370"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="749391150">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="295259195">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{0, 0}</string>
@@ -235,14 +225,25 @@
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="921407598">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="618069853">
-									<string key="IBUITitle">Settings</string>
+							<object class="IBUIViewController" id="593634768">
+								<string key="IBUITitle">Tags</string>
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="367229416">
+									<string key="IBUITitle">Tags</string>
+									<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="558846913">
+										<string key="IBUITitle">Edit</string>
+										<int key="IBUIStyle">1</int>
+									</object>
+									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="405181728">
+										<int key="IBUIStyle">1</int>
+										<int key="IBUISystemItemIdentifier">4</int>
+									</object>
 								</object>
-								<reference key="IBUIParentViewController" ref="887480160"/>
+								<reference key="IBUIParentViewController" ref="417852258"/>
+								<string key="IBUINibName">TagsTableView</string>
 							</object>
 						</object>
 					</object>
+					<reference ref="887480160"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="990750393">
 					<nil key="NSNextResponder"/>
@@ -720,7 +721,7 @@
 					<string>UIResponder</string>
 					<string>{{996, 126}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{541, 21}, {320, 480}}</string>
+					<string>{{644, 446}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>Less2DoAppDelegate</string>
@@ -839,6 +840,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">HomeFirstLevelViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">taskAdded</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tableView</string>
 						<string key="NS.object.0">UITableView</string>
@@ -857,12 +862,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addTaskButtonPressed:</string>
 							<string>editDetails:</string>
+							<string>hideQuickAdd</string>
 							<string>quickAddTask:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>NSNotification</string>
+							<string>id</string>
 							<string>NSNotification</string>
 						</object>
 					</object>
