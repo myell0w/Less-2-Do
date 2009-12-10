@@ -10,6 +10,7 @@
 #import "TasksListViewController.h"
 #import "FolderDAO.h"
 #import "FolderDetailViewController.h"
+#import "EditFolderViewController.h"
 
 @implementation FolderFirstLevelController
 @synthesize list;
@@ -33,11 +34,14 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
+	//FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
+	EditFolderViewController *folderDetail = [[EditFolderViewController alloc] initWithNibName:@"EditFolderViewController" bundle:nil parent:self];
 	folderDetail.title = @"New Folder";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:folderDetail];
-	[folderDetail release];
+	//[self.navigationController pushViewController:folderDetail animated:YES];
+	
 	[self presentModalViewController:nc animated:YES];
+	[folderDetail release];
 	[nc release];
 }
 
@@ -89,11 +93,11 @@
 	self.title = @"Folder";
 	[array release];
 	
-	UIView *textField = [self.tableView viewWithTag:NAME_ROW_INDEX];
+	/*UIView *textField = [self.tableView viewWithTag:NAME_ROW_INDEX];
 	if(textField != nil) {
 		ALog ("Textfield found");
 		[textField resignFirstResponder];
-	}
+	}*/
 	
 	[super viewDidLoad];
 }
