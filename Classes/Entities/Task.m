@@ -38,4 +38,77 @@
 @dynamic abContact;
 @dynamic extendedInfo;
 
+
+- (void)setFolder:(Folder *)value
+{
+	self.folder = value;
+}
+
+- (void)removeFolder
+{
+	self.folder = nil;
+	//[self.setFolder value:nil];
+	//[setFolder:nil];
+}
+
+- (void)setContext:(Context *)value
+{
+	self.context = value;
+}
+
+- (void)removeContext
+{
+	self.context = nil;
+}
+
++ (NSArray *) getAllTasks:(NSError *)error
+{
+	NSError *fetchError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Task"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	/* fetch objects */
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
+}
+
+- (BOOL)saveTask:(NSError**)error
+{
+	NSError *saveError;
+
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+
+	/* commit updateing and check for errors */
+	BOOL saveSuccessful = [managedObjectContext save:&saveError];
+
+	if (saveSuccessful == NO) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotAddedError userInfo:nil];
+		return NO;
+	}
+
+	return YES;
+}
+
 @end

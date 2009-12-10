@@ -58,5 +58,17 @@
 - (void)addExtendedInfo:(NSSet *)value;
 - (void)removeExtendedInfo:(NSSet *)value;
 
+- (void)setFolder:(Folder *)value;
+- (void)removeFolder;
+- (void)setContext:(Context *)value;
+- (void)removeContext;
+
+- (BOOL)saveTask:(NSError**)error;
+
++ (NSArray *) getAllTasks:(NSError *)error;
+
+
+
+
 @end
 
