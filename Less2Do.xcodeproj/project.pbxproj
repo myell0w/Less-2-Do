@@ -109,8 +109,10 @@
 		D4C4C3D610D2574B00B55BA9 /* EditFolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3D010D2574B00B55BA9 /* EditFolderViewController.xib */; };
 		D4C4C3D710D2574B00B55BA9 /* EditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */; };
 		D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */; };
-		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
-		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
+		D4C4C49B10D28BB800B55BA9 /* whiteBoarderedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */; };
+		D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */; };
+		D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C52810D298C300B55BA9 /* FolderCell.m */; };
+		D4C4C52B10D29A3000B55BA9 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C52A10D29A3000B55BA9 /* FolderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -303,9 +305,11 @@
 		D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditContextViewController.xib; path = Classes/EditContextViewController.xib; sourceTree = "<group>"; };
 		D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContextViewController.m; sourceTree = "<group>"; };
 		D4C4C3D310D2574B00B55BA9 /* EditContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContextViewController.h; sourceTree = "<group>"; };
-		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
-		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
-		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
+		D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBoarderedButton.png; sourceTree = "<group>"; };
+		D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallWhiteBoarderedButton.png; sourceTree = "<group>"; };
+		D4C4C52710D298C300B55BA9 /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
+		D4C4C52810D298C300B55BA9 /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
+		D4C4C52A10D29A3000B55BA9 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +422,8 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */,
+				D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */,
 				391D72E110C9EC9B00A115E1 /* button_red.png */,
 				39D0535110C03EA50020D7D9 /* priority_0.png */,
 				39D0535210C03EA50020D7D9 /* priority_1.png */,
@@ -644,8 +650,8 @@
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
 				39C6D05B10BEE82E000A0C70 /* TaskPriorityCell.m */,
-				D4E4762810C571E600665220 /* ColorChooserCell.h */,
-				D4E4762910C571E600665220 /* ColorChooserCell.m */,
+				D4C4C52710D298C300B55BA9 /* FolderCell.h */,
+				D4C4C52810D298C300B55BA9 /* FolderCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -669,7 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				39C6D05D10BEE8B9000A0C70 /* TaskPriorityCell.xib */,
-				D4E4762C10C5733D00665220 /* ColorChooserCell.xib */,
+				D4C4C52A10D29A3000B55BA9 /* FolderCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -902,7 +908,6 @@
 				3901114410C07C2900A51296 /* home_today.png in Resources */,
 				3901114510C07C2900A51296 /* home_overdue.png in Resources */,
 				3901114610C07C2900A51296 /* home_this_week.png in Resources */,
-				D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */,
 				391D723D10C9DECA00A115E1 /* TaskEditNotesViewController.xib in Resources */,
 				391D72E210C9EC9B00A115E1 /* button_red.png in Resources */,
 				39E31A3510CC387A002F0D86 /* TaskEditTagsViewController.xib in Resources */,
@@ -912,6 +917,9 @@
 				D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */,
 				D4C4C3D610D2574B00B55BA9 /* EditFolderViewController.xib in Resources */,
 				D4C4C3D710D2574B00B55BA9 /* EditContextViewController.xib in Resources */,
+				D4C4C49B10D28BB800B55BA9 /* whiteBoarderedButton.png in Resources */,
+				D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */,
+				D4C4C52B10D29A3000B55BA9 /* FolderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,7 +970,6 @@
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
 				CF25612110C2820500019621 /* TaskDAO.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
-				D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */,
 				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
 				391D723C10C9DECA00A115E1 /* TaskEditNotesViewController.m in Sources */,
 				39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */,
@@ -971,6 +978,7 @@
 				D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */,
 				D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */,
 				D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */,
+				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,15 +14,18 @@
 	UITextField *_nameTextField;
 	Folder *_folder;   
 	FolderFirstLevelController *_parent;
+	UIColor *_color;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *nameTextField;
 @property (nonatomic, retain) Folder *folder;
 @property (nonatomic, retain) FolderFirstLevelController *parent;
+@property (nonatomic, retain) UIColor *color;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent folder:(Folder *)aFolder;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
 - (IBAction)textFieldDone:(id)sender;
+- (IBAction)colorButtonPressed:(id)sender;
 @end
