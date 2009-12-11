@@ -8,7 +8,7 @@
 
 #import "ContextsFirstLevelViewController.h"
 #import "TasksListViewController.h"
-#import "ContextDetailViewController.h"
+#import "EditContextViewController.h"
 
 @implementation ContextsFirstLevelViewController
 
@@ -33,7 +33,7 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	ContextDetailViewController *contextDetail = [[ContextDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
+	EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self];
 	contextDetail.title = @"Add Context";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
 	[contextDetail release];
@@ -209,7 +209,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		ContextDetailViewController *contextDetail = [[ContextDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andContext:context];
+		EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self context:context];
 		contextDetail.title = context.name;
 		[self.navigationController pushViewController:contextDetail animated:YES];
 		[contextDetail release];

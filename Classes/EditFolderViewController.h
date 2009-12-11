@@ -20,11 +20,9 @@
 @property (nonatomic, retain) Folder *folder;
 @property (nonatomic, retain) FolderFirstLevelController *parent;
 
-//- (id)initWithStyle:(UITableViewStyle)aStyle andParent:(FolderFirstLevelController *)aParent andFolder:(Folder *)aFolder;
-//- (id)initWithStyle:(UITableViewStyle)aStyle andParent:(FolderFirstLevelController *)aParent;
-//- (UITableViewCell *)createNameCell;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent folder:(Folder *)aFolder;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent;
 - (IBAction)cancel:(id)sender;
 - (IBAction)save:(id)sender;
+- (IBAction)textFieldDone:(id)sender;
 @end

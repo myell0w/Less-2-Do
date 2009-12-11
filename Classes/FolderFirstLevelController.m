@@ -9,7 +9,6 @@
 #import "FolderFirstLevelController.h"
 #import "TasksListViewController.h"
 #import "FolderDAO.h"
-#import "FolderDetailViewController.h"
 #import "EditFolderViewController.h"
 
 @implementation FolderFirstLevelController
@@ -34,11 +33,9 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	//FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];
 	EditFolderViewController *folderDetail = [[EditFolderViewController alloc] initWithNibName:@"EditFolderViewController" bundle:nil parent:self];
 	folderDetail.title = @"New Folder";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:folderDetail];
-	//[self.navigationController pushViewController:folderDetail animated:YES];
 	
 	[self presentModalViewController:nc animated:YES];
 	[folderDetail release];
@@ -247,7 +244,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		FolderDetailViewController *folderDetail = [[FolderDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andFolder:folder];
+		EditFolderViewController *folderDetail = [[EditFolderViewController alloc] initWithNibName:@"EditFolderViewController" bundle:nil parent:self folder:folder];
 		folderDetail.title = folder.name;
 		[self.navigationController pushViewController:folderDetail animated:YES];
 		[folderDetail release];
