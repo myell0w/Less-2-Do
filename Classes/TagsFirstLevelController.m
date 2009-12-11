@@ -7,7 +7,7 @@
 //
 
 #import "TagsFirstLevelController.h"
-#import "TagDetailViewController.h"
+#import "EditTagViewController.h"
 #import "TasksListViewController.h"
 #import "TagDAO.h"
 
@@ -33,7 +33,7 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	TagDetailViewController *tagDetail = [[TagDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self];	
+	EditTagViewController *tagDetail = [[EditTagViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self];
 	tagDetail.title = @"New Tag";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:tagDetail];
 	[tagDetail release];
@@ -203,7 +203,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		TagDetailViewController *tagDetail = [[TagDetailViewController alloc] initWithStyle:UITableViewStyleGrouped andParent:self andTag:tag];
+		EditTagViewController *tagDetail = [[EditTagViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self tag:tag];
 		tagDetail.title = tag.name;
 		[self.navigationController pushViewController:tagDetail animated:YES];
 		[tagDetail release];

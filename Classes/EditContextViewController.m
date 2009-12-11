@@ -1,25 +1,24 @@
 //
-//  EditFolderViewController.m
+//  EditContextViewController.m
 //  Less2Do
 //
-//  Created by Philip Messlehner on 08.12.09.
+//  Created by Philip Messlehner on 11.12.09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "EditFolderViewController.h"
-#import "FolderDAO.h"
+#import "EditContextViewController.h"
+#import "ContextDAO.h"
 #import "TasksListViewController.h"
 
-
-@implementation EditFolderViewController
+@implementation EditContextViewController
 @synthesize nameTextField = _nameTextField;
-@synthesize folder = _folder;
+@synthesize context = _context;
 @synthesize parent = _parent;
 
 
 // Pressing Cancel will pop the actuel View away
 - (IBAction) cancel:(id)sender {
-	if (self.folder == nil)
+	if (self.context == nil)
 		[self dismissModalViewControllerAnimated:YES];
 	else
 		[self.navigationController popViewControllerAnimated:YES];
@@ -28,22 +27,22 @@
 - (IBAction) save:(id)sender {
 	
 	// Update
-	if (self.folder != nil) {
+	if (self.context != nil) {
 		
 		if([[self.nameTextField text] length]==0) {
 			ALog ("Invalid Input");
 			return;
 		}
-		self.folder.name = [self.nameTextField text];
+		self.context.name = [self.nameTextField text];
 		
 		
 		NSError *error;
-		DLog ("Try to update Folder '%@'", self.folder.name);
-		if(![FolderDAO updateFolder:self.folder error:&error]) {
-			ALog ("Error occured while updating Folder");
+		DLog ("Try to update context '%@'", self.context.name);
+		if(![ContextDAO updateContext:self.context error:&error]) {
+			ALog ("Error occured while updating context");
 		}
 		else {
-			ALog ("Folder updated");
+			ALog ("context updated");
 		}
 		
 		[self.parent.tableView reloadData];
@@ -56,16 +55,14 @@
 			return;
 		
 		NSError *error;
-		NSNumber *order = [[NSNumber alloc] initWithInt:[self.parent.list count]];
-		self.folder = [FolderDAO addFolderWithName:[self.nameTextField text] theTasks:nil theOrder:order error:&error];
-		ALog ("Folder inserted");
-		TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-		folderView.title = self.folder.name;
-		folderView.image = [UIImage imageNamed:@"all_tasks.png"];
-		[self.parent.controllersSection1 addObject:folderView];
-		[self.parent.list addObject:self.folder];
-		[folderView release];
-		[order release];
+		self.context = [ContextDAO addContextWithName:[self.nameTextField text] error:&error];
+		ALog ("context inserted");
+		TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+		contextView.title = self.context.name;
+		contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+		[self.parent.controllersSection1 addObject:contextView];
+		[self.parent.list addObject:self.context];
+		[contextView release];
 		[self dismissModalViewControllerAnimated:YES];
 	}
 }
@@ -74,15 +71,16 @@
 	[sender resignFirstResponder];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent folder:(Folder *)aFolder {
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(ContextsFirstLevelViewController *)aParent context:(Context *)aContext {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.parent = aParent;
-		self.folder = aFolder;
+		self.context = aContext;
     }
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(FolderFirstLevelController *)aParent {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(ContextsFirstLevelViewController *)aParent {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.parent = aParent;
     }
@@ -108,8 +106,8 @@
 	self.navigationItem.rightBarButtonItem = saveButton;
 	[saveButton release];
 	
-	if(self.folder != nil)
-		self.nameTextField.text = self.folder.name;
+	if(self.context != nil)
+		self.nameTextField.text = self.context.name;
 	
 	[self.nameTextField becomeFirstResponder];
 	
@@ -122,13 +120,13 @@
 
 - (void)viewDidUnload {
 	self.nameTextField = nil;
-	self.folder = nil;
+	self.context = nil;
 	self.parent = nil;
 }
 
 
 - (void)dealloc {
-	[_folder release];
+	[_context release];
 	
     [super dealloc];
 }
