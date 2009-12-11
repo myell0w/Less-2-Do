@@ -12,9 +12,10 @@
 #import "EditFolderViewController.h"
 
 @implementation FolderFirstLevelController
-@synthesize list;
-@synthesize controllersSection0;
-@synthesize controllersSection1;
+@synthesize list = _list;
+@synthesize controllersSection0 = _controllersSection0;
+@synthesize controllersSection1 = _controllersSection1;
+@synthesize mustReorder = _mustReorder;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
@@ -29,6 +30,9 @@
     else {
         [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+		DLog ("Go to reorder");
+		if (self.mustReorder == YES) 
+			[self reorderList];
 	}
 }
 
@@ -46,7 +50,7 @@
 	ALog ("FolderDetailView start DidLoad");
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
-	list = [[NSMutableArray alloc] init];
+	self.list = [[NSMutableArray alloc] init];
 	
 	//init Second-Level Views in Section Tags
 	
@@ -62,7 +66,6 @@
 	[array release];
 	array = [[NSMutableArray alloc] init];
 	
-	// TODO: Load Folder
 	NSError *error;
 	NSArray *objects = [FolderDAO allFolders:&error];
 	
@@ -83,18 +86,14 @@
 		}
 	}
 	
-	[list addObjectsFromArray:objects];
-	DLog ("%d Items in FolderList", [list count]);
+	[self.list addObjectsFromArray:objects];
+	DLog ("%d Items in FolderList", [self.list count]);
 	
 	self.controllersSection1 = array;
 	self.title = @"Folder";
 	[array release];
 	
-	/*UIView *textField = [self.tableView viewWithTag:NAME_ROW_INDEX];
-	if(textField != nil) {
-		ALog ("Textfield found");
-		[textField resignFirstResponder];
-	}*/
+	self.mustReorder = NO;
 	
 	[super viewDidLoad];
 }
@@ -112,9 +111,9 @@
 }
 
 -(void)dealloc {
-	[list release];
-	[controllersSection0 release];
-	[controllersSection1 release];
+	[_list release];
+	[_controllersSection0 release];
+	[_controllersSection1 release];
 	
 	[super dealloc];
 }
@@ -126,7 +125,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	// if there is no Folder, only display the first Section
-	if ([list count] == 0)
+	if ([self.list count] == 0)
 		return 1;
 	return 2;
 }
@@ -158,7 +157,7 @@
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;
 	}
 	else {
-		Folder *folder = [list objectAtIndex:row];
+		Folder *folder = [self.list objectAtIndex:row];
 		cell.textLabel.text = folder.name;
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
@@ -173,7 +172,7 @@
 		
 		NSUInteger row = [indexPath row];	
 		NSError *error;
-		Folder *folder = [list objectAtIndex:row];
+		Folder *folder = [self.list objectAtIndex:row];
 		DLog ("Try to delete Folder '%@'", folder.name);
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
@@ -195,28 +194,16 @@
     return YES;
 }
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    //TODO: DAO Instructions to reorder
-	/*NSNumber *fromRow = [[NSNumber alloc] initWithInt:[fromIndexPath row]];
-    NSNumber *toRow = [[NSNumber alloc] initWithInt:[toIndexPath row]];
+    self.mustReorder = YES;
+	DLog ("moved Row");
+	
+	NSUInteger fromRow = [fromIndexPath row];
+    NSUInteger toRow = [toIndexPath row];
     
-	Folder *fromObject = [self.list objectAtIndex:[fromIndexPath row]];
-	fromObject.order = toRow;
-	Folder *toObject = [self.list objectAtIndex:[toIndexPath row]];
-	fromObject.order = fromRow;
-	
-	NSError *error;
-	DLog ("Try to update Folders (ordering)");
-	if(![FolderDAO updateFolder:fromObject error:&error] || ![FolderDAO updateFolder:toObject error:&error] ) {
-		ALog ("Error occured while updating Folder (ordering)");
-	}
-	else {
-		ALog ("Folder updated (ordering)");
-		ALog ("Folder: %@, Order: %d", toObject.name, toObject.order);
-		ALog ("Folder: %@, Order: %d", fromObject.name, fromObject.order);
-	}
-	
-	[fromRow release];
-	[toRow release];*/
+    id object = [[self.list objectAtIndex:fromRow] retain];
+    [self.list removeObjectAtIndex:fromRow];
+    [self.list insertObject:object atIndex:toRow];
+    [object release];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +224,7 @@
 	if([indexPath section] == 1) {
 		NSUInteger row = [indexPath row];
 		DLog ("%d Items in FolderList", [list count]);
-		Folder *folder = [list objectAtIndex:row];
+		Folder *folder = [self.list objectAtIndex:row];
 		DLog ("Try to load DetailView for Folder '%@'", folder.name);
 		
 		[self.tableView setEditing:NO animated:NO];
@@ -277,10 +264,25 @@
 // returns either controllersSection0 or 1, depending on the section-index
 -(NSArray *) sectionForIndex:(NSInteger)index {
 	if (index == 0) {
-		return controllersSection0;
-	} else {
-		return controllersSection1;
+		return self.controllersSection0;
 	}
+	return self.controllersSection1;
+}
+
+// reorders the List with act. Index in List
+- (void)reorderList {
+	for(int i=0; i<[self.list count]; i++) {
+		Folder *folder=(Folder *)[self.list objectAtIndex:i];
+		NSNumber *order = [[NSNumber alloc] initWithInt:i];
+		folder.order = order;
+		[order release];
+		NSError *error;
+		DLog ("Try to update Folders (ordering): %@, order %@", folder.name, folder.order);
+		if(![FolderDAO updateFolder:folder error:&error]) {
+			ALog ("Error occured while updating Folder (ordering)");
+		}
+	}
+	self.mustReorder = NO;
 }
 
 @end
