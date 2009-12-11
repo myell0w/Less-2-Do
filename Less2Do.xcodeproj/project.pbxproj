@@ -104,6 +104,11 @@
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
+		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
+		D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C3CE10D2574B00B55BA9 /* EditTagViewController.m */; };
+		D4C4C3D610D2574B00B55BA9 /* EditFolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3D010D2574B00B55BA9 /* EditFolderViewController.xib */; };
+		D4C4C3D710D2574B00B55BA9 /* EditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */; };
+		D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */; };
 		D4E4762A10C571E600665220 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4762910C571E600665220 /* ColorChooserCell.m */; };
 		D4E4762D10C5733D00665220 /* ColorChooserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4762C10C5733D00665220 /* ColorChooserCell.xib */; };
 /* End PBXBuildFile section */
@@ -291,6 +296,13 @@
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
+		D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTagViewController.xib; path = Classes/EditTagViewController.xib; sourceTree = "<group>"; };
+		D4C4C3CE10D2574B00B55BA9 /* EditTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTagViewController.m; sourceTree = "<group>"; };
+		D4C4C3CF10D2574B00B55BA9 /* EditTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTagViewController.h; sourceTree = "<group>"; };
+		D4C4C3D010D2574B00B55BA9 /* EditFolderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditFolderViewController.xib; path = Classes/EditFolderViewController.xib; sourceTree = "<group>"; };
+		D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditContextViewController.xib; path = Classes/EditContextViewController.xib; sourceTree = "<group>"; };
+		D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContextViewController.m; sourceTree = "<group>"; };
+		D4C4C3D310D2574B00B55BA9 /* EditContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContextViewController.h; sourceTree = "<group>"; };
 		D4E4762810C571E600665220 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
 		D4E4762910C571E600665220 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		D4E4762C10C5733D00665220 /* ColorChooserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorChooserCell.xib; sourceTree = "<group>"; };
@@ -520,6 +532,8 @@
 		39B658FF10B6B31200825C1D /* contexts */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */,
+				D4C4C3D310D2574B00B55BA9 /* EditContextViewController.h */,
 				39B6590510B6B3A100825C1D /* ContextsFirstLevelViewController.h */,
 				39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */,
 				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
@@ -544,6 +558,8 @@
 		39B6590110B6B32D00825C1D /* tags */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C3CE10D2574B00B55BA9 /* EditTagViewController.m */,
+				D4C4C3CF10D2574B00B55BA9 /* EditTagViewController.h */,
 				D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */,
 				D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */,
 				D436E8AA10BA858E00EA7624 /* TagsNavigationController.h */,
@@ -555,6 +571,7 @@
 		39B6593B10B6B83B00825C1D /* contexts */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */,
 				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
 			);
 			name = contexts;
@@ -728,6 +745,7 @@
 		D436E8AE10BA859C00EA7624 /* tags */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */,
 				D436E8AF10BA85B900EA7624 /* TagsTableView.xib */,
 			);
 			name = tags;
@@ -736,6 +754,7 @@
 		D436E8C810BA8C1200EA7624 /* folder */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C3D010D2574B00B55BA9 /* EditFolderViewController.xib */,
 				D436E8C910BA8C2E00EA7624 /* FolderTableView.xib */,
 			);
 			name = folder;
@@ -890,6 +909,9 @@
 				39E31B0A10CC4C4B002F0D86 /* TaskEditFolderViewController.xib in Resources */,
 				39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */,
 				D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */,
+				D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */,
+				D4C4C3D610D2574B00B55BA9 /* EditFolderViewController.xib in Resources */,
+				D4C4C3D710D2574B00B55BA9 /* EditContextViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +969,8 @@
 				39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */,
 				39E31B0E10CC4C57002F0D86 /* TaskEditContextViewController.m in Sources */,
 				D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */,
+				D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */,
+				D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
