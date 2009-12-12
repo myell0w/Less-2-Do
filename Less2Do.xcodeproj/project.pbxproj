@@ -113,6 +113,7 @@
 		D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */; };
 		D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C52810D298C300B55BA9 /* FolderCell.m */; };
 		D4C4C52B10D29A3000B55BA9 /* FolderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C52A10D29A3000B55BA9 /* FolderCell.xib */; };
+		D4C4C59110D2AF8D00B55BA9 /* UIColor+ColorComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C58F10D2AF8D00B55BA9 /* UIColor+ColorComponents.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -310,6 +311,8 @@
 		D4C4C52710D298C300B55BA9 /* FolderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCell.h; sourceTree = "<group>"; };
 		D4C4C52810D298C300B55BA9 /* FolderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCell.m; sourceTree = "<group>"; };
 		D4C4C52A10D29A3000B55BA9 /* FolderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FolderCell.xib; sourceTree = "<group>"; };
+		D4C4C58F10D2AF8D00B55BA9 /* UIColor+ColorComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorComponents.m"; sourceTree = "<group>"; };
+		D4C4C59010D2AF8D00B55BA9 /* UIColor+ColorComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorComponents.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +347,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4C4C58D10D2AF5800B55BA9 /* util */,
 				39C6CF9210BECEA8000A0C70 /* ui */,
 				39C6CF9010BECE95000A0C70 /* db */,
 				39A1F45810BB21B500671B42 /* log */,
@@ -787,6 +791,15 @@
 			name = settings;
 			sourceTree = "<group>";
 		};
+		D4C4C58D10D2AF5800B55BA9 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				D4C4C58F10D2AF8D00B55BA9 /* UIColor+ColorComponents.m */,
+				D4C4C59010D2AF8D00B55BA9 /* UIColor+ColorComponents.h */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -979,6 +992,7 @@
 				D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */,
 				D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */,
 				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
+				D4C4C59110D2AF8D00B55BA9 /* UIColor+ColorComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

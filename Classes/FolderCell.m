@@ -10,7 +10,7 @@
 
 
 @implementation FolderCell
-@synthesize imageView = _imageView;
+@synthesize imageView = _imageview;
 @synthesize title = _title;
 @synthesize detail = _detail;
 

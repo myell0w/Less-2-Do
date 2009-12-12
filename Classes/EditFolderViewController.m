@@ -9,7 +9,7 @@
 #import "EditFolderViewController.h"
 #import "FolderDAO.h"
 #import "TasksListViewController.h"
-
+#import "UIColor+ColorComponents.h"
 
 @implementation EditFolderViewController
 @synthesize nameTextField = _nameTextField;
@@ -35,7 +35,10 @@
 			return;
 		}
 		self.folder.name = [self.nameTextField text];
-		// TODO: setColor
+
+		self.folder.r = [self.color redColorComponent];
+		self.folder.g = [self.color greenColorComponent];
+		self.folder.b = [self.color blueColorComponent];
 		
 		NSError *error;
 		DLog ("Try to update Folder '%@'", self.folder.name);
@@ -55,12 +58,21 @@
 		if ([[self.nameTextField text] length] == 0)
 			return;
 		
-		// TODO: setColor
-		
 		NSError *error;
 		NSNumber *order = [[NSNumber alloc] initWithInt:[self.parent.list count]];
 		self.folder = [FolderDAO addFolderWithName:[self.nameTextField text] theTasks:nil theOrder:order error:&error];
 		ALog ("Folder inserted");
+		[self.color colorComponents];
+		self.folder.r = [self.color redColorComponent];
+		self.folder.g = [self.color greenColorComponent];
+		self.folder.b = [self.color blueColorComponent];
+		DLog ("Try to update Folder '%@'", self.folder.name);
+		if(![FolderDAO updateFolder:self.folder error:&error]) {
+			ALog ("Error occured while updating Folder");
+		}
+		else {
+			ALog ("Folder updated");
+		}
 		TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 		folderView.title = self.folder.name;
 		
