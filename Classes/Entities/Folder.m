@@ -74,7 +74,10 @@
 
 + (void)deleteFolder:(Folder *)theFolder
 {
-	
+	for(theFolder.tasks as task)
+	{
+		task.deleteFolder;
+	}
 }
 
 + (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue

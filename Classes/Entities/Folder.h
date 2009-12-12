@@ -28,9 +28,15 @@
 - (void)addTasks:(NSSet *)value;
 - (void)removeTasks:(NSSet *)value;
 
+
+//Self made
 - (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
 - (void)setOrder:(NSNumber *)order;
 - (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
++ (NSArray *)getAllFolders; //Automatisch geordnet nach Order
++ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
++ (NSArray *)getFolderbyTask:(Task *)theTask;
++ (void)deleteFolder:(Folder *)theFolder;
 
 @end
 
