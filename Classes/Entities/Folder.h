@@ -28,5 +28,9 @@
 - (void)addTasks:(NSSet *)value;
 - (void)removeTasks:(NSSet *)value;
 
+- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
+- (void)setOrder:(NSNumber *)order;
+- (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
+
 @end
 
