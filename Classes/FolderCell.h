@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
 
 @interface FolderCell : CustomCell {
 	// Outlet for ImageView to set the BackgroundColor
-	UIImageView *_imageView;
+	UIImageView *_imageview;
 	
 	UILabel *_title;
 	UILabel *_detail;

@@ -10,6 +10,7 @@
 #import "TasksListViewController.h"
 #import "FolderDAO.h"
 #import "EditFolderViewController.h"
+#import "FolderCell.h"
 
 @implementation FolderFirstLevelController
 @synthesize list = _list;
@@ -57,7 +58,6 @@
 	//View for No Folder Tasks
 	TasksListViewController *nofolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	nofolder.title = @"No Folder";
-	nofolder.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:nofolder];
 	[nofolder release];
 	
@@ -80,7 +80,6 @@
 			Context *folder = [[objects objectAtIndex:i] retain];
 			TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			folderView.title = folder.name;
-			folderView.image = [UIImage imageNamed:@"all_tasks.png"];
 			[array addObject:folderView];
 			[folderView release];
 		}
@@ -136,29 +135,42 @@
 
 -(UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellID = @"FolderSecondLevelCellID";
+	static NSString *folderCellID = @"FolderCellID";
 	
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+	UITableViewCell *cell;
+	if(section==0)
+		cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+	else {
+		cell = [self.tableView dequeueReusableCellWithIdentifier:folderCellID];
+	}
+
 	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
 	
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+		if(section==0)
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+		else {
+			cell = [[[FolderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:folderCellID] autorelease];
+		}
+
 	}
 	
-	cell.detailTextLabel.text = detail;
-	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	
 	if(section==0) {
+		cell.detailTextLabel.text = detail;
 		cell.textLabel.text = c.title;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;
 	}
 	else {
 		Folder *folder = [self.list objectAtIndex:row];
-		cell.textLabel.text = folder.name;
+		((FolderCell *)cell).title.text = folder.name;
+		((FolderCell *)cell).detail.text = detail;
+		((FolderCell *)cell).imageView.backgroundColor = [UIColor colorWithRed:[folder.r floatValue] green:[folder.g floatValue] blue:[folder.b floatValue] alpha:0.0];
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	
