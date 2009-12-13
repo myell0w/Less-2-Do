@@ -102,6 +102,7 @@
 		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
+		D471256E10D58A33008ABE87 /* UIColor+ColorComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = D471256C10D58A33008ABE87 /* UIColor+ColorComponents.m */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
 		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
@@ -136,13 +137,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
-		};
-		CFD700D010D2D1D700FBFD9A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758;
-			remoteInfo = libToodledoAPIMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -302,6 +296,8 @@
 		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D471256C10D58A33008ABE87 /* UIColor+ColorComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorComponents.m"; sourceTree = "<group>"; };
+		D471256D10D58A33008ABE87 /* UIColor+ColorComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorComponents.h"; sourceTree = "<group>"; };
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
@@ -351,6 +347,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D471256F10D58A37008ABE87 /* util */,
 				39C6CF9210BECEA8000A0C70 /* ui */,
 				39C6CF9010BECE95000A0C70 /* db */,
 				39A1F45810BB21B500671B42 /* log */,
@@ -619,7 +616,6 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				CFD700D110D2D1D700FBFD9A /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -795,6 +791,15 @@
 			name = settings;
 			sourceTree = "<group>";
 		};
+		D471256F10D58A37008ABE87 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				D471256C10D58A33008ABE87 /* UIColor+ColorComponents.m */,
+				D471256D10D58A33008ABE87 /* UIColor+ColorComponents.h */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -871,13 +876,6 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		CFD700D110D2D1D700FBFD9A /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = CFD700D010D2D1D700FBFD9A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -994,6 +992,7 @@
 				D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */,
 				D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */,
 				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
+				D471256E10D58A33008ABE87 /* UIColor+ColorComponents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
