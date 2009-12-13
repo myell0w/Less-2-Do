@@ -23,11 +23,11 @@
 	return self.name;
 }
 
-- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue
+- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
 {
-	r = red;
-	g = green;
-	b = blue;
+	self.r = red;
+	self.g = green;
+	self.b = blue;
 }
 
 - (void)setOrder:(NSNumber *)order
@@ -37,13 +37,13 @@
 
 - (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue
 {
-	r = red;
-	g = green;
-	b = blue;
+	self.r = red;
+	self.g = green;
+	self.b = blue;
 	self.order = order;
 }
 
-+ (NSArray *)getAllFolders //Automatisch geordnet nach Order
++ (NSArray *)getAllFolders:(NSError *)error //Automatisch geordnet nach Order
 {
 	NSError *fetchError;
 	
@@ -63,7 +63,7 @@
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
 	if (objects == nil) {
-		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
 		return nil;
 	}
 	
@@ -72,20 +72,43 @@
 	return objects;
 }
 
-+ (void)deleteFolder:(Folder *)theFolder
++ (BOOL)deleteFolder:(Folder *)theFolder:(NSError *)error
 {
-	for(theFolder.tasks as task)
+	for(Task *t in theFolder.tasks)
 	{
-		task.deleteFolder;
+		[t removeFolder];
 	}
+	
+	NSError *deleteError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* mark object to be deleted */
+	[managedObjectContext deleteObject:theFolder];
+	
+	/* commit deleting and check for errors */
+	
+	// TODO: Update entfernen? 
+	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
+	if (deleteSuccessful == NO) 
+	{
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
+		return NO;
+	}
+	return YES;
+	
+	
+	
 }
 
-+ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue
++ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
 {
 	
 }
 
-+ (NSArray *)getFolderbyTask:(Task *)theTask
++ (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error
 {
 	
 }

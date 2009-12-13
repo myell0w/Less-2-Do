@@ -30,13 +30,13 @@
 
 
 //Self made
-- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
-- (void)setOrder:(NSNumber *)order;
-- (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
-+ (NSArray *)getAllFolders; //Automatisch geordnet nach Order
-+ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue;
-+ (NSArray *)getFolderbyTask:(Task *)theTask;
-+ (void)deleteFolder:(Folder *)theFolder;
+- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
+- (void)setOrder:(NSNumber *)order error:(NSError *)error;
+- (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
++ (NSArray *)getAllFolders:(NSError *)error; //Automatisch geordnet nach Order
++ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
++ (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error;
++ (BOOL)deleteFolder:(Folder *)theFolder error:(NSError *)error;
 
 @end
 
