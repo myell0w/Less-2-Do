@@ -67,8 +67,10 @@
 
 - (BOOL)saveTask:(NSError**)error;
 
-+ (NSArray *) getAllTasks:(NSError *)error;
-+ (NSArray *) getStarredTasks:(NSError *)error;
++ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error;
+
++ (NSArray *) getAllTasks:(NSError **)error;
++ (NSArray *) getStarredTasks:(NSError **)error;
 
 
 

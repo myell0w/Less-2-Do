@@ -65,7 +65,7 @@
 	self.context = nil;
 }
 
-+ (NSArray *) getAllTasks:(NSError *)error
++ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;
 	
@@ -92,11 +92,22 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
 	
+	/* apply sort order */
+	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
+	//NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate/*, sortByDueTime*/, nil]];
+	[sortByDueDate release];
+	//[sortByDueTime release];
+	
+	/* apply filter string */
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
+	[request setPredicate:predicate];
+	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
 	if (objects == nil) 
 	{
-		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
 		return nil;
 	}
 	
@@ -105,46 +116,15 @@
 	return objects;
 }
 
-+ (NSArray *) getStarredTasks:(NSError *)error
++ (NSArray *) getAllTasks:(NSError **)error
 {
-	NSError *fetchError;
-	
-	/* get managed object context */
-	Less2DoAppDelegate *delegate;
-	NSManagedObjectContext *managedObjectContext;
-	@try
-	{
-		delegate = [[UIApplication sharedApplication] delegate];
-		managedObjectContext = [delegate managedObjectContext];
-	}
-	@catch (NSException *exception) {
-		// Test target, create new AppDelegate
-		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
-		managedObjectContext = [delegate managedObjectContext];
-	}
-	
-	/* get entity description - needed for fetching */
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Task"
-											  inManagedObjectContext:managedObjectContext];
-	
-	/* create new fetch request */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDescription];
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"star == 1"];
-	[request setPredicate:predicate];
-	
-	/* fetch objects */
-	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
-	if (objects == nil) 
-	{
-		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
-		return nil;
-	}
-	
-	[request release];
-	
+	NSArray* objects = [Task getTasks:nil error:error];	
+	return objects;
+}
+
++ (NSArray *) getStarredTasks:(NSError **)error
+{
+	NSArray* objects = [Task getTasks:@"star == 1" error:error];	
 	return objects;
 }
 
