@@ -73,7 +73,5 @@
 + (NSArray *) getStarredTasks:(NSError **)error;
 
 
-
-
 @end
 
