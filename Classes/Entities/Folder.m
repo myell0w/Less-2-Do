@@ -28,8 +28,20 @@
 	NSError *fetchError;
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -39,6 +51,12 @@
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
+	
+	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
+	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByOrder, sortByName, nil]];
+	[sortByOrder release];
+	[sortByName release];
 	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];

@@ -26,7 +26,14 @@
 	
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDescription]; // TODO: request with ordering
+	[request setEntity:entityDescription];
+	
+	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
+	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByOrder, sortByName, nil]];
+	[sortByOrder release];
+	[sortByName release];
+	
 	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];

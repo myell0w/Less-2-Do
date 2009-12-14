@@ -79,7 +79,7 @@
 	GHAssertNotNil(newContext3, @"Add context3 not successful");
 	
 	NSArray *contexts = [ContextDAO allContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)5, @"Add context not successful");
+	GHAssertEquals([contexts count], (NSUInteger)3, @"Add context not successful");
 }
 
 /* Tests deleting a context with nil as parameter */
@@ -132,6 +132,23 @@
 	GHAssertEquals([contexts count], (NSUInteger)1, @"Add context not successful");
 	Context *context = [contexts objectAtIndex:0];
 	GHAssertEqualStrings([context name], [newContext name], @"Update context not successful"); */
+}
+
+- (void)testAllContextsOrdered {
+	NSError *error = nil;
+	
+	Context *newContext1 = [ContextDAO addContextWithName:@"Eontext" error:&error];
+	GHAssertNotNil(newContext1, @"Add context1 not successful");
+	Context *newContext2 = [ContextDAO addContextWithName:@"Dontext" error:&error];
+	GHAssertNotNil(newContext2, @"Add context2 not successful");
+	Context *newContext3 = [ContextDAO addContextWithName:@"Context" error:&error];
+	GHAssertNotNil(newContext3, @"Add context3 not successful");
+	
+	 
+	NSArray *contexts = [ContextDAO allContexts:&error];
+	GHAssertEquals([contexts count], (NSUInteger)3, @"Add context not successful");
+	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [contexts objectAtIndex:0], [contexts objectAtIndex:1], [contexts objectAtIndex:2]];
+	GHAssertEqualStrings(output, @"0: Context, 1: Dontext, 2: Eontext", @"Ordered Contexts not successful");
 }
 
 @end

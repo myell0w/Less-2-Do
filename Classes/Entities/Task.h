@@ -6,6 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#import "Context.h"
+
 @class Folder;
 @class Tag;
 

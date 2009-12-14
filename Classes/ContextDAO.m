@@ -51,6 +51,10 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
 	
+	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	 [request setSortDescriptors:[NSArray arrayWithObject:sortByOrder]];
+	 [sortByOrder release];
+	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
 	if (objects == nil) {
