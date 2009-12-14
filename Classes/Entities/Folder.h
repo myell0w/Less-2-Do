@@ -35,5 +35,8 @@
 + (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error;
 + (BOOL)deleteFolder:(Folder *)theFolder error:(NSError *)error;
 
+// hack for moc
+- (NSManagedObjectContext *)managedObjectContext;
+
 @end
 

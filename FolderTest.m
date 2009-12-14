@@ -43,24 +43,35 @@
 	appDelegate = nil;
 }
 
+/* test ordering of all folders */
 - (void)testAllFoldersOrdered {
 	NSError *error = nil;
 	
-	Folder *newFolder1 = [[Folder alloc] init];
+	/* case 1: same order, order by name */
+	Folder *newFolder1 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
 	newFolder1.name = @"Holder";
 	newFolder1.order = [NSNumber numberWithInt:1];
-	Folder *newFolder2 = [[Folder alloc] init];
+	Folder *newFolder2 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
 	newFolder2.name = @"Golder";
 	newFolder2.order = [NSNumber numberWithInt:1];
-	Folder *newFolder3 = [[Folder alloc] init];
+	Folder *newFolder3 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
 	newFolder3.name = @"Folder";
 	newFolder3.order = [NSNumber numberWithInt:1];
-	
-	
+	[managedObjectContext save:&error];
 	NSArray *folders = [Folder getAllFolders:error];
-	GHAssertEquals([folders count], (NSUInteger)3, @"Add context not successful");
+	GHAssertEquals([folders count], (NSUInteger)3, @"Add folder not successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [folders objectAtIndex:0], [folders objectAtIndex:1], [folders objectAtIndex:2]];
 	GHAssertEqualStrings(output, @"0: Folder, 1: Golder, 2: Holder", @"Ordered Folders not successful");
+	
+	/* case 2: reorder, order by order */
+	newFolder1.order = [NSNumber numberWithInt:1];
+	newFolder2.order = [NSNumber numberWithInt:2];
+	newFolder3.order = [NSNumber numberWithInt:3];
+	[managedObjectContext save:&error];
+	folders = [Folder getAllFolders:error];
+	GHAssertEquals([folders count], (NSUInteger)3, @"Add folder not successful");
+	output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [folders objectAtIndex:0], [folders objectAtIndex:1], [folders objectAtIndex:2]];
+	GHAssertEqualStrings(output, @"0: Holder, 1: Golder, 2: Folder", @"Ordered Folders not successful");
 }
 
 @end

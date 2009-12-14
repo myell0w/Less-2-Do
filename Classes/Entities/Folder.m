@@ -161,4 +161,24 @@
 	return objects;
 }
 
+- (NSManagedObjectContext *)managedObjectContext
+{
+	/* get managed object context */
+	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	return managedObjectContext;
+}
+
 @end
