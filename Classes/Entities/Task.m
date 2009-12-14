@@ -38,6 +38,10 @@
 @dynamic abContact;
 @dynamic extendedInfo;
 
+- (NSString *)description {
+	return self.name;
+}
+
 
 - (void)setFolder:(Folder *)value
 {
@@ -66,8 +70,18 @@
 	NSError *fetchError;
 	
 	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
@@ -77,6 +91,49 @@
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
+	
+	/* fetch objects */
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
+}
+
++ (NSArray *) getStarredTasks:(NSError *)error
+{
+	NSError *fetchError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Task"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"star == 1"];
+	[request setPredicate:predicate];
 	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];

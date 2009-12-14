@@ -77,6 +77,8 @@
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
 		A36CF93810D634C9007482E3 /* FolderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CF93710D634C9007482E3 /* FolderTest.m */; };
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
+		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
+		A36CFA8010D64748007482E3 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -251,6 +253,7 @@
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
+		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
 		A38B3AB510BFF91100D5D87F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A38B3ABF10BFFA8000D5D87F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38B3AC110BFFA8000D5D87F /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -704,6 +707,7 @@
 				A38B3B0410BFFC9E00D5D87F /* ContextDAOTest.m */,
 				A38B3AE010BFFB8800D5D87F /* GHUnit */,
 				A36CF93710D634C9007482E3 /* FolderTest.m */,
+				A36CFA6610D64524007482E3 /* TaskTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -1030,8 +1034,10 @@
 				A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */,
 				A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */,
 				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
+				A36CFA8010D64748007482E3 /* Task.m in Sources */,
 				A38B3B0510BFFC9E00D5D87F /* ContextDAOTest.m in Sources */,
 				A36CF93810D634C9007482E3 /* FolderTest.m in Sources */,
+				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
