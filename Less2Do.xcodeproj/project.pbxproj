@@ -90,7 +90,9 @@
 		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
 		A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
 		CF25612110C2820500019621 /* TaskDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CF25612010C2820500019621 /* TaskDAO.m */; };
+		CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF879D8F10D5B490004D6770 /* ColorChooserCell.m */; };
 		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
+		CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */; };
 		CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF3177710C00B79004222B6 /* FolderDAO.m */; };
 		CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF7108310C3F6CC00313030 /* TagDAO.m */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
@@ -280,8 +282,12 @@
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		CF25611F10C2820500019621 /* TaskDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDAO.h; sourceTree = "<group>"; };
 		CF25612010C2820500019621 /* TaskDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDAO.m; sourceTree = "<group>"; };
+		CF879D8E10D5B490004D6770 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
+		CF879D8F10D5B490004D6770 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Entities/Context.h; sourceTree = "<group>"; };
 		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Entities/Context.m; sourceTree = "<group>"; };
+		CFF1D52810D571A1005AB0BE /* UIColor+ColorComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorComponents.h"; sourceTree = "<group>"; };
+		CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorComponents.m"; sourceTree = "<group>"; };
 		CFF3177610C00B79004222B6 /* FolderDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderDAO.h; sourceTree = "<group>"; };
 		CFF3177710C00B79004222B6 /* FolderDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderDAO.m; sourceTree = "<group>"; };
 		CFF7108210C3F6CC00313030 /* TagDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagDAO.h; sourceTree = "<group>"; };
@@ -351,6 +357,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CFF1D52B10D571AC005AB0BE /* util */,
 				39C6CF9210BECEA8000A0C70 /* ui */,
 				39C6CF9010BECE95000A0C70 /* db */,
 				39A1F45810BB21B500671B42 /* log */,
@@ -756,6 +763,17 @@
 			name = dao;
 			sourceTree = "<group>";
 		};
+		CFF1D52B10D571AC005AB0BE /* util */ = {
+			isa = PBXGroup;
+			children = (
+				CF879D8E10D5B490004D6770 /* ColorChooserCell.h */,
+				CF879D8F10D5B490004D6770 /* ColorChooserCell.m */,
+				CFF1D52810D571A1005AB0BE /* UIColor+ColorComponents.h */,
+				CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */,
+			);
+			name = util;
+			sourceTree = "<group>";
+		};
 		D436E8AE10BA859C00EA7624 /* tags */ = {
 			isa = PBXGroup;
 			children = (
@@ -994,6 +1012,8 @@
 				D4C4C3D510D2574B00B55BA9 /* EditTagViewController.m in Sources */,
 				D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */,
 				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
+				CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */,
+				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

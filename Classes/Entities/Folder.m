@@ -23,26 +23,6 @@
 	return self.name;
 }
 
-- (void)setRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
-{
-	self.r = red;
-	self.g = green;
-	self.b = blue;
-}
-
-- (void)setOrder:(NSNumber *)order
-{
-	self.order = order;
-}
-
-- (void)setOrderAndRGB:(NSNumber *)order red:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue
-{
-	self.r = red;
-	self.g = green;
-	self.b = blue;
-	self.order = order;
-}
-
 + (NSArray *)getAllFolders:(NSError *)error //Automatisch geordnet nach Order
 {
 	NSError *fetchError;
@@ -105,12 +85,62 @@
 
 + (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
 {
+	// TODO: Selektion für RGB
+	NSError *fetchError;
 	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Folder"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
+	
+	/* fetch objects */
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	if (objects == nil) {
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
 }
 
 + (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error
 {
+	// TODO: Selektion für Task
+	NSError *fetchError;
 	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Folder"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
+	
+	/* fetch objects */
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	if (objects == nil) {
+		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
 }
 
 @end

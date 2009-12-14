@@ -26,7 +26,7 @@
 	
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDescription];
+	[request setEntity:entityDescription]; // TODO: request with ordering
 	
 	/* fetch objects */
 	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
@@ -83,7 +83,8 @@
 	
 	/* commit deleting and check for errors */
 	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
-	if (deleteSuccessful == NO) {
+	if (deleteSuccessful == NO) 
+	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
 		return NO;
 	}
@@ -101,7 +102,8 @@
 	
 	/* commit deleting and check for errors */
 	BOOL updateSuccessful = [managedObjectContext save:&updateError];
-	if (updateSuccessful == NO) {
+	if (updateSuccessful == NO) 
+	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotEditedError userInfo:nil];
 		return NO;
 	}

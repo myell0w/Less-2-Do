@@ -25,7 +25,8 @@
 		[self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction) save:(id)sender {
+- (IBAction) save:(id)sender 
+{
 	
 	// Update
 	if (self.folder != nil) {
@@ -67,7 +68,8 @@
 		self.folder.g = [self.color greenColorComponent];
 		self.folder.b = [self.color blueColorComponent];
 		DLog ("Try to update Folder '%@'", self.folder.name);
-		if(![FolderDAO updateFolder:self.folder error:&error]) {
+		if(![FolderDAO updateFolder:self.folder error:&error]) 
+		{
 			ALog ("Error occured while updating Folder");
 		}
 		else {
