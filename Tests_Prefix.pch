@@ -12,6 +12,7 @@
 	#import <Foundation/Foundation.h>
 	#import <UIKit/UIKit.h>
 	#import <CoreData/CoreData.h>
+	#import "BaseManagedObject.h"
 	#import "Log.h"
 	#import "DAOError.h"
 	#import "GHUnit.h"
@@ -20,5 +21,4 @@
 	#import "Log.h"
 	#import "TaskDAO.h"
 	#import "DAOError.h"
-	#import "DAOHelper.h"
 #endif

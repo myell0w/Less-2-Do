@@ -22,4 +22,79 @@
 	return self.name;
 }
 
++ (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error
+{
+	NSError *fetchError;
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Context"
+											  inManagedObjectContext:[self managedObjectContext]];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	/* apply sort order */
+	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObject:sortByName]];
+	[sortByName release];
+	
+	/* apply filter string */
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
+	[request setPredicate:predicate];
+	
+	/* fetch objects */
+	NSArray *objects = [[self managedObjectContext] executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
+}
+
++ (NSArray *) getContextsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error
+{
+	NSError *fetchError;
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Context"
+											  inManagedObjectContext:[self managedObjectContext]];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	/* apply sort order */
+	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObject:sortByName]];
+	[sortByName release];
+	
+	/* apply filter string */
+	[request setPredicate:filterPredicate];
+	
+	/* fetch objects */
+	NSArray *objects = [[self managedObjectContext] executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
+}
+
++ (NSArray *) getAllContexts:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:nil error:error];	
+	return objects;
+}
+
 @end

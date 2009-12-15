@@ -21,6 +21,8 @@
 	NSDateFormatter *formatDate;
 	// date formatter for due-time
 	NSDateFormatter *formatTime;
+	// filter only those tasks
+	NSString *filterString;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,6 +31,7 @@
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSMutableArray *tasks;
+@property (nonatomic, copy) NSString *filterString;
 
 // returns the number of tasks shown in this TableView
 - (int) taskCount;

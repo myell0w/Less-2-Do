@@ -50,7 +50,7 @@
 
 - (Task *)createTaskFromParsingTitle:(NSString *)title {
 	NSMutableString *taskDescription = [[NSMutableString alloc] initWithFormat:title];
-	Task *t = (Task *)[DAOHelper objectOfType:@"Task"];
+	Task *t = (Task *)[Task objectOfType:@"Task"];
 	
 	//TODO: parse title and set other attributes
 	

@@ -12,12 +12,11 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import <CoreData/CoreData.h>
+	#import "BaseManagedObject.h"
 	#import "Context.h"
 	#import "Folder.h"
 	#import "Task.h"
     #import "Log.h"
 	#import "TaskDAO.h"
 	#import "DAOError.h"
-
-	#import "DAOHelper.h"
 #endif

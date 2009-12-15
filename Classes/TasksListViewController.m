@@ -9,7 +9,6 @@
 #import "TasksListViewController.h"
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
-#import "TaskDAO.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
 #define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
@@ -32,6 +31,7 @@
 
 @synthesize image;
 @synthesize tasks;
+@synthesize filterString;
 
 
 - (void)viewDidLoad {
@@ -41,7 +41,7 @@
 	self.tasks = array;
 	[array release];
 	
-	NSArray *objects = [TaskDAO allTasks:&error];
+	/*NSArray *objects = [TaskDAO allTasks:&error];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -52,7 +52,7 @@
 		for (Task *t in objects) {
 			[self.tasks addObject:t];
 		}
-	}
+	}*/
 	
 	formatDate = [[NSDateFormatter alloc] init];
 	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
@@ -63,7 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	//TODO: delete, only for MR2
 	NSError *error;
-	NSArray *objects = [TaskDAO allTasks:&error];
+	NSArray *objects = [Task getTasks:filterString error:&error];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");

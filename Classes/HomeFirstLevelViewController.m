@@ -9,6 +9,7 @@
 #import "HomeFirstLevelViewController.h"
 #import "HomeNavigationController.h"
 #import "TasksListViewController.h"
+#import "Task.h"
 
 
 @implementation HomeFirstLevelViewController
@@ -30,6 +31,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *all = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	all.title = @"All Tasks";
+	all.filterString = nil;
 	all.image = [UIImage imageNamed:@"home_all.png"];
 	[array addObject:all];
 	[all release];
@@ -37,6 +39,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *starred = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	starred.title = @"Starred";
+	starred.filterString = @"star = 1";
 	starred.image = [UIImage imageNamed:@"home_starred.png"];
 	[array addObject:starred];
 	[starred release];

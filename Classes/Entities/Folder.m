@@ -169,11 +169,14 @@
 	NSManagedObjectContext *managedObjectContext;
 	@try
 	{
+		ALog(@"FUCK 1");
 		delegate = [[UIApplication sharedApplication] delegate];
 		managedObjectContext = [delegate managedObjectContext];
+		ALog(@"FUCK 2");
 	}
 	@catch (NSException *exception) {
 		// Test target, create new AppDelegate
+		ALog(@"FUCK 3");
 		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
 		managedObjectContext = [delegate managedObjectContext];
 	}

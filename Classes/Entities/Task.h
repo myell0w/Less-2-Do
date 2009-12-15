@@ -16,7 +16,7 @@
 #define PRIORITY_MEDIUM 1
 #define PRIORITY_HIGH   2
 
-@interface Task :  NSManagedObject  
+@interface Task :  BaseManagedObject  
 {
 }
 
@@ -67,10 +67,16 @@
 
 - (BOOL)saveTask:(NSError**)error;
 
-+ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error;
+// general fetch-methods for tasks
++ (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
+// specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method
 + (NSArray *) getAllTasks:(NSError **)error;
 + (NSArray *) getStarredTasks:(NSError **)error;
++ (NSArray *) getTasksInFolder:(Folder*)theFolder error:(NSError **)error;
++ (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error;
++ (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error;
 
 
 @end

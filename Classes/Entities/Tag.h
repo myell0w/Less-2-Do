@@ -7,7 +7,7 @@
 //
 
 
-@interface Tag :  NSManagedObject  
+@interface Tag :  BaseManagedObject  
 {
 }
 
