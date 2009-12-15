@@ -9,6 +9,8 @@
 #import "TaskEditContextViewController.h"
 #import "ContextDAO.h"
 
+#define NORMAL_FONT_SIZE 15
+
 
 @implementation TaskEditContextViewController
 
@@ -100,6 +102,7 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell.textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
     }
 	
     // Set up the cell...
@@ -125,7 +128,7 @@
         oldCell.accessoryType = UITableViewCellAccessoryNone;
 		
         lastIndexPath = indexPath;		
-		//[self.task setContext:c];
+		self.task.context = c;
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -138,14 +141,18 @@
 	if (self.addContextControl.text.length == 0)
 		return;
 	
-	NSError *error;
-	Context *context = [ContextDAO addContextWithName:self.addContextControl.text error:&error];
+	Context *context = (Context *)[Context objectOfType:@"Context"];
+	context.name = addContextControl.text;
 	ALog ("context %@ inserted", context);
 	
 	[contexts addObject:context];
+	self.task.context = context;
+	
 	NSUInteger idx = [contexts indexOfObject:context];
 	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-	//TODO: save in task
+	
+	self.addContextControl.text = @"";
+	[self.tableView reloadData];
 }
 
 @end

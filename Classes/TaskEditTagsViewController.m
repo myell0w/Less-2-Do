@@ -9,6 +9,7 @@
 #import "TaskEditTagsViewController.h"
 #import "TagDAO.h"
 
+#define NORMAL_FONT_SIZE 15
 
 @implementation TaskEditTagsViewController
 
@@ -98,6 +99,7 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell.textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
     }
 	
     // Set up the cell...
@@ -138,8 +140,8 @@
 	if (addTagControl.text.length == 0)
 		return;
 	
-	NSError *error;
-	Tag *tag = [TagDAO addTagWithName:addTagControl.text error:&error];
+	Tag *tag = (Tag *)[Tag objectOfType:@"Tag"];
+	tag.name = addTagControl.text;
 	ALog ("tag %@ inserted", tag);
 	
 	// add new tag to array + task
@@ -147,6 +149,7 @@
 	[selectedTags addObject:tag];
 	[self.task addTagsObject:tag];
 	
+	self.addTagControl.text = @"";
 	[self.tableView reloadData];
 }
 
