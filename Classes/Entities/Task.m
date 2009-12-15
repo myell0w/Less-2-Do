@@ -42,19 +42,6 @@
 	return self.name;
 }
 
-
-- (void)setFolder:(Folder *)value
-{
-	self.folder = value;
-}
-
-- (void)removeFolder
-{
-	self.folder = nil;
-	//[self.setFolder value:nil];
-	//[setFolder:nil];
-}
-
 - (void)setContext:(Context *)value
 {
 	self.context = value;
@@ -65,7 +52,7 @@
 	self.context = nil;
 }
 
-+ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error
++ (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;
 	
@@ -93,11 +80,11 @@
 	[request setEntity:entityDescription];
 	
 	/* apply sort order */
-	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	//NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate/*, sortByDueTime*/, nil]];
+	/*NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
+	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
 	[sortByDueDate release];
-	//[sortByDueTime release];
+	[sortByDueTime release];*/
 	
 	/* apply filter string */
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
@@ -116,15 +103,78 @@
 	return objects;
 }
 
++ (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error
+{
+	NSError *fetchError;
+	
+	/* get managed object context */
+	Less2DoAppDelegate *delegate;
+	NSManagedObjectContext *managedObjectContext;
+	@try
+	{
+		delegate = [[UIApplication sharedApplication] delegate];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	@catch (NSException *exception) {
+		// Test target, create new AppDelegate
+		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
+		managedObjectContext = [delegate managedObjectContext];
+	}
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Task"
+											  inManagedObjectContext:managedObjectContext];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	/* apply sort order */
+	/*NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
+	 NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	 [request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	 [sortByDueDate release];
+	 [sortByDueTime release];*/
+	
+	/* apply filter string */
+	[request setPredicate:filterPredicate];
+	
+	/* fetch objects */
+	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
+	}
+	
+	[request release];
+	
+	return objects;
+}
+
 + (NSArray *) getAllTasks:(NSError **)error
 {
-	NSArray* objects = [Task getTasks:nil error:error];	
+	NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
 	return objects;
 }
 
 + (NSArray *) getStarredTasks:(NSError **)error
 {
-	NSArray* objects = [Task getTasks:@"star == 1" error:error];	
+	NSArray* objects = [Task getTasksWithFilterString:@"star == 1" error:error];	
+	return objects;
+}
+
++ (NSArray *) getTasksInFolder:(Folder*)theFolder error:(NSError **)error
+{	
+	NSExpression *leftSide = [NSExpression expressionForKeyPath:@"folder"];
+	NSExpression *rightSide = [NSExpression expressionForConstantValue:theFolder];
+	NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:leftSide
+													rightExpression:rightSide
+													modifier:NSDirectPredicateModifier
+													type:NSEqualToPredicateOperatorType
+													options:0];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	return objects;
 }
 

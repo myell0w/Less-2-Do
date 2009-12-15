@@ -67,10 +67,12 @@
 
 - (BOOL)saveTask:(NSError**)error;
 
-+ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 + (NSArray *) getAllTasks:(NSError **)error;
 + (NSArray *) getStarredTasks:(NSError **)error;
++ (NSArray *) getTasksInFolder:(Folder*)theFolder error:(NSError **)error;
 
 
 @end

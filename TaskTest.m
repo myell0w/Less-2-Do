@@ -7,6 +7,7 @@
 //
 
 #import "Task.h"
+#import "Folder.h"
 #import "Less2DoAppDelegate.h";
 
 @interface TaskTest : GHTestCase {
@@ -98,11 +99,39 @@
 	newTask3.dueDate = [[NSDate alloc] initWithString:@"2009-12-03 00:00:00 +0100"];
 	[managedObjectContext save:&error];
 	
-	NSArray *tasks = [Task getTasks:nil error:&error];
+	NSArray *tasks = [Task getTasksWithFilterString:nil error:&error];
 	GHAssertEquals([tasks count], (NSUInteger)3, @"0 starred tasks not successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
 	GHFail(output);
 	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
+}
+
+- (void)testGetTasksInFolder {
+	NSError *error = nil;
+	ALog(@"Got herre");
+	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Folder *newFolder = [NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:managedObjectContext];
+	[managedObjectContext save:&error];
+	ALog(@"whazzup");
+	newFolder.name = @"MyFolder";
+	ALog(@"line 1");
+	newTask1.name = @"Task 1";
+	ALog(@"line 3");
+	[newTask1 setFolder:newFolder];
+	ALog(@"line 4");
+	newTask2.name = @"Task 2";
+	newTask2.folder = nil;
+	newTask3.name = @"Task 3";
+	newTask3.folder = newFolder;
+	ALog(@"line 2");
+	[managedObjectContext save:&error];
+	ALog(@"Got here");
+	
+	NSArray *tasks = [Task getTasksInFolder:newFolder error:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Add tasks not successful");
+
 }
 
 @end
