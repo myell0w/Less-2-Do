@@ -38,7 +38,6 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
-		393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
@@ -79,6 +78,9 @@
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
 		A36CFA8010D64748007482E3 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
+		A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */; };
+		A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
+		A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -86,7 +88,7 @@
 		A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3AD810BFFB1300D5D87F /* GHUnitIPhoneTestMain.m */; };
 		A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */; };
-		A38B3B0510BFFC9E00D5D87F /* ContextDAOTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3B0410BFFC9E00D5D87F /* ContextDAOTest.m */; };
+		A38B3B0510BFFC9E00D5D87F /* ContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3B0410BFFC9E00D5D87F /* ContextTest.m */; };
 		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
@@ -122,13 +124,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		39312FDD10D6EA5D00D37294 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758;
-			remoteInfo = libToodledoAPIMac;
-		};
 		39B65A0010B7080D00825C1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
@@ -149,6 +144,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
+		};
+		A37068DD10D77D5900E6D556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA649BBA10C30B250051F758;
+			remoteInfo = libToodledoAPIMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -204,8 +206,6 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
-		393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOHelper.h; sourceTree = "<group>"; };
-		393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAOHelper.m; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
@@ -254,6 +254,10 @@
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
+		A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGHUnitAppDelegate.h; sourceTree = "<group>"; };
+		A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGHUnitAppDelegate.m; sourceTree = "<group>"; };
+		A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManagedObject.h; sourceTree = "<group>"; };
+		A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManagedObject.m; sourceTree = "<group>"; };
 		A38B3AB510BFF91100D5D87F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A38B3ABF10BFFA8000D5D87F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38B3AC110BFFA8000D5D87F /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -272,7 +276,7 @@
 		A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGHUnitIPhone3_0.a; path = "libGHUnitIPhone3_0-0.4.13/libGHUnitIPhone3_0.a"; sourceTree = "<group>"; };
 		A38B3ADB10BFFB1300D5D87F /* NSException+GHTestFailureExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSException+GHTestFailureExceptions.h"; path = "libGHUnitIPhone3_0-0.4.13/NSException+GHTestFailureExceptions.h"; sourceTree = "<group>"; };
 		A38B3ADC10BFFB1300D5D87F /* NSValue+GHValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+GHValueFormatter.h"; path = "libGHUnitIPhone3_0-0.4.13/NSValue+GHValueFormatter.h"; sourceTree = "<group>"; };
-		A38B3B0410BFFC9E00D5D87F /* ContextDAOTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAOTest.m; sourceTree = "<group>"; };
+		A38B3B0410BFFC9E00D5D87F /* ContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextTest.m; sourceTree = "<group>"; };
 		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
 		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
 		A3E3389410BC5C6D004F0F39 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Entities/Tag.h; sourceTree = "<group>"; };
@@ -508,11 +512,11 @@
 		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
-				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
-				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
+				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
+				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 				39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */,
 				39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */,
 				39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */,
@@ -632,7 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				39312FDE10D6EA5D00D37294 /* libToodledoAPIMac.a */,
+				A37068DE10D77D5900E6D556 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -704,10 +708,12 @@
 		A38B3ADF10BFFB7A00D5D87F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A38B3B0410BFFC9E00D5D87F /* ContextDAOTest.m */,
+				A38B3B0410BFFC9E00D5D87F /* ContextTest.m */,
 				A38B3AE010BFFB8800D5D87F /* GHUnit */,
 				A36CF93710D634C9007482E3 /* FolderTest.m */,
 				A36CFA6610D64524007482E3 /* TaskTest.m */,
+				A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */,
+				A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -737,10 +743,10 @@
 		A3E338A410BC5C80004F0F39 /* entities */ = {
 			isa = PBXGroup;
 			children = (
-				A3E3389210BC5C6D004F0F39 /* Folder.h */,
-				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				CFB932F310BC872B004EAF93 /* Context.h */,
 				CFB932F410BC872B004EAF93 /* Context.m */,
+				A3E3389210BC5C6D004F0F39 /* Folder.h */,
+				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				A3E3389410BC5C6D004F0F39 /* Tag.h */,
 				A3E3389510BC5C6D004F0F39 /* Tag.m */,
 				A3E3389610BC5C6D004F0F39 /* Task.h */,
@@ -749,6 +755,9 @@
 				A3E3389B10BC5C6D004F0F39 /* ABContact.m */,
 				A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */,
 				A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */,
+				A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */,
+				A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */,
+				A34471E710BF239000851DCD /* DAOError.h */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -758,15 +767,12 @@
 			children = (
 				A3E3393310BC76F3004F0F39 /* ContextDAO.h */,
 				A3E3393410BC76F3004F0F39 /* ContextDAO.m */,
-				A34471E710BF239000851DCD /* DAOError.h */,
 				CFF3177610C00B79004222B6 /* FolderDAO.h */,
 				CFF3177710C00B79004222B6 /* FolderDAO.m */,
 				CF25611F10C2820500019621 /* TaskDAO.h */,
 				CF25612010C2820500019621 /* TaskDAO.m */,
 				CFF7108210C3F6CC00313030 /* TagDAO.h */,
 				CFF7108310C3F6CC00313030 /* TagDAO.m */,
-				393B5BFB10C57E0C0078C5B2 /* DAOHelper.h */,
-				393B5BFC10C57E0C0078C5B2 /* DAOHelper.m */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -885,13 +891,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39312FDE10D6EA5D00D37294 /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = 39312FDD10D6EA5D00D37294 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -904,6 +903,13 @@
 			fileType = wrapper.cfbundle;
 			path = UnitTests.octest;
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A37068DE10D77D5900E6D556 /* libToodledoAPIMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToodledoAPIMac.a;
+			remoteRef = A37068DD10D77D5900E6D556 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1011,7 +1017,6 @@
 				CFF3177810C00B79004222B6 /* FolderDAO.m in Sources */,
 				CF25612110C2820500019621 /* TaskDAO.m in Sources */,
 				CFF7108410C3F6CC00313030 /* TagDAO.m in Sources */,
-				393B5BFD10C57E0C0078C5B2 /* DAOHelper.m in Sources */,
 				391D723C10C9DECA00A115E1 /* TaskEditNotesViewController.m in Sources */,
 				39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */,
 				39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */,
@@ -1022,6 +1027,7 @@
 				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
 				CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */,
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
+				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,13 +1037,15 @@
 			files = (
 				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
 				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
+				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
 				A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */,
 				A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */,
-				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
 				A36CFA8010D64748007482E3 /* Task.m in Sources */,
-				A38B3B0510BFFC9E00D5D87F /* ContextDAOTest.m in Sources */,
+				A38B3B0510BFFC9E00D5D87F /* ContextTest.m in Sources */,
 				A36CF93810D634C9007482E3 /* FolderTest.m in Sources */,
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
+				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
+				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -42,25 +42,6 @@
 	return self.name;
 }
 
-- (void)setFolder:(Folder *)value {
-	self.folder = value;
-}
-
-- (void)removeFolder {
-	self.folder = nil;
-	//[self.setFolder value:nil];
-	//[setFolder:nil];
-}
-
-- (void)setContext:(Context *)value {
-	self.context = value;
-}
-
-- (void)removeContext {
-	self.context = nil;
-}
-
-
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error {
 	NSError *fetchError;
 	
