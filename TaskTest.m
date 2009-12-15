@@ -8,10 +8,9 @@
 
 #import "Task.h"
 #import "Folder.h"
-#import "Less2DoAppDelegate.h";
+#import "CustomGHUnitAppDelegate.h";
 
 @interface TaskTest : GHTestCase {
-	Less2DoAppDelegate* appDelegate;
 	NSManagedObjectContext* managedObjectContext;
 }
 
@@ -21,9 +20,9 @@
 
 - (void)setUp {
 	
-	/* delete all folders from the persistent store */
-	appDelegate = [[Less2DoAppDelegate alloc] init];
-	managedObjectContext = [appDelegate managedObjectContext];
+	/* delete all Tasks from the persistent store */
+	CustomGHUnitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	managedObjectContext = [delegate managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext]];
@@ -40,8 +39,7 @@
 }
 
 - (void)tearDown {
-	[appDelegate release];
-	appDelegate = nil;
+	/* do nothing */
 }
 
 /* test all tasks */
