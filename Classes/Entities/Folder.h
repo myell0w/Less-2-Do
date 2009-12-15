@@ -38,5 +38,7 @@
 // hack for moc
 - (NSManagedObjectContext *)managedObjectContext;
 
+- (UIColor *) color;
+
 @end
 

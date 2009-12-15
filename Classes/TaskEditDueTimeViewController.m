@@ -21,6 +21,8 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
 	if (task.dueTime != nil) {
 		datePicker.date = task.dueTime;
 		NSDateFormatter *format = [[NSDateFormatter alloc] init];

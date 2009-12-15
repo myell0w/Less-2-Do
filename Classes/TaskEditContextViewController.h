@@ -26,4 +26,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *addContextControl;
 @property (nonatomic, retain) Task *task;
 
+- (IBAction)addContext:(id)sender;
+
 @end

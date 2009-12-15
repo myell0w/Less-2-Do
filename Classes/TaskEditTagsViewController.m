@@ -30,7 +30,7 @@
 	ALog("Tags read: %@", tags);
 	
 	selectedTags = [[NSMutableArray alloc] init];
-	//TODO: init with tags of Task
+	[selectedTags addObjectsFromArray:[task.tags allObjects]];
 }
 
 
@@ -113,19 +113,42 @@
 	int row = [indexPath row];
 	UITableViewCell *cell = [aTableView cellForRowAtIndexPath:indexPath];
 	id tag = [tags objectAtIndex:row];
+	
+	[addTagControl resignFirstResponder];
     
-	//TODO: bedingung einfügen
 	if ([selectedTags containsObject:tag]) {
 		cell.accessoryType =  UITableViewCellAccessoryNone;
 		[selectedTags removeObject:tag];
+		[self.task removeTagsObject:tag];
 	} else {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		[selectedTags addObject:tag];
+		[self.task addTagsObject:tag];
 	}
-	
+
+	ALog("Task.tags: %@", self.task.tags);
     [aTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+- (IBAction)addTag:(id)sender {
+	[addTagControl resignFirstResponder];
+	
+	// Only Saves when text was entered
+	if (addTagControl.text.length == 0)
+		return;
+	
+	NSError *error;
+	Tag *tag = [TagDAO addTagWithName:addTagControl.text error:&error];
+	ALog ("tag %@ inserted", tag);
+	
+	// add new tag to array + task
+	[tags addObject:tag];
+	[selectedTags addObject:tag];
+	[self.task addTagsObject:tag];
+	
+	[self.tableView reloadData];
+}
 
 @end
 

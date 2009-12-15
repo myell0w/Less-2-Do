@@ -8,6 +8,12 @@
 
 #import "TaskEditFolderViewController.h"
 #import "FolderDAO.h"
+#import "FolderCell.h"
+
+#define TAG_COLOR  1
+#define TAG_FOLDER 2
+
+#define NORMAL_FONT_SIZE 15
 
 
 @implementation TaskEditFolderViewController
@@ -32,6 +38,12 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+	// pre-check row if task has folder set
+	if (self.task.folder != nil) {
+		NSUInteger idx = [folders indexOfObject:self.task.folder];
+		lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+	}
+	
     [super viewWillAppear:animated];
 }
 
@@ -90,15 +102,31 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID = @"FolderCellInTaskEdit";
 	int row = [indexPath row];
+	Folder *folder = [folders objectAtIndex:row];
     
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
-    if (cell == nil) {
+    // create new cell
+	if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		
+		UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(12,12,22,22)];
+		colorView.tag = TAG_COLOR;
+		[cell.contentView addSubview:colorView];
+		[colorView release];
+		
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(46,10,235,27)];
+		label.tag = TAG_FOLDER;
+		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+		[cell.contentView addSubview:label];
+		[label release];
     }
 	
-    // Set up the cell...
-	cell.textLabel.text = [[folders objectAtIndex:row] description];
-	cell.imageView.image = [UIImage imageNamed:@"all_tasks.png"];
+	// Set up the cell...
+	UIView *colorView = [cell.contentView viewWithTag:TAG_COLOR];
+	colorView.backgroundColor = [folder color];
+	
+	UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:TAG_FOLDER];
+	textLabel.text = [folder description];
 	cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	
     return cell;
@@ -106,9 +134,12 @@
 
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//int newRow = [indexPath row];
-    //int oldRow = (lastIndexPath != nil) ? [lastIndexPath row] : -1;
+	int row = [indexPath row];
+	Folder *f = (Folder *)[folders objectAtIndex:row];
     
+    ALog("Selected Folder: %@", f);
+	[addFolderControl resignFirstResponder];
+	
     if (![indexPath isEqual:lastIndexPath]) {
         UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -117,10 +148,30 @@
         oldCell.accessoryType = UITableViewCellAccessoryNone;
 		
         lastIndexPath = indexPath;
+		// TODO:save
+		//[self.task setFolder:f];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (IBAction)addFolder:(id)sender {
+	[addFolderControl resignFirstResponder];
+	
+	// Only Saves when text was entered
+	if (self.addFolderControl.text.length == 0)
+		return;
+	
+	NSError *error;
+	NSNumber *order = [[NSNumber alloc] initWithInt:[folders count]];
+	Folder *folder = [FolderDAO addFolderWithName:self.addFolderControl.text theTasks:nil theOrder:order error:&error];
+	ALog ("Folder inserted");
+	
+	
+	[folders addObject:folder];
+	NSUInteger idx = [folders indexOfObject:folder];
+	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+	//TODO: save in task
+}
 
 @end

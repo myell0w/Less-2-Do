@@ -314,7 +314,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
 		if (task.folder != nil) {
-			
+			cell.detailTextLabel.text = [task.folder description];
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
@@ -322,7 +322,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 		if (task.context != nil) {
-			
+			cell.detailTextLabel.text = [task.context description];
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
@@ -330,7 +330,9 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 		if (task.tags != nil && [task.tags count] > 0) {
-			
+			NSString *s = [[NSString alloc] initWithFormat:@"%d Tag(s)", [task.tags count]];
+			cell.detailTextLabel.text = s;
+			[s release];
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}

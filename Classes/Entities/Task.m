@@ -43,30 +43,25 @@
 }
 
 
-- (void)setFolder:(Folder *)value
-{
+- (void)setFolder:(Folder *)value {
 	self.folder = value;
 }
 
-- (void)removeFolder
-{
+- (void)removeFolder {
 	self.folder = nil;
 	//[self.setFolder value:nil];
 	//[setFolder:nil];
 }
 
-- (void)setContext:(Context *)value
-{
+- (void)setContext:(Context *)value {
 	self.context = value;
 }
 
-- (void)removeContext
-{
+- (void)removeContext {
 	self.context = nil;
 }
 
-+ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error
-{
++ (NSArray *) getTasks:(NSString*)filterString error:(NSError **)error {
 	NSError *fetchError;
 	
 	/* get managed object context */
@@ -116,20 +111,17 @@
 	return objects;
 }
 
-+ (NSArray *) getAllTasks:(NSError **)error
-{
++ (NSArray *) getAllTasks:(NSError **)error {
 	NSArray* objects = [Task getTasks:nil error:error];	
 	return objects;
 }
 
-+ (NSArray *) getStarredTasks:(NSError **)error
-{
++ (NSArray *) getStarredTasks:(NSError **)error {
 	NSArray* objects = [Task getTasks:@"star == 1" error:error];	
 	return objects;
 }
 
-- (BOOL)saveTask:(NSError**)error
-{
+- (BOOL)saveTask:(NSError**)error {
 	NSError *saveError;
 
 	/* get managed object context */

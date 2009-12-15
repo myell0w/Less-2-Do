@@ -26,4 +26,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *addFolderControl;
 @property (nonatomic, retain) Task *task;
 
+- (IBAction)addFolder:(id)sender;
+
 @end

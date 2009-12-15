@@ -15,7 +15,7 @@
 @dynamic order;
 @dynamic name;
 @dynamic tasks;
-@dynamic r;
+@dynamic r; 
 @dynamic g;
 @dynamic b;
 
@@ -23,8 +23,8 @@
 	return self.name;
 }
 
-+ (NSArray *)getAllFolders:(NSError *)error //Automatisch geordnet nach Order
-{
+//Automatisch geordnet nach Order
++ (NSArray *)getAllFolders:(NSError *)error {
 	NSError *fetchError;
 	
 	/* get managed object context */
@@ -32,8 +32,8 @@
 	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
 	Less2DoAppDelegate *delegate;
 	NSManagedObjectContext *managedObjectContext;
-	@try
-	{
+	
+	@try {
 		delegate = [[UIApplication sharedApplication] delegate];
 		managedObjectContext = [delegate managedObjectContext];
 	}
@@ -70,8 +70,7 @@
 	return objects;
 }
 
-+ (BOOL)deleteFolder:(Folder *)theFolder:(NSError *)error
-{
++ (BOOL)deleteFolder:(Folder *)theFolder:(NSError *)error {
 	for(Task *t in theFolder.tasks)
 	{
 		[t removeFolder];
@@ -179,6 +178,10 @@
 		managedObjectContext = [delegate managedObjectContext];
 	}
 	return managedObjectContext;
+}
+
+- (UIColor *) color {
+	return [UIColor colorWithRed:[self.r floatValue] green:[self.g floatValue] blue:[self.b floatValue] alpha:1.f];
 }
 
 @end

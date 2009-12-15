@@ -128,6 +128,7 @@
 		self.nameTextField.text = self.folder.name;
 	
 	UIImageView *leftViewImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallWhiteBoarderedButton.png"]];
+	//TODO: change color
 	leftViewImage.backgroundColor = [UIColor redColor];
 	self.nameTextField.leftView = leftViewImage;
 	self.nameTextField.leftViewMode = UITextFieldViewModeAlways;

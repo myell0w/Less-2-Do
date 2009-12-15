@@ -30,4 +30,6 @@
 @property (nonatomic, retain) IBOutlet UITextField *addTagControl;
 @property (nonatomic, retain) Task *task;
 
+- (IBAction)addTag:(id)sender;
+
 @end

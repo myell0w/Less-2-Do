@@ -161,7 +161,7 @@
 	
 	// TODO: read out real data
 	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
-	folderColorView.backgroundColor = [UIColor redColor];
+	folderColorView.backgroundColor = t.folder != nil ? t.folder.color : [UIColor whiteColor];
 	
 	int priorityIdx = t.priority != nil ? [t.priority intValue] + 1 : -1;
 	NSString *priorityName = [[NSString alloc] initWithFormat:@"priority_%d.png",priorityIdx];

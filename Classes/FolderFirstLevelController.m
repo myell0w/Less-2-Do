@@ -153,9 +153,9 @@
 		if(section==0)
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 		else {
-			NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FolderCell" owner:self options:nil];
-			for (id oneObject in nib) if ([oneObject isKindOfClass:[FolderCell class]])
-				cell = (FolderCell *)oneObject;
+			//NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FolderCell" owner:self options:nil];
+			//for (id oneObject in nib) if ([oneObject isKindOfClass:[FolderCell class]])
+				cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
 		}
 
 	}
@@ -172,7 +172,7 @@
 		Folder *folder = [self.list objectAtIndex:row];
 		((FolderCell *)cell).title.text = folder.name;
 		((FolderCell *)cell).detail.text = detail;
-		((FolderCell *)cell).imageView.backgroundColor = [UIColor colorWithRed:[folder.r floatValue] green:[folder.g floatValue] blue:[folder.b floatValue] alpha:1.0];
+		((FolderCell *)cell).imageView.backgroundColor = [folder color]; //[UIColor colorWithRed:[folder.r floatValue] green:[folder.g floatValue] blue:[folder.b floatValue] alpha:1.0];
 		ALog ("%@: %@ %@ %@", folder.name, folder.r, folder.g, folder.b);
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}

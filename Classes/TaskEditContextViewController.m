@@ -32,6 +32,12 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+	// pre-check row if task has context set
+	if (self.task.context != nil) {
+		NSUInteger idx = [contexts indexOfObject:self.task.context];
+		lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+	}
+		
     [super viewWillAppear:animated];
 }
 
@@ -106,9 +112,11 @@
 
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//int newRow = [indexPath row];
-    //int oldRow = (lastIndexPath != nil) ? [lastIndexPath row] : -1;
+	int row = [indexPath row];
+	Context *c = (Context *)[contexts objectAtIndex:row];
     
+	[addContextControl resignFirstResponder];
+	
     if (![indexPath isEqual:lastIndexPath]) {
         UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
         newCell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -116,11 +124,28 @@
         UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:lastIndexPath]; 
         oldCell.accessoryType = UITableViewCellAccessoryNone;
 		
-        lastIndexPath = indexPath;
+        lastIndexPath = indexPath;		
+		//[self.task setContext:c];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (IBAction)addContext:(id)sender {
+	[addContextControl resignFirstResponder];
+	
+	// Only Saves when text was entered
+	if (self.addContextControl.text.length == 0)
+		return;
+	
+	NSError *error;
+	Context *context = [ContextDAO addContextWithName:self.addContextControl.text error:&error];
+	ALog ("context %@ inserted", context);
+	
+	[contexts addObject:context];
+	NSUInteger idx = [contexts indexOfObject:context];
+	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+	//TODO: save in task
+}
 
 @end

@@ -122,6 +122,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		39312FDD10D6EA5D00D37294 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA649BBA10C30B250051F758;
+			remoteInfo = libToodledoAPIMac;
+		};
 		39B65A0010B7080D00825C1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
@@ -501,11 +508,11 @@
 		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
+				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
-				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
-				39A1F33610BA006300671B42 /* QuickAddViewController.xib */,
 				39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */,
 				39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */,
 				39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */,
@@ -625,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				39312FDE10D6EA5D00D37294 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -730,9 +738,9 @@
 			isa = PBXGroup;
 			children = (
 				A3E3389210BC5C6D004F0F39 /* Folder.h */,
+				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				CFB932F310BC872B004EAF93 /* Context.h */,
 				CFB932F410BC872B004EAF93 /* Context.m */,
-				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				A3E3389410BC5C6D004F0F39 /* Tag.h */,
 				A3E3389510BC5C6D004F0F39 /* Tag.m */,
 				A3E3389610BC5C6D004F0F39 /* Task.h */,
@@ -877,6 +885,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		39312FDE10D6EA5D00D37294 /* libToodledoAPIMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToodledoAPIMac.a;
+			remoteRef = 39312FDD10D6EA5D00D37294 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
