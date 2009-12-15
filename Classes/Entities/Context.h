@@ -27,5 +27,12 @@
 - (void)addTasks:(NSSet *)value;
 - (void)removeTasks:(NSSet *)value;
 
+// general fetch-methods for contexts
++ (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getContextsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
+
+// specialized fetch-methods for contexts - each method encapsulates a call to a general fetch-method
++ (NSArray *) getAllContexts:(NSError **)error;
+
 @end
 

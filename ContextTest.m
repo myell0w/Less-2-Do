@@ -10,14 +10,14 @@
 #import "Context.h"
 #import "Less2DoAppDelegate.h";
 
-@interface ContextDAOTest : GHTestCase {
+@interface ContextTest : GHTestCase {
 	Less2DoAppDelegate* appDelegate;
 	NSManagedObjectContext* managedObjectContext;
 }
 
 @end
 
-@implementation ContextDAOTest
+@implementation ContextTest
 
 - (void)setUp {
 	
