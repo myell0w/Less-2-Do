@@ -46,20 +46,28 @@
 	return YES;
 }
 
-+ (BOOL)commit:(NSError**)error
-{
++ (void)commit
+{	
 	NSError *saveError;
+	/* check if there were changes */
+
+	//ALog(@"Changed: %@", [[[self managedObjectContext] insertedObjects] count]);
 	
-	/* commit updateing and check for errors */
-	BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
-	
-	if (saveSuccessful == NO) 
+	if([self managedObjectContext].hasChanges)
 	{
-		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotEditedError userInfo:nil];
-		return NO;
+		BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
+		
+		if (saveSuccessful == NO)
+		{
+			ALog(@"Error @ autocommit");
+		}
+		else
+		{
+			ALog(@"Successfully autocommitted");
+		}
 	}
-	
-	return YES;
+	else
+		ALog(@"No changes - no autocommit");
 }
 
 @end

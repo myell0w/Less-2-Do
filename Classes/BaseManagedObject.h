@@ -14,6 +14,6 @@
 
 + (BaseManagedObject *)objectOfType:(NSString *)type;
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error;
-+ (BOOL)commit:(NSError**)error;
++ (void)commit;
 
 @end

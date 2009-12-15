@@ -20,6 +20,8 @@
 @synthesize tagsController;
 @synthesize settingsController;
 
+@synthesize timer;
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -50,11 +52,22 @@
 #pragma mark Application lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (void)commitDatabase:(NSTimer *) theTimer
+{
+	[BaseManagedObject commit];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
     // add rootControllers-View as subview of main-window  
 	[window addSubview:rootController.view];
 	[window makeKeyAndVisible];
+	
+	// start timer for committing to database
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0
+													   target:self
+													 selector:@selector(commitDatabase:)
+													 userInfo:nil
+													  repeats:YES];
 }
 
 /**

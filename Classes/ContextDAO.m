@@ -116,11 +116,11 @@
 	newContext.name = theName;
 	
 	/* commit inserting and check for errors */
-	BOOL saveSuccessful = [managedObjectContext save:&saveError];
+	/*BOOL saveSuccessful = [managedObjectContext save:&saveError];
 	if (saveSuccessful == NO) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotAddedError userInfo:nil];
 		return nil;
-	}
+	}*/
 	
 	return newContext;
 }
@@ -167,12 +167,12 @@
 	[managedObjectContext deleteObject:context];
 	
 	/* commit deleting and check for errors */
-	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
+	/*BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
 	if (deleteSuccessful == NO) {
 		//*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
 		*error = deleteError;
 		return NO;
-	}
+	}*/
 	
 	return YES;
 }
@@ -216,11 +216,11 @@
 	}
 	
 	/* commit deleting and check for errors */
-	BOOL updateSuccessful = [managedObjectContext save:&updateError];
+	/*BOOL updateSuccessful = [managedObjectContext save:&updateError];
 	if (updateSuccessful == NO) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotEditedError userInfo:nil];
 		return NO;
-	}
+	}*/
 	
 	return YES;
 }
