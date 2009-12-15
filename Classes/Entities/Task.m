@@ -161,19 +161,4 @@
 	return objects;
 }
 
-- (BOOL)saveTask:(NSError**)error {
-	NSError *saveError;
-	
-	/* commit updateing and check for errors */
-	BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
-
-	if (saveSuccessful == NO) 
-	{
-		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotAddedError userInfo:nil];
-		return NO;
-	}
-
-	return YES;
-}
-
 @end

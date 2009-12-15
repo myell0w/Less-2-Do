@@ -47,9 +47,9 @@
 - (void)testAllTasks {
 	NSError *error = nil;
 	
-	Task *newTask1 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
 	newTask1.name = @"Task 1";
 	newTask2.name = @"Task 2";
 	newTask3.name = @"Task 3";
@@ -65,9 +65,9 @@
 - (void)testStarredTasks {
 	NSError *error = nil;
 	
-	Task *newTask1 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
 	newTask1.name = @"Task 1";
 	newTask1.star = [NSNumber numberWithInt:0];
 	newTask2.name = @"Task 2";
@@ -86,9 +86,9 @@
 - (void)testOrderedTasks {
 	NSError *error = nil;
 	
-	Task *newTask1 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [[Task alloc] initWithEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
 	newTask1.name = @"Task 1: 2009-12-05";
 	newTask1.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
 	newTask2.name = @"Task 2: 2009-12-04";
@@ -107,10 +107,10 @@
 
 - (void)testGetTasksInFolder {
 	NSError *error = nil;
-	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Folder *newFolder = [NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Folder *newFolder = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder.name = @"MyFolder";
 	newTask1.name = @"Task 1";
 	[newTask1 setFolder:newFolder];
@@ -126,10 +126,10 @@
 
 - (void)testGetTasksWithTag {
 	NSError *error = nil;
-	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Tag *newTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
 	newTag.name = @"MyTag";
 	newTask1.name = @"Task 1";
 	[newTask1 addTagsObject:newTag];
@@ -144,10 +144,10 @@
 
 - (void)testGetTasksInContext {
 	NSError *error = nil;
-	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
-	Context *newContext = [NSEntityDescription insertNewObjectForEntityForName:@"Context" inManagedObjectContext:managedObjectContext];
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Context *newContext = (Context*)[Context objectOfType:@"Context"];
 	newContext.name = @"MyContext";
 	newTask1.name = @"Task 1";
 	newTask1.context = newContext;

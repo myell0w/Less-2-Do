@@ -23,45 +23,35 @@
 	return self.name;
 }
 
-//Automatisch geordnet nach Order
-+ (NSArray *)getAllFolders:(NSError *)error {
++ (NSArray *) getFoldersWithFilterString:(NSString*)filterString error:(NSError **)error
+{
 	NSError *fetchError;
-	
-	/* get managed object context */
-	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
-	Less2DoAppDelegate *delegate;
-	NSManagedObjectContext *managedObjectContext;
-	
-	@try {
-		delegate = [[UIApplication sharedApplication] delegate];
-		managedObjectContext = [delegate managedObjectContext];
-	}
-	@catch (NSException *exception) {
-		// Test target, create new AppDelegate
-		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
-		managedObjectContext = [delegate managedObjectContext];
-	}
 	
 	/* get entity description - needed for fetching */
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Folder"
-											  inManagedObjectContext:managedObjectContext];
+											  inManagedObjectContext:[self managedObjectContext]];
 	
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
+	[request setEntity:entityDescription];
 	
+	/* apply sort order */
 	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
 	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 	[request setSortDescriptors:[NSArray arrayWithObjects:sortByOrder, sortByName, nil]];
 	[sortByOrder release];
 	[sortByName release];
 	
+	/* apply filter string */
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
+	[request setPredicate:predicate];
+	
 	/* fetch objects */
-	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
-	if (objects == nil) {
-		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+	NSArray *objects = [[self managedObjectContext] executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
 		return nil;
 	}
 	
@@ -70,56 +60,66 @@
 	return objects;
 }
 
-+ (BOOL)deleteFolder:(Folder *)theFolder:(NSError *)error {
-	for(Task *t in theFolder.tasks)
++ (NSArray *) getFoldersWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error
+{
+	NSError *fetchError;
+	
+	/* get entity description - needed for fetching */
+	NSEntityDescription *entityDescription = [NSEntityDescription
+											  entityForName:@"Folder"
+											  inManagedObjectContext:[self managedObjectContext]];
+	
+	/* create new fetch request */
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityDescription];
+	
+	/* apply sort order */
+	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
+	NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByOrder, sortByName, nil]];
+	[sortByOrder release];
+	[sortByName release];
+	
+	/* apply filter string */
+	[request setPredicate:filterPredicate];
+	
+	/* fetch objects */
+	NSArray *objects = [[self managedObjectContext] executeFetchRequest:request error:&fetchError];
+	if (objects == nil) 
 	{
-		[t removeFolder];
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		return nil;
 	}
 	
-	NSError *deleteError;
+	[request release];
 	
-	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	/* mark object to be deleted */
-	[managedObjectContext deleteObject:theFolder];
-	
-	/* commit deleting and check for errors */
-	
-	// TODO: Update entfernen? 
-	BOOL deleteSuccessful = [managedObjectContext save:&deleteError];
-	if (deleteSuccessful == NO) 
-	{
-		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotDeletedError userInfo:nil];
-		return NO;
-	}
-	return YES;
-	
-	
-	
+	return objects;
 }
 
-+ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
++ (NSArray *) getAllFolders:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:nil error:error];	
+	return objects;
+}
+
+
+
++ (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
 {
 	// TODO: Selektion für RGB
-	NSError *fetchError;
+	/*NSError *fetchError;
 	
-	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	/* get entity description - needed for fetching */
+	// get entity description - needed for fetching 
 	NSEntityDescription *entityDescription = [NSEntityDescription
 											  entityForName:@"Folder"
 											  inManagedObjectContext:managedObjectContext];
 	
 	/* create new fetch request */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	/*NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
 	
 	/* fetch objects */
-	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
+	/*NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
 	if (objects == nil) {
 		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
 		return nil;
@@ -127,60 +127,8 @@
 	
 	[request release];
 	
-	return objects;
-}
-
-+ (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error
-{
-	// TODO: Selektion für Task
-	NSError *fetchError;
-	
-	/* get managed object context */
-	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];
-	
-	/* get entity description - needed for fetching */
-	NSEntityDescription *entityDescription = [NSEntityDescription
-											  entityForName:@"Folder"
-											  inManagedObjectContext:managedObjectContext];
-	
-	/* create new fetch request */
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDescription]; // TODO: Request um order erweitern!
-	
-	/* fetch objects */
-	NSArray *objects = [managedObjectContext executeFetchRequest:request error:&fetchError];
-	if (objects == nil) {
-		error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
-		return nil;
-	}
-	
-	[request release];
-	
-	return objects;
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-	/* get managed object context */
-	/*Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-	 NSManagedObjectContext *managedObjectContext = [delegate managedObjectContext];*/
-	Less2DoAppDelegate *delegate;
-	NSManagedObjectContext *managedObjectContext;
-	@try
-	{
-		ALog(@"FUCK 1");
-		delegate = [[UIApplication sharedApplication] delegate];
-		managedObjectContext = [delegate managedObjectContext];
-		ALog(@"FUCK 2");
-	}
-	@catch (NSException *exception) {
-		// Test target, create new AppDelegate
-		ALog(@"FUCK 3");
-		delegate = [[[Less2DoAppDelegate alloc] init] autorelease];
-		managedObjectContext = [delegate managedObjectContext];
-	}
-	return managedObjectContext;
+	return objects;*/
+	return nil;
 }
 
 - (UIColor *) color {

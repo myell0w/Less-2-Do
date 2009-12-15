@@ -29,14 +29,14 @@
 - (void)removeTasks:(NSSet *)value;
 
 
-//Self made
-+ (NSArray *)getAllFolders:(NSError *)error; //Automatisch geordnet nach Order
-+ (NSArray *)getFolderbyRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
-+ (NSArray *)getFolderbyTask:(Task *)theTask error:(NSError *)error;
-+ (BOOL)deleteFolder:(Folder *)theFolder error:(NSError *)error;
+// general fetch-methods for tasks
++ (NSArray *) getFoldersWithFilterString:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getFoldersWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
-// hack for moc
-- (NSManagedObjectContext *)managedObjectContext;
+// specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method
++ (NSArray *)getAllFolders:(NSError **)error; //Automatisch geordnet nach Order
+//TODO folder with rgb
++ (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
 
 - (UIColor *) color;
 

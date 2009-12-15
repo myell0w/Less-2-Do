@@ -81,6 +81,7 @@
 		A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */; };
 		A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
 		A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
+		A3706C3110D7EA5000E6D556 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -1036,6 +1037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
+				A3706C3110D7EA5000E6D556 /* Tag.m in Sources */,
 				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
 				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
 				A30A5F9C10C15B4E00673F02 /* ContextDAO.m in Sources */,

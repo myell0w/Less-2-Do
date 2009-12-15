@@ -7,10 +7,9 @@
 //
 
 #import "Folder.h"
-#import "Less2DoAppDelegate.h";
+#import "CustomGHUnitAppDelegate.h";
 
 @interface FolderTest : GHTestCase {
-	Less2DoAppDelegate* appDelegate;
 	NSManagedObjectContext* managedObjectContext;
 }
 
@@ -21,8 +20,8 @@
 - (void)setUp {
 	
 	/* delete all folders from the persistent store */
-	appDelegate = [[Less2DoAppDelegate alloc] init];
-	managedObjectContext = [appDelegate managedObjectContext];
+	CustomGHUnitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	managedObjectContext = [delegate managedObjectContext];
 	
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext]];
@@ -39,8 +38,7 @@
 }
 
 - (void)tearDown {
-	[appDelegate release];
-	appDelegate = nil;
+	/* do nothing */
 }
 
 /* test ordering of all folders */
@@ -48,17 +46,17 @@
 	NSError *error = nil;
 	
 	/* case 1: same order, order by name */
-	Folder *newFolder1 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Folder *newFolder1 = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder1.name = @"Holder";
 	newFolder1.order = [NSNumber numberWithInt:1];
-	Folder *newFolder2 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Folder *newFolder2 = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder2.name = @"Golder";
 	newFolder2.order = [NSNumber numberWithInt:1];
-	Folder *newFolder3 = [[Folder alloc] initWithEntity:[NSEntityDescription entityForName:@"Folder" inManagedObjectContext:managedObjectContext] insertIntoManagedObjectContext:managedObjectContext];
+	Folder *newFolder3 = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder3.name = @"Folder";
 	newFolder3.order = [NSNumber numberWithInt:1];
 	[managedObjectContext save:&error];
-	NSArray *folders = [Folder getAllFolders:error];
+	NSArray *folders = [Folder getAllFolders:&error];
 	GHAssertEquals([folders count], (NSUInteger)3, @"Add folder not successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [folders objectAtIndex:0], [folders objectAtIndex:1], [folders objectAtIndex:2]];
 	GHAssertEqualStrings(output, @"0: Folder, 1: Golder, 2: Holder", @"Ordered Folders not successful");
@@ -68,7 +66,7 @@
 	newFolder2.order = [NSNumber numberWithInt:2];
 	newFolder3.order = [NSNumber numberWithInt:3];
 	[managedObjectContext save:&error];
-	folders = [Folder getAllFolders:error];
+	folders = [Folder getAllFolders:&error];
 	GHAssertEquals([folders count], (NSUInteger)3, @"Add folder not successful");
 	output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [folders objectAtIndex:0], [folders objectAtIndex:1], [folders objectAtIndex:2]];
 	GHAssertEqualStrings(output, @"0: Holder, 1: Golder, 2: Folder", @"Ordered Folders not successful");

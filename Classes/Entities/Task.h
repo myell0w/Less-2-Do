@@ -65,8 +65,6 @@
 - (void)setContext:(Context *)value;
 - (void)removeContext;
 
-- (BOOL)saveTask:(NSError**)error;
-
 // general fetch-methods for tasks
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error;
 + (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;

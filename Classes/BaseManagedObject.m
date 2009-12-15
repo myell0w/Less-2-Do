@@ -17,7 +17,7 @@
 	return [delegate managedObjectContext];
 }
 
-+ (NSManagedObject *)objectOfType:(NSString *)type
++ (BaseManagedObject *)objectOfType:(NSString *)type
 {
 	return [NSEntityDescription insertNewObjectForEntityForName:type 
 										 inManagedObjectContext:[self managedObjectContext]]; 
@@ -40,6 +40,22 @@
 	BOOL deleteSuccessful = [[self managedObjectContext] save:&deleteError];
 	if (deleteSuccessful == NO) {
 		*error = deleteError;
+		return NO;
+	}
+	
+	return YES;
+}
+
++ (BOOL)commit:(NSError**)error
+{
+	NSError *saveError;
+	
+	/* commit updateing and check for errors */
+	BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
+	
+	if (saveSuccessful == NO) 
+	{
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotEditedError userInfo:nil];
 		return NO;
 	}
 	
