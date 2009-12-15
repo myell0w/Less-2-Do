@@ -8,6 +8,7 @@
 
 #import "Task.h"
 #import "Folder.h"
+#import "Tag.h"
 #import "CustomGHUnitAppDelegate.h";
 
 @interface TaskTest : GHTestCase {
@@ -106,30 +107,58 @@
 
 - (void)testGetTasksInFolder {
 	NSError *error = nil;
-	ALog(@"Got herre");
 	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
 	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
 	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
 	Folder *newFolder = [NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:managedObjectContext];
-	[managedObjectContext save:&error];
-	ALog(@"whazzup");
 	newFolder.name = @"MyFolder";
-	ALog(@"line 1");
 	newTask1.name = @"Task 1";
-	ALog(@"line 3");
 	[newTask1 setFolder:newFolder];
-	ALog(@"line 4");
 	newTask2.name = @"Task 2";
 	newTask2.folder = nil;
 	newTask3.name = @"Task 3";
 	newTask3.folder = newFolder;
-	ALog(@"line 2");
 	[managedObjectContext save:&error];
-	ALog(@"Got here");
 	
 	NSArray *tasks = [Task getTasksInFolder:newFolder error:&error];
 	GHAssertEquals([tasks count], (NSUInteger)2, @"Add tasks not successful");
+}
 
+- (void)testGetTasksWithTag {
+	NSError *error = nil;
+	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Tag *newTag = [NSEntityDescription insertNewObjectForEntityForName:@"Tag" inManagedObjectContext:managedObjectContext];
+	newTag.name = @"MyTag";
+	newTask1.name = @"Task 1";
+	[newTask1 addTagsObject:newTag];
+	newTask2.name = @"Task 2";
+	newTask3.name = @"Task 3";
+	[newTask3 addTagsObject:newTag];
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksWithTag:newTag error:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Add tasks not successful");
+}
+
+- (void)testGetTasksInContext {
+	NSError *error = nil;
+	Task *newTask1 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask2 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Task *newTask3 = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:managedObjectContext];
+	Context *newContext = [NSEntityDescription insertNewObjectForEntityForName:@"Context" inManagedObjectContext:managedObjectContext];
+	newContext.name = @"MyContext";
+	newTask1.name = @"Task 1";
+	newTask1.context = newContext;
+	newTask2.name = @"Task 2";
+	newTask2.context = nil;
+	newTask3.name = @"Task 3";
+	newTask3.context = newContext;
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksInContext:newContext error:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Add tasks not successful");
 }
 
 @end

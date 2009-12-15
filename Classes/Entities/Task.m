@@ -42,16 +42,6 @@
 	return self.name;
 }
 
-- (void)setContext:(Context *)value
-{
-	self.context = value;
-}
-
-- (void)removeContext
-{
-	self.context = nil;
-}
-
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;
@@ -174,6 +164,32 @@
 													modifier:NSDirectPredicateModifier
 													type:NSEqualToPredicateOperatorType
 													options:0];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return objects;
+}
+
++ (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error
+{	
+	NSExpression *leftSide = [NSExpression expressionForKeyPath:@"tags"];
+	NSExpression *rightSide = [NSExpression expressionForConstantValue:theTag];
+	NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:leftSide
+																rightExpression:rightSide
+																	   modifier:NSDirectPredicateModifier
+																		   type:NSContainsPredicateOperatorType
+																		options:0];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return objects;
+}
+
++ (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error
+{	
+	NSExpression *leftSide = [NSExpression expressionForKeyPath:@"context"];
+	NSExpression *rightSide = [NSExpression expressionForConstantValue:theContext];
+	NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:leftSide
+																rightExpression:rightSide
+																	   modifier:NSDirectPredicateModifier
+																		   type:NSEqualToPredicateOperatorType
+																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	return objects;
 }
