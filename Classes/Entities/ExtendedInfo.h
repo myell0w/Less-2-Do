@@ -8,7 +8,7 @@
 
 @class Task;
 
-@interface ExtendedInfo :  NSManagedObject  
+@interface ExtendedInfo :  BaseManagedObject  
 {
 }
 

@@ -8,7 +8,7 @@
 
 @class Task;
 
-@interface Context :  NSManagedObject  
+@interface Context :  BaseManagedObject  
 {
 }
 

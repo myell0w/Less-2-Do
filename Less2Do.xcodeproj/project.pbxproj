@@ -80,6 +80,8 @@
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
 		A36CFA8010D64748007482E3 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
 		A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */; };
+		A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
+		A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */; };
 		A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -257,6 +259,8 @@
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
 		A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGHUnitAppDelegate.h; sourceTree = "<group>"; };
 		A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomGHUnitAppDelegate.m; sourceTree = "<group>"; };
+		A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseManagedObject.h; sourceTree = "<group>"; };
+		A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseManagedObject.m; sourceTree = "<group>"; };
 		A38B3AB510BFF91100D5D87F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A38B3ABF10BFFA8000D5D87F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38B3AC110BFFA8000D5D87F /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -742,9 +746,9 @@
 		A3E338A410BC5C80004F0F39 /* entities */ = {
 			isa = PBXGroup;
 			children = (
-				A3E3389210BC5C6D004F0F39 /* Folder.h */,
 				CFB932F310BC872B004EAF93 /* Context.h */,
 				CFB932F410BC872B004EAF93 /* Context.m */,
+				A3E3389210BC5C6D004F0F39 /* Folder.h */,
 				A3E3389310BC5C6D004F0F39 /* Folder.m */,
 				A3E3389410BC5C6D004F0F39 /* Tag.h */,
 				A3E3389510BC5C6D004F0F39 /* Tag.m */,
@@ -754,6 +758,8 @@
 				A3E3389B10BC5C6D004F0F39 /* ABContact.m */,
 				A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */,
 				A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */,
+				A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */,
+				A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1027,6 +1033,7 @@
 				D4C4C52910D298C300B55BA9 /* FolderCell.m in Sources */,
 				CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */,
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
+				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,6 +1051,7 @@
 				A36CF93810D634C9007482E3 /* FolderTest.m in Sources */,
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
+				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

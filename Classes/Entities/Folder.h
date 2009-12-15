@@ -7,7 +7,7 @@
 //
 
 
-@interface Folder :  NSManagedObject  
+@interface Folder :  BaseManagedObject  
 {
 }
 

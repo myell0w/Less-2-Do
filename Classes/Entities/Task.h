@@ -16,7 +16,7 @@
 #define PRIORITY_MEDIUM 1
 #define PRIORITY_HIGH   2
 
-@interface Task :  NSManagedObject  
+@interface Task :  BaseManagedObject  
 {
 }
 

@@ -8,7 +8,7 @@
 
 @class Task;
 
-@interface ABContact :  NSManagedObject  
+@interface ABContact :  BaseManagedObject  
 {
 }
 
