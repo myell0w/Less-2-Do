@@ -7,6 +7,7 @@
 //
 
 #import "TaskDAO.h"
+#import "Less2DoAppDelegate.h"
 
 
 @implementation TaskDAO

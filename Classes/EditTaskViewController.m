@@ -559,8 +559,6 @@
 
 // save the task
 -(IBAction)save:(id)sender {
-	NSError *error = nil;
-	
 	// TODO:
 	if (textFieldBeingEdited != nil) {
 		NSNumber *tagAsNum = [[NSNumber alloc] initWithInt:textFieldBeingEdited.tag];
@@ -598,10 +596,7 @@
 	}
 	
 	ALog("Task to save: %@", task);
-	[TaskDAO addTask:task error:&error];
 	
-	//TODO:error handling
-	ALog("Task was saved!");
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	
 	[self dismissModalViewControllerAnimated:YES];

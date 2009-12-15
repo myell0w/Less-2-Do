@@ -7,6 +7,7 @@
 //
 
 #import "BaseManagedObject.h"
+#import "Less2DoAppDelegate.h"
 
 
 @implementation BaseManagedObject

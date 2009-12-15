@@ -142,11 +142,7 @@
 	[self hideQuickAdd];
 	
 	if ([task.name length] > 0) {
-		//TODO: store task
-		NSError *error;
 		ALog("Task to quickadd: %@", task);
-		
-		[TaskDAO addTask:task error:&error];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	}
 }

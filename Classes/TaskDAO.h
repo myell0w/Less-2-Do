@@ -6,8 +6,6 @@
 //  Copyright 2009 TU Wien. All rights reserved.
 //
 
-#import "Less2DoAppDelegate.h"
-
 
 @interface TaskDAO : NSObject 
 {
