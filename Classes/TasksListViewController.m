@@ -36,24 +36,9 @@
 
 - (void)viewDidLoad {
 	NSMutableArray *array = [[NSMutableArray alloc] init];
-	NSError *error;
-	
 	self.tasks = array;
 	[array release];
-	
-	/*NSArray *objects = [TaskDAO allTasks:&error];
-	
-	if (objects == nil) {
-		ALog(@"There was an error!");
-		// Do whatever error handling is appropriate
-	}
-	else {
-		// for schleife objekte erzeugen und array addObject:current Task
-		for (Task *t in objects) {
-			[self.tasks addObject:t];
-		}
-	}*/
-	
+		
 	formatDate = [[NSDateFormatter alloc] init];
 	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
 	formatTime = [[NSDateFormatter alloc] init];
@@ -61,9 +46,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	//TODO: delete, only for MR2
 	NSError *error;
-	NSArray *objects = [Task getTasks:filterString error:&error];
+	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -159,7 +143,6 @@
 	titleDetail.text = dueDateAndTime;
 	[dueDateAndTime release];
 	
-	// TODO: read out real data
 	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
 	folderColorView.backgroundColor = t.folder != nil ? t.folder.color : [UIColor whiteColor];
 	
@@ -173,7 +156,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ALog("selected row: %@", indexPath);
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,9 +164,9 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (int)taskCount {
-	//TODO: delete, only for MR2
+	//TODO: change, performance!
 	NSError *error;
-	NSArray *objects = [TaskDAO allTasks:&error];
+	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -196,7 +179,6 @@
 			[self.tasks addObject:t];
 		}
 	}
-	
 	
 	[self.tableView reloadData];
 	return [tasks count];

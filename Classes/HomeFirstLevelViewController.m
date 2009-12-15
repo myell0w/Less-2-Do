@@ -47,6 +47,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *watch = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	watch.title = @"Watchlist";
+	watch.filterString = nil;
 	watch.image = [UIImage imageNamed:@"home_watchlist.png"];
 	[array addObject:watch];
 	[watch release];
@@ -59,6 +60,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *overdue = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	overdue.title = @"Overdue";
+	overdue.filterString = nil;
 	overdue.image = [UIImage imageNamed:@"home_overdue.png"];
 	[array addObject:overdue];
 	[overdue release];
@@ -66,6 +68,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *today = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	today.title = @"Today";
+	today.filterString = nil;
 	today.image = [UIImage imageNamed:@"home_today.png"];
 	[array addObject:today];
 	[today release];
@@ -73,6 +76,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *week = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	week.title = @"This Week";
+	week.filterString = nil;
 	week.image = [UIImage imageNamed:@"home_this_week.png"];
 	[array addObject:week];
 	[week release];
@@ -130,15 +134,16 @@
 	
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
-	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",[c taskCount]];
 	
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
 	// customize cell-appearance:
+	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
+	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",[c taskCount]];
+	
 	cell.textLabel.text = c.title;
 	cell.detailTextLabel.text = detail;
 	cell.imageView.image = c.image;

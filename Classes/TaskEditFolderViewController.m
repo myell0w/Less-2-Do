@@ -148,8 +148,7 @@
         oldCell.accessoryType = UITableViewCellAccessoryNone;
 		
         lastIndexPath = indexPath;
-		// TODO:save
-		//[self.task setFolder:f];
+		self.task.folder = f;
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -159,19 +158,25 @@
 	[addFolderControl resignFirstResponder];
 	
 	// Only Saves when text was entered
-	if (self.addFolderControl.text.length == 0)
+	if (addFolderControl.text.length == 0)
 		return;
 	
-	NSError *error;
 	NSNumber *order = [[NSNumber alloc] initWithInt:[folders count]];
-	Folder *folder = [FolderDAO addFolderWithName:self.addFolderControl.text theTasks:nil theOrder:order error:&error];
-	ALog ("Folder inserted");
+	Folder *folder = (Folder *)[Folder objectOfType:@"Folder"];
+	folder.name = addFolderControl.text;
+	folder.order = order;
+	[order release];
 	
+	ALog ("Folder %@ inserted", folder);
 	
 	[folders addObject:folder];
+	self.task.folder = folder;
+	
 	NSUInteger idx = [folders indexOfObject:folder];
 	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-	//TODO: save in task
+	
+	self.addFolderControl.text = @"";
+	[self.tableView reloadData];
 }
 
 @end
