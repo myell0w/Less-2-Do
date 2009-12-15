@@ -23,6 +23,8 @@
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;	    
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
+	
+	NSTimer *timer;
 
 	// the main window
     UIWindow *window;
@@ -49,6 +51,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, retain) NSTimer * timer;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 @property (nonatomic, retain) IBOutlet HomeNavigationController *homeController;
@@ -62,6 +66,7 @@
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (void)commitDatabase:(NSTimer *) theTimer;
 -(NSString *)applicationDocumentsDirectory;
 
 @end
