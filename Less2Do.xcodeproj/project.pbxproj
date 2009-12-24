@@ -96,6 +96,7 @@
 		A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389B10BC5C6D004F0F39 /* ABContact.m */; };
 		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
 		A3E3393510BC76F3004F0F39 /* ContextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3393410BC76F3004F0F39 /* ContextDAO.m */; };
+		CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */; };
 		CF25612110C2820500019621 /* TaskDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = CF25612010C2820500019621 /* TaskDAO.m */; };
 		CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF879D8F10D5B490004D6770 /* ColorChooserCell.m */; };
 		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
@@ -291,6 +292,8 @@
 		A3E3393310BC76F3004F0F39 /* ContextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextDAO.h; sourceTree = "<group>"; };
 		A3E3393410BC76F3004F0F39 /* ContextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextDAO.m; sourceTree = "<group>"; };
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSyncObject.h; sourceTree = "<group>"; };
+		CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSyncObject.m; sourceTree = "<group>"; };
 		CF25611F10C2820500019621 /* TaskDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDAO.h; sourceTree = "<group>"; };
 		CF25612010C2820500019621 /* TaskDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDAO.m; sourceTree = "<group>"; };
 		CF879D8E10D5B490004D6770 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
@@ -368,6 +371,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CF04579810E2F08800DED3CF /* sync */,
 				CFF1D52B10D571AC005AB0BE /* util */,
 				39C6CF9210BECEA8000A0C70 /* ui */,
 				39C6CF9010BECE95000A0C70 /* db */,
@@ -778,6 +782,15 @@
 			name = dao;
 			sourceTree = "<group>";
 		};
+		CF04579810E2F08800DED3CF /* sync */ = {
+			isa = PBXGroup;
+			children = (
+				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
+				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
+			);
+			name = sync;
+			sourceTree = "<group>";
+		};
 		CFF1D52B10D571AC005AB0BE /* util */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,6 +1042,7 @@
 				CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */,
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
+				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
