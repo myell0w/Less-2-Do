@@ -38,6 +38,8 @@
 		392325B710B2EE7D00075370 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325AF10B2EE7D00075370 /* home.png */; };
 		392325B810B2EE7D00075370 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B010B2EE7D00075370 /* settings.png */; };
 		392325B910B2EE7D00075370 /* tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 392325B110B2EE7D00075370 /* tags.png */; };
+		3931F5C410E94F1B00A09E33 /* ShowTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3931F5C210E94F1B00A09E33 /* ShowTaskViewController.m */; };
+		3931F5C510E94F1B00A09E33 /* ShowTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3931F5C310E94F1B00A09E33 /* ShowTaskViewController.xib */; };
 		39A1F31910B9F11900671B42 /* TaskInList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31810B9F11900671B42 /* TaskInList.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
@@ -215,6 +217,10 @@
 		392325AF10B2EE7D00075370 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		392325B010B2EE7D00075370 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		392325B110B2EE7D00075370 /* tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tags.png; sourceTree = "<group>"; };
+		3931F5C110E94F1B00A09E33 /* ShowTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTaskViewController.h; sourceTree = "<group>"; };
+		3931F5C210E94F1B00A09E33 /* ShowTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTaskViewController.m; sourceTree = "<group>"; };
+		3931F5C310E94F1B00A09E33 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
+		3931F60B10E9542000A09E33 /* Includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
 		39A1F31810B9F11900671B42 /* TaskInList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskInList.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
@@ -514,6 +520,8 @@
 				39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */,
 				39E31B0B10CC4C57002F0D86 /* TaskEditContextViewController.h */,
 				39E31B0C10CC4C57002F0D86 /* TaskEditContextViewController.m */,
+				3931F5C110E94F1B00A09E33 /* ShowTaskViewController.h */,
+				3931F5C210E94F1B00A09E33 /* ShowTaskViewController.m */,
 			);
 			name = task;
 			sourceTree = "<group>";
@@ -522,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
+				3931F5C310E94F1B00A09E33 /* ShowTaskViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
 				39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */,
@@ -802,6 +811,7 @@
 				CF879D8F10D5B490004D6770 /* ColorChooserCell.m */,
 				CFF1D52810D571A1005AB0BE /* UIColor+ColorComponents.h */,
 				CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */,
+				3931F60B10E9542000A09E33 /* Includes.h */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -992,6 +1002,7 @@
 				D4C4C49B10D28BB800B55BA9 /* whiteBoarderedButton.png in Resources */,
 				D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */,
 				D4C4C52B10D29A3000B55BA9 /* FolderCell.xib in Resources */,
+				3931F5C510E94F1B00A09E33 /* ShowTaskViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,6 +1065,7 @@
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
+				3931F5C410E94F1B00A09E33 /* ShowTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

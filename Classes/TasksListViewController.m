@@ -9,6 +9,8 @@
 #import "TasksListViewController.h"
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
+#import "ShowTaskViewController.h"
+
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
 #define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
@@ -20,12 +22,6 @@
 #define TITLE_FONT_SIZE 15
 #define TITLE_DETAIL_FONT_SIZE 11
 
-#define TAG_TITLE		 1
-#define TAG_TITLE_DETAIL 2
-#define TAG_COMPLETED	 3
-#define TAG_STARRED		 4
-#define TAG_PRIORITY	 5
-#define TAG_FOLDER_COLOR 6
 
 @implementation TasksListViewController
 
@@ -157,7 +153,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+	ShowTaskViewController *stvc = [[ShowTaskViewController alloc] 
+										   initWithNibName:@"ShowTaskViewController" 
+										   bundle:nil];
+	stvc.title = @"Task Details";
+	stvc.task = [self.tasks objectAtIndex:indexPath.row];
+	
+	[self.navigationController pushViewController:stvc animated:YES];
+	[stvc release];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,8 +261,6 @@
 			}
 			break;
 	}
-	
-	ALog("New Task: %@", t);
 }
 
 - (NSArray *)getTasks {

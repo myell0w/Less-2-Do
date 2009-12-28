@@ -11,6 +11,9 @@
 #import "Folder.h"
 #import "Tag.h"
 
+#define MAX_TAGS_COUNT 20
+
+
 @implementation Task 
 
 @dynamic taskId;
@@ -40,6 +43,28 @@
 
 - (NSString *)description {
 	return self.name;
+}
+
+- (NSString *)tagsDescription {
+	NSMutableString *s = [[NSMutableString alloc] init];
+	
+	for (id t in self.tags) {
+		Tag *tag = (Tag *)t;
+		[s appendFormat:@"%@, ", [tag description]];
+	}
+	
+	NSString *desc = [s substringToIndex: (s.length - 2)];
+	[s release];
+	
+	if (desc.length < MAX_TAGS_COUNT) {
+		return desc;
+	} else {
+		if ([self.tags count] == 1)
+			return [NSString stringWithFormat:@"1 Tag"];
+		else {
+			return [NSString stringWithFormat:@"%d Tag(s)", [self.tags count]];
+		}
+	}
 }
 
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error {

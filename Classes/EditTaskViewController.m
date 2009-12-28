@@ -20,10 +20,7 @@
 #define COMPLETED_RECT CGRectMake(9, 6, 32, 32)
 #define STARRED_RECT CGRectMake(260, 6, 32, 32)
 
-#define TITLE_FONT_SIZE  15
-#define NORMAL_FONT_SIZE 14
 
-#define MAX_NOTE_COUNT 20
 
 @implementation EditTaskViewController
 
@@ -330,9 +327,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 		if (task.tags != nil && [task.tags count] > 0) {
-			NSString *s = [[NSString alloc] initWithFormat:@"%d Tag(s)", [task.tags count]];
-			cell.detailTextLabel.text = s;
-			[s release];
+			cell.detailTextLabel.text = [task tagsDescription];
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}

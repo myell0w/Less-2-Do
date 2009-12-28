@@ -10,10 +10,7 @@
 #import "FolderDAO.h"
 #import "FolderCell.h"
 
-#define TAG_COLOR  1
-#define TAG_FOLDER 2
-
-#define NORMAL_FONT_SIZE 15
+#define FONT_SIZE 15
 
 
 @implementation TaskEditFolderViewController
@@ -116,7 +113,7 @@
 		
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(46,10,235,27)];
 		label.tag = TAG_FOLDER;
-		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+		label.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
 		[cell.contentView addSubview:label];
 		[label release];
     }
