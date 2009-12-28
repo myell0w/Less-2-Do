@@ -493,18 +493,11 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
-		398E438D10C480CA0066AA09 /* viewTasks */ = {
+		39A1F30A10B9ECDF00671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
 				3903387510B60BF0007985A9 /* TasksListViewController.m */,
-			);
-			name = viewTasks;
-			sourceTree = "<group>";
-		};
-		39A1F30A10B9ECDF00671B42 /* task */ = {
-			isa = PBXGroup;
-			children = (
 				39A1F33410BA006300671B42 /* QuickAddViewController.h */,
 				39A1F33510BA006300671B42 /* QuickAddViewController.m */,
 				39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */,
@@ -671,7 +664,6 @@
 		39C6CF9210BECEA8000A0C70 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				398E438D10C480CA0066AA09 /* viewTasks */,
 				39C6D00210BEDED2000A0C70 /* cells */,
 				39B6590010B6B32600825C1D /* folder */,
 				39B658FF10B6B31200825C1D /* contexts */,
