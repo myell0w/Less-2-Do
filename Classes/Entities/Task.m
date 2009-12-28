@@ -60,9 +60,9 @@
 		return desc;
 	} else {
 		if ([self.tags count] == 1)
-			return [NSString stringWithFormat:@"1 Tag"];
+			return @"1 Tag";
 		else {
-			return [NSString stringWithFormat:@"%d Tag(s)", [self.tags count]];
+			return [NSString stringWithFormat:@"%d Tags", [self.tags count]];
 		}
 	}
 }
