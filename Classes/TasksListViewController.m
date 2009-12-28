@@ -31,7 +31,7 @@
 
 @synthesize image;
 @synthesize tasks;
-@synthesize filterString;
+@synthesize selector;
 
 
 - (void)viewDidLoad {
@@ -46,8 +46,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSError *error;
-	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
+	NSArray *objects = nil;
+	
+	objects = [self getTasks];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -165,8 +166,7 @@
 
 - (int)taskCount {
 	//TODO: change, performance!
-	NSError *error;
-	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
+	NSArray *objects = [self getTasks];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -262,5 +262,16 @@
 	ALog("New Task: %@", t);
 }
 
+- (NSArray *)getTasks {
+	NSError *error;
+	
+	// call defined method, or if no selector is set, get all Tasks
+	if ([Task respondsToSelector:selector]) {
+		ALog("Selector %d called to get Tasks", selector);
+		return [[Task class] performSelector:selector]; // withObject:&error];
+	} else {
+		return [Task getAllTasks:&error];
+	}
+}
 
 @end

@@ -31,7 +31,6 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *all = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	all.title = @"All Tasks";
-	all.filterString = nil;
 	all.image = [UIImage imageNamed:@"home_all.png"];
 	[array addObject:all];
 	[all release];
@@ -39,7 +38,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *starred = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	starred.title = @"Starred";
-	starred.filterString = @"star = 1";
+	starred.selector = @selector(getStarredTasks:);
 	starred.image = [UIImage imageNamed:@"home_starred.png"];
 	[array addObject:starred];
 	[starred release];
@@ -47,7 +46,6 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *watch = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	watch.title = @"Watchlist";
-	watch.filterString = nil;
 	watch.image = [UIImage imageNamed:@"home_watchlist.png"];
 	[array addObject:watch];
 	[watch release];
@@ -60,7 +58,6 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *overdue = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	overdue.title = @"Overdue";
-	overdue.filterString = nil;
 	overdue.image = [UIImage imageNamed:@"home_overdue.png"];
 	[array addObject:overdue];
 	[overdue release];
@@ -68,7 +65,6 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *today = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	today.title = @"Today";
-	today.filterString = nil;
 	today.image = [UIImage imageNamed:@"home_today.png"];
 	[array addObject:today];
 	[today release];
@@ -76,7 +72,6 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *week = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	week.title = @"This Week";
-	week.filterString = nil;
 	week.image = [UIImage imageNamed:@"home_this_week.png"];
 	[array addObject:week];
 	[week release];
