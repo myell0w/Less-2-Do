@@ -112,6 +112,10 @@
 		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
+		D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B5FEDD10E65538003584A5 /* MapKit.framework */; };
+		D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF4610E663C5003584A5 /* blueButton.png */; };
+		D4B5FF5410E66539003584A5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5210E66539003584A5 /* location.png */; };
+		D4B5FF5510E66539003584A5 /* magnifiyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
 		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
@@ -146,13 +150,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
-		};
-		A37068DD10D77D5900E6D556 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758;
-			remoteInfo = libToodledoAPIMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -322,6 +319,10 @@
 		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D4B5FEDD10E65538003584A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D4B5FF4610E663C5003584A5 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButton.png; path = ../blueButton.png; sourceTree = "<group>"; };
+		D4B5FF5210E66539003584A5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifiyingGlass.png; sourceTree = "<group>"; };
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
@@ -349,6 +350,7 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
+				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +438,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
+				D4B5FEDD10E65538003584A5 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -451,6 +454,9 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				D4B5FF5210E66539003584A5 /* location.png */,
+				D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */,
+				D4B5FF4610E663C5003584A5 /* blueButton.png */,
 				D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */,
 				D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */,
 				391D72E110C9EC9B00A115E1 /* button_red.png */,
@@ -641,7 +647,6 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
-				A37068DE10D77D5900E6D556 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 			);
 			name = Products;
@@ -919,13 +924,6 @@
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A37068DE10D77D5900E6D556 /* libToodledoAPIMac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libToodledoAPIMac.a;
-			remoteRef = A37068DD10D77D5900E6D556 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -981,6 +979,9 @@
 				D4C4C49B10D28BB800B55BA9 /* whiteBoarderedButton.png in Resources */,
 				D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */,
 				D4C4C52B10D29A3000B55BA9 /* FolderCell.xib in Resources */,
+				D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */,
+				D4B5FF5410E66539003584A5 /* location.png in Resources */,
+				D4B5FF5510E66539003584A5 /* magnifiyingGlass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1084,6 +1085,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1104,6 +1106,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;

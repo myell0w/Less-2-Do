@@ -33,7 +33,7 @@
 }
 
 - (IBAction)toggleAdd:(id)sender {
-	EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self];
+	EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditContextViewController" bundle:nil parent:self];
 	contextDetail.title = @"Add Context";
 	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
 	[contextDetail release];
@@ -209,7 +209,7 @@
 		[self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
 		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
 		
-		EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self context:context];
+		EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditContextViewController" bundle:nil parent:self context:context];
 		contextDetail.title = context.name;
 		[self.navigationController pushViewController:contextDetail animated:YES];
 		[contextDetail release];
