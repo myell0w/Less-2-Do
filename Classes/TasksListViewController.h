@@ -21,8 +21,9 @@
 	NSDateFormatter *formatDate;
 	// date formatter for due-time
 	NSDateFormatter *formatTime;
-	// filter only those tasks
-	NSString *filterString;
+
+	// the method to call in the Task-Class
+	SEL selector;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +32,7 @@
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSMutableArray *tasks;
-@property (nonatomic, copy) NSString *filterString;
+@property (nonatomic) SEL selector;
 
 // returns the number of tasks shown in this TableView
 - (int) taskCount;
@@ -40,4 +41,5 @@
 // value of either completed or starred was changed
 - (IBAction)checkBoxValueChanged:(id)sender;
 
+- (NSArray *)getTasks;
 @end

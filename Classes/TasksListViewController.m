@@ -9,6 +9,8 @@
 #import "TasksListViewController.h"
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
+#import "ShowTaskViewController.h"
+
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
 #define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
@@ -20,18 +22,12 @@
 #define TITLE_FONT_SIZE 15
 #define TITLE_DETAIL_FONT_SIZE 11
 
-#define TAG_TITLE		 1
-#define TAG_TITLE_DETAIL 2
-#define TAG_COMPLETED	 3
-#define TAG_STARRED		 4
-#define TAG_PRIORITY	 5
-#define TAG_FOLDER_COLOR 6
 
 @implementation TasksListViewController
 
 @synthesize image;
 @synthesize tasks;
-@synthesize filterString;
+@synthesize selector;
 
 
 - (void)viewDidLoad {
@@ -46,8 +42,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSError *error;
-	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
+	NSArray *objects = nil;
+	
+	objects = [self getTasks];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -156,7 +153,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+	ShowTaskViewController *stvc = [[ShowTaskViewController alloc] 
+										   initWithNibName:@"ShowTaskViewController" 
+										   bundle:nil];
+	stvc.title = @"Task Details";
+	stvc.task = [self.tasks objectAtIndex:indexPath.row];
+	
+	[self.navigationController pushViewController:stvc animated:YES];
+	[stvc release];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -165,8 +169,7 @@
 
 - (int)taskCount {
 	//TODO: change, performance!
-	NSError *error;
-	NSArray *objects = [Task getTasksWithFilterString:filterString error:&error];
+	NSArray *objects = [self getTasks];
 	
 	if (objects == nil) {
 		ALog(@"There was an error!");
@@ -258,9 +261,18 @@
 			}
 			break;
 	}
-	
-	ALog("New Task: %@", t);
 }
 
+- (NSArray *)getTasks {
+	NSError *error;
+	
+	// call defined method, or if no selector is set, get all Tasks
+	if ([Task respondsToSelector:selector]) {
+		ALog("Selector %d called to get Tasks", selector);
+		return [[Task class] performSelector:selector]; // withObject:&error];
+	} else {
+		return [Task getAllTasks:&error];
+	}
+}
 
 @end

@@ -8,26 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define CELL_ID_TITLE    @"TaskTitleCell"
-#define CELL_ID_PRIORITY @"TaskPriorityCell"
-#define CELL_ID_DUEDATE  @"TaskDueDateCell"
-#define CELL_ID_DUETIME  @"TaskDueTimeCell"
-#define CELL_ID_FOLDER   @"TaskFolderCell"
-#define CELL_ID_CONTEXT  @"TaskContextCell"
-#define CELL_ID_TAGS     @"TaskTagsCell"
-#define CELL_ID_NOTES	 @"TaskNotesCell"
-
-#define TAG_TITLE		1
-#define TAG_COMPLETED   2
-#define TAG_STARRED		3
-#define TAG_PRIORITY	4
-#define TAG_DUEDATE		5
-#define TAG_DUETIME		6
-#define TAG_FOLDER      7
-#define TAG_CONTEXT		8
-#define TAG_TAGS		9
-#define TAG_NOTES		10
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table-View-Controller for Adding/Editing a Task
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

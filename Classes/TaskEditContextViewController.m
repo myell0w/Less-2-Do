@@ -9,7 +9,7 @@
 #import "TaskEditContextViewController.h"
 #import "ContextDAO.h"
 
-#define NORMAL_FONT_SIZE 15
+#define FONT_SIZE 15
 
 
 @implementation TaskEditContextViewController
@@ -102,7 +102,7 @@
     UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
-		cell.textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+		cell.textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
     }
 	
     // Set up the cell...
