@@ -12,8 +12,58 @@
 
 @implementation EditContextViewController
 @synthesize nameTextField = _nameTextField;
+@synthesize mapsearchTextField = _mapsearchTextField;
+@synthesize mapsearchButton = _mapsearchButton;
+@synthesize mapView = _mapView;
 @synthesize context = _context;
 @synthesize parent = _parent;
+@synthesize addAnnotation = _addAnnotation;
+
+
+- (IBAction) showSearchedLocation {
+	//Hide the keypad
+	[self.mapsearchTextField resignFirstResponder];
+	MKCoordinateRegion region;
+	MKCoordinateSpan span;
+	span.latitudeDelta=0.001;
+	span.longitudeDelta=0.001;
+	
+	CLLocationCoordinate2D location = [self addressLocation];
+	region.span=span;
+	region.center=location;
+	if(self.addAnnotation != nil) {
+		[self.mapView removeAnnotation:self.addAnnotation];
+		[self.addAnnotation release];
+		_addAnnotation = nil;
+	}
+	self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
+	[self.mapView addAnnotation:self.addAnnotation];
+	[self.mapView setRegion:region animated:TRUE];
+	[self.mapView regionThatFits:region];
+}
+
+-(CLLocationCoordinate2D) addressLocation {
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
+						   [self.mapsearchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
+    NSArray *listItems = [locationString componentsSeparatedByString:@","];
+	
+    double latitude = 48.209206;
+    double longitude = 16.372778;
+	
+    if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+        latitude = [[listItems objectAtIndex:2] doubleValue];
+        longitude = [[listItems objectAtIndex:3] doubleValue];
+    }
+    else {
+		ALog("Error occured while searching Location");
+    }
+    CLLocationCoordinate2D location;
+    location.latitude = latitude;
+    location.longitude = longitude;
+	
+    return location;
+}
 
 
 // Pressing Cancel will pop the actuel View away
@@ -111,6 +161,10 @@
 	
 	[self.nameTextField becomeFirstResponder];
 	
+	//Map-Init
+	//mapView = [[MKMapView alloc] initWithFrame:mapViewContainer.view.bounds];
+	//[mapViewContainer.view insertSubView:mapView atIndex:0];
+	
 	[super viewDidLoad];
 }
 
@@ -131,5 +185,24 @@
     [super dealloc];
 }
 
+@end
+
+@implementation AddressAnnotation
+
+@synthesize coordinate;
+
+- (NSString *)subtitle{
+	return @"Sub Title";
+}
+
+- (NSString *)title{
+	return @"Title";
+}
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D) c{
+	coordinate=c;
+	NSLog(@"%f,%f",c.latitude,c.longitude);
+	return self;
+}
 
 @end
