@@ -49,7 +49,7 @@
 	// init Second-Level Views in Section Contexts
 	TasksListViewController *no = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	no.title = @"No Context";
-	no.image = [UIImage imageNamed:@"all_tasks.png"];
+	no.image = [UIImage imageNamed:@"show_no_context.png"];
 	[array addObject:no];
 	[no release];
 	
@@ -79,7 +79,7 @@
 			Context *context = [[objects objectAtIndex:i] retain];
 			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			contextView.title = context.name;
-			contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+			contextView.image = [UIImage imageNamed:@"show_context.png"];
 			[array addObject:contextView];
 			[contextView release];
 		}

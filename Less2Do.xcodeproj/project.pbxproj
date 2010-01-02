@@ -56,6 +56,8 @@
 		39BDC71010EFC0FC009C42D9 /* show_notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70D10EFC0FC009C42D9 /* show_notes.png */; };
 		39BDC71110EFC0FC009C42D9 /* show_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70E10EFC0FC009C42D9 /* show_tags.png */; };
 		39BDC71210EFC0FC009C42D9 /* show_context.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70F10EFC0FC009C42D9 /* show_context.png */; };
+		39BDC74310EFC614009C42D9 /* show_no_context.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC74110EFC614009C42D9 /* show_no_context.png */; };
+		39BDC74410EFC614009C42D9 /* show_no_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC74210EFC614009C42D9 /* show_no_tags.png */; };
 		39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */; };
 		39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */; };
 		39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D01410BEE3F3000A0C70 /* CustomCell.m */; };
@@ -247,6 +249,8 @@
 		39BDC70D10EFC0FC009C42D9 /* show_notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_notes.png; sourceTree = "<group>"; };
 		39BDC70E10EFC0FC009C42D9 /* show_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_tags.png; sourceTree = "<group>"; };
 		39BDC70F10EFC0FC009C42D9 /* show_context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_context.png; sourceTree = "<group>"; };
+		39BDC74110EFC614009C42D9 /* show_no_context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_no_context.png; sourceTree = "<group>"; };
+		39BDC74210EFC614009C42D9 /* show_no_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_no_tags.png; sourceTree = "<group>"; };
 		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
 		39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTaskViewController.xib; path = Classes/EditTaskViewController.xib; sourceTree = "<group>"; };
@@ -480,6 +484,8 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				39BDC74110EFC614009C42D9 /* show_no_context.png */,
+				39BDC74210EFC614009C42D9 /* show_no_tags.png */,
 				D4B5FF5210E66539003584A5 /* location.png */,
 				D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */,
 				D4B5FF4610E663C5003584A5 /* blueButton.png */,
@@ -1035,6 +1041,8 @@
 				39BDC71010EFC0FC009C42D9 /* show_notes.png in Resources */,
 				39BDC71110EFC0FC009C42D9 /* show_tags.png in Resources */,
 				39BDC71210EFC0FC009C42D9 /* show_context.png in Resources */,
+				39BDC74310EFC614009C42D9 /* show_no_context.png in Resources */,
+				39BDC74410EFC614009C42D9 /* show_no_tags.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
