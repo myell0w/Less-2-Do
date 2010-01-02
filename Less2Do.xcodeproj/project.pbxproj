@@ -53,6 +53,9 @@
 		39B6590410B6B36F00825C1D /* ContextsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590310B6B36F00825C1D /* ContextsNavigationController.m */; };
 		39B6590710B6B3A100825C1D /* ContextsFirstLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */; };
 		39B6593F10B6B88B00825C1D /* ContextsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6593E10B6B88B00825C1D /* ContextsTableView.xib */; };
+		39BDC71010EFC0FC009C42D9 /* show_notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70D10EFC0FC009C42D9 /* show_notes.png */; };
+		39BDC71110EFC0FC009C42D9 /* show_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70E10EFC0FC009C42D9 /* show_tags.png */; };
+		39BDC71210EFC0FC009C42D9 /* show_context.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BDC70F10EFC0FC009C42D9 /* show_context.png */; };
 		39C6CF3D10BEC99B000A0C70 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */; };
 		39C6CF3E10BEC99B000A0C70 /* EditTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */; };
 		39C6D01510BEE3F3000A0C70 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6D01410BEE3F3000A0C70 /* CustomCell.m */; };
@@ -150,14 +153,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = FA649BBA10C30B250051F758 /* libToodledoAPIMac.a */;
+			remoteGlobalIDString = FA649BBA10C30B250051F758;
 			remoteInfo = libToodledoAPIMac;
 		};
 		39F5AFCB10ED19AF00E54EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = CF04581710E2F5C400DED3CF /* liblibToodledoAPIiPhone.a */;
+			remoteGlobalIDString = CF04581710E2F5C400DED3CF;
 			remoteInfo = libToodledoAPIiPhone;
 		};
 		A30A5F0510C155B600673F02 /* PBXContainerItemProxy */ = {
@@ -241,6 +244,9 @@
 		39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsFirstLevelViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		39B6593E10B6B88B00825C1D /* ContextsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsTableView.xib; sourceTree = "<group>"; };
 		39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ToodledoAPI.xcodeproj; path = "toodledo-objc/src/ToodledoAPI.xcodeproj"; sourceTree = "<group>"; };
+		39BDC70D10EFC0FC009C42D9 /* show_notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_notes.png; sourceTree = "<group>"; };
+		39BDC70E10EFC0FC009C42D9 /* show_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_tags.png; sourceTree = "<group>"; };
+		39BDC70F10EFC0FC009C42D9 /* show_context.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = show_context.png; sourceTree = "<group>"; };
 		39C6CF3A10BEC99B000A0C70 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
 		39C6CF3B10BEC99B000A0C70 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		39C6CF3C10BEC99B000A0C70 /* EditTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTaskViewController.xib; path = Classes/EditTaskViewController.xib; sourceTree = "<group>"; };
@@ -644,6 +650,9 @@
 		39B6593C10B6B85400825C1D /* tablecells */ = {
 			isa = PBXGroup;
 			children = (
+				39BDC70D10EFC0FC009C42D9 /* show_notes.png */,
+				39BDC70E10EFC0FC009C42D9 /* show_tags.png */,
+				39BDC70F10EFC0FC009C42D9 /* show_context.png */,
 				3901113B10C07C2900A51296 /* home_starred.png */,
 				3901113C10C07C2900A51296 /* home_all.png */,
 				3901113D10C07C2900A51296 /* home_watchlist.png */,
@@ -1023,6 +1032,9 @@
 				D4B5FF5410E66539003584A5 /* location.png in Resources */,
 				D4B5FF5510E66539003584A5 /* magnifiyingGlass.png in Resources */,
 				39F5AFD410ED1A0B00E54EB1 /* ShowTaskViewController.xib in Resources */,
+				39BDC71010EFC0FC009C42D9 /* show_notes.png in Resources */,
+				39BDC71110EFC0FC009C42D9 /* show_tags.png in Resources */,
+				39BDC71210EFC0FC009C42D9 /* show_context.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

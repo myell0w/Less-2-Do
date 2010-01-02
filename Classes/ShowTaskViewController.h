@@ -11,7 +11,11 @@
 
 
 @interface ShowTaskViewController : UITableViewController {
+	// The Task to show
 	Task *task;
+	// Array of Properties set (only set properties are shown)
+	NSMutableArray *properties;
+	
 	// date formatter for due-date
 	NSDateFormatter *formatDate;
 	// date formatter for due-time
@@ -29,5 +33,6 @@
 // setUp-Functions for Cells
 - (void)setUpTitleCell:(UITableViewCell *)cell;
 - (void)setUpFolderContextTagsCell:(UITableViewCell *)cell;
+- (void)setUpNotesCell:(UITableViewCell *)cell;
 
 @end

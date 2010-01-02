@@ -15,8 +15,9 @@
 #define STARRED_RECT	  CGRectMake(261, 6, 34, 34)
 #define PRIORITY_RECT     CGRectMake(236,14,19,16)
 
-#define IMAGE_RECT		  CGRectMake(10, 10, 24, 24)
+#define IMAGE_RECT		  CGRectMake(12, 12, 20, 20)
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
+#define NOTES_RECT		  CGRectMake(47, 10, 250, 24)
 
 #define TAG_IMAGE	30
 #define TAG_TEXT	31
@@ -49,6 +50,26 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[properties release];
+	properties = [[NSMutableArray alloc] init];
+	
+	[properties addObject:CELL_ID_TITLE];
+	
+	if (self.task.folder != nil)
+		[properties addObject:CELL_ID_FOLDER];
+	
+	if (self.task.context != nil)
+		[properties addObject:CELL_ID_CONTEXT];
+	
+	if (self.task.tags != nil && [self.task.tags count] > 0)
+		[properties addObject:CELL_ID_TAGS];
+	
+	if (self.task.note != nil && [self.task.note length] > 0)
+		[properties addObject:CELL_ID_NOTES];
+	
+	[super viewWillAppear:animated];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -65,12 +86,15 @@
 	formatDate = nil;
 	[formatTime release];
 	formatTime = nil;
+	[properties release];
+	properties = nil;
 }
 
 - (void)dealloc {
 	[task release];
 	[formatDate release];
 	[formatTime release];
+	[properties release];
 	
     [super dealloc];
 }
@@ -84,7 +108,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [properties count];
 }
 
 
@@ -92,8 +116,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
 	NSString *reuseID = nil;
-	//NSNumber *tagAsNum = nil;
-	//id tempValue = nil;
 	
 	reuseID = [self cellIDForIndexPath:indexPath];	
 	cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseID];
@@ -126,10 +148,7 @@
 		// Init-Notes-Cell
 		else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
-			
-			cell.textLabel.text = @"Notes";
-			cell.detailTextLabel.text = @"None";
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			[self setUpNotesCell:cell];
 		}
 		
 		// set font
@@ -182,7 +201,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		
+		imageView.image = [UIImage imageNamed:@"show_context.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task.context description];
@@ -190,11 +209,21 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		
+		imageView.image = [UIImage imageNamed:@"show_tags.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task tagsDescription];
 	}
+	
+	else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
+		if (self.task.note && [self.task.note length] > 0) {
+			UILabel *notesLabel = (UILabel *)[cell.contentView viewWithTag:TAG_NOTES];
+			[notesLabel setNumberOfLines:0];
+			notesLabel.text = self.task.note;
+			[notesLabel sizeToFit];
+		}
+	}
+	
 	
     return cell;
 }
@@ -204,6 +233,38 @@
 	
 	// No rows can't be selected
 	return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	CGFloat		result = 44.0f;
+	NSString*	text = nil;
+	CGFloat		width = 0;
+	CGFloat		tableViewWidth;
+	CGRect		bounds = [UIScreen mainScreen].bounds;
+	
+	if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+		tableViewWidth = bounds.size.width;
+	else
+		tableViewWidth = bounds.size.height;
+	
+	width = tableViewWidth - 110;		// fudge factor
+	text = self.task.note;
+	
+	if (text && [[self cellIDForIndexPath:indexPath] isEqualToString:CELL_ID_NOTES]) {
+		// The notes can be of any height
+		// This needs to work for both portrait and landscape orientations.
+		// Calls to the table view to get the current cell and the rect for the 
+		// current row are recursive and call back this method.
+		CGSize		textSize = { width, 20000.0f };		// width and height of text area
+		CGSize		size = [text sizeWithFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]
+						constrainedToSize:textSize 
+							lineBreakMode:UILineBreakModeWordWrap];
+		
+		size.height += 29.0f;			// top and bottom margin
+		result = MAX(size.height, 44.0f);	// at least one row
+	}
+	
+	return result;
 }
 
 
@@ -333,9 +394,25 @@
 	[textLabel release];
 }
 
+- (void)setUpNotesCell:(UITableViewCell *)cell {
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
+	imageView.tag = TAG_IMAGE;
+	imageView.image = [UIImage imageNamed:@"show_notes.png"];
+	[cell.contentView addSubview:imageView];
+	[imageView release];
+	
+	UILabel *textLabel = [[UILabel alloc] initWithFrame:NOTES_RECT];
+	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+	textLabel.tag = TAG_NOTES;
+	textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+	textLabel.lineBreakMode = UILineBreakModeWordWrap;
+	// add Label to Cell
+	[cell.contentView addSubview:textLabel];
+	[textLabel release];
+}
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
-	int row = [indexPath row];
+	/*int row = [indexPath row];
 	int section = [indexPath section];
 	
 	if (section == 0 && row == 0)
@@ -348,15 +425,12 @@
 		return CELL_ID_TAGS;
 	
 	else if (section == 0 && row == 4)
-		return CELL_ID_FOLDER;
-	else if (section == 0 && row == 5)
-		return CELL_ID_CONTEXT;
-	else if (section == 0 && row == 6)
-		return CELL_ID_TAGS;
+		return CELL_ID_NOTES;*/
 	
-	else if (section == 0 && row == 7)
-		return CELL_ID_NOTES;
-	
+	if (indexPath.row < [properties count]) {
+		return [properties objectAtIndex:indexPath.row];
+	}
+		
 	return nil;
 }
 
