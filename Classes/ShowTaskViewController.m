@@ -21,6 +21,7 @@
 
 #define TAG_IMAGE	30
 #define TAG_TEXT	31
+#define TAG_TIMER   32
 
 #define TITLE_FONT_SIZE 15
 #define TITLE_DETAIL_FONT_SIZE 11
@@ -88,6 +89,8 @@
 	formatTime = nil;
 	[properties release];
 	properties = nil;
+	[footerView release];
+	footerView = nil;
 }
 
 - (void)dealloc {
@@ -95,6 +98,7 @@
 	[formatDate release];
 	[formatTime release];
 	[properties release];
+	[footerView release];
 	
     [super dealloc];
 }
@@ -267,6 +271,56 @@
 	return result;
 }
 
+// specify the height of your footer section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    //differ between your sections or if you
+    //have only on section return a static value
+    return 50;
+}
+
+// custom view for footer. will be adjusted to default or specified footer height
+// Notice: this will work only for one section within the table view
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	
+    if(footerView == nil) {
+        //allocate the view if it doesn't exist yet
+        footerView  = [[UIView alloc] init];
+		
+        //we would like to show a gloosy red button, so get the image first
+        UIImage *image = [[UIImage imageNamed:@"button_start.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+        //create the button
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+        //the button should be as big as a table view cell
+        [button setFrame:CGRectMake(10, 15, 100, 44)];
+		
+        //set title, font size and font color
+        [button setTitle:@"Start" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		
+        //set action of the button
+        [button addTarget:self action:@selector(startStopTask:) forControlEvents:UIControlEventTouchUpInside];
+		
+        //add the button to the view
+        [footerView addSubview:button];
+	
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130, 16, 178, 42)];
+		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+		label.tag = TAG_TIMER;
+		label.textAlignment = UITextAlignmentCenter;
+		label.text = [NSString stringWithFormat:@"Time: %d sec", self.task.timerValue];
+		
+		[footerView addSubview:label];
+		[label release];
+    }
+	
+    //return the view for the footer
+    return footerView;
+}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -412,27 +466,39 @@
 }
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
-	/*int row = [indexPath row];
-	int section = [indexPath section];
-	
-	if (section == 0 && row == 0)
-		return CELL_ID_TITLE;
-	else if (section == 0 && row == 1)
-		return CELL_ID_FOLDER;
-	else if (section == 0 && row == 2)
-		return CELL_ID_CONTEXT;
-	else if (section == 0 && row == 3)
-		return CELL_ID_TAGS;
-	
-	else if (section == 0 && row == 4)
-		return CELL_ID_NOTES;*/
-	
 	if (indexPath.row < [properties count]) {
 		return [properties objectAtIndex:indexPath.row];
 	}
 		
 	return nil;
 }
+
+- (IBAction)startStopTask:(id)sender {
+	UIButton *button = (UIButton *)sender;
+	
+	// Start?
+	if ([[button titleForState:UIControlStateNormal] isEqualToString:@"Start"]) {
+		// make button red and change label
+        UIImage *image = [[UIImage imageNamed:@"button_stop.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+		[button setTitle:@"Stop" forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+	} 
+	
+	// Stop
+	else {
+		// make button green and change label
+        UIImage *image = [[UIImage imageNamed:@"button_start.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+		[button setTitle:@"Start" forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+	}
+
+}
+
 
 
 @end

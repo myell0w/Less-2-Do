@@ -21,14 +21,19 @@
 	// date formatter for due-time
 	NSDateFormatter *formatTime;
 	
+	// footer view for start/stop
+	UIView *footerView;
 }
 
 @property (nonatomic, retain) Task* task;
 
-// returns the cellID for a given indexPath
-- (NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
 // value of either completed or starred was changed
 - (IBAction)checkBoxValueChanged:(id)sender;
+- (IBAction)startStopTask:(id)sender;
+
+
+// returns the cellID for a given indexPath
+- (NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
 
 // setUp-Functions for Cells
 - (void)setUpTitleCell:(UITableViewCell *)cell;
