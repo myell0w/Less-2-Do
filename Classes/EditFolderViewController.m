@@ -35,20 +35,12 @@
 			ALog ("Invalid Input");
 			return;
 		}
+		
 		self.folder.name = [self.nameTextField text];
-
 		self.folder.r = [self.color redColorComponent];
 		self.folder.g = [self.color greenColorComponent];
 		self.folder.b = [self.color blueColorComponent];
-		
-		NSError *error;
-		DLog ("Try to update Folder '%@'", self.folder.name);
-		if(![FolderDAO updateFolder:self.folder error:&error]) {
-			ALog ("Error occured while updating Folder");
-		}
-		else {
-			ALog ("Folder updated");
-		}
+		ALog ("Folder updated");
 		
 		[self.parent.tableView reloadData];
 		[self.navigationController popViewControllerAnimated:YES];
@@ -59,22 +51,15 @@
 		if ([[self.nameTextField text] length] == 0)
 			return;
 		
-		NSError *error;
 		NSNumber *order = [[NSNumber alloc] initWithInt:[self.parent.list count]];
-		self.folder = [FolderDAO addFolderWithName:[self.nameTextField text] theTasks:nil theOrder:order error:&error];
-		ALog ("Folder inserted");
-		//[self.color colorComponents];
+		self.folder = (Folder *)[Folder objectOfType:@"Folder"];
+		self.folder.name = [self.nameTextField text];
+		self.folder.order = order;
 		self.folder.r = [self.color redColorComponent];
 		self.folder.g = [self.color greenColorComponent];
 		self.folder.b = [self.color blueColorComponent];
-		DLog ("Try to update Folder '%@'", self.folder.name);
-		if(![FolderDAO updateFolder:self.folder error:&error]) 
-		{
-			ALog ("Error occured while updating Folder");
-		}
-		else {
-			ALog ("Folder updated");
-		}
+		ALog ("Folder created");
+		
 		TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 		folderView.title = self.folder.name;
 		
@@ -124,12 +109,18 @@
 	self.navigationItem.rightBarButtonItem = saveButton;
 	[saveButton release];
 	
-	if(self.folder != nil)
+	if(self.folder != nil) {
 		self.nameTextField.text = self.folder.name;
+		self.color = [self.folder color];
+	}
+	else {
+		self.color = [UIColor whiteColor];
+	}
+
 	
 	UIImageView *leftViewImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"smallWhiteBoarderedButton.png"]];
-	//TODO: change color
-	leftViewImage.backgroundColor = [UIColor redColor];
+	
+	leftViewImage.backgroundColor = self.color;
 	self.nameTextField.leftView = leftViewImage;
 	self.nameTextField.leftViewMode = UITextFieldViewModeAlways;
 	[leftViewImage release];
@@ -146,6 +137,7 @@
 	self.nameTextField = nil;
 	self.folder = nil;
 	self.parent = nil;
+	self.color = nil;
 }
 
 
