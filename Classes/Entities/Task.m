@@ -46,24 +46,28 @@
 }
 
 - (NSString *)tagsDescription {
-	NSMutableString *s = [[NSMutableString alloc] init];
-	
-	for (id t in self.tags) {
-		Tag *tag = (Tag *)t;
-		[s appendFormat:@"%@, ", [tag description]];
-	}
-	
-	NSString *desc = [s substringToIndex: (s.length - 2)];
-	[s release];
-	
-	if (desc.length < MAX_TAGS_COUNT) {
-		return desc;
-	} else {
-		if ([self.tags count] == 1)
-			return @"1 Tag";
-		else {
-			return [NSString stringWithFormat:@"%d Tags", [self.tags count]];
+	if ([self.tags count] > 0) {
+		NSMutableString *s = [[NSMutableString alloc] init];
+		
+		for (id t in self.tags) {
+			Tag *tag = (Tag *)t;
+			[s appendFormat:@"%@, ", [tag description]];
 		}
+		
+		NSString *desc = [s substringToIndex: (s.length - 2)];
+		[s release];
+		
+		if (desc.length < MAX_TAGS_COUNT) {
+			return desc;
+		} else {
+			if ([self.tags count] == 1)
+				return @"1 Tag";
+			else {
+				return [NSString stringWithFormat:@"%d Tags", [self.tags count]];
+			}
+		}
+	} else {
+		return @"0 Tags";
 	}
 }
 
@@ -81,10 +85,10 @@
 	
 	/* apply sort order */
 	/*NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
-	[sortByDueDate release];
-	[sortByDueTime release];*/
+	 NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	 [request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	 [sortByDueDate release];
+	 [sortByDueTime release];*/
 	
 	/* apply filter string */
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
@@ -153,10 +157,10 @@
 	NSExpression *leftSide = [NSExpression expressionForKeyPath:@"folder"];
 	NSExpression *rightSide = [NSExpression expressionForConstantValue:theFolder];
 	NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:leftSide
-													rightExpression:rightSide
-													modifier:NSDirectPredicateModifier
-													type:NSEqualToPredicateOperatorType
-													options:0];
+																rightExpression:rightSide
+																	   modifier:NSDirectPredicateModifier
+																		   type:NSEqualToPredicateOperatorType
+																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	return objects;
 }

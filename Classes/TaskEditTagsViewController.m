@@ -104,7 +104,7 @@
 	
     // Set up the cell...
 	cell.textLabel.text = [[tags objectAtIndex:row] description];
-	cell.imageView.image = [UIImage imageNamed:@"all_tasks.png"];
+	cell.imageView.image = [UIImage imageNamed:@"tag.png"];
 	cell.accessoryType = ([selectedTags containsObject:[tags objectAtIndex:row]]) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	
     return cell;

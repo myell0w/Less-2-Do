@@ -51,7 +51,7 @@
 	//View for untagged Tasks
 	TasksListViewController *untagged = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	untagged.title = @"Untagged";
-	untagged.image = [UIImage imageNamed:@"all_tasks.png"];
+	untagged.image = [UIImage imageNamed:@"no_tags.png"];
 	[array addObject:untagged];
 	[untagged release];
 	
@@ -74,7 +74,9 @@
 			Tag *tag = [[objects objectAtIndex:i] retain];
 			TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			tagView.title = tag.name;
-			tagView.image = [UIImage imageNamed:@"all_tasks.png"];
+			tagView.image = [UIImage imageNamed:@"tag.png"];
+			tagView.selector = @selector(getTasksWithTag:error:);
+			tagView.argument = [objects objectAtIndex:i];
 			[array addObject:tagView];
 			[tagView release];
 		}

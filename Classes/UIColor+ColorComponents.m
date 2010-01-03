@@ -57,7 +57,7 @@
 	return nil;
 }
 
-- (NSNumber *) colorComponents {
+/*- (NSNumber *) colorComponents {
 	UIColor *uicolor = [UIColor redColor];
 	CGColorRef color = [self CGColor];
 	[uicolor release];
@@ -75,7 +75,7 @@
 	}
 	
 	return nil;
-}
+}*/
 
 
 @end

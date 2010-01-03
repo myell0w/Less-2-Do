@@ -49,7 +49,7 @@
 	// init Second-Level Views in Section Contexts
 	TasksListViewController *no = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	no.title = @"No Context";
-	no.image = [UIImage imageNamed:@"all_tasks.png"];
+	no.image = [UIImage imageNamed:@"no_context.png"];
 	[array addObject:no];
 	[no release];
 	
@@ -58,15 +58,7 @@
 	[array release];
 	array = [[NSMutableArray alloc] init];
 	
-	/* init Second-Level Views in Section Home
-	TasksListViewController *context1 = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	context1.title = @"home";
-	context1.image = [UIImage imageNamed:@"all_tasks.png"];
-	[array addObject:context1];
-	[context1 release];*/
 	NSError *error;
-	
-	//[ContextDAO addContextWithName:@"Testtag" error:&error];
 	NSArray *objects = [ContextDAO allContexts:&error];
 	
 	if (objects == nil) {
@@ -79,7 +71,9 @@
 			Context *context = [[objects objectAtIndex:i] retain];
 			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			contextView.title = context.name;
-			contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+			contextView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
+			contextView.selector = @selector(getTasksInContext:error:);
+			contextView.argument = [objects objectAtIndex:i];
 			[array addObject:contextView];
 			[contextView release];
 		}

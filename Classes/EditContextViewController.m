@@ -140,7 +140,7 @@
 		ALog ("context inserted");
 		TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 		contextView.title = self.context.name;
-		contextView.image = [UIImage imageNamed:@"all_tasks.png"];
+		contextView.image = [self.context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
 		[self.parent.controllersSection1 addObject:contextView];
 		[self.parent.list addObject:self.context];
 		[contextView release];

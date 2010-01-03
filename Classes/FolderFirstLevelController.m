@@ -80,6 +80,8 @@
 			Context *folder = [[objects objectAtIndex:i] retain];
 			TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			folderView.title = folder.name;
+			folderView.selector = @selector(getTasksInFolder:error:);
+			folderView.argument = [objects objectAtIndex:i];
 			[array addObject:folderView];
 			[folderView release];
 		}
@@ -172,7 +174,7 @@
 		Folder *folder = [self.list objectAtIndex:row];
 		((FolderCell *)cell).title.text = folder.name;
 		((FolderCell *)cell).detail.text = detail;
-		((FolderCell *)cell).imageView.backgroundColor = [folder color]; //[UIColor colorWithRed:[folder.r floatValue] green:[folder.g floatValue] blue:[folder.b floatValue] alpha:1.0];
+		((FolderCell *)cell).imageView.backgroundColor = [folder color]; 
 		ALog ("%@: %@ %@ %@", folder.name, folder.r, folder.g, folder.b);
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}

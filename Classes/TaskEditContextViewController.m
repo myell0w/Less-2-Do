@@ -107,7 +107,7 @@
 	
     // Set up the cell...
 	cell.textLabel.text = [[contexts objectAtIndex:row] description];
-	cell.imageView.image = [UIImage imageNamed:@"all_tasks.png"];
+	cell.imageView.image = [[contexts objectAtIndex:row] hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
 	cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	
     return cell;

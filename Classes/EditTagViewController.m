@@ -60,7 +60,7 @@
 		ALog ("tag inserted");
 		TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 		tagView.title = self.tag.name;
-		tagView.image = [UIImage imageNamed:@"all_tasks.png"];
+		tagView.image = [UIImage imageNamed:@"tag.png"];
 		[self.parent.controllersSection1 addObject:tagView];
 		[self.parent.list addObject:self.tag];
 		[tagView release];

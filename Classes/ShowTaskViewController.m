@@ -15,11 +15,13 @@
 #define STARRED_RECT	  CGRectMake(261, 6, 34, 34)
 #define PRIORITY_RECT     CGRectMake(236,14,19,16)
 
-#define IMAGE_RECT		  CGRectMake(10, 10, 24, 24)
+#define IMAGE_RECT		  CGRectMake(12, 12, 20, 20)
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
+#define NOTES_RECT		  CGRectMake(47, 10, 250, 24)
 
 #define TAG_IMAGE	30
 #define TAG_TEXT	31
+#define TAG_TIMER   32
 
 #define TITLE_FONT_SIZE 15
 #define TITLE_DETAIL_FONT_SIZE 11
@@ -49,6 +51,26 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[properties release];
+	properties = [[NSMutableArray alloc] init];
+	
+	[properties addObject:CELL_ID_TITLE];
+	
+	if (self.task.folder != nil)
+		[properties addObject:CELL_ID_FOLDER];
+	
+	if (self.task.context != nil)
+		[properties addObject:CELL_ID_CONTEXT];
+	
+	if (self.task.tags != nil && [self.task.tags count] > 0)
+		[properties addObject:CELL_ID_TAGS];
+	
+	if (self.task.note != nil && [self.task.note length] > 0)
+		[properties addObject:CELL_ID_NOTES];
+	
+	[super viewWillAppear:animated];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -65,12 +87,18 @@
 	formatDate = nil;
 	[formatTime release];
 	formatTime = nil;
+	[properties release];
+	properties = nil;
+	[footerView release];
+	footerView = nil;
 }
 
 - (void)dealloc {
 	[task release];
 	[formatDate release];
 	[formatTime release];
+	[properties release];
+	[footerView release];
 	
     [super dealloc];
 }
@@ -84,7 +112,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return [properties count];
 }
 
 
@@ -92,8 +120,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
 	NSString *reuseID = nil;
-	//NSNumber *tagAsNum = nil;
-	//id tempValue = nil;
 	
 	reuseID = [self cellIDForIndexPath:indexPath];	
 	cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseID];
@@ -126,10 +152,7 @@
 		// Init-Notes-Cell
 		else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
-			
-			cell.textLabel.text = @"Notes";
-			cell.detailTextLabel.text = @"None";
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			[self setUpNotesCell:cell];
 		}
 		
 		// set font
@@ -182,7 +205,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		
+		imageView.image = [((Context *)task.context) hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task.context description];
@@ -190,11 +213,21 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		
+		imageView.image = [UIImage imageNamed:@"tag.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task tagsDescription];
 	}
+	
+	else if ([reuseID isEqualToString:CELL_ID_NOTES]) {
+		if (self.task.note && [self.task.note length] > 0) {
+			UILabel *notesLabel = (UILabel *)[cell.contentView viewWithTag:TAG_NOTES];
+			[notesLabel setNumberOfLines:0];
+			notesLabel.text = self.task.note;
+			[notesLabel sizeToFit];
+		}
+	}
+	
 	
     return cell;
 }
@@ -206,6 +239,88 @@
 	return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	CGFloat		result = 44.0f;
+	NSString*	text = nil;
+	CGFloat		width = 0;
+	CGFloat		tableViewWidth;
+	CGRect		bounds = [UIScreen mainScreen].bounds;
+	
+	if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+		tableViewWidth = bounds.size.width;
+	else
+		tableViewWidth = bounds.size.height;
+	
+	width = tableViewWidth - 110;		// fudge factor
+	text = self.task.note;
+	
+	if (text && [[self cellIDForIndexPath:indexPath] isEqualToString:CELL_ID_NOTES]) {
+		// The notes can be of any height
+		// This needs to work for both portrait and landscape orientations.
+		// Calls to the table view to get the current cell and the rect for the 
+		// current row are recursive and call back this method.
+		CGSize		textSize = { width, 20000.0f };		// width and height of text area
+		CGSize		size = [text sizeWithFont:[UIFont systemFontOfSize:NORMAL_FONT_SIZE]
+						constrainedToSize:textSize 
+							lineBreakMode:UILineBreakModeWordWrap];
+		
+		size.height += 29.0f;			// top and bottom margin
+		result = MAX(size.height, 44.0f);	// at least one row
+	}
+	
+	return result;
+}
+
+// specify the height of your footer section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    //differ between your sections or if you
+    //have only on section return a static value
+    return 50;
+}
+
+// custom view for footer. will be adjusted to default or specified footer height
+// Notice: this will work only for one section within the table view
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	
+    if(footerView == nil) {
+        //allocate the view if it doesn't exist yet
+        footerView  = [[UIView alloc] init];
+		
+        //we would like to show a gloosy red button, so get the image first
+        UIImage *image = [[UIImage imageNamed:@"button_start.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+        //create the button
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+        //the button should be as big as a table view cell
+        [button setFrame:CGRectMake(10, 15, 100, 44)];
+		
+        //set title, font size and font color
+        [button setTitle:@"Start" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		
+        //set action of the button
+        [button addTarget:self action:@selector(startStopTask:) forControlEvents:UIControlEventTouchUpInside];
+		
+        //add the button to the view
+        [footerView addSubview:button];
+	
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(130, 16, 178, 42)];
+		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+		label.tag = TAG_TIMER;
+		label.textAlignment = UITextAlignmentCenter;
+		label.text = [NSString stringWithFormat:@"Time: %d sec", self.task.timerValue];
+		
+		[footerView addSubview:label];
+		[label release];
+    }
+	
+    //return the view for the footer
+    return footerView;
+}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -333,32 +448,57 @@
 	[textLabel release];
 }
 
+- (void)setUpNotesCell:(UITableViewCell *)cell {
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
+	imageView.tag = TAG_IMAGE;
+	imageView.image = [UIImage imageNamed:@"notes.png"];
+	[cell.contentView addSubview:imageView];
+	[imageView release];
+	
+	UILabel *textLabel = [[UILabel alloc] initWithFrame:NOTES_RECT];
+	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+	textLabel.tag = TAG_NOTES;
+	textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+	textLabel.lineBreakMode = UILineBreakModeWordWrap;
+	// add Label to Cell
+	[cell.contentView addSubview:textLabel];
+	[textLabel release];
+}
 
 -(NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath {
-	int row = [indexPath row];
-	int section = [indexPath section];
-	
-	if (section == 0 && row == 0)
-		return CELL_ID_TITLE;
-	else if (section == 0 && row == 1)
-		return CELL_ID_FOLDER;
-	else if (section == 0 && row == 2)
-		return CELL_ID_CONTEXT;
-	else if (section == 0 && row == 3)
-		return CELL_ID_TAGS;
-	
-	else if (section == 0 && row == 4)
-		return CELL_ID_FOLDER;
-	else if (section == 0 && row == 5)
-		return CELL_ID_CONTEXT;
-	else if (section == 0 && row == 6)
-		return CELL_ID_TAGS;
-	
-	else if (section == 0 && row == 7)
-		return CELL_ID_NOTES;
-	
+	if (indexPath.row < [properties count]) {
+		return [properties objectAtIndex:indexPath.row];
+	}
+		
 	return nil;
 }
+
+- (IBAction)startStopTask:(id)sender {
+	UIButton *button = (UIButton *)sender;
+	
+	// Start?
+	if ([[button titleForState:UIControlStateNormal] isEqualToString:@"Start"]) {
+		// make button red and change label
+        UIImage *image = [[UIImage imageNamed:@"button_stop.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+		[button setTitle:@"Stop" forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+	} 
+	
+	// Stop
+	else {
+		// make button green and change label
+        UIImage *image = [[UIImage imageNamed:@"button_start.png"]
+						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+		
+		[button setTitle:@"Start" forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+	}
+
+}
+
 
 
 @end

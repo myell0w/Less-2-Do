@@ -14,6 +14,6 @@
 - (NSNumber *)redColorComponent;
 - (NSNumber *)greenColorComponent;
 - (NSNumber *)blueColorComponent;
-- (NSNumber *) colorComponents;
+//- (NSNumber *) colorComponents;
 
 @end

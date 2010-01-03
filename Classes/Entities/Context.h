@@ -27,6 +27,8 @@
 - (void)addTasks:(NSSet *)value;
 - (void)removeTasks:(NSSet *)value;
 
+- (BOOL)hasGps;
+
 // general fetch-methods for contexts
 + (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error;
 + (NSArray *) getContextsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
