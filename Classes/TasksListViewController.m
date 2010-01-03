@@ -28,7 +28,7 @@
 @synthesize image;
 @synthesize tasks;
 @synthesize selector;
-
+@synthesize argument;
 
 - (void)viewDidLoad {
 	NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -66,6 +66,7 @@
 - (void)viewDidUnload {
 	self.image = nil;
 	self.tasks = nil;
+	self.argument = nil;
 	
 	[formatDate release];
 	formatDate = nil;
@@ -78,6 +79,7 @@
 	[tasks release];
 	[formatDate release];
 	[formatTime release];
+	[argument release];
 	
 	[super dealloc];
 }
@@ -264,15 +266,42 @@
 }
 
 - (NSArray *)getTasks {
-	NSError *error;
+	// error object
+	NSError *error = nil;
+	// the result of the call
+	NSArray *result = nil;
+	// arguments begin with index 2 (0 and 1 are reserved)
+	int argIdx = 2;
 	
-	// call defined method, or if no selector is set, get all Tasks
 	if ([Task respondsToSelector:selector]) {
-		ALog("Selector %d called to get Tasks", selector);
-		return [[Task class] performSelector:selector]; // withObject:&error];
-	} else {
-		return [Task getAllTasks:&error];
-	}
+		// get method signature
+		NSMethodSignature *signature = [[Task class] methodSignatureForSelector:selector];
+		
+		if (signature != nil) {
+			// create invocation-object
+			NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+			[invocation setTarget:[Task class]];
+			[invocation setSelector:selector];
+			
+			// set arguments
+			if (self.argument != nil) {
+				[invocation setArgument:&argument atIndex:argIdx];
+				argIdx++;
+			}
+			[invocation setArgument:&error atIndex:argIdx];
+			
+			// activate invocation
+			[invocation retainArguments];
+			[invocation invoke];
+			[invocation getReturnValue:&result];
+			
+			ALog("Method with Signature %@ called to get Tasks", signature);
+			
+			return result;
+		}
+	} 
+	
+	return [Task getAllTasks:&error];
 }
 
 @end

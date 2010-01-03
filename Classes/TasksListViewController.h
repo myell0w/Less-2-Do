@@ -24,6 +24,8 @@
 
 	// the method to call in the Task-Class
 	SEL selector;
+	// the optional argument for retrieving tasks from the Task-Class
+	id argument;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,7 @@
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSMutableArray *tasks;
 @property (nonatomic) SEL selector;
+@property (nonatomic, retain) id argument;
 
 // returns the number of tasks shown in this TableView
 - (int) taskCount;

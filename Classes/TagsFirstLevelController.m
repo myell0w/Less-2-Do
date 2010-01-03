@@ -75,6 +75,8 @@
 			TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			tagView.title = tag.name;
 			tagView.image = [UIImage imageNamed:@"tag.png"];
+			tagView.selector = @selector(getTasksWithTag:error:);
+			tagView.argument = [objects objectAtIndex:i];
 			[array addObject:tagView];
 			[tagView release];
 		}
