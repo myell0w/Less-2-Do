@@ -8,7 +8,7 @@
 
 #import "FolderFirstLevelController.h"
 #import "TasksListViewController.h"
-#import "FolderDAO.h"
+#import "Folder.h"
 #import "EditFolderViewController.h"
 #import "FolderCell.h"
 
@@ -21,32 +21,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(IBAction)toggleEdit:(id)sender {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    
-    if (self.tableView.editing) {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
-	}
-    else {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
-		DLog ("Go to reorder");
-		if (self.mustReorder == YES) 
-			[self reorderList];
-	}
-}
-
-- (IBAction)toggleAdd:(id)sender {
-	EditFolderViewController *folderDetail = [[EditFolderViewController alloc] initWithNibName:@"EditFolderViewController" bundle:nil parent:self];
-	folderDetail.title = @"New Folder";
-	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:folderDetail];
-	
-	[self presentModalViewController:nc animated:YES];
-	[folderDetail release];
-	[nc release];
-}
-
 - (void)viewDidLoad {
 	ALog ("FolderDetailView start DidLoad");
 	// array to hold the second-level controllers
@@ -68,7 +42,7 @@
 	array = [[NSMutableArray alloc] init];
 	
 	NSError *error;
-	NSArray *objects = [FolderDAO allFolders:&error];
+	NSArray *objects = [Folder getAllFolders:&error];
 	
 	if (objects == nil) {
 		ALog(@"Error while reading Folders!");
@@ -197,7 +171,7 @@
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
 		DLog ("Removed Folder '%@' from FolderController", folder.name);
-		if(![FolderDAO deleteFolder:folder error:&error]) {
+		if(![BaseManagedObject deleteObject:folder error:&error]) {
 			ALog("Error occured while deleting Folder");
 		}
 		else
@@ -295,13 +269,41 @@
 		NSNumber *order = [[NSNumber alloc] initWithInt:i];
 		folder.order = order;
 		[order release];
-		NSError *error;
 		DLog ("Try to update Folders (ordering): %@, order %@", folder.name, folder.order);
-		if(![FolderDAO updateFolder:folder error:&error]) {
-			ALog ("Error occured while updating Folder (ordering)");
-		}
 	}
 	self.mustReorder = NO;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Action-Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(IBAction)toggleEdit:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    if (self.tableView.editing) {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
+	}
+    else {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+		DLog ("Go to reorder");
+		if (self.mustReorder == YES) 
+			[self reorderList];
+	}
+}
+
+- (IBAction)toggleAdd:(id)sender {
+	EditFolderViewController *folderDetail = [[EditFolderViewController alloc] initWithNibName:@"EditFolderViewController" bundle:nil parent:self];
+	folderDetail.title = @"New Folder";
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:folderDetail];
+	
+	[self presentModalViewController:nc animated:YES];
+	[folderDetail release];
+	[nc release];
+}
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "TaskEditTagsViewController.h"
-#import "TagDAO.h"
+#import "Tag.h"
 
 #define FONT_SIZE 15
 
@@ -23,7 +23,7 @@
     [super viewDidLoad];
 	
 	NSError *error;
-	NSArray *objects = [TagDAO allTags:&error];
+	NSArray *objects = [Tag getAllTags:&error];
 
     tags = [[NSMutableArray alloc] init];
 	[tags addObjectsFromArray:objects];	

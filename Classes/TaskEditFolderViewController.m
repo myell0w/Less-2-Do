@@ -7,7 +7,7 @@
 //
 
 #import "TaskEditFolderViewController.h"
-#import "FolderDAO.h"
+#import "Folder.h"
 #import "FolderCell.h"
 
 #define FONT_SIZE 15
@@ -24,7 +24,7 @@
     [super viewDidLoad];
 	
 	NSError *error;
-	NSArray *objects = [FolderDAO allFolders:&error];
+	NSArray *objects = [Folder getAllFolders:&error];
 	
     folders = [[NSMutableArray alloc] init];
 	[folders addObjectsFromArray:objects];	

@@ -19,27 +19,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(IBAction)toggleEdit:(id)sender {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    
-    if (self.tableView.editing) {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
-	}
-    else {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
-	}
-}
-
-- (IBAction)toggleAdd:(id)sender {
-	EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditContextViewController" bundle:nil parent:self];
-	contextDetail.title = @"Add Context";
-	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
-	[contextDetail release];
-	[self presentModalViewController:nc animated:YES];
-	[nc release];
-}
 
 -(void)viewDidLoad {
 	// array to hold the second-level controllers
@@ -59,7 +38,7 @@
 	array = [[NSMutableArray alloc] init];
 	
 	NSError *error;
-	NSArray *objects = [ContextDAO allContexts:&error];
+	NSArray *objects = [Context getAllContexts:&error];
 	
 	if (objects == nil) {
 		ALog(@"Error while reading Contexts!");
@@ -168,7 +147,7 @@
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
 		DLog ("Removed Context '%@' from SectionController", context.name);
-		if(![ContextDAO deleteContext:context error:&error]) {
+		if(![BaseManagedObject deleteObject:context error:&error]) {
 			ALog("Error occured while deleting Context");
 		}
 		else
@@ -236,5 +215,31 @@
 	}
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Action-Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-(IBAction)toggleEdit:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    if (self.tableView.editing) {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
+	}
+    else {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+	}
+}
+
+- (IBAction)toggleAdd:(id)sender {
+	EditContextViewController *contextDetail = [[EditContextViewController alloc] initWithNibName:@"EditContextViewController" bundle:nil parent:self];
+	contextDetail.title = @"Add Context";
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:contextDetail];
+	[contextDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];
+}
 
 @end

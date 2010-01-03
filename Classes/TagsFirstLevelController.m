@@ -9,7 +9,7 @@
 #import "TagsFirstLevelController.h"
 #import "EditTagViewController.h"
 #import "TasksListViewController.h"
-#import "TagDAO.h"
+#import "Tag.h"
 
 @implementation TagsFirstLevelController
 @synthesize list;
@@ -19,28 +19,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
--(IBAction)toggleEdit:(id)sender {
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    
-    if (self.tableView.editing) {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
-	}
-    else {
-        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
-		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
-	}
-}
-
-- (IBAction)toggleAdd:(id)sender {
-	EditTagViewController *tagDetail = [[EditTagViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self];
-	tagDetail.title = @"New Tag";
-	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:tagDetail];
-	[tagDetail release];
-	[self presentModalViewController:nc animated:YES];
-	[nc release];
-}
-
 - (void)viewDidLoad {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -62,7 +40,7 @@
 	
 	// TODO: Load Tasks
 	NSError *error;
-	NSArray *objects = [TagDAO allTags:&error];
+	NSArray *objects = [Tag getAllTags:&error];
 	
 	if (objects == nil) {
 		ALog(@"Error while reading Contexts!");
@@ -170,7 +148,7 @@
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
 		DLog ("Removed Tag '%@' from SectionController", tag.name);
-		if(![TagDAO deleteTag:tag error:&error]) {
+		if(![BaseManagedObject deleteObject:tag error:&error]) {
 			ALog("Error occured while deleting Tag");
 		}
 		else
@@ -236,6 +214,32 @@
 	} else {
 		return controllersSection1;
 	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Action-Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-(IBAction)toggleEdit:(id)sender {
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    if (self.tableView.editing) {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleDone];
+	}
+    else {
+        [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+		[self.navigationItem.leftBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+	}
+}
+
+- (IBAction)toggleAdd:(id)sender {
+	EditTagViewController *tagDetail = [[EditTagViewController alloc] initWithNibName:@"EditTagViewController" bundle:nil parent:self];
+	tagDetail.title = @"New Tag";
+	UINavigationController* nc = [[UINavigationController alloc] initWithRootViewController:tagDetail];
+	[tagDetail release];
+	[self presentModalViewController:nc animated:YES];
+	[nc release];
 }
 
 @end

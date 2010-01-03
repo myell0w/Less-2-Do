@@ -7,7 +7,7 @@
 //
 
 #import "TaskEditContextViewController.h"
-#import "ContextDAO.h"
+#import "Context.h"
 
 #define FONT_SIZE 15
 
@@ -23,7 +23,7 @@
     [super viewDidLoad];
 	
 	NSError *error;
-	NSArray *objects = [ContextDAO allContexts:&error];
+	NSArray *objects = [Context getAllContexts:&error];
 	
     contexts = [[NSMutableArray alloc] init];
 	[contexts addObjectsFromArray:objects];	
