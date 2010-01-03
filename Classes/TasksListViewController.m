@@ -10,6 +10,7 @@
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
 #import "ShowTaskViewController.h"
+#import "TaskDAO.h"
 
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
@@ -163,6 +164,21 @@
 	
 	[self.navigationController pushViewController:stvc animated:YES];
 	[stvc release];
+}
+
+#pragma mark - 
+#pragma mark Table View Data Source Methods 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+										   forRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSUInteger row = [indexPath row]; 
+	NSError *error;
+	
+	Task *t = [(Task *)[self.tasks objectAtIndex:row] retain];
+	[self.tasks removeObjectAtIndex:row]; 
+	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	//TODO: remove Task from database
+	[TaskDAO deleteTask:t error:&error];
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

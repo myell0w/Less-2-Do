@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="12"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -42,13 +42,13 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIScrollView" id="1003933856">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">268</int>
+						<int key="NSvFlags">276</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUITextField" id="474657188">
 								<reference key="NSNextResponder" ref="1003933856"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 11}, {280, 31}}</string>
+								<string key="NSFrame">{{20, 20}, {280, 31}}</string>
 								<reference key="NSSuperview" ref="1003933856"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -71,19 +71,18 @@
 							</object>
 							<object class="IBMKMapView" id="336728617">
 								<reference key="NSNextResponder" ref="1003933856"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{20, 50}, {280, 248}}</string>
+								<int key="NSvFlags">276</int>
+								<string key="NSFrame">{{20, 59}, {280, 248}}</string>
 								<reference key="NSSuperview" ref="1003933856"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<bool key="IBMKShowsUserLocation">YES</bool>
 							</object>
 							<object class="IBUIButton" id="363338435">
 								<reference key="NSNextResponder" ref="1003933856"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 306}, {32, 32}}</string>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{20, 315}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="1003933856"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -117,8 +116,8 @@
 							</object>
 							<object class="IBUITextField" id="353282838">
 								<reference key="NSNextResponder" ref="1003933856"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{60, 307}, {200, 31}}</string>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{60, 315}, {200, 31}}</string>
 								<reference key="NSSuperview" ref="1003933856"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -137,8 +136,8 @@
 							</object>
 							<object class="IBUIButton" id="447608729">
 								<reference key="NSNextResponder" ref="1003933856"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{268, 306}, {32, 32}}</string>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{268, 315}, {32, 32}}</string>
 								<reference key="NSSuperview" ref="1003933856"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -155,14 +154,14 @@
 								<reference key="IBUINormalTitleShadowColor" ref="608272126"/>
 							</object>
 						</object>
-						<string key="NSFrameSize">{320, 421}</string>
+						<string key="NSFrameSize">{320, 367}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<bool key="IBUIBouncesZoom">NO</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 416}</string>
+				<string key="NSFrameSize">{320, 367}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -173,6 +172,7 @@
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<bool key="IBUIPrompted">NO</bool>
 				</object>
+				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -235,6 +235,33 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">17</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">textFieldDone:</string>
+						<reference key="source" ref="474657188"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">8</int>
+					</object>
+					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showSearchedLocation</string>
+						<reference key="source" ref="353282838"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">20</int>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">textFieldDone:</string>
+						<reference key="source" ref="353282838"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">8</int>
+					</object>
+					<int key="connectionID">21</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -351,7 +378,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

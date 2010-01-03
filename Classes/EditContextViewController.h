@@ -12,8 +12,8 @@
 
 @interface AddressAnnotation : NSObject<MKAnnotation> {
 	CLLocationCoordinate2D coordinate;
-	NSString *mTitle;
-	NSString *mSubTitle;
+	//NSString *mTitle;
+	//NSString *mSubTitle;
 }
 @end
 
@@ -41,5 +41,7 @@
 - (IBAction)save:(id)sender;
 - (IBAction)textFieldDone:(id)sender;
 - (IBAction)showSearchedLocation;
-- (CLLocationCoordinate2D)addressLocation;
+- (CLLocationCoordinate2D)addressLocation:(NSString *)locationString;
+- (MKCoordinateSpan)addressSpan:(NSString *)locationString;
+- (BOOL)validAddress:(NSString *)locationString;
 @end
