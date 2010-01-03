@@ -161,4 +161,74 @@
 	GHAssertEquals([tasks count], (NSUInteger)2, @"Add tasks not successful");
 }
 
+- (void)testGetTasksWithoutTag
+{
+	NSError *error = nil;
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
+	newTag.name = @"MyTag";
+	newTask1.name = @"Task 1";
+	[newTask1 addTagsObject:newTag];
+	newTask2.name = @"Task 2";
+	newTask3.name = @"Task 3";
+	[managedObjectContext save:&error];
+
+	NSArray *tasks = [Task getTasksWithoutTag:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Getting tasks without a tag failed!");
+}
+- (void)testGetTasksWithoutContext
+{
+	NSError *error = nil;
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Context *newContext = (Context*)[Context objectOfType:@"Context"];
+	newContext.name = @"MyContext";
+	newTask1.name = @"Task 1";
+	[newTask1 setContext:newContext];
+	newTask2.name = @"Task 2";
+	newTask3.name = @"Task 3";
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksWithoutContext:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Getting tasks without a Context failed!");
+}
+- (void)testGetTasksWithoutFolder
+{
+	NSError *error = nil;
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Folder *newFolder = (Folder*)[Folder objectOfType:@"Folder"];
+	newFolder.name = @"MyFolder";
+	newTask1.name = @"Task 1";
+	[newTask1 setFolder:newFolder];
+	//[newFolder.tasks setByAddingObject:self];
+	newTask2.name = @"Task 2";
+	newTask3.name = @"Task 3";
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksWithoutFolder:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"Getting tasks without a Folder failed!");
+}
+
+- (void)testGetCompletedTasks
+{
+	NSError *error = nil;
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+
+	newTask1.name = @"Task 1";
+    newTask1.isCompleted = [[NSNumber alloc] initWithInt:(int)1];
+	newTask2.name = @"Task 2";
+	newTask3.name = @"Task 3";
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getCompletedTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)1, @"Getting tasks that are completed failed!");
+}
+
 @end

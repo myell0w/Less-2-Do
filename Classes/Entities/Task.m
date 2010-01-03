@@ -190,4 +190,40 @@
 	return objects;
 }
 
++ (NSArray *) getCompletedTasks:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:@"isCompleted == YES" error:error];	
+	return objects;
+}
+
++ (NSArray *) getTasksWithoutFolder:(NSError **)error
+{ 
+	// TODO: WARUM GEHT DAS NICHT - Folder default belegung?
+	NSArray* objects = [Task getTasksInFolder:nil error:error];	
+	return objects;
+}
+
++ (NSArray *) getTasksWithoutContext:(NSError **)error
+{
+	NSArray* objects = [Task getTasksInContext:nil error:error];	
+	return objects;
+}
+
++ (NSArray *) getTasksWithoutTag:(NSError **)error
+{
+  NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
+
+	NSMutableArray *resultSet = [[NSMutableArray alloc] init];
+	Task *t;
+	for(t in objects)
+	{
+		if([t.tags count] == 0)
+		{
+			[resultSet addObject:t];
+		}
+	}
+		
+	return resultSet;
+}
+
 @end
