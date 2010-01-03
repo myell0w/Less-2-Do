@@ -46,11 +46,12 @@
 	[starred release];
 
 	// init Second-Level Views in Section Home
-	TasksListViewController *watch = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
-	watch.title = @"Watchlist";
-	watch.image = [UIImage imageNamed:@"home_watchlist.png"];
-	[array addObject:watch];
-	[watch release];
+	TasksListViewController *compl = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+	compl.title = @"Completed";
+	compl.selector = @selector(getCompletedTasks:);
+	compl.image = [UIImage imageNamed:@"home_completed.png"];
+	[array addObject:compl];
+	[compl release];
 	
 	// first 3 controllers make up section0
 	self.controllersSection0 = array;

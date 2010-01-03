@@ -476,6 +476,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(void)actionSheet:(UIActionSheet*)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	NSError *error;
+	
 	// Action-Sheet to cancel add-action?
 	if ([actionSheet.title isEqualToString:@"Really Cancel?"]) {
 		// if the user really wants to abort, delete the modal view and show the parent view again
@@ -487,7 +489,7 @@
 	else if ([actionSheet.title isEqualToString:@"Delete Task?"]) {
 		// if the user really wants to delete a task...
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
-			//TODO: delete task
+			[BaseManagedObject deleteObject:self.task error:&error];
 		}
 	}
 				 

@@ -19,6 +19,5 @@
 	#import "Task.h"
 	#import "Folder.h"
 	#import "Log.h"
-	#import "TaskDAO.h"
 	#import "DAOError.h"
 #endif
