@@ -78,6 +78,19 @@
 + (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error;
 + (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error;
 
++ (NSArray *) getCompletedTasks:(NSError **)error;
++ (NSArray *) getTasksWithoutFolder:(NSError **)error;
++ (NSArray *) getTasksWithoutContext:(NSError **)error;
++ (NSArray *) getTasksWithoutTag:(NSError **)error;
+
+/*
+alle Tasks, die completed sind (done)
+alle Tasks die keinen Folder haben (done)
+keinen Context (done)
+kein Tag (done)
+ 
+ TASK LOESCHEN
+*/
 
 @end
 
