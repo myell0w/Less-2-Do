@@ -10,7 +10,6 @@
 #import "UICheckBox.h"
 #import "Less2DoAppDelegate.h"
 #import "ShowTaskViewController.h"
-#import "TaskDAO.h"
 
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 190, 21)
@@ -176,9 +175,7 @@
 	Task *t = [(Task *)[self.tasks objectAtIndex:row] retain];
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	//TODO: remove Task from database
-	[TaskDAO deleteTask:t error:&error];
-
+	[BaseManagedObject deleteObject:t error:&error];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
