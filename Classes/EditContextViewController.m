@@ -24,29 +24,51 @@
 	//Hide the keypad
 	[self.mapsearchTextField resignFirstResponder];
 	MKCoordinateRegion region;
-	MKCoordinateSpan span;
-	span.latitudeDelta=0.001;
-	span.longitudeDelta=0.001;
 	
-	CLLocationCoordinate2D location = [self addressLocation];
-	region.span=span;
+	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
+						   [self.mapsearchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
+    
+	
+	CLLocationCoordinate2D location = [self addressLocation:locationString];
+	region.span = [self addressSpan:locationString];
 	region.center=location;
 	if(self.addAnnotation != nil) {
 		[self.mapView removeAnnotation:self.addAnnotation];
 		[self.addAnnotation release];
 		_addAnnotation = nil;
 	}
-	self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
+	if ([self validAddress:locationString] == YES) {
+		self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
+	}
+	else {
+		// TODO: Error-Message
+	}
+
 	[self.mapView addAnnotation:self.addAnnotation];
 	[self.mapView setRegion:region animated:TRUE];
 	[self.mapView regionThatFits:region];
 }
 
--(CLLocationCoordinate2D) addressLocation {
-    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
-						   [self.mapsearchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
-    NSArray *listItems = [locationString componentsSeparatedByString:@","];
+-(MKCoordinateSpan) addressSpan:(NSString *)locationString {
+	NSArray *listItems = [locationString componentsSeparatedByString:@","];
+	MKCoordinateSpan span;
+	span.latitudeDelta=0.1;
+	span.longitudeDelta=0.1;
+	
+	if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+        span.latitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
+		span.longitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
+		ALog("%f", [[listItems objectAtIndex:1] doubleValue]);
+    }
+    else {
+		ALog("Error occured while searching Location");
+    }
+	return span;
+}
+
+-(CLLocationCoordinate2D) addressLocation:(NSString *)locationString {
+	NSArray *listItems = [locationString componentsSeparatedByString:@","];
 	
     double latitude = 48.209206;
     double longitude = 16.372778;
@@ -62,9 +84,18 @@
     location.latitude = latitude;
     location.longitude = longitude;
 	
+	
     return location;
 }
 
+- (BOOL)validAddress:(NSString *)locationString {
+	NSArray *listItems = [locationString componentsSeparatedByString:@","];
+	
+    if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+        return YES;
+    }
+	return NO;
+}
 
 // Pressing Cancel will pop the actuel View away
 - (IBAction) cancel:(id)sender {
@@ -191,13 +222,13 @@
 
 @synthesize coordinate;
 
-- (NSString *)subtitle{
+/*- (NSString *)subtitle{
 	return @"Sub Title";
 }
 
 - (NSString *)title{
 	return @"Title";
-}
+}*/
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;

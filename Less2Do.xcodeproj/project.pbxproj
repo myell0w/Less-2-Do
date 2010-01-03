@@ -112,6 +112,8 @@
 		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
+		D4A9AA5C10EB7F5D004FA84D /* ShowTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A9AA5810EB7F5D004FA84D /* ShowTaskViewController.xib */; };
+		D4A9AA5D10EB7F5D004FA84D /* ShowTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9AA5910EB7F5D004FA84D /* ShowTaskViewController.m */; };
 		D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B5FEDD10E65538003584A5 /* MapKit.framework */; };
 		D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF4610E663C5003584A5 /* blueButton.png */; };
 		D4B5FF5410E66539003584A5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5210E66539003584A5 /* location.png */; };
@@ -150,6 +152,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
+		};
+		D4A9AA4410EB7DF6004FA84D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA649BBA10C30B250051F758 /* libToodledoAPIMac.a */;
+			remoteInfo = libToodledoAPIMac;
+		};
+		D4A9AA4610EB7DF6004FA84D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CF04581710E2F5C400DED3CF /* liblibToodledoAPIiPhone.a */;
+			remoteInfo = libToodledoAPIiPhone;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -319,6 +335,10 @@
 		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D4A9AA5810EB7F5D004FA84D /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
+		D4A9AA5910EB7F5D004FA84D /* ShowTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTaskViewController.m; sourceTree = "<group>"; };
+		D4A9AA5A10EB7F5D004FA84D /* ShowTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTaskViewController.h; sourceTree = "<group>"; };
+		D4A9AA5B10EB7F5D004FA84D /* Includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Includes.h; sourceTree = "<group>"; };
 		D4B5FEDD10E65538003584A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4B5FF4610E663C5003584A5 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blueButton.png; path = ../blueButton.png; sourceTree = "<group>"; };
 		D4B5FF5210E66539003584A5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
@@ -396,8 +416,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				A38B3ADF10BFFB7A00D5D87F /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				A38B3ADF10BFFB7A00D5D87F /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -491,6 +511,8 @@
 		398E438D10C480CA0066AA09 /* viewTasks */ = {
 			isa = PBXGroup;
 			children = (
+				D4A9AA5910EB7F5D004FA84D /* ShowTaskViewController.m */,
+				D4A9AA5A10EB7F5D004FA84D /* ShowTaskViewController.h */,
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
 				3903387510B60BF0007985A9 /* TasksListViewController.m */,
 			);
@@ -523,6 +545,7 @@
 		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				D4A9AA5810EB7F5D004FA84D /* ShowTaskViewController.xib */,
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
@@ -647,7 +670,9 @@
 			isa = PBXGroup;
 			children = (
 				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				D4A9AA4510EB7DF6004FA84D /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
+				D4A9AA4710EB7DF6004FA84D /* liblibToodledoAPIiPhone.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -799,6 +824,7 @@
 		CFF1D52B10D571AC005AB0BE /* util */ = {
 			isa = PBXGroup;
 			children = (
+				D4A9AA5B10EB7F5D004FA84D /* Includes.h */,
 				CF879D8E10D5B490004D6770 /* ColorChooserCell.h */,
 				CF879D8F10D5B490004D6770 /* ColorChooserCell.m */,
 				CFF1D52810D571A1005AB0BE /* UIColor+ColorComponents.h */,
@@ -924,6 +950,20 @@
 			remoteRef = 39B65A0210B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D4A9AA4510EB7DF6004FA84D /* libToodledoAPIMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libToodledoAPIMac.a;
+			remoteRef = D4A9AA4410EB7DF6004FA84D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D4A9AA4710EB7DF6004FA84D /* liblibToodledoAPIiPhone.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibToodledoAPIiPhone.a;
+			remoteRef = D4A9AA4610EB7DF6004FA84D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -982,6 +1022,7 @@
 				D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */,
 				D4B5FF5410E66539003584A5 /* location.png in Resources */,
 				D4B5FF5510E66539003584A5 /* magnifiyingGlass.png in Resources */,
+				D4A9AA5C10EB7F5D004FA84D /* ShowTaskViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,6 +1085,7 @@
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
+				D4A9AA5D10EB7F5D004FA84D /* ShowTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
