@@ -17,7 +17,7 @@
 
 #define IMAGE_RECT		  CGRectMake(12, 12, 20, 20)
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
-#define NOTES_RECT		  CGRectMake(47, 10, 250, 24)
+#define NOTES_RECT		  CGRectMake(47, 13, 250, 24)
 
 #define TAG_IMAGE	30
 #define TAG_TEXT	31
@@ -458,7 +458,6 @@
 	UILabel *textLabel = [[UILabel alloc] initWithFrame:NOTES_RECT];
 	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 	textLabel.tag = TAG_NOTES;
-	textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	textLabel.lineBreakMode = UILineBreakModeWordWrap;
 	// add Label to Cell
 	[cell.contentView addSubview:textLabel];

@@ -58,6 +58,7 @@
 	//View for No Folder Tasks
 	TasksListViewController *nofolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	nofolder.title = @"No Folder";
+	nofolder.image = [UIImage imageNamed:@"no_folder.png"];
 	[array addObject:nofolder];
 	[nofolder release];
 	
@@ -168,6 +169,7 @@
 	if(section==0) {
 		cell.detailTextLabel.text = detail;
 		cell.textLabel.text = c.title;
+		cell.imageView.image = c.image;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;
 	}
 	else {

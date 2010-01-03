@@ -11,6 +11,8 @@
 #import "TasksListViewController.h"
 #import "Task.h"
 
+#define TAG_COUNT 31
+
 
 @implementation HomeFirstLevelViewController
 
@@ -132,19 +134,28 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		
+		UILabel *labelCount = [[UILabel alloc] initWithFrame:CGRectMake(250, 10, 30, 20)];
+		
+		labelCount.tag = TAG_COUNT;
+		labelCount.textColor = [UIColor grayColor];
+		labelCount.text = @"(0)";
+		
+		//[cell.contentView addSubview:labelCount];
 	}
 	
 	// customize cell-appearance:
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",[c taskCount]];
+	//NSString *detail = [[NSString alloc]initWithFormat:@"(%d)",[c taskCount]];
+	//UILabel *labelCount = (UILabel *)[cell viewWithTag:TAG_COUNT];
 	
 	cell.textLabel.text = c.title;
-	cell.detailTextLabel.text = detail;
+	//labelCount.text = detail;
 	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	[detail release];
+	//[detail release];
 	
 	return cell;
 }
