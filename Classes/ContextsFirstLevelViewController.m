@@ -49,7 +49,7 @@
 	// init Second-Level Views in Section Contexts
 	TasksListViewController *no = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	no.title = @"No Context";
-	no.image = [UIImage imageNamed:@"show_no_context.png"];
+	no.image = [UIImage imageNamed:@"no_context.png"];
 	[array addObject:no];
 	[no release];
 	
@@ -79,7 +79,7 @@
 			Context *context = [[objects objectAtIndex:i] retain];
 			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			contextView.title = context.name;
-			contextView.image = [UIImage imageNamed:@"show_context.png"];
+			contextView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
 			[array addObject:contextView];
 			[contextView release];
 		}

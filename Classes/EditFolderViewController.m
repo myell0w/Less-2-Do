@@ -63,7 +63,7 @@
 		NSNumber *order = [[NSNumber alloc] initWithInt:[self.parent.list count]];
 		self.folder = [FolderDAO addFolderWithName:[self.nameTextField text] theTasks:nil theOrder:order error:&error];
 		ALog ("Folder inserted");
-		[self.color colorComponents];
+		//[self.color colorComponents];
 		self.folder.r = [self.color redColorComponent];
 		self.folder.g = [self.color greenColorComponent];
 		self.folder.b = [self.color blueColorComponent];

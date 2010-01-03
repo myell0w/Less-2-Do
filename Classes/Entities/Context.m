@@ -22,6 +22,11 @@
 	return self.name;
 }
 
+- (BOOL)hasGps {
+	ALog("gpsx: %@, gpsy:%@", self.gpsX, self.gpsY);
+	return self.gpsX != nil && self.gpsY != nil && [self.gpsX intValue] != 0 && [self.gpsY intValue] != 0;
+}
+
 + (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;

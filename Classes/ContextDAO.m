@@ -80,7 +80,6 @@
  */
 +(Context*)addContextWithName:(NSString*)theName error:(NSError**)error
 {
-	NSError *saveError;
 	
 	/* show if parameter is set */
 	if(theName == nil || [theName length] == 0) {
@@ -137,9 +136,7 @@
  - DAONotDeletedError: when the new object could not be deleted from the persistend store
  */
 +(BOOL)deleteContext:(Context *)context error:(NSError**)error
-{
-	NSError *deleteError;
-	
+{	
 	/* show if parameter is set */
 	if(context == nil) {
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
@@ -190,7 +187,6 @@
  */
 +(BOOL)updateContext:(Context*)context error:(NSError**)error
 {
-	NSError *updateError;
 	
 	/* show if parameters are set */
 	if(context == nil) {

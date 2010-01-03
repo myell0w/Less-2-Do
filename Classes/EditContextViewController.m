@@ -45,7 +45,7 @@
 -(CLLocationCoordinate2D) addressLocation {
     NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
 						   [self.mapsearchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
+    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSUTF8StringEncoding error:NULL];
     NSArray *listItems = [locationString componentsSeparatedByString:@","];
 	
     double latitude = 48.209206;

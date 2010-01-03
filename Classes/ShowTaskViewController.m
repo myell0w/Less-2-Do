@@ -201,7 +201,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		imageView.image = [UIImage imageNamed:@"show_context.png"];
+		imageView.image = [((Context *)task.context) hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task.context description];
@@ -209,7 +209,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		imageView.image = [UIImage imageNamed:@"show_tags.png"];
+		imageView.image = [UIImage imageNamed:@"tag.png"];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task tagsDescription];
@@ -397,7 +397,7 @@
 - (void)setUpNotesCell:(UITableViewCell *)cell {
 	UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
 	imageView.tag = TAG_IMAGE;
-	imageView.image = [UIImage imageNamed:@"show_notes.png"];
+	imageView.image = [UIImage imageNamed:@"notes.png"];
 	[cell.contentView addSubview:imageView];
 	[imageView release];
 	
