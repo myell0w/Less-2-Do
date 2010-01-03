@@ -29,6 +29,7 @@
 	TasksListViewController *no = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	no.title = @"No Context";
 	no.image = [UIImage imageNamed:@"no_context.png"];
+	no.selector = @selector(getTasksWithoutContext:);
 	[array addObject:no];
 	[no release];
 	

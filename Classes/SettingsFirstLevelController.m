@@ -8,6 +8,7 @@
 
 #import "SettingsFirstLevelController.h"
 #import "SettingsViewController.h"
+#import "SettingsSyncViewController.h"
 
 @implementation SettingsFirstLevelController
 
@@ -26,14 +27,17 @@
 	//init Second-Level Views in Section Tags
 	
 	//View for Sync
-	SettingsViewController *sync = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+	SettingsSyncViewController *sync = [[SettingsSyncViewController alloc] initWithNibName:@"SettingsSyncViewController" bundle:nil];
 	sync.title = @"Sync";
-	sync.image = [UIImage imageNamed:@"all_tasks.png"];
+	sync.image = [UIImage imageNamed:@"settings_sync.png"];
 	[array addObject:sync];
 	[sync release];
 	
+	self.controllersSection0 = array;
+	[array release];
+	
 	//View for Reminder
-	SettingsViewController *reminder = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+/*	SettingsViewController *reminder = [[SettingsViewController alloc] initWithStyle:UITableViewStylePlain];
 	reminder.title = @"Reminder";
 	reminder.image = [UIImage imageNamed:@"all_tasks.png"];
 	[array addObject:reminder];
@@ -67,7 +71,7 @@
 	
 	// tags make up section1
 	self.controllersSection1 = array;
-	[array release];
+	[array release]; */
 	self.title = @"Settings";
 	[super viewDidLoad];
 }

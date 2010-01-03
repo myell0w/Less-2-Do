@@ -30,6 +30,7 @@
 	TasksListViewController *untagged = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	untagged.title = @"Untagged";
 	untagged.image = [UIImage imageNamed:@"no_tags.png"];
+	untagged.selector = @selector(getTasksWithoutTag:);
 	[array addObject:untagged];
 	[untagged release];
 	

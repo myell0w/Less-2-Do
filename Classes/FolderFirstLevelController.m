@@ -33,6 +33,7 @@
 	TasksListViewController *nofolder = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	nofolder.title = @"No Folder";
 	nofolder.image = [UIImage imageNamed:@"no_folder.png"];
+	nofolder.selector = @selector(getTasksWithoutFolder:);
 	[array addObject:nofolder];
 	[nofolder release];
 	

@@ -13,7 +13,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-@interface SettingsViewController : UITableViewController {
+@interface SettingsViewController : UIViewController {
 	// image that is shown in the table cell
 	UIImage *image;
 }
