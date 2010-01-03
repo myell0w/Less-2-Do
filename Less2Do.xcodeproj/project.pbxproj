@@ -45,6 +45,9 @@
 		392B712710F10A37008106D0 /* button_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B712510F10A37008106D0 /* button_stop.png */; };
 		392B725910F1258E008106D0 /* no_folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B725810F1258E008106D0 /* no_folder.png */; };
 		393E810110F12F6B00395176 /* home_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = 393E810010F12F6B00395176 /* home_completed.png */; };
+		3949ED5510F131E3003A2683 /* settings_sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 3949ED5410F131E3003A2683 /* settings_sync.png */; };
+		3949ED6F10F13346003A2683 /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3949ED6D10F13346003A2683 /* SettingsSyncViewController.m */; };
+		3949ED7010F13346003A2683 /* SettingsSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3949ED6E10F13346003A2683 /* SettingsSyncViewController.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
 		39A1F32510B9F89300671B42 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* star_off.png */; };
@@ -238,6 +241,10 @@
 		392B712510F10A37008106D0 /* button_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_stop.png; sourceTree = "<group>"; };
 		392B725810F1258E008106D0 /* no_folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_folder.png; sourceTree = "<group>"; };
 		393E810010F12F6B00395176 /* home_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_completed.png; sourceTree = "<group>"; };
+		3949ED5410F131E3003A2683 /* settings_sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_sync.png; sourceTree = "<group>"; };
+		3949ED6C10F13346003A2683 /* SettingsSyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSyncViewController.h; sourceTree = "<group>"; };
+		3949ED6D10F13346003A2683 /* SettingsSyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSyncViewController.m; sourceTree = "<group>"; };
+		3949ED6E10F13346003A2683 /* SettingsSyncViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsSyncViewController.xib; path = Classes/SettingsSyncViewController.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
 		39A1F32310B9F89300671B42 /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_off.png; sourceTree = "<group>"; };
@@ -660,6 +667,7 @@
 		39B6593C10B6B85400825C1D /* tablecells */ = {
 			isa = PBXGroup;
 			children = (
+				3949ED5410F131E3003A2683 /* settings_sync.png */,
 				39BDC70F10EFC0FC009C42D9 /* context_gps.png */,
 				392B6FF610F0EFF6008106D0 /* context_no_gps.png */,
 				39BDC74110EFC614009C42D9 /* no_context.png */,
@@ -880,6 +888,8 @@
 				D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */,
 				D436E99310BAB94100EA7624 /* SettingsViewController.h */,
 				D436E99410BAB94100EA7624 /* SettingsViewController.m */,
+				3949ED6C10F13346003A2683 /* SettingsSyncViewController.h */,
+				3949ED6D10F13346003A2683 /* SettingsSyncViewController.m */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -888,6 +898,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */,
+				3949ED6E10F13346003A2683 /* SettingsSyncViewController.xib */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -1054,6 +1065,8 @@
 				392B712710F10A37008106D0 /* button_stop.png in Resources */,
 				392B725910F1258E008106D0 /* no_folder.png in Resources */,
 				393E810110F12F6B00395176 /* home_completed.png in Resources */,
+				3949ED5510F131E3003A2683 /* settings_sync.png in Resources */,
+				3949ED7010F13346003A2683 /* SettingsSyncViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,6 +1129,7 @@
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
+				3949ED6F10F13346003A2683 /* SettingsSyncViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
