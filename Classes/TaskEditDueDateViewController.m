@@ -44,6 +44,12 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	if (task.dueDate == nil)
+		task.dueTime = nil;
+	[super viewWillDisappear:animated];
+}
+
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;

@@ -30,6 +30,16 @@
 @synthesize tasks;
 @synthesize selector;
 @synthesize argument;
+@synthesize detailMode;
+@synthesize currentPosition;
+
+- (id)initWithStyle:(UITableViewStyle)style {
+	if (self = [super initWithStyle:style]) {
+		detailMode = TaskListDetailDateMode;
+	}
+	
+	return self;
+}
 
 - (void)viewDidLoad {
 	NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -131,17 +141,30 @@
 	}
 	
 	UILabel *titleDetail = (UILabel *)[cell.contentView viewWithTag:TAG_TITLE_DETAIL];
+	
+	if (self.detailMode == TaskListDetailDateMode) {
 	NSString *dueDateAndTime = nil;
-	if (t.dueDate != nil) {
-		dueDateAndTime = [[NSString alloc] initWithFormat:@"due: %@, %@",
-						  [formatDate stringFromDate:t.dueDate],
-						  t.dueTime != nil ? [formatTime stringFromDate:t.dueTime] : @"no time"];
+		if (t.dueDate != nil) {
+			dueDateAndTime = [[NSString alloc] initWithFormat:@"due: %@, %@",
+							  [formatDate stringFromDate:t.dueDate],
+							  t.dueTime != nil ? [formatTime stringFromDate:t.dueTime] : @"no time"];
+		} else {
+			dueDateAndTime = @"no due date";
+		}
+
+		titleDetail.text = dueDateAndTime;
+		[dueDateAndTime release];
 	} else {
-		dueDateAndTime = @"no due date";
+		NSString *distance = nil;
+		Context* context = (Context *)t.context;
+		
+		if ([context hasGps]) {
+			distance = [[NSString alloc] initWithFormat:@"distance: %f", [context distanceTo:currentPosition]];
+		} else {
+			distance = @"No GPS";
+		}
 	}
 
-	titleDetail.text = dueDateAndTime;
-	[dueDateAndTime release];
 	
 	UIView *folderColorView = (UIView *)[cell.contentView viewWithTag:TAG_FOLDER_COLOR];
 	folderColorView.backgroundColor = t.folder != nil ? t.folder.color : [UIColor whiteColor];
@@ -152,7 +175,7 @@
 	priorityView.image = [UIImage imageNamed:priorityName];
 	[priorityName release];
 	
-	if (t.repeat != nil && [t.repeat intValue] != 0) {
+	if (t.repeat != nil && ([t.repeat intValue]%100) != 0) {
 		UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
 		recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
 	}

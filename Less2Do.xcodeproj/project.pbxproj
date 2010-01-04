@@ -44,6 +44,8 @@
 		392B712610F10A37008106D0 /* button_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B712410F10A37008106D0 /* button_start.png */; };
 		392B712710F10A37008106D0 /* button_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B712510F10A37008106D0 /* button_stop.png */; };
 		392B725910F1258E008106D0 /* no_folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B725810F1258E008106D0 /* no_folder.png */; };
+		398AC7E710F24F590015319A /* ShowContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398AC7E510F24F590015319A /* ShowContextViewController.m */; };
+		398AC7E810F24F590015319A /* ShowContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398AC7E610F24F590015319A /* ShowContextViewController.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
 		39A1F32510B9F89300671B42 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* star_off.png */; };
@@ -237,6 +239,9 @@
 		392B712410F10A37008106D0 /* button_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_start.png; sourceTree = "<group>"; };
 		392B712510F10A37008106D0 /* button_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_stop.png; sourceTree = "<group>"; };
 		392B725810F1258E008106D0 /* no_folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_folder.png; sourceTree = "<group>"; };
+		398AC7E410F24F590015319A /* ShowContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowContextViewController.h; sourceTree = "<group>"; };
+		398AC7E510F24F590015319A /* ShowContextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowContextViewController.m; sourceTree = "<group>"; };
+		398AC7E610F24F590015319A /* ShowContextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowContextViewController.xib; path = Classes/ShowContextViewController.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
 		39A1F32310B9F89300671B42 /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_off.png; sourceTree = "<group>"; };
@@ -621,6 +626,8 @@
 				39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */,
 				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
 				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
+				398AC7E410F24F590015319A /* ShowContextViewController.h */,
+				398AC7E510F24F590015319A /* ShowContextViewController.m */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -656,6 +663,7 @@
 			children = (
 				D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */,
 				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
+				398AC7E610F24F590015319A /* ShowContextViewController.xib */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -695,7 +703,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -948,10 +956,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libToodledoAPI.a;
+			path = liblibToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1048,6 +1056,7 @@
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
 				D4C45C8210F1E001008B07FB /* SettingsSyncViewController.xib in Resources */,
 				D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */,
+				398AC7E810F24F590015319A /* ShowContextViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1118,7 @@
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
 				D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */,
 				D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */,
+				398AC7E710F24F590015319A /* ShowContextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

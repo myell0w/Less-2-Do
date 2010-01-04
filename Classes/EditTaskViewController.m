@@ -384,13 +384,26 @@
 	} 
 	
 	else if ([cellID isEqualToString:CELL_ID_DUETIME]) {
-		TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
-											   initWithNibName:@"TaskEditDueTimeViewController" 
-											   bundle:nil];
-		dtvc.title = @"Due Time";
-		dtvc.task = self.task;
-		[self.navigationController pushViewController:dtvc animated:YES];
-		[dtvc release];
+		if (self.task.dueDate == nil) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Due Date!" 
+															message:@"First specify a Due Date!"
+														   delegate:nil 
+												  cancelButtonTitle:@"Ok" 
+												  otherButtonTitles:nil];
+			
+			[alert show];
+			[alert release];
+			
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		} else {
+			TaskEditDueTimeViewController *dtvc = [[TaskEditDueTimeViewController alloc] 
+												   initWithNibName:@"TaskEditDueTimeViewController" 
+												   bundle:nil];
+			dtvc.title = @"Due Time";
+			dtvc.task = self.task;
+			[self.navigationController pushViewController:dtvc animated:YES];
+			[dtvc release];
+		}
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_RECURRENCE]) {
@@ -502,6 +515,7 @@
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
 			if (self.mode == TaskControllerAddMode) {
 				[self dismissModalViewControllerAnimated:YES];
+				[BaseManagedObject deleteObject:task error:&error];
 			} else {
 				[self.navigationController popViewControllerAnimated:YES];
 			}
