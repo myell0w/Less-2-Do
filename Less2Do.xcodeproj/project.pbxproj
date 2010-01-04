@@ -85,6 +85,11 @@
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
+		A34830FD10F2143300F4BA37 /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34830FC10F2143300F4BA37 /* SettingsSyncViewController.m */; };
+		A34830FF10F2145000F4BA37 /* SettingsSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A34830FE10F2145000F4BA37 /* SettingsSyncViewController.xib */; };
+		A348320D10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A348320C10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a */; };
+		A348320E10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A348320C10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a */; };
+		A3518B2010F21F580014CD02 /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A3518B1E10F21F580014CD02 /* SyncTest.m */; };
 		A36CF93810D634C9007482E3 /* FolderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CF93710D634C9007482E3 /* FolderTest.m */; };
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
@@ -99,8 +104,10 @@
 		A38B3AC910BFFAAA00D5D87F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3AB510BFF91100D5D87F /* CoreLocation.framework */; };
 		A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3AD810BFFB1300D5D87F /* GHUnitIPhoneTestMain.m */; };
-		A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */; };
 		A38B3B0510BFFC9E00D5D87F /* ContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3B0410BFFC9E00D5D87F /* ContextTest.m */; };
+		A3A394FE10F220F90058DB84 /* libGHUnitIPhone3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */; };
+		A3A3968F10F23A270058DB84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3968E10F23A270058DB84 /* SyncManager.m */; };
+		A3A3969010F23A270058DB84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3968E10F23A270058DB84 /* SyncManager.m */; };
 		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
@@ -172,6 +179,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
+		};
+		A3A3958310F229290058DB84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteInfo = libToodledoAPIiPhone;
+		};
+		A3A3958710F2298F0058DB84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteInfo = libToodledoAPIiPhone;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -287,6 +308,11 @@
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
+		A34830FB10F2143300F4BA37 /* SettingsSyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSyncViewController.h; sourceTree = "<group>"; };
+		A34830FC10F2143300F4BA37 /* SettingsSyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSyncViewController.m; sourceTree = "<group>"; };
+		A34830FE10F2145000F4BA37 /* SettingsSyncViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsSyncViewController.xib; path = Classes/SettingsSyncViewController.xib; sourceTree = "<group>"; };
+		A348320C10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibToodledoAPIiPhone.a; path = "../../ObjC/Less-2-Do/liblibToodledoAPIiPhone.a"; sourceTree = SOURCE_ROOT; };
+		A3518B1E10F21F580014CD02 /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
 		A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGHUnitAppDelegate.h; sourceTree = "<group>"; };
@@ -312,6 +338,8 @@
 		A38B3ADB10BFFB1300D5D87F /* NSException+GHTestFailureExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSException+GHTestFailureExceptions.h"; path = "libGHUnitIPhone3_0-0.4.13/NSException+GHTestFailureExceptions.h"; sourceTree = "<group>"; };
 		A38B3ADC10BFFB1300D5D87F /* NSValue+GHValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+GHValueFormatter.h"; path = "libGHUnitIPhone3_0-0.4.13/NSValue+GHValueFormatter.h"; sourceTree = "<group>"; };
 		A38B3B0410BFFC9E00D5D87F /* ContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextTest.m; sourceTree = "<group>"; };
+		A3A3968D10F23A270058DB84 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
+		A3A3968E10F23A270058DB84 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
 		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
 		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
 		A3E3389410BC5C6D004F0F39 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Entities/Tag.h; sourceTree = "<group>"; };
@@ -380,6 +408,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
 				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
+				A348320D10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,12 +416,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3A394FE10F220F90058DB84 /* libGHUnitIPhone3_0.a in Frameworks */,
 				A38B3AC910BFFAAA00D5D87F /* UIKit.framework in Frameworks */,
 				A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */,
 				A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */,
 				A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */,
 				A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */,
-				A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */,
+				A348320E10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +455,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A348320C10F21D8B00F4BA37 /* liblibToodledoAPIiPhone.a */,
 				A38B3ADF10BFFB7A00D5D87F /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -682,7 +713,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -760,6 +791,7 @@
 				A36CFA6610D64524007482E3 /* TaskTest.m */,
 				A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */,
 				A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */,
+				A3518B1E10F21F580014CD02 /* SyncTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -813,6 +845,8 @@
 			children = (
 				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
 				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
+				A3A3968D10F23A270058DB84 /* SyncManager.h */,
+				A3A3968E10F23A270058DB84 /* SyncManager.m */,
 			);
 			name = sync;
 			sourceTree = "<group>";
@@ -850,6 +884,8 @@
 		D436E98510BAB76300EA7624 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				A34830FB10F2143300F4BA37 /* SettingsSyncViewController.h */,
+				A34830FC10F2143300F4BA37 /* SettingsSyncViewController.m */,
 				D436E98610BAB7D200EA7624 /* SettingsNavigationController.h */,
 				D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */,
 				D436E98910BAB7F100EA7624 /* SettingsFirstLevelController.h */,
@@ -863,6 +899,7 @@
 		D436E9C210BABB4900EA7624 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				A34830FE10F2145000F4BA37 /* SettingsSyncViewController.xib */,
 				D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */,
 			);
 			name = settings;
@@ -882,6 +919,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A3A3958810F2298F0058DB84 /* PBXTargetDependency */,
 			);
 			name = Less2Do;
 			productName = Less2Do;
@@ -901,6 +939,7 @@
 			);
 			dependencies = (
 				A30A5F0610C155B600673F02 /* PBXTargetDependency */,
+				A3A3958410F229290058DB84 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -932,10 +971,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libToodledoAPI.a;
+			path = liblibToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1030,6 +1069,7 @@
 				392B712710F10A37008106D0 /* button_stop.png in Resources */,
 				392B725910F1258E008106D0 /* no_folder.png in Resources */,
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
+				A34830FF10F2145000F4BA37 /* SettingsSyncViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,6 +1129,8 @@
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
+				A34830FD10F2143300F4BA37 /* SettingsSyncViewController.m in Sources */,
+				A3A3969010F23A270058DB84 /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1107,6 +1149,8 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
+				A3518B2010F21F580014CD02 /* SyncTest.m in Sources */,
+				A3A3968F10F23A270058DB84 /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1117,6 +1161,16 @@
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Less2Do */;
 			targetProxy = A30A5F0510C155B600673F02 /* PBXContainerItemProxy */;
+		};
+		A3A3958410F229290058DB84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libToodledoAPIiPhone;
+			targetProxy = A3A3958310F229290058DB84 /* PBXContainerItemProxy */;
+		};
+		A3A3958810F2298F0058DB84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libToodledoAPIiPhone;
+			targetProxy = A3A3958710F2298F0058DB84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1135,9 +1189,14 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
-				HEADER_SEARCH_PATHS = "toodledo-objc/src";
+				HEADER_SEARCH_PATHS = ".//**";
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+				);
 				OTHER_LDFLAGS = "";
+				PREBINDING = YES;
 				PRODUCT_NAME = Less2Do;
 			};
 			name = Debug;
@@ -1155,6 +1214,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+				);
 				PRODUCT_NAME = Less2Do;
 			};
 			name = Release;
@@ -1169,11 +1232,14 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests_Prefix.pch;
+				HEADER_SEARCH_PATHS = ".//**";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libGHUnitIPhone3_0-0.4.13\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do/toodledo-objc/src/build/Release-iphonesimulator\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1204,6 +1270,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libGHUnitIPhone3_0-0.4.13\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do/toodledo-objc/src/build/Release-iphonesimulator\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
