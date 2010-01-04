@@ -47,7 +47,6 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
 	self.tempData = dict;
-	self.navigationItem.title = @"Add Task";
 	self.navigationItem.leftBarButtonItem = cancel;
 	self.navigationItem.rightBarButtonItem = save;
 	
@@ -86,21 +85,6 @@
     [super viewWillAppear:animated];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table view methods
@@ -428,7 +412,7 @@
 }
 
 // specify the height of your footer section
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+/*- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     // no footer in add-mode
 	if (mode == TaskControllerAddMode) 
 		return 0;
@@ -469,7 +453,7 @@
 	
     //return the view for the footer
     return footerView;
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark ActionSheet-Delegate Methods
@@ -482,7 +466,11 @@
 	if ([actionSheet.title isEqualToString:@"Really Cancel?"]) {
 		// if the user really wants to abort, delete the modal view and show the parent view again
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
-			[self dismissModalViewControllerAnimated:YES];
+			if (self.mode == TaskControllerAddMode) {
+				[self dismissModalViewControllerAnimated:YES];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}
 	}
 	// Action-Sheet to delete a task?
@@ -490,6 +478,12 @@
 		// if the user really wants to delete a task...
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
 			[BaseManagedObject deleteObject:self.task error:&error];
+			
+			if (self.mode == TaskControllerAddMode) {
+				[self dismissModalViewControllerAnimated:YES];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}
 	}
 				 
@@ -596,7 +590,11 @@
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	
-	[self dismissModalViewControllerAnimated:YES];
+	if (self.mode == TaskControllerAddMode) {
+		[self dismissModalViewControllerAnimated:YES];
+	} else {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 // cancel the adding/editing

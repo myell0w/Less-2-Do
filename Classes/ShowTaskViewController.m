@@ -7,6 +7,7 @@
 //
 
 #import "ShowTaskViewController.h"
+#import "EditTaskViewController.h"
 #import "UICheckBox.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 180, 21)
@@ -47,28 +48,15 @@
 	
 	self.navigationItem.rightBarButtonItem = edit;
 	
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(taskWasAdded:) 
+												 name:@"TaskAddedNotification" object:nil];
+		
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[properties release];
-	properties = [[NSMutableArray alloc] init];
-	
-	[properties addObject:CELL_ID_TITLE];
-	
-	if (self.task.folder != nil)
-		[properties addObject:CELL_ID_FOLDER];
-	
-	if (self.task.context != nil)
-		[properties addObject:CELL_ID_CONTEXT];
-	
-	if (self.task.tags != nil && [self.task.tags count] > 0)
-		[properties addObject:CELL_ID_TAGS];
-	
-	if (self.task.note != nil && [self.task.note length] > 0)
-		[properties addObject:CELL_ID_NOTES];
-	
+	[self reloadProperties];
 	[super viewWillAppear:animated];
 }
 
@@ -91,6 +79,8 @@
 	properties = nil;
 	[footerView release];
 	footerView = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {
@@ -495,10 +485,45 @@
 		[button setTitle:@"Start" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 	}
-
 }
 
 
+- (IBAction)edit:(id)sender {
+	EditTaskViewController *etvc = [[EditTaskViewController alloc] 
+									initWithNibName:@"EditTaskViewController" 
+									bundle:nil];
+	etvc.title = @"Edit Task";
+	etvc.task = self.task;
+	etvc.mode = TaskControllerEditMode;
+	
+	[self.navigationController pushViewController:etvc animated:YES];
+	[etvc release];
+}
+
+- (IBAction)taskWasAdded:(NSNotification *)notification {
+	[self reloadProperties];
+	[self.tableView reloadData];
+}
+
+- (void)reloadProperties {
+	[properties release];
+	properties = [[NSMutableArray alloc] init];
+	
+	[properties addObject:CELL_ID_TITLE];
+	
+	if (self.task.folder != nil)
+		[properties addObject:CELL_ID_FOLDER];
+	
+	if (self.task.context != nil)
+		[properties addObject:CELL_ID_CONTEXT];
+	
+	if (self.task.tags != nil && [self.task.tags count] > 0)
+		[properties addObject:CELL_ID_TAGS];
+	
+	if (self.task.note != nil && [self.task.note length] > 0)
+		[properties addObject:CELL_ID_NOTES];
+	
+}
 
 @end
 

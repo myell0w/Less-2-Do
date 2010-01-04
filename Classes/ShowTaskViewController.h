@@ -30,7 +30,8 @@
 // value of either completed or starred was changed
 - (IBAction)checkBoxValueChanged:(id)sender;
 - (IBAction)startStopTask:(id)sender;
-
+- (IBAction)edit:(id)sender;
+- (IBAction)taskWasAdded:(NSNotification *)notification;
 
 // returns the cellID for a given indexPath
 - (NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
@@ -39,5 +40,7 @@
 - (void)setUpTitleCell:(UITableViewCell *)cell;
 - (void)setUpFolderContextTagsCell:(UITableViewCell *)cell;
 - (void)setUpNotesCell:(UITableViewCell *)cell;
+
+- (void)reloadProperties;
 
 @end
