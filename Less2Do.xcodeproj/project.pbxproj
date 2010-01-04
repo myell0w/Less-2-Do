@@ -44,6 +44,8 @@
 		392B712610F10A37008106D0 /* button_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B712410F10A37008106D0 /* button_start.png */; };
 		392B712710F10A37008106D0 /* button_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B712510F10A37008106D0 /* button_stop.png */; };
 		392B725910F1258E008106D0 /* no_folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 392B725810F1258E008106D0 /* no_folder.png */; };
+		398AC53510F2187A0015319A /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398AC53410F2187A0015319A /* SettingsSyncViewController.m */; };
+		398AC53710F2188D0015319A /* SettingsSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 398AC53610F2188D0015319A /* SettingsSyncViewController.xib */; };
 		39A1F31D10B9F68A00671B42 /* task_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31B10B9F68A00671B42 /* task_off.png */; };
 		39A1F31E10B9F68A00671B42 /* task_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F31C10B9F68A00671B42 /* task_on.png */; };
 		39A1F32510B9F89300671B42 /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32310B9F89300671B42 /* star_off.png */; };
@@ -233,6 +235,9 @@
 		392B712410F10A37008106D0 /* button_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_start.png; sourceTree = "<group>"; };
 		392B712510F10A37008106D0 /* button_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_stop.png; sourceTree = "<group>"; };
 		392B725810F1258E008106D0 /* no_folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_folder.png; sourceTree = "<group>"; };
+		398AC53310F2187A0015319A /* SettingsSyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSyncViewController.h; sourceTree = "<group>"; };
+		398AC53410F2187A0015319A /* SettingsSyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSyncViewController.m; sourceTree = "<group>"; };
+		398AC53610F2188D0015319A /* SettingsSyncViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsSyncViewController.xib; path = Classes/SettingsSyncViewController.xib; sourceTree = "<group>"; };
 		39A1F31B10B9F68A00671B42 /* task_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_off.png; sourceTree = "<group>"; };
 		39A1F31C10B9F68A00671B42 /* task_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task_on.png; sourceTree = "<group>"; };
 		39A1F32310B9F89300671B42 /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_off.png; sourceTree = "<group>"; };
@@ -682,7 +687,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -856,6 +861,8 @@
 				D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */,
 				D436E99310BAB94100EA7624 /* SettingsViewController.h */,
 				D436E99410BAB94100EA7624 /* SettingsViewController.m */,
+				398AC53310F2187A0015319A /* SettingsSyncViewController.h */,
+				398AC53410F2187A0015319A /* SettingsSyncViewController.m */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -864,6 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */,
+				398AC53610F2188D0015319A /* SettingsSyncViewController.xib */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -932,10 +940,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libToodledoAPI.a;
+			path = liblibToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1030,6 +1038,7 @@
 				392B712710F10A37008106D0 /* button_stop.png in Resources */,
 				392B725910F1258E008106D0 /* no_folder.png in Resources */,
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
+				398AC53710F2188D0015319A /* SettingsSyncViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,6 +1098,7 @@
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
+				398AC53510F2187A0015319A /* SettingsSyncViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
