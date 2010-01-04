@@ -13,11 +13,12 @@
 @implementation EditContextViewController
 @synthesize nameTextField = _nameTextField;
 @synthesize mapsearchTextField = _mapsearchTextField;
-@synthesize mapsearchButton = _mapsearchButton;
 @synthesize mapView = _mapView;
 @synthesize context = _context;
 @synthesize parent = _parent;
 @synthesize addAnnotation = _addAnnotation;
+@synthesize locationManager = _locationManager;
+@synthesize reverseGeocoder = _reverseGeocoder;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -34,7 +35,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(ContextsFirstLevelViewController *)aParent {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.parent = aParent;
+        self.parent = aParent;	
     }
     return self;
 }
@@ -56,14 +57,55 @@
 	self.navigationItem.rightBarButtonItem = saveButton;
 	[saveButton release];
 	
-	if(self.context != nil)
-		self.nameTextField.text = self.context.name;
+	//Start LocationManager
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
 	[self.nameTextField becomeFirstResponder];
 	
-	//Map-Init
-	//mapView = [[MKMapView alloc] initWithFrame:mapViewContainer.view.bounds];
-	//[mapViewContainer.view insertSubView:mapView atIndex:0];
+	if(self.context != nil) {
+		self.nameTextField.text = self.context.name;
+		if ([self.context hasGps]) {
+			MKCoordinateSpan span;
+			span.latitudeDelta=0.01;
+			span.longitudeDelta=0.01;
+			
+			
+			CLLocationCoordinate2D location;
+			location.latitude = [self.context.gpsX doubleValue];
+			location.longitude = [self.context.gpsY doubleValue];
+			
+			MKCoordinateRegion region;
+			region.span = span;
+			region.center = location;
+			
+			self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
+			
+			[self.mapView addAnnotation:self.addAnnotation];
+			[self.mapView setRegion:region animated:TRUE];
+			[self.mapView regionThatFits:region];
+			
+			//Try to ReverseGeocoding
+			[self startGeocoder:location];
+			ALog ("Startet Geocoding");
+		}
+	}
+	if (self.context == nil || [self.context hasGps] == NO) {
+		CLLocationCoordinate2D location;
+		location.latitude = 48.209206;
+		location.longitude = 16.372778;
+		
+		MKCoordinateSpan span;
+		span.latitudeDelta=20;
+		span.longitudeDelta=20;
+		
+		MKCoordinateRegion region;
+		region.span = span;
+		region.center = location;
+		[self.mapView setRegion:region animated:TRUE];
+		[self.mapView regionThatFits:region];
+	}
 	
 	[super viewDidLoad];
 }
@@ -76,12 +118,15 @@
 	self.nameTextField = nil;
 	self.context = nil;
 	self.parent = nil;
+	self.locationManager = nil;
+	self.reverseGeocoder = nil;
 }
 
 
 - (void)dealloc {
 	[_context release];
-	
+	[_locationManager release];
+	[_reverseGeocoder release];
     [super dealloc];
 }
 
@@ -93,13 +138,20 @@
 -(MKCoordinateSpan) addressSpan:(NSString *)locationString {
 	NSArray *listItems = [locationString componentsSeparatedByString:@","];
 	MKCoordinateSpan span;
-	span.latitudeDelta=0.1;
-	span.longitudeDelta=0.1;
+	span.latitudeDelta=20;
+	span.longitudeDelta=20;
 	
 	if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
-        span.latitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
-		span.longitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
-		ALog("%f", [[listItems objectAtIndex:1] doubleValue]);
+		if ([[listItems objectAtIndex:1] doubleValue]< 4) {
+			span.latitudeDelta = 10;
+			span.longitudeDelta = 10;
+			
+		}
+		else {
+			span.latitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
+			span.longitudeDelta = 1 / (([[listItems objectAtIndex:1] doubleValue]+1)*20);
+		}
+		ALog("%f", span.latitudeDelta);
     }
     else {
 		ALog("Error occured while searching Location");
@@ -137,6 +189,20 @@
 	return NO;
 }
 
+- (void) animateTextField:(UITextField*)textField up:(BOOL)up
+{
+    const int movementDistance = 210;
+    const float movementDuration = 0.3f;
+	
+    int movement = (up ? -movementDistance : movementDistance);
+	
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Action-Methods
@@ -160,6 +226,16 @@
 			return;
 		}
 		self.context.name = [self.nameTextField text];
+		
+		if(self.addAnnotation != nil) {
+			self.context.gpsX = [NSNumber numberWithDouble:self.addAnnotation.coordinate.latitude];
+			self.context.gpsY = [NSNumber numberWithDouble:self.addAnnotation.coordinate.longitude];
+		}
+		else {
+			self.context.gpsX = nil;
+			self.context.gpsY = nil;
+		}
+				
 		ALog ("context updated");
 		
 		[self.parent.tableView reloadData];
@@ -173,6 +249,14 @@
 		
 		self.context = (Context *)[BaseManagedObject objectOfType:@"Context"];
 		self.context.name = [self.nameTextField text];
+		if(self.addAnnotation != nil) {
+			self.context.gpsX = [NSNumber numberWithDouble:self.addAnnotation.coordinate.latitude];
+			self.context.gpsY = [NSNumber numberWithDouble:self.addAnnotation.coordinate.longitude];
+		}
+		else {
+			self.context.gpsX = nil;
+			self.context.gpsY = nil;
+		}
 		ALog ("context inserted");
 		TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 		contextView.selector = @selector(getTasksInContext:error:);
@@ -187,17 +271,28 @@
 }
 
 - (IBAction) textFieldDone:(id)sender {
-	[sender resignFirstResponder];
+	[self.nameTextField resignFirstResponder];
+
+	if ([self.mapsearchTextField isFirstResponder]) {
+		[self animateTextField:self.mapsearchTextField up:NO];
+		[self.mapsearchTextField resignFirstResponder];
+	}
 }
 
 - (IBAction) showSearchedLocation {
 	//Hide the keypad
+	[self animateTextField:self.mapsearchTextField up:NO];
 	[self.mapsearchTextField resignFirstResponder];
-	MKCoordinateRegion region;
 	
+	//Do nothing when no Text was entered
+	if ([[self.mapsearchTextField text] length] == 0)
+		return;
+	
+	MKCoordinateRegion region;
+	NSError *error;	
 	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
 						   [self.mapsearchTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
+    NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSUTF8StringEncoding error:&error];
     
 	
 	CLLocationCoordinate2D location = [self addressLocation:locationString];
@@ -218,6 +313,111 @@
 	[self.mapView addAnnotation:self.addAnnotation];
 	[self.mapView setRegion:region animated:TRUE];
 	[self.mapView regionThatFits:region];
+	
+	//Try to ReverseGeocoding
+	[self startGeocoder:location];
+	ALog ("Started Geocoding");
+}
+
+- (IBAction) scrollUp {
+	[self animateTextField:self.mapsearchTextField up:YES];
+}
+
+- (IBAction) showOwnLocation {
+	[self.locationManager startUpdatingLocation];
+	ALog ("Start searching for Location");
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark CLLocationManagerDelegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	
+	ALog ("Location found");
+	
+	MKCoordinateSpan span;
+	span.latitudeDelta=20;
+	span.longitudeDelta=20;
+	
+	MKCoordinateRegion region;
+	region.span = span;
+	region.center = newLocation.coordinate;
+	
+	if(self.addAnnotation != nil) {
+		[self.mapView removeAnnotation:self.addAnnotation];
+		[self.addAnnotation release];
+		_addAnnotation = nil;
+	}
+	
+	self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:newLocation.coordinate];
+	
+	[self.mapView addAnnotation:self.addAnnotation];
+	[self.mapView setRegion:region animated:TRUE];
+	[self.mapView regionThatFits:region];
+	
+	[self.locationManager stopUpdatingLocation];
+	ALog ("Stop LocationManager");
+	
+	//Try to ReverseGeocoding
+	[self startGeocoder:newLocation.coordinate];
+	ALog ("Startet Geocoding");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+	NSString *errorType = (error.code == kCLErrorDenied) ? @"Access Denied" : @"Unknown Error";
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error getting Location"
+													message:errorType delegate:nil
+										  cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Notification and ReverseGeocoding
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)newPlacemark {
+	if (self.addAnnotation != nil) {
+		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
+			self.addAnnotation.mSubTitle = [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+			if ([[self.nameTextField text] length] != 0)
+				self.addAnnotation.mTitle = [self.nameTextField text];
+			else {
+				self.addAnnotation.mTitle = nil;
+			}
+		}
+		ALog ("Finished Geocoding: %@", [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]);
+	}
+	
+	[self.reverseGeocoder cancel];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
+	if (self.addAnnotation != nil) {
+		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
+			self.addAnnotation.mSubTitle = nil;
+		}
+		ALog ("Error during Geocoding");
+	}
+	
+	[self.reverseGeocoder cancel];
+	self.reverseGeocoder.delegate = nil;
+	self.reverseGeocoder = nil;
+}
+
+- (void)startGeocoder:(CLLocationCoordinate2D)location {
+	if(self.reverseGeocoder != nil) {
+		[self.reverseGeocoder cancel];
+		self.reverseGeocoder.delegate = nil;
+		self.reverseGeocoder = nil;
+	}
+	
+	self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:location];
+	self.reverseGeocoder.delegate = self;
+	[self.reverseGeocoder start];
 }
 
 @end
@@ -229,20 +429,23 @@
 
 @implementation AddressAnnotation
 
+@synthesize mTitle=_mTitle;
+@synthesize mSubTitle=_mSubTitle;
 @synthesize coordinate;
-
-/*- (NSString *)subtitle{
-	return @"Sub Title";
-}
-
-- (NSString *)title{
-	return @"Title";
-}*/
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	coordinate=c;
 	NSLog(@"%f,%f",c.latitude,c.longitude);
 	return self;
+}
+
+- (NSString *)subtitle{
+	return self.mSubTitle;
+}
+- (NSString *)title{
+	if (self.mTitle == nil)
+		return @"New Context";
+	return self.mTitle;
 }
 
 @end

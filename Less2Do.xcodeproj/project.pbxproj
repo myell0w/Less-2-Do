@@ -123,6 +123,8 @@
 		D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF4610E663C5003584A5 /* blueButton.png */; };
 		D4B5FF5410E66539003584A5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5210E66539003584A5 /* location.png */; };
 		D4B5FF5510E66539003584A5 /* magnifiyingGlass.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */; };
+		D4C45C8210F1E001008B07FB /* SettingsSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C45C7F10F1E001008B07FB /* SettingsSyncViewController.xib */; };
+		D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
 		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
@@ -351,6 +353,9 @@
 		D4B5FF4610E663C5003584A5 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		D4B5FF5210E66539003584A5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		D4B5FF5310E66539003584A5 /* magnifiyingGlass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifiyingGlass.png; sourceTree = "<group>"; };
+		D4C45C7F10F1E001008B07FB /* SettingsSyncViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsSyncViewController.xib; path = Classes/SettingsSyncViewController.xib; sourceTree = "<group>"; };
+		D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsSyncViewController.m; sourceTree = "<group>"; };
+		D4C45C8110F1E001008B07FB /* SettingsSyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsSyncViewController.h; sourceTree = "<group>"; };
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsTableView.xib; path = Classes/SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
@@ -850,6 +855,8 @@
 		D436E98510BAB76300EA7624 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */,
+				D4C45C8110F1E001008B07FB /* SettingsSyncViewController.h */,
 				D436E98610BAB7D200EA7624 /* SettingsNavigationController.h */,
 				D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */,
 				D436E98910BAB7F100EA7624 /* SettingsFirstLevelController.h */,
@@ -863,6 +870,7 @@
 		D436E9C210BABB4900EA7624 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				D4C45C7F10F1E001008B07FB /* SettingsSyncViewController.xib */,
 				D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */,
 			);
 			name = settings;
@@ -1030,6 +1038,7 @@
 				392B712710F10A37008106D0 /* button_stop.png in Resources */,
 				392B725910F1258E008106D0 /* no_folder.png in Resources */,
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
+				D4C45C8210F1E001008B07FB /* SettingsSyncViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,6 +1098,7 @@
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
+				D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

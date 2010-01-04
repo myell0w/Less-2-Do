@@ -12,25 +12,32 @@
 
 @interface AddressAnnotation : NSObject<MKAnnotation> {
 	CLLocationCoordinate2D coordinate;
-	//NSString *mTitle;
-	//NSString *mSubTitle;
+	NSString *_mTitle;
+	NSString *_mSubTitle;
 }
+
+@property (nonatomic, retain) NSString *mTitle;
+@property (nonatomic, retain) NSString *mSubTitle;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+
 @end
 
-@interface EditContextViewController : UIViewController<MKMapViewDelegate> {
+@interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	UITextField *_nameTextField;
 	UITextField *_mapsearchTextField;
-	UIButton *_mapsearchButton;
 	Context *_context;   
 	ContextsFirstLevelViewController *_parent;
 	MKMapView *_mapView;
 	AddressAnnotation *_addAnnotation;
+	CLLocationManager *_locationManager;
+	MKReverseGeocoder *_reverseGeocoder;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *nameTextField;
 @property (nonatomic, retain) IBOutlet UITextField *mapsearchTextField;
-@property (nonatomic, retain) IBOutlet UIButton *mapsearchButton;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic, retain) MKReverseGeocoder *reverseGeocoder;
 @property (nonatomic, retain) Context *context;
 @property (nonatomic, retain) ContextsFirstLevelViewController *parent;
 @property (nonatomic, retain) AddressAnnotation *addAnnotation;
@@ -41,7 +48,11 @@
 - (IBAction)save:(id)sender;
 - (IBAction)textFieldDone:(id)sender;
 - (IBAction)showSearchedLocation;
+- (IBAction) showOwnLocation;
+- (IBAction)scrollUp;
+- (void) animateTextField:(UITextField*)textField up:(BOOL)up;
 - (CLLocationCoordinate2D)addressLocation:(NSString *)locationString;
 - (MKCoordinateSpan)addressSpan:(NSString *)locationString;
 - (BOOL)validAddress:(NSString *)locationString;
+- (void)startGeocoder:(CLLocationCoordinate2D)location;
 @end
