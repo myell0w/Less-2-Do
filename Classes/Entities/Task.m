@@ -16,7 +16,6 @@
 
 @implementation Task 
 
-@dynamic taskId;
 @dynamic frequencyAnnoy;
 @dynamic isCompleted;
 @dynamic duration;

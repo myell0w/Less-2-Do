@@ -7,11 +7,10 @@
 //
 
 
-@interface Folder :  BaseManagedObject  
+@interface Folder :  BaseRemoteObject  
 {
 }
 
-@property (nonatomic, retain) NSNumber * folderId;
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet* tasks;

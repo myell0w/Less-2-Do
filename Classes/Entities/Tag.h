@@ -11,7 +11,6 @@
 {
 }
 
-@property (nonatomic, retain) NSNumber * tagId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet* tasks;
 

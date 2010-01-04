@@ -12,6 +12,8 @@
 
 @implementation BaseManagedObject
 
+@dynamic remoteId;
+
 + (NSManagedObjectContext*) managedObjectContext
 {
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
@@ -56,6 +58,7 @@
 	
 	if([self managedObjectContext].hasChanges)
 	{
+		// TODO set modification dates bei entities mit isUpdated = YES
 		BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
 		
 		if (saveSuccessful == NO)

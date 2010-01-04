@@ -16,11 +16,10 @@
 #define PRIORITY_MEDIUM 1
 #define PRIORITY_HIGH   2
 
-@interface Task :  BaseManagedObject  
+@interface Task :  BaseRemoteObject  
 {
 }
 
-@property (nonatomic, retain) NSNumber * taskId;
 @property (nonatomic, retain) NSNumber * frequencyAnnoy;
 @property (nonatomic, retain) NSNumber * isCompleted;
 @property (nonatomic, retain) NSNumber * duration;
