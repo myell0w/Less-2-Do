@@ -14,7 +14,8 @@
 #define TITLE_DETAIL_RECT CGRectMake(47,20,180,21)
 #define COMPLETED_RECT    CGRectMake(6, 6, 32, 32)
 #define STARRED_RECT	  CGRectMake(261, 6, 34, 34)
-#define PRIORITY_RECT     CGRectMake(236,14,19,16)
+#define PRIORITY_RECT     CGRectMake(238,20,19,16)
+#define RECURRENCE_RECT   CGRectMake(242,4,10,12)
 
 #define IMAGE_RECT		  CGRectMake(12, 12, 20, 20)
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
@@ -183,6 +184,11 @@
 		UIImageView *priorityView = (UIImageView *)[cell.contentView viewWithTag:TAG_PRIORITY];
 		priorityView.image = [UIImage imageNamed:priorityName];
 		[priorityName release];
+		
+		if (task.repeat != nil && [task.repeat intValue] != 0) {
+			UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
+			recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
+		}
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
@@ -422,6 +428,13 @@
 	priorityView.tag = TAG_PRIORITY;
 	[cell.contentView addSubview:priorityView];
 	[priorityView release];
+	
+	// init Recurrence-Image
+	UIImageView *recurrenceView = [[UIImageView alloc] initWithFrame:RECURRENCE_RECT];
+	recurrenceView.tag = TAG_RECURRENCE;
+	[cell.contentView addSubview:recurrenceView];
+	[recurrenceView release];
+	
 }
 
 - (void)setUpFolderContextTagsCell:(UITableViewCell *)cell {

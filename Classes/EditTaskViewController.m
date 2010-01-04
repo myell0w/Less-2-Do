@@ -13,6 +13,7 @@
 #import "TaskEditTagsViewController.h"
 #import "TaskEditFolderViewController.h"
 #import "TaskEditContextViewController.h"
+#import "TaskEditRecurrenceViewController.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -100,7 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//TODO: change
 	if (section == 0)
-		return 4;
+		return 5;
 	else if (section == 1)
 		return 3;
 	else if (section == 2)
@@ -147,6 +148,15 @@
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
 			
 			cell.textLabel.text = @"Due Time";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init Duetime-Cell
+		else if ([reuseID isEqualToString:CELL_ID_RECURRENCE]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Recurrence";
 			cell.detailTextLabel.text = @"None";
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
@@ -293,6 +303,20 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_RECURRENCE]) {
+		if (task.repeat != nil) {
+			NSArray *array = [[NSArray alloc] initWithObjects:@"No Repeat", @"Weekly", @"Monthly", @"Yearly", @"Daily", @"Biweekly", 
+							  @"Bimonthly", @"Semiannually", @"Quarterly", nil];
+			
+			cell.detailTextLabel.text = [array objectAtIndex:[task.repeat intValue]%100];
+			
+			[array release];
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+
+	}
+	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
 		if (task.folder != nil) {
 			cell.detailTextLabel.text = [task.folder description];
@@ -367,6 +391,16 @@
 		dtvc.task = self.task;
 		[self.navigationController pushViewController:dtvc animated:YES];
 		[dtvc release];
+	}
+	
+	else if ([cellID isEqualToString:CELL_ID_RECURRENCE]) {
+		TaskEditRecurrenceViewController *rvc = [[TaskEditRecurrenceViewController alloc] 
+											   initWithNibName:@"TaskEditRecurrenceViewController" 
+											   bundle:nil];
+		rvc.title = @"Recurrence";
+		rvc.task = self.task;
+		[self.navigationController pushViewController:rvc animated:YES];
+		[rvc release];
 	}
 	
 	else if ([cellID isEqualToString:CELL_ID_FOLDER]) {
@@ -575,6 +609,8 @@
 			task.dueDate = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUETIME) {
 			task.dueTime = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_RECURRENCE) {
+			task.repeat = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_FOLDER) {
 			task.folder = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_CONTEXT) {
@@ -639,6 +675,8 @@
 		return CELL_ID_DUEDATE;
 	else if (section == 0 && row == 3)
 		return CELL_ID_DUETIME;
+	else if (section == 0 && row == 4)
+		return CELL_ID_RECURRENCE;
 	
 	else if (section == 1 && row == 0)
 		return CELL_ID_FOLDER;
