@@ -9,18 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContextsFirstLevelViewController.h"
 #import <MapKit/MapKit.h>
-
-@interface AddressAnnotation : NSObject<MKAnnotation> {
-	CLLocationCoordinate2D coordinate;
-	NSString *_mTitle;
-	NSString *_mSubTitle;
-}
-
-@property (nonatomic, retain) NSString *mTitle;
-@property (nonatomic, retain) NSString *mSubTitle;
-@property (nonatomic) CLLocationCoordinate2D coordinate;
-
-@end
+#import "AddressAnnotation.h"
 
 @interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	UITextField *_nameTextField;

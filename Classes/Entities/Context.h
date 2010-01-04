@@ -6,6 +6,8 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
+
 @class Task;
 
 @interface Context :  BaseRemoteObject  
@@ -27,6 +29,7 @@
 - (void)removeTasks:(NSSet *)value;
 
 - (BOOL)hasGps;
+- (double)distanceTo:(CLLocationCoordinate2D)pos;
 
 // general fetch-methods for contexts
 + (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error;

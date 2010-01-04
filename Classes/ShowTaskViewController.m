@@ -8,6 +8,7 @@
 
 #import "ShowTaskViewController.h"
 #import "EditTaskViewController.h"
+#import "ShowContextViewController.h"
 #import "UICheckBox.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 180, 21)
@@ -185,7 +186,7 @@
 		priorityView.image = [UIImage imageNamed:priorityName];
 		[priorityName release];
 		
-		if (task.repeat != nil && [task.repeat intValue] != 0) {
+		if (task.repeat != nil && ([task.repeat intValue]%100) != 0) {
 			UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
 			recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
 		}
@@ -200,8 +201,10 @@
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
+		Context *context = (Context *)task.context;
 		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
-		imageView.image = [((Context *)task.context) hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
+		imageView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
+		cell.accessoryType = [context hasGps] ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryNone;
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
 		textView.text = [task.context description];
@@ -318,53 +321,18 @@
     return footerView;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	ShowContextViewController *scvc = [[ShowContextViewController alloc] 
+									initWithNibName:@"ShowContextViewController" 
+									bundle:nil];
+	scvc.title = [self.task.context description];
+	scvc.context = (Context *)self.task.context;
+	
+	[self.navigationController pushViewController:scvc animated:YES];
+	[scvc release];
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 // save changed value immediately (completed/starred)
 - (IBAction)checkBoxValueChanged:(id)sender {

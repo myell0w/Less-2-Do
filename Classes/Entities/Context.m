@@ -26,6 +26,11 @@
 	return self.gpsX != nil && self.gpsY != nil && [self.gpsX doubleValue] != 0 && [self.gpsY doubleValue] != 0;
 }
 
+- (double)distanceTo:(CLLocationCoordinate2D)pos {
+	//TODO:implement
+	return 0.;
+}
+
 + (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;
