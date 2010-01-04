@@ -9,6 +9,7 @@
 #import "ContextsFirstLevelViewController.h"
 #import "TasksListViewController.h"
 #import "EditContextViewController.h"
+#import "ContextsGPSViewController.h"
 
 @implementation ContextsFirstLevelViewController
 
@@ -32,6 +33,13 @@
 	no.selector = @selector(getTasksWithoutContext:);
 	[array addObject:no];
 	[no release];
+	
+	ContextsGPSViewController *nearest = [[ContextsGPSViewController alloc] initWithNibName:@"ContextsGPSViewController" bundle:nil];
+	nearest.title = @"Nearest Tasks";
+	nearest.image = [UIImage imageNamed:@"context_gps.png"];
+	//nearest.selector = @selector(getTasksWithoutContext:);
+	[array addObject:nearest];
+	[nearest release];
 	
 	
 	self.controllersSection0 = array;
@@ -111,13 +119,18 @@
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
+	
 	
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
-	cell.detailTextLabel.text = detail;
+	if(!(section == 0 && row == 1)) {
+		NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
+		cell.detailTextLabel.text = detail;
+		[detail release];
+	}
+	
 	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
@@ -130,9 +143,6 @@
 		cell.textLabel.text = context.name;
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
-
-	
-	[detail release];
 	
 	return cell;
 }
