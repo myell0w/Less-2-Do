@@ -127,6 +127,8 @@
 		D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */; };
 		D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C45F5310F243FD008B07FB /* TaskEditRecurrenceViewController.xib */; };
 		D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45F5410F243FD008B07FB /* TaskEditRecurrenceViewController.m */; };
+		D4C45F7E10F247B2008B07FB /* ContextsGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45F7C10F247B2008B07FB /* ContextsGPSViewController.m */; };
+		D4C45F7F10F247B2008B07FB /* ContextsGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C45F7D10F247B2008B07FB /* ContextsGPSViewController.xib */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
 		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
@@ -361,6 +363,9 @@
 		D4C45F5310F243FD008B07FB /* TaskEditRecurrenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditRecurrenceViewController.xib; path = Classes/TaskEditRecurrenceViewController.xib; sourceTree = "<group>"; };
 		D4C45F5410F243FD008B07FB /* TaskEditRecurrenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditRecurrenceViewController.m; sourceTree = "<group>"; };
 		D4C45F5510F243FD008B07FB /* TaskEditRecurrenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditRecurrenceViewController.h; sourceTree = "<group>"; };
+		D4C45F7B10F247B2008B07FB /* ContextsGPSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsGPSViewController.h; sourceTree = "<group>"; };
+		D4C45F7C10F247B2008B07FB /* ContextsGPSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsGPSViewController.m; sourceTree = "<group>"; };
+		D4C45F7D10F247B2008B07FB /* ContextsGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContextsGPSViewController.xib; path = Classes/ContextsGPSViewController.xib; sourceTree = "<group>"; };
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsTableView.xib; path = Classes/SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
@@ -621,6 +626,8 @@
 				39B6590610B6B3A100825C1D /* ContextsFirstLevelViewController.m */,
 				39B6590210B6B36F00825C1D /* ContextsNavigationController.h */,
 				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
+				D4C45F7B10F247B2008B07FB /* ContextsGPSViewController.h */,
+				D4C45F7C10F247B2008B07FB /* ContextsGPSViewController.m */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -656,6 +663,7 @@
 			children = (
 				D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */,
 				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
+				D4C45F7D10F247B2008B07FB /* ContextsGPSViewController.xib */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -1048,6 +1056,7 @@
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
 				D4C45C8210F1E001008B07FB /* SettingsSyncViewController.xib in Resources */,
 				D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */,
+				D4C45F7F10F247B2008B07FB /* ContextsGPSViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,6 +1118,7 @@
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
 				D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */,
 				D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */,
+				D4C45F7E10F247B2008B07FB /* ContextsGPSViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
