@@ -11,7 +11,6 @@
 
 @implementation Tag 
 
-@dynamic tagId;
 @dynamic name;
 @dynamic tasks;
 

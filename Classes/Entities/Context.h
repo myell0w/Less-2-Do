@@ -8,12 +8,11 @@
 
 @class Task;
 
-@interface Context :  BaseManagedObject  
+@interface Context :  BaseRemoteObject  
 {
 }
 
 @property (nonatomic, retain) NSNumber * gpsY;
-@property (nonatomic, retain) NSNumber * contextId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * gpsX;
 @property (nonatomic, retain) NSSet* tasks;

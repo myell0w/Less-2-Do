@@ -10,6 +10,8 @@
 @interface BaseManagedObject : NSManagedObject {
 }
 
+@property (nonatomic, retain) NSNumber * remoteId;
+
 + (NSManagedObjectContext*) managedObjectContext;
 
 + (BaseManagedObject *)objectOfType:(NSString *)type;

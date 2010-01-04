@@ -108,6 +108,10 @@
 		A3A394FE10F220F90058DB84 /* libGHUnitIPhone3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */; };
 		A3A3968F10F23A270058DB84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3968E10F23A270058DB84 /* SyncManager.m */; };
 		A3A3969010F23A270058DB84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3968E10F23A270058DB84 /* SyncManager.m */; };
+		A3A3981910F24FA20058DB84 /* TaskEditRecurrenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3981810F24FA20058DB84 /* TaskEditRecurrenceViewController.m */; };
+		A3A3981B10F24FC80058DB84 /* TaskEditRecurrenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3A3981A10F24FC80058DB84 /* TaskEditRecurrenceViewController.xib */; };
+		A3A3987B10F25A450058DB84 /* BaseRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3987A10F25A450058DB84 /* BaseRemoteObject.m */; };
+		A3A3987C10F25A450058DB84 /* BaseRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A3987A10F25A450058DB84 /* BaseRemoteObject.m */; };
 		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
@@ -184,14 +188,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF;
 			remoteInfo = libToodledoAPIiPhone;
 		};
 		A3A3958710F2298F0058DB84 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF;
 			remoteInfo = libToodledoAPIiPhone;
 		};
 /* End PBXContainerItemProxy section */
@@ -340,6 +344,11 @@
 		A38B3B0410BFFC9E00D5D87F /* ContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextTest.m; sourceTree = "<group>"; };
 		A3A3968D10F23A270058DB84 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
 		A3A3968E10F23A270058DB84 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
+		A3A3981710F24FA20058DB84 /* TaskEditRecurrenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskEditRecurrenceViewController.h; path = "../../ObjC/Less-2-Do/Classes/TaskEditRecurrenceViewController.h"; sourceTree = SOURCE_ROOT; };
+		A3A3981810F24FA20058DB84 /* TaskEditRecurrenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskEditRecurrenceViewController.m; path = "../../ObjC/Less-2-Do/Classes/TaskEditRecurrenceViewController.m"; sourceTree = SOURCE_ROOT; };
+		A3A3981A10F24FC80058DB84 /* TaskEditRecurrenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditRecurrenceViewController.xib; path = "../../ObjC/Less-2-Do/Classes/TaskEditRecurrenceViewController.xib"; sourceTree = SOURCE_ROOT; };
+		A3A3987910F25A450058DB84 /* BaseRemoteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRemoteObject.h; sourceTree = "<group>"; };
+		A3A3987A10F25A450058DB84 /* BaseRemoteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseRemoteObject.m; sourceTree = "<group>"; };
 		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
 		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
 		A3E3389410BC5C6D004F0F39 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Entities/Tag.h; sourceTree = "<group>"; };
@@ -555,6 +564,8 @@
 		39A1F30A10B9ECDF00671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				A3A3981710F24FA20058DB84 /* TaskEditRecurrenceViewController.h */,
+				A3A3981810F24FA20058DB84 /* TaskEditRecurrenceViewController.m */,
 				3903387410B60BF0007985A9 /* TasksListViewController.h */,
 				3903387510B60BF0007985A9 /* TasksListViewController.m */,
 				39F5AFD010ED19FC00E54EB1 /* ShowTaskViewController.h */,
@@ -582,6 +593,7 @@
 		39A1F33010B9FED600671B42 /* task */ = {
 			isa = PBXGroup;
 			children = (
+				A3A3981A10F24FC80058DB84 /* TaskEditRecurrenceViewController.xib */,
 				391D723B10C9DECA00A115E1 /* TaskEditNotesViewController.xib */,
 				39D0532310C036DF0020D7D9 /* TaskEditDueTimeViewController.xib */,
 				3902C55210C01F09006BBF52 /* TaskEditDueDateViewController.xib */,
@@ -836,6 +848,8 @@
 				A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */,
 				A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */,
 				A34471E710BF239000851DCD /* DAOError.h */,
+				A3A3987910F25A450058DB84 /* BaseRemoteObject.h */,
+				A3A3987A10F25A450058DB84 /* BaseRemoteObject.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1070,6 +1084,7 @@
 				392B725910F1258E008106D0 /* no_folder.png in Resources */,
 				D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */,
 				A34830FF10F2145000F4BA37 /* SettingsSyncViewController.xib in Resources */,
+				A3A3981B10F24FC80058DB84 /* TaskEditRecurrenceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1146,8 @@
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
 				A34830FD10F2143300F4BA37 /* SettingsSyncViewController.m in Sources */,
 				A3A3969010F23A270058DB84 /* SyncManager.m in Sources */,
+				A3A3981910F24FA20058DB84 /* TaskEditRecurrenceViewController.m in Sources */,
+				A3A3987B10F25A450058DB84 /* BaseRemoteObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1168,7 @@
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				A3518B2010F21F580014CD02 /* SyncTest.m in Sources */,
 				A3A3968F10F23A270058DB84 /* SyncManager.m in Sources */,
+				A3A3987C10F25A450058DB84 /* BaseRemoteObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,6 @@
 
 @implementation Folder 
 
-@dynamic folderId;
 @dynamic order;
 @dynamic name;
 @dynamic tasks;
@@ -21,6 +20,11 @@
 
 - (NSString *)description {
 	return self.name;
+}
+
+- (void)didChangeValueForKey:(NSString *)key {
+	ALog(@"changed property %@", key);
+	ALog(@"updated: %u", [self isUpdated]);
 }
 
 + (NSArray *) getFoldersWithFilterString:(NSString*)filterString error:(NSError **)error

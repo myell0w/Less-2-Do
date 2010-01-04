@@ -13,7 +13,6 @@
 @implementation Context 
 
 @dynamic gpsY;
-@dynamic contextId;
 @dynamic name;
 @dynamic gpsX;
 @dynamic tasks;
