@@ -14,6 +14,7 @@
 #define CELL_ID_CONTEXT  @"TaskContextCell"
 #define CELL_ID_TAGS     @"TaskTagsCell"
 #define CELL_ID_NOTES	 @"TaskNotesCell"
+#define CELL_ID_RECURRENCE @"TaskRecurrenceCell"
 
 #define TAG_TITLE		1
 #define TAG_COMPLETED   2
@@ -28,6 +29,7 @@
 #define TAG_COLOR		11
 #define TAG_TITLE_DETAIL 12
 #define TAG_FOLDER_COLOR 13
+#define TAG_RECURRENCE   14
 
 #define TITLE_FONT_SIZE  15
 #define NORMAL_FONT_SIZE 14
