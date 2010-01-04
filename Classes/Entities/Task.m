@@ -211,7 +211,7 @@
 
 + (NSArray *) getTasksWithoutTag:(NSError **)error
 {
-  NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
+    NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
 
 	NSMutableArray *resultSet = [[NSMutableArray alloc] init];
 	Task *t;
@@ -224,6 +224,15 @@
 	}
 		
 	return resultSet;
+	/*NSExpression *leftSide = [NSExpression expressionForKeyPath:@"tags.count"];
+	NSExpression *rightSide = [NSExpression expressionForConstantValue:0];
+	NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:leftSide
+																rightExpression:rightSide
+																	   modifier:NSDirectPredicateModifier
+																		   type:NSEqualToPredicateOperatorType
+																		options:0];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return objects;*/
 }
 
 @end
