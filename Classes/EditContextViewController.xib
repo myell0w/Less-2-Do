@@ -76,7 +76,7 @@
 					<object class="IBUIButton" id="363338435">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{268, 316}, {32, 32}}</string>
+						<string key="NSFrame">{{20, 315}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -111,7 +111,7 @@
 					<object class="IBUITextField" id="353282838">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 316}, {240, 31}}</string>
+						<string key="NSFrame">{{60, 316}, {240, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -260,8 +260,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="474657188"/>
 							<reference ref="336728617"/>
-							<reference ref="353282838"/>
 							<reference ref="363338435"/>
+							<reference ref="353282838"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

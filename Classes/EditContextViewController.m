@@ -62,7 +62,7 @@
 	self.locationManager.delegate = self;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
-	[self.nameTextField becomeFirstResponder];
+	//[self.nameTextField becomeFirstResponder];
 	
 	if(self.context != nil) {
 		self.nameTextField.text = self.context.name;
@@ -191,7 +191,9 @@
 
 - (void) animateTextField:(UITextField*)textField up:(BOOL)up
 {
-    const int movementDistance = 210;
+	int movementDistance = 210;
+	if (self.context != nil)
+		movementDistance = 210 - 50;
     const float movementDuration = 0.3f;
 	
     int movement = (up ? -movementDistance : movementDistance);
@@ -422,30 +424,3 @@
 
 @end
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark AddressAnnotation-Implementation
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-@implementation AddressAnnotation
-
-@synthesize mTitle=_mTitle;
-@synthesize mSubTitle=_mSubTitle;
-@synthesize coordinate;
-
--(id)initWithCoordinate:(CLLocationCoordinate2D) c{
-	coordinate=c;
-	NSLog(@"%f,%f",c.latitude,c.longitude);
-	return self;
-}
-
-- (NSString *)subtitle{
-	return self.mSubTitle;
-}
-- (NSString *)title{
-	if (self.mTitle == nil)
-		return @"New Context";
-	return self.mTitle;
-}
-
-@end

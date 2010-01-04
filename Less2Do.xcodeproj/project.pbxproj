@@ -131,6 +131,7 @@
 		D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */; };
 		D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C45F5310F243FD008B07FB /* TaskEditRecurrenceViewController.xib */; };
 		D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C45F5410F243FD008B07FB /* TaskEditRecurrenceViewController.m */; };
+		D4C4601010F25741008B07FB /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4600F10F25741008B07FB /* AddressAnnotation.m */; };
 		D4C4C0F910D1089B00B55BA9 /* SettingsTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */; };
 		D4C4C2F710D19FB700B55BA9 /* EditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */; };
 		D4C4C3D410D2574B00B55BA9 /* EditTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C3CD10D2574B00B55BA9 /* EditTagViewController.xib */; };
@@ -371,6 +372,8 @@
 		D4C45F5310F243FD008B07FB /* TaskEditRecurrenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditRecurrenceViewController.xib; path = Classes/TaskEditRecurrenceViewController.xib; sourceTree = "<group>"; };
 		D4C45F5410F243FD008B07FB /* TaskEditRecurrenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditRecurrenceViewController.m; sourceTree = "<group>"; };
 		D4C45F5510F243FD008B07FB /* TaskEditRecurrenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditRecurrenceViewController.h; sourceTree = "<group>"; };
+		D4C4600E10F25741008B07FB /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
+		D4C4600F10F25741008B07FB /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
 		D4C4C0F810D1089B00B55BA9 /* SettingsTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsTableView.xib; path = Classes/SettingsTableView.xib; sourceTree = "<group>"; };
 		D4C4C2F510D19FB700B55BA9 /* EditFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFolderViewController.m; sourceTree = "<group>"; };
 		D4C4C2F610D19FB700B55BA9 /* EditFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFolderViewController.h; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 				39B6590310B6B36F00825C1D /* ContextsNavigationController.m */,
 				398AC7E410F24F590015319A /* ShowContextViewController.h */,
 				398AC7E510F24F590015319A /* ShowContextViewController.m */,
+				D4C4600E10F25741008B07FB /* AddressAnnotation.h */,
+				D4C4600F10F25741008B07FB /* AddressAnnotation.m */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -711,7 +716,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -964,10 +969,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1129,6 +1134,7 @@
 				D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */,
 				398AC7E710F24F590015319A /* ShowContextViewController.m in Sources */,
 				398AC82B10F2529E0015319A /* ContextsGPSViewController.m in Sources */,
+				D4C4601010F25741008B07FB /* AddressAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
