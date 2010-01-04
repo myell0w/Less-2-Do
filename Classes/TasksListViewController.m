@@ -16,7 +16,8 @@
 #define TITLE_DETAIL_RECT CGRectMake(47,20,190,21)
 #define COMPLETED_RECT    CGRectMake(6, 6, 32, 32)
 #define STARRED_RECT	  CGRectMake(275, 6, 34, 34)
-#define PRIORITY_RECT     CGRectMake(250,14,19,16)
+#define PRIORITY_RECT     CGRectMake(250,20,19,16)
+#define RECURRENCE_RECT   CGRectMake(254,4,10,12)
 #define FOLDER_COLOR_RECT CGRectMake(314,2,6,40)
 
 #define TITLE_FONT_SIZE 15
@@ -151,6 +152,11 @@
 	priorityView.image = [UIImage imageNamed:priorityName];
 	[priorityName release];
 	
+	if (t.repeat != nil && [t.repeat intValue] != 0) {
+		UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
+		recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
+	}
+	
 	return cell;
 }
 
@@ -246,6 +252,12 @@
 	priorityView.tag = TAG_PRIORITY;
 	[cell.contentView addSubview:priorityView];
 	[priorityView release];
+	
+	// init Recurrence-Image
+	UIImageView *recurrenceView = [[UIImageView alloc] initWithFrame:RECURRENCE_RECT];
+	recurrenceView.tag = TAG_RECURRENCE;
+	[cell.contentView addSubview:recurrenceView];
+	[recurrenceView release];
 	
 	// init Folder-Color-View
 	UIView *folderColorView = [[UIView alloc] initWithFrame:FOLDER_COLOR_RECT];

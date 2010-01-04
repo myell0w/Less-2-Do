@@ -13,6 +13,7 @@
 #import "TaskEditTagsViewController.h"
 #import "TaskEditFolderViewController.h"
 #import "TaskEditContextViewController.h"
+#import "TaskEditRecurrenceViewController.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -47,7 +48,6 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
 	self.tempData = dict;
-	self.navigationItem.title = @"Add Task";
 	self.navigationItem.leftBarButtonItem = cancel;
 	self.navigationItem.rightBarButtonItem = save;
 	
@@ -86,21 +86,6 @@
     [super viewWillAppear:animated];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Table view methods
@@ -116,7 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//TODO: change
 	if (section == 0)
-		return 4;
+		return 5;
 	else if (section == 1)
 		return 3;
 	else if (section == 2)
@@ -163,6 +148,15 @@
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
 			
 			cell.textLabel.text = @"Due Time";
+			cell.detailTextLabel.text = @"None";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		
+		// Init Duetime-Cell
+		else if ([reuseID isEqualToString:CELL_ID_RECURRENCE]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Recurrence";
 			cell.detailTextLabel.text = @"None";
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
@@ -309,6 +303,20 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_RECURRENCE]) {
+		if (task.repeat != nil) {
+			NSArray *array = [[NSArray alloc] initWithObjects:@"No Repeat", @"Weekly", @"Monthly", @"Yearly", @"Daily", @"Biweekly", 
+							  @"Bimonthly", @"Semiannually", @"Quarterly", nil];
+			
+			cell.detailTextLabel.text = [array objectAtIndex:[task.repeat intValue]%100];
+			
+			[array release];
+		} else {
+			cell.detailTextLabel.text = @"None";
+		}
+
+	}
+	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
 		if (task.folder != nil) {
 			cell.detailTextLabel.text = [task.folder description];
@@ -385,6 +393,16 @@
 		[dtvc release];
 	}
 	
+	else if ([cellID isEqualToString:CELL_ID_RECURRENCE]) {
+		TaskEditRecurrenceViewController *rvc = [[TaskEditRecurrenceViewController alloc] 
+											   initWithNibName:@"TaskEditRecurrenceViewController" 
+											   bundle:nil];
+		rvc.title = @"Recurrence";
+		rvc.task = self.task;
+		[self.navigationController pushViewController:rvc animated:YES];
+		[rvc release];
+	}
+	
 	else if ([cellID isEqualToString:CELL_ID_FOLDER]) {
 		TaskEditFolderViewController *fvc = [[TaskEditFolderViewController alloc] 
 										   initWithNibName:@"TaskEditFolderViewController" 
@@ -428,7 +446,7 @@
 }
 
 // specify the height of your footer section
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+/*- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     // no footer in add-mode
 	if (mode == TaskControllerAddMode) 
 		return 0;
@@ -469,7 +487,7 @@
 	
     //return the view for the footer
     return footerView;
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark ActionSheet-Delegate Methods
@@ -482,7 +500,11 @@
 	if ([actionSheet.title isEqualToString:@"Really Cancel?"]) {
 		// if the user really wants to abort, delete the modal view and show the parent view again
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
-			[self dismissModalViewControllerAnimated:YES];
+			if (self.mode == TaskControllerAddMode) {
+				[self dismissModalViewControllerAnimated:YES];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}
 	}
 	// Action-Sheet to delete a task?
@@ -490,6 +512,12 @@
 		// if the user really wants to delete a task...
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
 			[BaseManagedObject deleteObject:self.task error:&error];
+			
+			if (self.mode == TaskControllerAddMode) {
+				[self dismissModalViewControllerAnimated:YES];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}
 	}
 				 
@@ -581,6 +609,8 @@
 			task.dueDate = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_DUETIME) {
 			task.dueTime = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_RECURRENCE) {
+			task.repeat = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_FOLDER) {
 			task.folder = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_CONTEXT) {
@@ -596,7 +626,11 @@
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	
-	[self dismissModalViewControllerAnimated:YES];
+	if (self.mode == TaskControllerAddMode) {
+		[self dismissModalViewControllerAnimated:YES];
+	} else {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 // cancel the adding/editing
@@ -641,6 +675,8 @@
 		return CELL_ID_DUEDATE;
 	else if (section == 0 && row == 3)
 		return CELL_ID_DUETIME;
+	else if (section == 0 && row == 4)
+		return CELL_ID_RECURRENCE;
 	
 	else if (section == 1 && row == 0)
 		return CELL_ID_FOLDER;

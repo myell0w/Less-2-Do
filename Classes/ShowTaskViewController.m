@@ -7,13 +7,15 @@
 //
 
 #import "ShowTaskViewController.h"
+#import "EditTaskViewController.h"
 #import "UICheckBox.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 180, 21)
 #define TITLE_DETAIL_RECT CGRectMake(47,20,180,21)
 #define COMPLETED_RECT    CGRectMake(6, 6, 32, 32)
 #define STARRED_RECT	  CGRectMake(261, 6, 34, 34)
-#define PRIORITY_RECT     CGRectMake(236,14,19,16)
+#define PRIORITY_RECT     CGRectMake(238,20,19,16)
+#define RECURRENCE_RECT   CGRectMake(242,4,10,12)
 
 #define IMAGE_RECT		  CGRectMake(12, 12, 20, 20)
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
@@ -47,28 +49,15 @@
 	
 	self.navigationItem.rightBarButtonItem = edit;
 	
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(taskWasAdded:) 
+												 name:@"TaskAddedNotification" object:nil];
+		
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[properties release];
-	properties = [[NSMutableArray alloc] init];
-	
-	[properties addObject:CELL_ID_TITLE];
-	
-	if (self.task.folder != nil)
-		[properties addObject:CELL_ID_FOLDER];
-	
-	if (self.task.context != nil)
-		[properties addObject:CELL_ID_CONTEXT];
-	
-	if (self.task.tags != nil && [self.task.tags count] > 0)
-		[properties addObject:CELL_ID_TAGS];
-	
-	if (self.task.note != nil && [self.task.note length] > 0)
-		[properties addObject:CELL_ID_NOTES];
-	
+	[self reloadProperties];
 	[super viewWillAppear:animated];
 }
 
@@ -91,6 +80,8 @@
 	properties = nil;
 	[footerView release];
 	footerView = nil;
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc {
@@ -193,6 +184,11 @@
 		UIImageView *priorityView = (UIImageView *)[cell.contentView viewWithTag:TAG_PRIORITY];
 		priorityView.image = [UIImage imageNamed:priorityName];
 		[priorityName release];
+		
+		if (task.repeat != nil && [task.repeat intValue] != 0) {
+			UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
+			recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
+		}
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
@@ -432,6 +428,13 @@
 	priorityView.tag = TAG_PRIORITY;
 	[cell.contentView addSubview:priorityView];
 	[priorityView release];
+	
+	// init Recurrence-Image
+	UIImageView *recurrenceView = [[UIImageView alloc] initWithFrame:RECURRENCE_RECT];
+	recurrenceView.tag = TAG_RECURRENCE;
+	[cell.contentView addSubview:recurrenceView];
+	[recurrenceView release];
+	
 }
 
 - (void)setUpFolderContextTagsCell:(UITableViewCell *)cell {
@@ -495,10 +498,45 @@
 		[button setTitle:@"Start" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 	}
-
 }
 
 
+- (IBAction)edit:(id)sender {
+	EditTaskViewController *etvc = [[EditTaskViewController alloc] 
+									initWithNibName:@"EditTaskViewController" 
+									bundle:nil];
+	etvc.title = @"Edit Task";
+	etvc.task = self.task;
+	etvc.mode = TaskControllerEditMode;
+	
+	[self.navigationController pushViewController:etvc animated:YES];
+	[etvc release];
+}
+
+- (IBAction)taskWasAdded:(NSNotification *)notification {
+	[self reloadProperties];
+	[self.tableView reloadData];
+}
+
+- (void)reloadProperties {
+	[properties release];
+	properties = [[NSMutableArray alloc] init];
+	
+	[properties addObject:CELL_ID_TITLE];
+	
+	if (self.task.folder != nil)
+		[properties addObject:CELL_ID_FOLDER];
+	
+	if (self.task.context != nil)
+		[properties addObject:CELL_ID_CONTEXT];
+	
+	if (self.task.tags != nil && [self.task.tags count] > 0)
+		[properties addObject:CELL_ID_TAGS];
+	
+	if (self.task.note != nil && [self.task.note length] > 0)
+		[properties addObject:CELL_ID_NOTES];
+	
+}
 
 @end
 
