@@ -12,6 +12,7 @@
 @interface SyncManager : NSObject {
 }
 
++(void)sync:(NSError**)error;
 +(void)syncForceLocal:(NSError**)error;
 +(void)syncForceRemote:(NSError**)error;
 @end

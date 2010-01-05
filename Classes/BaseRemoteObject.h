@@ -16,4 +16,6 @@
 @property (nonatomic, retain) NSDate * lastSyncDate;
 @property (nonatomic, retain) NSDate * lastLocalModification;
 
++ (NSDate *) oldestModificationDateOfType:(NSString *)type error:(NSError **)error;
+
 @end

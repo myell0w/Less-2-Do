@@ -54,11 +54,23 @@
 	NSError *saveError;
 	/* check if there were changes */
 
-	//ALog(@"Changed: %@", [[[self managedObjectContext] insertedObjects] count]);
+	// ALog(@"Changed: %@", [[[self managedObjectContext] insertedObjects] count]);
 	
 	if([self managedObjectContext].hasChanges)
 	{
-		// TODO set modification dates bei entities mit isUpdated = YES
+		/*NSSet *insertedObjects = [[self managedObjectContext] insertedObjects];
+		NSSet *updatedObjects = [[self managedObjectContext] updatedObjects];
+		NSSet *changedObjects = [insertedObjects setByAddingObjectsFromSet:updatedObjects];
+		//ALog(@"%d objects changed", [changedObjects count]);
+		for(id object in changedObjects)
+		{
+			if ([object isKindOfClass:[BaseRemoteObject class]]) {
+				BaseRemoteObject *remoteObject = object;
+				remoteObject.lastLocalModification = [NSDate date];
+				//ALog(@"is Remote Object with new local date %@: %@", remoteObject.lastLocalModification, [remoteObject class]);
+			}
+		}*/
+		
 		BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
 		
 		if (saveSuccessful == NO)

@@ -110,9 +110,33 @@
 	newContext3.name = @"Context";
 	 
 	NSArray *contexts = [Context getAllContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)3, @"Add context not successful");
+	GHAssertEquals([contexts count], (NSUInteger)3, @"Add contextnot successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [contexts objectAtIndex:0], [contexts objectAtIndex:1], [contexts objectAtIndex:2]];
 	GHAssertEqualStrings(output, @"0: Context, 1: Dontext, 2: Eontext", @"Ordered Contexts not successful");
+}
+
+/* adds 3 contexts - count must be 3 */
+- (void)testOldestModificationDate {
+	NSError *error = nil;
+	
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	[format setDateFormat:@"yyyy:mm:dd hh:mm "];
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	
+	newContext1.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:2];
+	newContext2.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:3];
+	newContext3.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:4];
+	ALog(@"date1: %@", newContext1.lastLocalModification);
+	
+	[BaseRemoteObject commit];
+
+	NSDate *oldestDate = [Context oldestModificationDateOfType:@"Context" error:&error];
+	if (![oldestDate isEqualToDate:newContext1.lastLocalModification]) {
+		GHFail(@"Oldest Mod Date not successful");
+	}
 }
 
 @end

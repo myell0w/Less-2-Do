@@ -11,6 +11,15 @@
 
 @implementation SyncManager
 
++(void)sync:(NSError**)error
+{
+	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
+	[BaseManagedObject commit];
+	
+	// suche ältestes lokales Änderungsdatum
+	
+}
+
 +(void)syncForceLocal:(NSError**)error
 {
 	
@@ -42,14 +51,6 @@
 			vergleiche uids && moddates, wenn lokal nicht vorhanden (remoteId != nil) --> add remote
 										 wenn vorhanden, aber moddates verschieden --> edit remote
 										
-	 */
-}
-
-+(void)sync:(NSError**)error
-{
-	/*
-	 
-	 
 	 */
 }
 

@@ -22,11 +22,6 @@
 	return self.name;
 }
 
-- (void)didChangeValueForKey:(NSString *)key {
-	ALog(@"changed property %@", key);
-	ALog(@"updated: %u", [self isUpdated]);
-}
-
 + (NSArray *) getFoldersWithFilterString:(NSString*)filterString error:(NSError **)error
 {
 	NSError *fetchError;
@@ -105,8 +100,6 @@
 	NSArray* objects = [Folder getFoldersWithFilterString:nil error:error];	
 	return objects;
 }
-
-
 
 + (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
 {

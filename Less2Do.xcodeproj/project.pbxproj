@@ -86,6 +86,9 @@
 		39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */; };
 		39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */; };
 		39F5AFD410ED1A0B00E54EB1 /* ShowTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */; };
+		A30926B810F3277300E11117 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30926B710F3277300E11117 /* SyncManager.m */; };
+		A30926B910F3277300E11117 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30926B710F3277300E11117 /* SyncManager.m */; };
+		A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 398D634810F280980061BE66 /* BaseRemoteObject.m */; };
 		A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
@@ -303,6 +306,8 @@
 		39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTaskViewController.m; sourceTree = "<group>"; };
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
+		A30926B610F3277300E11117 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncManager.h; path = "../../ObjC/Less-2-Do/Classes/SyncManager.h"; sourceTree = SOURCE_ROOT; };
+		A30926B710F3277300E11117 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncManager.m; path = "../../ObjC/Less-2-Do/Classes/SyncManager.m"; sourceTree = SOURCE_ROOT; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
@@ -848,6 +853,8 @@
 		CF04579810E2F08800DED3CF /* sync */ = {
 			isa = PBXGroup;
 			children = (
+				A30926B610F3277300E11117 /* SyncManager.h */,
+				A30926B710F3277300E11117 /* SyncManager.m */,
 				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
 				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
 				398D634710F280980061BE66 /* BaseRemoteObject.h */,
@@ -1141,6 +1148,7 @@
 				398AC82B10F2529E0015319A /* ContextsGPSViewController.m in Sources */,
 				D4C4601010F25741008B07FB /* AddressAnnotation.m in Sources */,
 				398D634910F280980061BE66 /* BaseRemoteObject.m in Sources */,
+				A30926B810F3277300E11117 /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
+				A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */,
 				A3706C3110D7EA5000E6D556 /* Tag.m in Sources */,
 				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
 				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
@@ -1159,6 +1168,7 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
+				A30926B910F3277300E11117 /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
