@@ -11,7 +11,7 @@
 #import "AddressAnnotation.h"
 
 
-@interface ShowContextViewController : UIViewController<MKReverseGeocoderDelegate> {
+@interface ShowContextViewController : UIViewController<MKReverseGeocoderDelegate, MKMapViewDelegate> {
 	// the context to show
 	Context *context;
 	// label to show the context-name

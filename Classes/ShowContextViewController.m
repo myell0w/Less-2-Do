@@ -42,14 +42,15 @@
 	
 	self.addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
 	
-	[self.map addAnnotation:self.addAnnotation];
 	[self.map setRegion:region animated:TRUE];
 	[self.map regionThatFits:region];
+	self.map.delegate = self;
+	[self.map addAnnotation:self.addAnnotation];
 	
 	//Try to ReverseGeocoding
 	[self startGeocoder:location];
 	ALog ("Startet Geocoding");
-	
+	[self.map selectAnnotation:self.addAnnotation animated:YES];
     [super viewDidLoad];
 }
 
@@ -74,6 +75,31 @@
     [super dealloc];
 }
 
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	NSLog(@"View for Annotation is called");
+	MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"ShowAddressAnotation"];
+	if (annotationView == nil) {
+		annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ShowAddressAnotation"] autorelease];
+		annotationView.canShowCallout = YES;
+		
+		annotationView.image = [UIImage imageNamed:@"Pin.png"];
+		annotationView.centerOffset = CGPointMake(8, -10);
+		annotationView.calloutOffset = CGPointMake(-8, 0);
+		
+		UIImageView *pinShadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PinShadow.png"]];
+		pinShadow.frame = CGRectMake(0, 0, 32, 39);
+		pinShadow.hidden = YES;
+		[annotationView addSubview:pinShadow];
+		ALog ("Created View for Annotation");
+	}
+	else {
+		ALog ("Got View for Annotation from Queue");
+	}
+
+	return annotationView;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Notification and ReverseGeocoding
@@ -82,29 +108,32 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)newPlacemark {
 	if (self.addAnnotation != nil) {
 		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
-			self.addAnnotation.mSubTitle = [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+			self.addAnnotation.subtitle = [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
 			if ([self.context.name length] != 0)
-				self.addAnnotation.mTitle = self.context.name;
+				self.addAnnotation.title = self.context.name;
 			else {
-				self.addAnnotation.mTitle = nil;
+				self.addAnnotation.title = nil;
 			}
 		}
 		ALog ("Finished Geocoding: %@", [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]);
-		[self.map selectAnnotation:self.addAnnotation animated:YES];
 	}
-	
+	[self.map selectAnnotation:self.addAnnotation animated:YES];
 	[self.reverseGeocoder cancel];
+	self.reverseGeocoder.delegate = nil;
+	self.reverseGeocoder = nil;
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
 	if (self.addAnnotation != nil) {
 		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
-			self.addAnnotation.mSubTitle = nil;
+			self.addAnnotation.subtitle = nil;
 		}
 		ALog ("Error during Geocoding");
 	}
 	
 	[self.reverseGeocoder cancel];
+	[self.map addAnnotation:self.addAnnotation];
+	[self.map selectAnnotation:self.addAnnotation animated:YES];
 	self.reverseGeocoder.delegate = nil;
 	self.reverseGeocoder = nil;
 }

@@ -85,6 +85,7 @@
 			[self.mapView addAnnotation:self.addAnnotation];
 			[self.mapView setRegion:region animated:TRUE];
 			[self.mapView regionThatFits:region];
+			self.mapView.delegate = self;
 			
 			//Try to ReverseGeocoding
 			[self startGeocoder:location];
@@ -384,11 +385,11 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)newPlacemark {
 	if (self.addAnnotation != nil) {
 		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
-			self.addAnnotation.mSubTitle = [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+			self.addAnnotation.subtitle = [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
 			if ([[self.nameTextField text] length] != 0)
-				self.addAnnotation.mTitle = [self.nameTextField text];
+				self.addAnnotation.title = [self.nameTextField text];
 			else {
-				self.addAnnotation.mTitle = nil;
+				self.addAnnotation.title = nil;
 			}
 		}
 		ALog ("Finished Geocoding: %@", [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]);
@@ -400,7 +401,7 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
 	if (self.addAnnotation != nil) {
 		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
-			self.addAnnotation.mSubTitle = nil;
+			self.addAnnotation.subtitle = nil;
 		}
 		ALog ("Error during Geocoding");
 	}

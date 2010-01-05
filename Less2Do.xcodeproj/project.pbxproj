@@ -86,8 +86,6 @@
 		39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */; };
 		39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */; };
 		39F5AFD410ED1A0B00E54EB1 /* ShowTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */; };
-		A30926B810F3277300E11117 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30926B710F3277300E11117 /* SyncManager.m */; };
-		A30926B910F3277300E11117 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A30926B710F3277300E11117 /* SyncManager.m */; };
 		A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 398D634810F280980061BE66 /* BaseRemoteObject.m */; };
 		A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
@@ -127,6 +125,9 @@
 		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
+		D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4858BFD10F37CA4005FB59C /* SyncManager.m */; };
+		D4858CE110F38C74005FB59C /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4858CDF10F38C74005FB59C /* PinShadow.png */; };
+		D4858CE210F38C74005FB59C /* Pin.png in Resources */ = {isa = PBXBuildFile; fileRef = D4858CE010F38C74005FB59C /* Pin.png */; };
 		D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B5FEDD10E65538003584A5 /* MapKit.framework */; };
 		D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF4610E663C5003584A5 /* blueButton.png */; };
 		D4B5FF5410E66539003584A5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5210E66539003584A5 /* location.png */; };
@@ -306,8 +307,6 @@
 		39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTaskViewController.m; sourceTree = "<group>"; };
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
-		A30926B610F3277300E11117 /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncManager.h; path = "../../ObjC/Less-2-Do/Classes/SyncManager.h"; sourceTree = SOURCE_ROOT; };
-		A30926B710F3277300E11117 /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncManager.m; path = "../../ObjC/Less-2-Do/Classes/SyncManager.m"; sourceTree = SOURCE_ROOT; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
@@ -370,6 +369,10 @@
 		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D4858BFD10F37CA4005FB59C /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
+		D4858BFE10F37CA4005FB59C /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
+		D4858CDF10F38C74005FB59C /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
+		D4858CE010F38C74005FB59C /* Pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pin.png; sourceTree = "<group>"; };
 		D4B5FEDD10E65538003584A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4B5FF4610E663C5003584A5 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		D4B5FF5210E66539003584A5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
@@ -513,6 +516,8 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				D4858CDF10F38C74005FB59C /* PinShadow.png */,
+				D4858CE010F38C74005FB59C /* Pin.png */,
 				D4B5FF5210E66539003584A5 /* location.png */,
 				392B712410F10A37008106D0 /* button_start.png */,
 				392B712510F10A37008106D0 /* button_stop.png */,
@@ -724,7 +729,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -853,8 +858,8 @@
 		CF04579810E2F08800DED3CF /* sync */ = {
 			isa = PBXGroup;
 			children = (
-				A30926B610F3277300E11117 /* SyncManager.h */,
-				A30926B710F3277300E11117 /* SyncManager.m */,
+				D4858BFD10F37CA4005FB59C /* SyncManager.m */,
+				D4858BFE10F37CA4005FB59C /* SyncManager.h */,
 				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
 				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
 				398D634710F280980061BE66 /* BaseRemoteObject.h */,
@@ -981,10 +986,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1083,6 +1088,8 @@
 				D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */,
 				398AC7E810F24F590015319A /* ShowContextViewController.xib in Resources */,
 				398AC82D10F252AB0015319A /* ContextsGPSViewController.xib in Resources */,
+				D4858CE110F38C74005FB59C /* PinShadow.png in Resources */,
+				D4858CE210F38C74005FB59C /* Pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,7 +1155,7 @@
 				398AC82B10F2529E0015319A /* ContextsGPSViewController.m in Sources */,
 				D4C4601010F25741008B07FB /* AddressAnnotation.m in Sources */,
 				398D634910F280980061BE66 /* BaseRemoteObject.m in Sources */,
-				A30926B810F3277300E11117 /* SyncManager.m in Sources */,
+				D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,7 +1175,6 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
-				A30926B910F3277300E11117 /* SyncManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

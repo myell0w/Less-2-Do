@@ -16,23 +16,14 @@
 
 @implementation AddressAnnotation
 
-@synthesize mTitle=_mTitle;
-@synthesize mSubTitle=_mSubTitle;
-@synthesize coordinate;
+@synthesize title=_title;
+@synthesize subtitle=_subtitle;
+@synthesize coordinate=_coordinate;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
-	coordinate=c;
+	self.coordinate=c;
 	NSLog(@"%f,%f",c.latitude,c.longitude);
 	return self;
-}
-
-- (NSString *)subtitle{
-	return self.mSubTitle;
-}
-- (NSString *)title{
-	if (self.mTitle == nil)
-		return @"New Context";
-	return self.mTitle;
 }
 
 @end
