@@ -36,6 +36,7 @@
 + (NSArray *)getAllFolders:(NSError **)error; //Automatisch geordnet nach Order
 //TODO folder with rgb
 + (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
++ (NSArray *)getRemoteStoredFolders:(NSError **)error;
 
 - (UIColor *) color;
 

@@ -91,9 +91,10 @@
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
-		A336486810F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */; };
-		A336486910F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */; };
 		A336486B10F7393700177F84 /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A336486A10F7393700177F84 /* SyncTest.m */; };
+		A33649C710F75E1200177F84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4858BFD10F37CA4005FB59C /* SyncManager.m */; };
+		A3364A4D10F7645400177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */; };
+		A3364A4E10F7645C00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */; };
 		A36CF93810D634C9007482E3 /* FolderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CF93710D634C9007482E3 /* FolderTest.m */; };
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
@@ -325,7 +326,6 @@
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
-		A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibToodledoAPIiPhone.a; path = "../../ObjC/Less-2-Do/liblibToodledoAPIiPhone.a"; sourceTree = SOURCE_ROOT; };
 		A336486A10F7393700177F84 /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncTest.m; path = "../../ObjC/Less-2-Do/SyncTest.m"; sourceTree = SOURCE_ROOT; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
@@ -427,13 +427,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3364A4D10F7645400177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
 				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
-				A336486810F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,13 +441,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3364A4E10F7645C00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 				A38B3AC910BFFAAA00D5D87F /* UIKit.framework in Frameworks */,
 				A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */,
 				A38B3AC510BFFA9200D5D87F /* CoreGraphics.framework in Frameworks */,
 				A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */,
 				A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */,
 				A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */,
-				A336486910F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +480,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */,
 				A38B3ADF10BFFB7A00D5D87F /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -881,8 +880,8 @@
 		CF04579810E2F08800DED3CF /* sync */ = {
 			isa = PBXGroup;
 			children = (
-				D4858BFD10F37CA4005FB59C /* SyncManager.m */,
 				D4858BFE10F37CA4005FB59C /* SyncManager.h */,
+				D4858BFD10F37CA4005FB59C /* SyncManager.m */,
 				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
 				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
 				398D634710F280980061BE66 /* BaseRemoteObject.h */,
@@ -1191,6 +1190,8 @@
 				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
 				A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */,
 				A3706C3110D7EA5000E6D556 /* Tag.m in Sources */,
+				A336486B10F7393700177F84 /* SyncTest.m in Sources */,
+				A33649C710F75E1200177F84 /* SyncManager.m in Sources */,
 				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
 				A36CF97510D639E4007482E3 /* Folder.m in Sources */,
 				A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */,
@@ -1200,7 +1201,6 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
-				A336486B10F7393700177F84 /* SyncTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

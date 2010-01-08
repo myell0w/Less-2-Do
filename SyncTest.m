@@ -7,6 +7,7 @@
 //
 
 #import "TDApi.h"
+#import "SyncManager.h"
 #import "CustomGHUnitAppDelegate.h";
 
 @interface SyncTest : GHTestCase {
@@ -43,10 +44,10 @@
 }
 
 /* Tests receiving all contexts without adding contexts before */
-- (void)testDaFuckinConnection {
-	/*NSError *error = nil;
-	NSArray *contexts = [Context getAllContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)0, @"Context count must be 0");*/
+/*- (void)testDaFuckinConnection {
+	//NSError *error = nil;
+	//NSArray *contexts = [Context getAllContexts:&error];
+	//GHAssertEquals([contexts count], (NSUInteger)0, @"Context count must be 0");
 	
 	NSError *error;
 	
@@ -72,6 +73,21 @@
 	}
 	//ALog(@"1: %@", error);
 	//ALog(@"2: %@", fuck2);
+}*/
+
+-(void)testSync {
+	NSError *error;
+	[SyncManager sync:&error];
 }
+/*-(void)testGetLastModificationDates {
+	NSError *error = nil;
+	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&error];
+	GHAssertNil(error, @"API not connected");
+	NSMutableDictionary *datesDict = [tdApi getLastModificationsDates:&error];
+	ALog(@"datesDict: %@", datesDict);
+	ALog(@"error: %@", error);
+	ALog(@"lastfolderedit: %@", [datesDict valueForKey:@"lastFolderEdit"]);
+	//GHAssertNil(error, @"Retrieving dates not successful");
+}*/
 
 @end

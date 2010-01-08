@@ -128,6 +128,12 @@
 	return nil;
 }
 
++ (NSArray *)getRemoteStoredFolders:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != nil" error:error];	
+	return objects;
+}
+
 - (UIColor *) color {
 	return [UIColor colorWithRed:[self.r floatValue] green:[self.g floatValue] blue:[self.b floatValue] alpha:1.f];
 }
