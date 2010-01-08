@@ -7,24 +7,69 @@
 //
 
 #import "SyncManager.h"
+#import "TDApi.h"
 
 
 @implementation SyncManager
 
+/*
+ Führt eine Synchronisation mit automatischer Wahl des aktuelleren Datensatzes durch.
+*/
 +(void)sync:(NSError**)error
 {
+	NSError *localError;
+	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
+	ALog(@"tdApi init error: %@", localError);
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
 	
 	// suche ältestes lokales Änderungsdatum
+	// hole remote-Änderungsdatum der Folder
+	// wenn das remote-Änderungsdatum neuer ist als die letzte lokale Änderung --> hole Folders, sonst nicht (spart traffic)
+	NSDate *oldestLocalFolderDate = [Folder oldestModificationDateOfType:@"Folder" error:&localError];
+	ALog(@"Local: %@", oldestLocalFolderDate);
+	NSMutableDictionary *remoteDates = [tdApi getLastModificationsDates:&localError];
+	//NSArray *folders = [tdApi getFolders:&localError];
+	//ALog(@"anz folders: %d", [folders count]);
+	ALog(@"mal schaun");
+	NSString  *lastFolderEditString = [remoteDates valueForKey:@"lastFolderEdit"];
+	ALog(@"Remote: %@", lastFolderEditString);
 	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+	NSDate *lastFolderEditDate = [formatter dateFromString:lastFolderEditString];
+	
+	/*if (oldestLocalFolderDate == nil || [lastFolderEditDate compare:oldestLocalFolderDate] == NSOrderedDescending) {
+		// hole folders
+		ALog(@"ja ich hol sie gleich");
+		NSArray *remoteFolders = [tdApi getFolders:&localError];
+		NSArray *localFolders = [Folder getRemoteStoredFolders:&localError];
+		for(GtdFolder *remoteFolder in remoteFolders)
+		{
+			// durchsuche lokale Folder, ob gleiche id existiert
+			for(Folder *localFolder in localFolders)
+			{
+				if (localFolder.remoteId == remoteFolder.uid) {
+					
+				}
+			}
+		}
+	}*/
 }
 
+/*
+ Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die lokale
+ Version bevorzugt wird.
+*/
 +(void)syncForceLocal:(NSError**)error
 {
 	
 }
 
+/*
+ Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die remote-
+ Version bevorzugt wird.
+*/
 +(void)syncForceRemote:(NSError**)error
 {
 	/*
