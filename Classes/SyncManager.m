@@ -11,20 +11,35 @@
 
 @implementation SyncManager
 
+/*
+ Führt eine Synchronisation mit automatischer Wahl des aktuelleren Datensatzes durch.
+*/
 +(void)sync:(NSError**)error
 {
+	NSError *error1;
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
 	
 	// suche ältestes lokales Änderungsdatum
+	// hole remote-Änderungsdatum der Folder
+	// wenn das remote-Änderungsdatum neuer ist als die letzte lokale Änderung --> hole Folders, sonst nicht (spart traffic)
+	NSDate *oldestLocalFolderDate = [Folder oldestModificationDateOfType:@"Folder" error:&error];
 	
 }
 
+/*
+ Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die lokale
+ Version bevorzugt wird.
+*/
 +(void)syncForceLocal:(NSError**)error
 {
 	
 }
 
+/*
+ Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die remote-
+ Version bevorzugt wird.
+*/
 +(void)syncForceRemote:(NSError**)error
 {
 	/*

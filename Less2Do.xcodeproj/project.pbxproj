@@ -91,6 +91,9 @@
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
+		A336486810F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */; };
+		A336486910F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */; };
+		A336486B10F7393700177F84 /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A336486A10F7393700177F84 /* SyncTest.m */; };
 		A36CF93810D634C9007482E3 /* FolderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CF93710D634C9007482E3 /* FolderTest.m */; };
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
@@ -186,6 +189,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
 			remoteInfo = Less2Do;
+		};
+		A33648D310F740DD00177F84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF;
+			remoteInfo = libToodledoAPIiPhone;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -308,6 +318,8 @@
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
+		A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibToodledoAPIiPhone.a; path = "../../ObjC/Less-2-Do/liblibToodledoAPIiPhone.a"; sourceTree = SOURCE_ROOT; };
+		A336486A10F7393700177F84 /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncTest.m; path = "../../ObjC/Less-2-Do/SyncTest.m"; sourceTree = SOURCE_ROOT; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
@@ -414,6 +426,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
 				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
+				A336486810F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +440,7 @@
 				A38B3AC610BFFAA000D5D87F /* Foundation.framework in Frameworks */,
 				A38B3ACA10BFFAB100D5D87F /* CoreLocation.framework in Frameworks */,
 				A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */,
+				A336486910F738AC00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +473,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				A336486710F738AC00177F84 /* liblibToodledoAPIiPhone.a */,
 				A38B3ADF10BFFB7A00D5D87F /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -729,7 +744,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -801,6 +816,7 @@
 		A38B3ADF10BFFB7A00D5D87F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A336486A10F7393700177F84 /* SyncTest.m */,
 				A38B3B0410BFFC9E00D5D87F /* ContextTest.m */,
 				A38B3AE010BFFB8800D5D87F /* GHUnit */,
 				A36CF93710D634C9007482E3 /* FolderTest.m */,
@@ -955,6 +971,7 @@
 			);
 			dependencies = (
 				A30A5F0610C155B600673F02 /* PBXTargetDependency */,
+				A33648D410F740DD00177F84 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -986,10 +1003,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libToodledoAPI.a;
+			path = liblibToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1175,6 +1192,7 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
+				A336486B10F7393700177F84 /* SyncTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1185,6 +1203,11 @@
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* Less2Do */;
 			targetProxy = A30A5F0510C155B600673F02 /* PBXContainerItemProxy */;
+		};
+		A33648D410F740DD00177F84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libToodledoAPIiPhone;
+			targetProxy = A33648D310F740DD00177F84 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1205,6 +1228,10 @@
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				HEADER_SEARCH_PATHS = "toodledo-objc/src";
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Less2Do;
 			};
@@ -1223,6 +1250,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
+				);
 				PRODUCT_NAME = Less2Do;
 			};
 			name = Release;
@@ -1233,15 +1264,19 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.xcodeproj *.nib *.lproj *.framework *.gch (*) CVS .svn *.xcode *.pbproj *.pbxproj";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Tests_Prefix.pch;
+				HEADER_SEARCH_PATHS = ".//**";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
+					".//**",
 					"$(inherited)",
 					"\"$(SRCROOT)/libGHUnitIPhone3_0-0.4.13\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1251,7 +1286,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PREBINDING = NO;
+				PREBINDING = YES;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos3.1.2;
 			};
@@ -1272,6 +1307,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/libGHUnitIPhone3_0-0.4.13\"",
+					"\"$(SRCROOT)/../../ObjC/Less-2-Do\"",
 				);
 				OTHER_LDFLAGS = (
 					"-framework",
