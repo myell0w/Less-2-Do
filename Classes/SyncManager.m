@@ -7,6 +7,7 @@
 //
 
 #import "SyncManager.h"
+#import "TDApi.h"
 
 
 @implementation SyncManager
@@ -16,6 +17,7 @@
 */
 +(void)sync:(NSError**)error
 {
+	TDApi *fuck2 = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&error];
 	NSError *error1;
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];

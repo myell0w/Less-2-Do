@@ -197,6 +197,13 @@
 			remoteGlobalIDString = CF04581610E2F5C400DED3CF;
 			remoteInfo = libToodledoAPIiPhone;
 		};
+		A336497E10F7440400177F84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteInfo = libToodledoAPIiPhone;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -952,6 +959,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A336497F10F7440400177F84 /* PBXTargetDependency */,
 			);
 			name = Less2Do;
 			productName = Less2Do;
@@ -1209,6 +1217,11 @@
 			name = libToodledoAPIiPhone;
 			targetProxy = A33648D310F740DD00177F84 /* PBXContainerItemProxy */;
 		};
+		A336497F10F7440400177F84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libToodledoAPIiPhone;
+			targetProxy = A336497E10F7440400177F84 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1226,7 +1239,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
-				HEADER_SEARCH_PATHS = "toodledo-objc/src";
+				HEADER_SEARCH_PATHS = (
+					".//**",
+					"toodledo-objc/src",
+				);
 				INFOPLIST_FILE = "Less2Do-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
