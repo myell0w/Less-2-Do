@@ -93,5 +93,16 @@
 	return [[objects objectAtIndex:0] objectForKey:@"minSyncDate"];
 }
 
+/*+ (BaseManagedObject *)objectOfType:(NSString *)type
+{
+
+	BaseRemoteObject *castValue = [NSEntityDescription insertNewObjectForEntityForName:type 
+										 inManagedObjectContext:[BaseManagedObject managedObjectContext]]; 
+	ALog(@"remoteId vor dem -1 setzten: %d", [castValue.remoteId integerValue]);
+	castValue.remoteId = [NSNumber numberWithInteger:-1];
+	ALog(@"remoteId NACH dem -1 setzten: %d", [castValue.remoteId integerValue]);
+	return castValue;
+}*/
+
 
 @end

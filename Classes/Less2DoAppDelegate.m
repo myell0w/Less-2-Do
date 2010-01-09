@@ -193,6 +193,7 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 -(void)stopTimer
 {
 	[self.timer invalidate];	
+	//timer = nil;
 }
 @end
 

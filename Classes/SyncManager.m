@@ -18,12 +18,22 @@
 +(void)syncWithPreference:(SyncPreference)preference error:(NSError**)error
 {
 	NSError *localError;
-	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
+	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
+	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&localError];
 	//ALog(@"tdApi init error: %@", localError);
 
 	
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
+	
+	NSArray *testFuck = [Folder getUnsyncedFolders:&localError];
+	NSLog(@"count: %d", [testFuck count]);
+	
+	for(Folder * f in testFuck)
+	{
+		NSLog(@"Name: %@ remoteId: %d", f.name,[f.remoteId integerValue]);
+	}
+	
 	
 	//AutoCommit disable
 	[self stopAutocommit];
@@ -88,6 +98,7 @@
 				Folder *newFolder = (Folder*)[Folder objectOfType:@"Folder"];
 				newFolder.name = remoteFolder.title;
 				newFolder.order = [NSNumber numberWithInteger:remoteFolder.order];
+				newFolder.remoteId = [NSNumber numberWithInteger:remoteFolder.uid];
 			}
 		}
 		
@@ -101,7 +112,19 @@
 		}
 		else
 		{
-			// toodledo add localFoldersWithRemoteId
+			// toodledo update localFoldersWithRemoteId
+			for(int i=0;i<[localFoldersWithRemoteId count];i++)
+			{
+				GtdFolder *remoteFolder = [[GtdFolder alloc] init];
+				Folder *localFolder = [localFoldersWithRemoteId objectAtIndex:i];
+				remoteFolder.title = localFolder.name;
+				remoteFolder.order = [localFolder.order integerValue];
+				remoteFolder.uid = [localFolder.remoteId integerValue];
+				if(localFolder.deleted == [NSNumber numberWithInteger:0])
+				{
+					BOOL successful = [tdApi editFolder:remoteFolder error:&localError];
+				}
+			}
 		}
 
 	}
@@ -121,13 +144,19 @@
 		
 		// alle folder mit remoteId == nil && deleted == false ==> add toodledo
 		NSArray *unsyncedFolders = [Folder getUnsyncedFolders:&localError];
+		NSLog(@"VOR DER SCHLEIFE %d", [unsyncedFolders count]);
 		for(Folder *localFolder in unsyncedFolders)
 		{
 			GtdFolder *newFolder = [[GtdFolder alloc] init];
 			newFolder.title = localFolder.name;
 			newFolder.order = [localFolder.order integerValue];
+			newFolder.private = NO;
+			newFolder.uid = -1;
+			NSLog(@"ENDLOS OBEN");
+			
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
 		}
+		NSLog(@"NACH DER SCHLEIFE");
 	}
 	else // vergleiche sync date und mod date
 	{
@@ -139,11 +168,12 @@
 				// else ==> update toodledo		
 		for(Folder * localFolder in modifiedFolders)
 		{
-			if(localFolder.remoteId == nil)
+			if(localFolder.remoteId == [NSNumber numberWithInteger:-1])
 			{
 				GtdFolder *newFolder = [[GtdFolder alloc] init];
 				newFolder.title = localFolder.name;
 				newFolder.order = [localFolder.order integerValue];
+				NSLog(@"ENDLOS UNTEN");
 				localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
 			}
 			else 
@@ -182,7 +212,7 @@
 	//AutoCommit enabled
 	[self startAutocommit];
 	
-	ALog(@"Sync is done.");
+	//ALog(@"Sync is done.");
 	
 }
 
@@ -234,7 +264,7 @@
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate stopTimer];
-	ALog(@"Timer for Autocommit has been stopped!"); 
+	//ALog(@"Timer for Autocommit has been stopped!"); 
 	
 }
 
@@ -245,7 +275,7 @@
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate startTimer];
 	
-	ALog(@"Timer for Autocommit has been started!"); 
+	//ALog(@"Timer for Autocommit has been started!"); 
 }
 
 @end

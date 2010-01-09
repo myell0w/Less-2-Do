@@ -156,6 +156,7 @@
 -(IBAction)syncButtonPressed:(id)sender {
 	NSError *error;
 	[SyncManager syncWithPreference:SyncPreferRemote error:&error];
+	ALog(@"error after button (arschloch button): %@", error);
 }
 
 @end

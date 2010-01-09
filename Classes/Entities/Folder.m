@@ -154,7 +154,7 @@
 
 + (NSArray *)getUnsyncedFolders:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == nil AND deleted == FALSE" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == FALSE" error:error];	
 	return objects;
 }
 
