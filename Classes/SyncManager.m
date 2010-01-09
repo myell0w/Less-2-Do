@@ -33,6 +33,7 @@
 	{
 		NSLog(@"Name: %@ remoteId: %d", f.name,[f.remoteId integerValue]);
 	}
+	[testFuck release];
 	
 	
 	//AutoCommit disable
@@ -124,8 +125,10 @@
 				{
 					BOOL successful = [tdApi editFolder:remoteFolder error:&localError];
 				}
+				[remoteFolder release];
 			}
 		}
+		[localFoldersWithRemoteId release];
 
 	}
 	
@@ -140,7 +143,9 @@
 			newFolder.order = [localFolder.order integerValue];
 			newFolder.uid = [localFolder.remoteId integerValue];
 			BOOL successful = [tdApi editFolder:newFolder error:&localError];
+			[newFolder release];
 		}
+		[usedLocalEntityVersion release];
 		
 		// alle folder mit remoteId == nil && deleted == false ==> add toodledo
 		NSArray *unsyncedFolders = [Folder getUnsyncedFolders:&localError];
@@ -155,7 +160,9 @@
 			NSLog(@"ENDLOS OBEN");
 			
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
+			[newFolder release];
 		}
+		[unsyncedFolders release];
 		NSLog(@"NACH DER SCHLEIFE");
 	}
 	else // vergleiche sync date und mod date
@@ -175,6 +182,7 @@
 				newFolder.order = [localFolder.order integerValue];
 				NSLog(@"ENDLOS UNTEN");
 				localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
+				[newFolder release];
 			}
 			else 
 			{
@@ -183,21 +191,27 @@
 				newFolder.order = [localFolder.order integerValue];
 				newFolder.uid = [localFolder.remoteId integerValue];
 				BOOL successful = [tdApi editFolder:newFolder error:&localError];
+				[newFolder release];
 			}
 
 		}
+		[modifiedFolders release];
 
 	}
 	// alle folder mit remoteId != nil && deleted == true ==> delete toodledo
 	
 	NSArray *foldersToDeleteRemote = [Folder getRemoteStoredFoldersLocallyDeleted:&localError];
 	
-	for(Folder * folderToDeleteRemote in foldersToDeleteRemote)
+	for(int i=0; i<[foldersToDeleteRemote count]; i++)
 	{
+		Folder * folderToDeleteRemote = [foldersToDeleteRemote objectAtIndex:i];
 		GtdFolder *newFolder = [[GtdFolder alloc] init];
 		newFolder.uid = [folderToDeleteRemote.remoteId integerValue];
 		BOOL successful = [tdApi deleteFolder:newFolder error:&localError];
+		[newFolder release];
 	}
+	
+	[foldersToDeleteRemote release];
 	
 	// alle folder mit deleted == true lokal löschen
 	
@@ -206,8 +220,8 @@
 	{
 		Folder *folderToDeleteLocally = [foldersToDeleteLocally objectAtIndex:i];
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
-		
 	}
+	[foldersToDeleteLocally release];
 
 	//AutoCommit enabled
 	[self startAutocommit];

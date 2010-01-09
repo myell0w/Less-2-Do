@@ -8,6 +8,7 @@
 
 #import "Less2DoAppDelegate.h"
 #import "HomeNavigationController.h"
+#import "SyncManager.h"
 
 
 @implementation Less2DoAppDelegate
