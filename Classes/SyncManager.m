@@ -20,12 +20,13 @@
 	NSError *localError;
 	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
 	//ALog(@"tdApi init error: %@", localError);
-	
-	//AutoCommit disable
-	[self stopAutocommit];
+
 	
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
+	
+	//AutoCommit disable
+	[self stopAutocommit];
 	
 	// suche ältestes lokales Änderungsdatum
 	// hole remote-Änderungsdatum der Folder
@@ -181,6 +182,8 @@
 	//AutoCommit enabled
 	[self startAutocommit];
 	
+	ALog(@"Sync is done.");
+	
 }
 
 /*
@@ -231,7 +234,7 @@
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate stopTimer];
-	ALog(@"Timer for Autocommit has been stopped! Fuck"); 
+	ALog(@"Timer for Autocommit has been stopped!"); 
 	
 }
 
