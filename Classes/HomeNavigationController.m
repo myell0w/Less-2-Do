@@ -9,6 +9,7 @@
 #import "HomeNavigationController.h"
 #import "QuickAddViewController.h"
 #import "EditTaskViewController.h"
+#import "SyncManager.h"
 
 
 @implementation HomeNavigationController
@@ -151,5 +152,12 @@
 		quickAddController = nil;		
 	}	
 }
+
+-(IBAction)syncButtonPressed:(id)sender {
+	NSError *error = nil;
+	[SyncManager syncWithPreference:SyncPreferRemote error:&error];
+	ALog(@"error after button (arschloch button): %@", error);
+	 
+	}
 
 @end

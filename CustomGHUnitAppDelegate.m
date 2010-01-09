@@ -11,6 +11,13 @@
 
 @implementation CustomGHUnitAppDelegate
 
+@synthesize timer;
+
+- (void)commitDatabase:(NSTimer *) theTimer
+{
+	[BaseManagedObject commit];
+}
+
 - (void)dealloc {
 	
     [managedObjectContext release];
@@ -109,6 +116,35 @@
  */
 - (NSString *)applicationDocumentsDirectory {
 	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application 
+{    
+    // add rootControllers-View as subview of main-window  
+	[super applicationDidFinishLaunching:application];
+	
+	// start timer for committing to database
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
+												  target:self
+												selector:@selector(commitDatabase:)
+												userInfo:nil
+												 repeats:YES];
+}
+
+
+
+-(void)startTimer
+{
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
+												  target:self
+												selector:@selector(commitDatabase:)
+												userInfo:nil
+												 repeats:YES];	
+}
+
+-(void)stopTimer
+{
+	[self.timer invalidate];	
 }
 
 @end

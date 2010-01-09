@@ -8,6 +8,7 @@
 
 #import "Less2DoAppDelegate.h"
 #import "HomeNavigationController.h"
+#import "SyncManager.h"
 
 
 @implementation Less2DoAppDelegate
@@ -181,5 +182,19 @@
 
 NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 
+-(void)startTimer
+{
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
+									 target:self
+								   selector:@selector(commitDatabase:)
+								   userInfo:nil
+									repeats:YES];	
+}
+
+-(void)stopTimer
+{
+	[self.timer invalidate];	
+	//timer = nil;
+}
 @end
 

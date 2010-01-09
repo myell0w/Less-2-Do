@@ -77,7 +77,7 @@
 
 -(void)testSync {
 	NSError *error;
-	[SyncManager sync:&error];
+	[SyncManager syncWithPreference:SyncPreferLocal error:&error];
 }
 /*-(void)testGetLastModificationDates {
 	NSError *error = nil;
@@ -89,5 +89,16 @@
 	ALog(@"lastfolderedit: %@", [datesDict valueForKey:@"lastFolderEdit"]);
 	//GHAssertNil(error, @"Retrieving dates not successful");
 }*/
+
+-(void)testDisableAutocommit
+{		
+	CustomGHUnitAppDelegate *ghAppDelegate = [[UIApplication sharedApplication] delegate];
+	//ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
+	[SyncManager stopAutocommit];
+	//ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
+	//ALog(@"Fuck");
+	[SyncManager startAutocommit];
+	//ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
+}
 
 @end
