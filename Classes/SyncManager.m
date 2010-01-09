@@ -20,6 +20,10 @@
 	NSError *localError;
 	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
 	//ALog(@"tdApi init error: %@", localError);
+	
+	//AutoCommit disable
+	[self stopAutocommit];
+	
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
 	
@@ -174,6 +178,8 @@
 		
 	}
 
+	//AutoCommit enabled
+	[self startAutocommit];
 	
 }
 
@@ -224,8 +230,8 @@
 	Less2DoAppDelegate *appDelegate;
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
-	[appDelegate.timer invalidate];
-	//ALog(@"Timer for Autocommit has been stopped! Fuck"); 
+	[appDelegate stopTimer];
+	ALog(@"Timer for Autocommit has been stopped! Fuck"); 
 	
 }
 
@@ -234,13 +240,9 @@
 	Less2DoAppDelegate *appDelegate;
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
-	appDelegate.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
-														 target:self
-													   selector:@selector(commitDatabase:)
-													   userInfo:nil
-														repeats:YES];
+	[appDelegate startTimer];
 	
-	//ALog(@"Timer for Autocommit has been started!"); 
+	ALog(@"Timer for Autocommit has been started!"); 
 }
 
 @end
