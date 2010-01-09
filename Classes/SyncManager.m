@@ -61,7 +61,7 @@
 					foundLocalEntity = YES;
 					if(preference == SyncPreferRemote)
 					{
-						localFolder.deleted = NO; // verhindere möglichen Löschvorgang
+						localFolder.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
 						// überschreibe lokale Felder
 						localFolder.name = remoteFolder.title;
 						localFolder.order = [NSNumber numberWithInteger:remoteFolder.order];
@@ -91,7 +91,7 @@
 			for(int i=0;i<[localFoldersWithRemoteId count];i++)
 			{
 				Folder *localFolder = [localFoldersWithRemoteId objectAtIndex:i];
-				localFolder.deleted = YES;
+				localFolder.deleted = [NSNumber numberWithInteger:1];
 			}
 		}
 		else

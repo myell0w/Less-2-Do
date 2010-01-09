@@ -10,7 +10,7 @@
 @interface BaseManagedObject : NSManagedObject {
 }
 
-@property (nonatomic) BOOL deleted;
+@property (nonatomic, retain) NSNumber *deleted;
 
 + (NSManagedObjectContext*) managedObjectContext;
 

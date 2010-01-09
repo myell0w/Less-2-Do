@@ -28,7 +28,7 @@
 
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error
 {
-	theObject.deleted = YES;
+	theObject.deleted = [NSNumber numberWithInteger:1];
 	return YES;
 }
 
