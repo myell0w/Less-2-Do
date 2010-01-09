@@ -91,4 +91,13 @@
 	return objects;
 }
 
++ (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error
+{
+	[BaseManagedObject deleteObjectFromPersistentStore:theObject error:error];
+	if (error == nil) {
+		return YES;
+	}
+	return NO;
+}
+
 @end

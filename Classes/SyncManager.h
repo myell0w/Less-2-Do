@@ -12,7 +12,12 @@
 @interface SyncManager : NSObject {
 }
 
-+(void)sync:(NSError**)error;
-+(void)syncForceLocal:(NSError**)error;
-+(void)syncForceRemote:(NSError**)error;
+typedef enum {
+	SyncPreferLocal = 1,
+	SyncPreferRemote = 2
+} SyncPreference;
+
++(void)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
++(void)overrideLocal:(NSError**)error;
++(void)overrideRemote:(NSError**)error;
 @end

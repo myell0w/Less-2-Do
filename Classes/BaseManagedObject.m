@@ -12,7 +12,7 @@
 
 @implementation BaseManagedObject
 
-@dynamic remoteId;
+@dynamic deleted;
 
 + (NSManagedObjectContext*) managedObjectContext
 {
@@ -27,6 +27,12 @@
 }
 
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error
+{
+	theObject.deleted = YES;
+	return YES;
+}
+
++ (BOOL)deleteObjectFromPersistentStore:(BaseManagedObject *)theObject error:(NSError **)error
 {
 	NSError *deleteError;
 	

@@ -97,7 +97,7 @@
 
 + (NSArray *) getAllFolders:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:nil error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == NO" error:error];	
 	return objects;
 }
 
@@ -131,6 +131,36 @@
 + (NSArray *)getRemoteStoredFolders:(NSError **)error
 {
 	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != nil" error:error];	
+	return objects;
+}
+
++ (NSArray *)getRemoteStoredFoldersLocallyDeleted:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != nil AND deleted == TRUE" error:error];	
+	return objects;
+}
+
++ (NSArray *)getLocalStoredFoldersLocallyDeleted:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == nil AND deleted == TRUE" error:error];	
+	return objects;
+}
+
++ (NSArray *)getAllFoldersLocallyDeleted:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == TRUE" error:error];	
+	return objects;
+}
+
++ (NSArray *)getUnsyncedFolders:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == nil AND deleted == FALSE" error:error];	
+	return objects;
+}
+
++ (NSArray *)getModifiedFolders:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:@"lastLocalModification > lastSyncDate" error:error];	
 	return objects;
 }
 

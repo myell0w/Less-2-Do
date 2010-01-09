@@ -77,7 +77,7 @@
 
 -(void)testSync {
 	NSError *error;
-	[SyncManager sync:&error];
+	[SyncManager syncWithPreference:SyncPreferLocal error:&error];
 }
 /*-(void)testGetLastModificationDates {
 	NSError *error = nil;
