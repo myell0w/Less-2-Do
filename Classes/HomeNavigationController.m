@@ -9,6 +9,7 @@
 #import "HomeNavigationController.h"
 #import "QuickAddViewController.h"
 #import "EditTaskViewController.h"
+#import "SyncManager.h"
 
 
 @implementation HomeNavigationController
@@ -150,6 +151,11 @@
 		[quickAddController release];
 		quickAddController = nil;		
 	}	
+}
+
+-(IBAction)syncButtonPressed:(id)sender {
+	NSError *error;
+	[SyncManager syncWithPreference:SyncPreferRemote error:&error];
 }
 
 @end

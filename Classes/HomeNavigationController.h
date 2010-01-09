@@ -30,5 +30,7 @@
 - (IBAction)quickAddTask:(NSNotification *) notification;
 // hides the quickadd-bar
 - (IBAction)hideQuickAdd;
+// sync
+- (IBAction)syncButtonPressed:(id)sender;
 @end
 

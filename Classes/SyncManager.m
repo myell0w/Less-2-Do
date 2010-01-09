@@ -19,7 +19,7 @@
 {
 	NSError *localError;
 	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	ALog(@"tdApi init error: %@", localError);
+	//ALog(@"tdApi init error: %@", localError);
 	// 1. commit unsaved changes - damit werden alle local modified dates gesetzt
 	[BaseManagedObject commit];
 	
