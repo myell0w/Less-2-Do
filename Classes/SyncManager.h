@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Less2DoAppDelegate.h"
 
 
 @interface SyncManager : NSObject {
@@ -15,4 +16,7 @@
 +(void)sync:(NSError**)error;
 +(void)syncForceLocal:(NSError**)error;
 +(void)syncForceRemote:(NSError**)error;
+
++(void)stopAutocommit;
++(void)startAutocommit;
 @end

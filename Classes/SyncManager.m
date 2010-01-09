@@ -99,4 +99,28 @@
 	 */
 }
 
++(void)stopAutocommit
+{
+	Less2DoAppDelegate *appDelegate;
+	
+	appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate.timer invalidate];
+	//ALog(@"Timer for Autocommit has been stopped! Fuck"); 
+	
+}
+
++(void)startAutocommit
+{
+	Less2DoAppDelegate *appDelegate;
+	
+	appDelegate = [[UIApplication sharedApplication] delegate];
+	appDelegate.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
+														 target:self
+													   selector:@selector(commitDatabase:)
+													   userInfo:nil
+														repeats:YES];
+	
+	//ALog(@"Timer for Autocommit has been started!"); 
+}
+
 @end

@@ -91,7 +91,6 @@
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
-		A336486B10F7393700177F84 /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A336486A10F7393700177F84 /* SyncTest.m */; };
 		A33649C710F75E1200177F84 /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4858BFD10F37CA4005FB59C /* SyncManager.m */; };
 		A3364A4D10F7645400177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */; };
 		A3364A4E10F7645C00177F84 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */; };
@@ -119,6 +118,8 @@
 		CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */; };
 		CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF879D8F10D5B490004D6770 /* ColorChooserCell.m */; };
 		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
+		CFDA303C10F881B800E1772F /* SyncTest.m in Resources */ = {isa = PBXBuildFile; fileRef = CFDA303610F8816900E1772F /* SyncTest.m */; };
+		CFDA303D10F881BC00E1772F /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDA303610F8816900E1772F /* SyncTest.m */; };
 		CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */; };
 		D436E8AC10BA858E00EA7624 /* TagsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8A910BA858E00EA7624 /* TagsFirstLevelController.m */; };
 		D436E8AD10BA858E00EA7624 /* TagsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E8AB10BA858E00EA7624 /* TagsNavigationController.m */; };
@@ -202,7 +203,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B659F810B7080D00825C1D /* ToodledoAPI.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = CF04581610E2F5C400DED3CF /* libToodledoAPIiPhone */;
+			remoteGlobalIDString = CF04581610E2F5C400DED3CF;
 			remoteInfo = libToodledoAPIiPhone;
 		};
 /* End PBXContainerItemProxy section */
@@ -326,7 +327,6 @@
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
-		A336486A10F7393700177F84 /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncTest.m; path = "../../ObjC/Less-2-Do/SyncTest.m"; sourceTree = SOURCE_ROOT; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
@@ -370,6 +370,7 @@
 		CF879D8F10D5B490004D6770 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Entities/Context.h; sourceTree = "<group>"; };
 		CFB932F410BC872B004EAF93 /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Context.m; path = Entities/Context.m; sourceTree = "<group>"; };
+		CFDA303610F8816900E1772F /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
 		CFF1D52810D571A1005AB0BE /* UIColor+ColorComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorComponents.h"; sourceTree = "<group>"; };
 		CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorComponents.m"; sourceTree = "<group>"; };
 		D436E8A810BA858E00EA7624 /* TagsFirstLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsFirstLevelController.h; sourceTree = "<group>"; };
@@ -750,7 +751,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -822,7 +823,7 @@
 		A38B3ADF10BFFB7A00D5D87F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A336486A10F7393700177F84 /* SyncTest.m */,
+				CFDA303610F8816900E1772F /* SyncTest.m */,
 				A38B3B0410BFFC9E00D5D87F /* ContextTest.m */,
 				A38B3AE010BFFB8800D5D87F /* GHUnit */,
 				A36CF93710D634C9007482E3 /* FolderTest.m */,
@@ -1010,10 +1011,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1121,6 +1122,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDA303C10F881B800E1772F /* SyncTest.m in Resources */,
 				A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1187,10 +1189,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDA303D10F881BC00E1772F /* SyncTest.m in Sources */,
 				A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */,
 				A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */,
 				A3706C3110D7EA5000E6D556 /* Tag.m in Sources */,
-				A336486B10F7393700177F84 /* SyncTest.m in Sources */,
 				A33649C710F75E1200177F84 /* SyncManager.m in Sources */,
 				A30A5FA310C15B5F00673F02 /* Context.m in Sources */,
 				A36CF97510D639E4007482E3 /* Folder.m in Sources */,

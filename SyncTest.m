@@ -75,10 +75,10 @@
 	//ALog(@"2: %@", fuck2);
 }*/
 
--(void)testSync {
+/*-(void)testSync {
 	NSError *error;
 	[SyncManager sync:&error];
-}
+}*/
 /*-(void)testGetLastModificationDates {
 	NSError *error = nil;
 	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&error];
@@ -89,5 +89,16 @@
 	ALog(@"lastfolderedit: %@", [datesDict valueForKey:@"lastFolderEdit"]);
 	//GHAssertNil(error, @"Retrieving dates not successful");
 }*/
+
+-(void)testDisableAutocommit
+{		
+	CustomGHUnitAppDelegate *ghAppDelegate = [[UIApplication sharedApplication] delegate];
+	ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
+	[SyncManager stopAutocommit];
+	ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
+	ALog(@"Fuck");
+	[SyncManager startAutocommit];
+	ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
+}
 
 @end
