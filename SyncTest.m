@@ -93,12 +93,12 @@
 -(void)testDisableAutocommit
 {		
 	CustomGHUnitAppDelegate *ghAppDelegate = [[UIApplication sharedApplication] delegate];
-	ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
+	//ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
 	[SyncManager stopAutocommit];
-	ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
-	ALog(@"Fuck");
+	//ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
+	//ALog(@"Fuck");
 	[SyncManager startAutocommit];
-	ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
+	//ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
 }
 
 @end

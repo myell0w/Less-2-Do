@@ -24,4 +24,7 @@
 
 - (NSString *)applicationDocumentsDirectory;
 - (void)commitDatabase:(NSTimer *) theTimer;
+- (void)startTimer;
+- (void)stopTimer;
+
 @end
