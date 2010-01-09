@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Less2DoAppDelegate.h"
 
 
 @interface SyncManager : NSObject {
@@ -20,4 +21,7 @@ typedef enum {
 +(void)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
 +(void)overrideLocal:(NSError**)error;
 +(void)overrideRemote:(NSError**)error;
++(void)stopAutocommit;
++(void)startAutocommit;
+
 @end

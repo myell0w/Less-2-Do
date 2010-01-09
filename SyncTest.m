@@ -90,4 +90,15 @@
 	//GHAssertNil(error, @"Retrieving dates not successful");
 }*/
 
+-(void)testDisableAutocommit
+{		
+	CustomGHUnitAppDelegate *ghAppDelegate = [[UIApplication sharedApplication] delegate];
+	ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
+	[SyncManager stopAutocommit];
+	ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
+	ALog(@"Fuck");
+	[SyncManager startAutocommit];
+	ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
+}
+
 @end
