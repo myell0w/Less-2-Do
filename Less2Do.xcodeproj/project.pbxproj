@@ -86,6 +86,7 @@
 		39E31B0F10CC4C57002F0D86 /* TaskEditContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */; };
 		39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */; };
 		39F5AFD410ED1A0B00E54EB1 /* ShowTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */; };
+		39F6FCE510F916A00053E1E1 /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F6FCE410F916A00053E1E1 /* liblibToodledoAPIiPhone.a */; };
 		A309275D10F344E400E11117 /* BaseRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 398D634810F280980061BE66 /* BaseRemoteObject.m */; };
 		A30A5EE710C1533B00673F02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
@@ -306,6 +307,7 @@
 		39F5AFD010ED19FC00E54EB1 /* ShowTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowTaskViewController.h; sourceTree = "<group>"; };
 		39F5AFD110ED19FC00E54EB1 /* ShowTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTaskViewController.m; sourceTree = "<group>"; };
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
+		39F6FCE410F916A00053E1E1 /* liblibToodledoAPIiPhone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibToodledoAPIiPhone.a; path = "/Users/Matthias/Documents/Projects/Less2Do/toodledo-objc/src/build/Release-iphonesimulator/liblibToodledoAPIiPhone.a"; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
 				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
+				39F6FCE510F916A00053E1E1 /* liblibToodledoAPIiPhone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +470,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				A38B3AB510BFF91100D5D87F /* CoreLocation.framework */,
 				A38B3AC110BFFA8000D5D87F /* Tests-Info.plist */,
+				39F6FCE410F916A00053E1E1 /* liblibToodledoAPIiPhone.a */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1205,6 +1209,10 @@
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				HEADER_SEARCH_PATHS = "toodledo-objc/src";
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/toodledo-objc/src/build/Release-iphonesimulator\"",
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Less2Do;
 			};
@@ -1223,6 +1231,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Less2Do_Prefix.pch;
 				INFOPLIST_FILE = "Less2Do-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/toodledo-objc/src/build/Release-iphonesimulator\"",
+				);
 				PRODUCT_NAME = Less2Do;
 			};
 			name = Release;
