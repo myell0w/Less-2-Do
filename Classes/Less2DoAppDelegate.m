@@ -21,7 +21,8 @@
 @synthesize tagsController;
 @synthesize settingsController;
 
-@synthesize timer;
+@synthesize syncTimer;
+@synthesize reminderTimer;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,6 +42,7 @@
 	[contextsController release];
 	[tagsController release];
 	[settingsController release];
+	[alreadyReminded release];
 	
 	[window release];
 	
@@ -53,9 +55,70 @@
 #pragma mark Application lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)commitDatabase:(NSTimer *) theTimer
-{
+- (void)commitDatabase:(NSTimer *)timer {
 	[BaseManagedObject commit];
+}
+
+- (void)checkDueTasks:(NSTimer *)timer {
+	NSError *error = nil;
+	NSArray *tasks = [Task getAllTasks:&error];
+	NSDate *now = [[NSDate alloc] init];
+	NSNumber *reminded = nil;
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSDateComponents *components = nil;
+	NSDate *dueDate = nil;
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	
+	[format setDateFormat:@"h:mm a"];
+	
+	for (Task *t in tasks) {
+		if ([t.isCompleted boolValue] == NO && t.dueDate != nil && t.dueTime != nil) {
+			reminded = [alreadyReminded objectForKey:t.name];
+			
+			// task not in list -> insert it
+			if (reminded == nil) {
+				[alreadyReminded setObject:[NSNumber numberWithBool:NO] forKey:t.name];
+			} else {
+				BOOL r = [reminded boolValue];
+			
+				if (!r) {
+					NSDateComponents *dueDateComp = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:t.dueDate];
+					NSDateComponents *dueTimeComp = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:t.dueTime];
+					
+					components = [[NSDateComponents alloc] init];
+					[components setYear:[dueDateComp year]];
+					[components setMonth:[dueDateComp month]];
+					[components setDay:[dueDateComp day]];
+					[components setHour:[dueTimeComp hour]];
+					[components setMinute:[dueTimeComp minute]];
+					[components setSecond:[dueTimeComp second]];
+					
+					dueDate = [cal dateFromComponents:components];
+					
+					// remind 1 hour before
+					if ([dueDate timeIntervalSinceDate:now] < 3600) {
+						UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder!" 
+																		message:[NSString stringWithFormat:@"\"%@\" is due today at %@", t, [format stringFromDate:dueDate]]
+																	   delegate:nil 
+															  cancelButtonTitle:@"Ok" 
+															  otherButtonTitles:nil];
+						
+						[alert show];
+						[alert release];
+						
+						[alreadyReminded setObject:[NSNumber numberWithBool:YES] forKey:t.name];
+						ALog("Reminder!");
+					}
+					
+					[components release];
+				}
+				
+			}
+		}
+	}
+	
+	[format release];
+	[now release];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -64,11 +127,19 @@
 	[window makeKeyAndVisible];
 	
 	// start timer for committing to database
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
-													   target:self
-													 selector:@selector(commitDatabase:)
-													 userInfo:nil
-													  repeats:YES];
+	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:20.0
+													  target:self
+													selector:@selector(commitDatabase:)
+													userInfo:nil
+													 repeats:YES];
+	
+	// start timer for displaying reminders
+	alreadyReminded = [[NSMutableDictionary alloc] init];
+	self.reminderTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+														  target:self
+														selector:@selector(checkDueTasks:)
+														userInfo:nil
+														 repeats:YES];
 }
 
 /**
@@ -182,18 +253,16 @@
 
 NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 
--(void)startTimer
-{
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
-									 target:self
-								   selector:@selector(commitDatabase:)
-								   userInfo:nil
-									repeats:YES];	
+-(void)startTimer {
+	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:20.0
+													  target:self
+													selector:@selector(commitDatabase:)
+													userInfo:nil
+													 repeats:YES];	
 }
 
--(void)stopTimer
-{
-	[self.timer invalidate];	
+-(void)stopTimer {
+	[self.syncTimer invalidate];	
 	//timer = nil;
 }
 @end

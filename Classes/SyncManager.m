@@ -267,8 +267,7 @@
 	 */
 }
 
-+(void)stopAutocommit
-{
++(void)stopAutocommit {
 	Less2DoAppDelegate *appDelegate;
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
@@ -277,8 +276,7 @@
 	
 }
 
-+(void)startAutocommit
-{
++(void)startAutocommit {
 	Less2DoAppDelegate *appDelegate;
 	
 	appDelegate = [[UIApplication sharedApplication] delegate];
