@@ -72,7 +72,7 @@
 		
 		CGContextSetFillColorWithColor(context, [col CGColor]);
 	}
-		
+  
 	CGContextBeginPath(context);
 	CGContextAddArc(context, radius, radius, radius, M_PI / 2 , 3 * M_PI / 2, NO);
 	CGContextAddArc(context, bounds.size.width - radius, radius, radius, 3 * M_PI / 2, M_PI / 2, NO);
@@ -94,7 +94,7 @@
 	[font release];
 	[countString release];
 }
-	 
+
 
 @end
 
@@ -104,31 +104,29 @@
 @synthesize badgeNumber, badge, badgeColor, badgeColorHighlighted;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        // Initialization code
+  if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    
+    // set textLabel background to transparent to show underlying badge
+    self.textLabel.backgroundColor = [UIColor clearColor];
+    
+    // Initialization code
 		badge = [[TDBadgeView alloc] initWithFrame:CGRectZero];
 		[badge setParent:self];
 		
-		//redraw cells in accordance to accessory
-		float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-		
-		if (version <= 3.0)
-			[self addSubview:self.badge];
-		else 
-			[self.contentView addSubview:self.badge];
-		
-
-		[self.badge setNeedsDisplay];
-			
-		[badge release];
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version <= 3.0) {
+      [self addSubview:self.badge];
+    }else {
+      [self.contentView addSubview:self.badge];
     }
-    return self;
+  }
+  return self;
 }
 
 - (void) layoutSubviews
 {
 	[super layoutSubviews];
-
+  
 	if(self.badgeNumber > 0)
 	{
 		[self.badge setHidden:NO];
@@ -197,12 +195,17 @@
 	}
 }
 
+- (void)setBadgeNumber:(NSInteger)newBadgeNumber {
+  badgeNumber = newBadgeNumber;
+  [self.badge setNeedsLayout];
+}
+
 
 - (void)dealloc {
 	[badge release];
 	[badgeColor release];
 	[badgeColorHighlighted release];
-    [super dealloc];
+  [super dealloc];
 }
 
 
