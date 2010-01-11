@@ -208,7 +208,9 @@
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	[BaseManagedObject deleteObject:t error:&error];
-	//TODO: Matthias: Hier sollte ein release stehen
+	[t release];
+	
+	ALog(@"Task gelöscht");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
