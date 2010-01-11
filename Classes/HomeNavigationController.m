@@ -137,10 +137,11 @@
 	[self hideQuickAdd];
 	
 	if ([task.name length] > 0) {
-		ALog("Task to quickadd: %@ %@", task, task.timerValue);
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
+		ALog("Task to quickadd: %@", task);
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
 	}
 	//TODO: Matthias: release
+	[task release];
 }
 
 - (IBAction)hideQuickAdd {

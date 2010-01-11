@@ -120,8 +120,6 @@
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskQuickAddNotification" object:self userInfo:dict];
 	
-	//TODO:
-	[task release];
 	[dict release];
 }
 
@@ -131,8 +129,6 @@
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
 	
-	//TODO:
-	[task release];
 	[dict release];
 }
 

@@ -161,7 +161,6 @@
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
 			[newFolder release];
 		}
-		
 		NSLog(@"NACH DER SCHLEIFE");
 	}
 	else // vergleiche sync date und mod date
@@ -194,7 +193,6 @@
 			}
 
 		}
-
 	}
 	// alle folder mit remoteId != nil && deleted == true ==> delete toodledo
 	
@@ -217,14 +215,13 @@
 		Folder *folderToDeleteLocally = [foldersToDeleteLocally objectAtIndex:i];
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
 	}
-	
 	[tdApi release];
 
 	//AutoCommit enabled
 	[self startAutocommit];
 	
 	//ALog(@"Sync is done.");
-	
+	[tdApi release];
 }
 
 /*
