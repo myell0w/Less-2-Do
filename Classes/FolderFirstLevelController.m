@@ -129,9 +129,7 @@
 		if(section==0)
 			cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 		else {
-			//NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FolderCell" owner:self options:nil];
-			//for (id oneObject in nib) if ([oneObject isKindOfClass:[FolderCell class]])
-				cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
+			cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
 		}
 
 	}
