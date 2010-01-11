@@ -62,6 +62,8 @@
 	self.locationManager.delegate = self;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
+	self.mapView.delegate = self;
+	
 	//[self.nameTextField becomeFirstResponder];
 	
 	if(self.context != nil) {
@@ -377,6 +379,20 @@
 	[alert release];
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	NSLog(@"View for Annotation is called");
+	MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"ShowAddressAnotation"];
+	if (annotationView == nil) {
+		annotationView = [(AddressAnnotation *)annotation viewForAnnotation];
+		ALog ("Created View for Annotation");
+	}
+	else {
+		ALog ("Got View for Annotation from Queue");
+	}
+	
+	return annotationView;
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Notification and ReverseGeocoding
@@ -394,8 +410,10 @@
 		}
 		ALog ("Finished Geocoding: %@", [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]);
 	}
-	
+	[self.mapView selectAnnotation:self.addAnnotation animated:YES];
 	[self.reverseGeocoder cancel];
+	self.reverseGeocoder.delegate = nil;
+	self.reverseGeocoder = nil;
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {

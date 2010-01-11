@@ -19,4 +19,6 @@
 @property (nonatomic, retain) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 
+- (MKAnnotationView *)viewForAnnotation;
+
 @end

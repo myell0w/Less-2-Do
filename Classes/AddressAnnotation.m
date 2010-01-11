@@ -26,4 +26,21 @@
 	return self;
 }
 
+-(MKAnnotationView *)viewForAnnotation {
+	MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"ShowAddressAnotation"] autorelease];
+	annotationView.canShowCallout = YES;
+	
+	annotationView.image = [UIImage imageNamed:@"Pin.png"];
+	annotationView.centerOffset = CGPointMake(8, -10);
+	annotationView.calloutOffset = CGPointMake(-8, 0);
+	
+	UIImageView *pinShadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PinShadow.png"]];
+	pinShadow.frame = CGRectMake(0, 0, 32, 39);
+	pinShadow.hidden = YES;
+	[annotationView addSubview:pinShadow];
+	[pinShadow release];
+	
+	return annotationView;
+}
+
 @end
