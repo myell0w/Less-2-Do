@@ -11,6 +11,10 @@
 #import "SyncManager.h"
 
 
+#define SYNC_TIMER_INTERVAL 20.0
+#define REMINDER_TIMER_INTERVAL 300.
+#define REMINDER_SECONDS_RANGE 3600
+
 @implementation Less2DoAppDelegate
 
 @synthesize window;
@@ -96,7 +100,7 @@
 					dueDate = [cal dateFromComponents:components];
 					
 					// remind 1 hour before
-					if ([dueDate timeIntervalSinceDate:now] < 3600) {
+					if ([dueDate timeIntervalSinceDate:now] < REMINDER_SECONDS_RANGE) {
 						UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder!" 
 																		message:[NSString stringWithFormat:@"\"%@\" is due today at %@", t, [format stringFromDate:dueDate]]
 																	   delegate:nil 
@@ -127,7 +131,7 @@
 	[window makeKeyAndVisible];
 	
 	// start timer for committing to database
-	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:20.0
+	self.syncTimer = [NSTimer scheduledTimerWithTimeInterval:SYNC_TIMER_INTERVAL
 													  target:self
 													selector:@selector(commitDatabase:)
 													userInfo:nil
@@ -135,7 +139,7 @@
 	
 	// start timer for displaying reminders
 	alreadyReminded = [[NSMutableDictionary alloc] init];
-	self.reminderTimer = [NSTimer scheduledTimerWithTimeInterval:2.0
+	self.reminderTimer = [NSTimer scheduledTimerWithTimeInterval:REMINDER_TIMER_INTERVAL
 														  target:self
 														selector:@selector(checkDueTasks:)
 														userInfo:nil

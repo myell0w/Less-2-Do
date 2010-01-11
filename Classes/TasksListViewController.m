@@ -242,11 +242,13 @@
 	NSUInteger row = [indexPath row]; 
 	NSError *error;
 	
-	Task *t = [(Task *)[self.tasks objectAtIndex:row] retain];
+	Task *t = (Task *)[self.tasks objectAtIndex:row];
+	[Task deleteObject:t error:&error];
+	
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-	[BaseManagedObject deleteObject:t error:&error];
-	[t release];
+	
+	self.tableView.contentOffset = CGPointMake(0., 44.);
 	
 	ALog(@"Task gelöscht");
 }
