@@ -58,6 +58,7 @@
 	
 	self.tableView.scrollEnabled = YES;
 	
+	// init searchDisplayController
 	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 41.0)];
 	self.searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
 	self.searchDisplayController.delegate = self;
@@ -65,6 +66,9 @@
 	self.searchDisplayController.searchResultsDelegate = self;
 	[searchBar release];
 	self.tableView.tableHeaderView = self.searchDisplayController.searchBar;
+	
+	// scroll down to hide searchbar
+	self.tableView.contentOffset = CGPointMake(0., 44.);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +90,7 @@
 	
 	
 	[self.tableView reloadData];
+	
 	[super viewWillAppear:animated];
 }
 
@@ -94,6 +99,7 @@
 	self.tasks = nil;
 	self.filteredTasks = nil;
 	self.argument = nil;
+	self.searchDisplayController = nil;
 	
 	[formatDate release];
 	formatDate = nil;
@@ -105,6 +111,7 @@
 	[image release];
 	[tasks release];
 	[filteredTasks release];
+	[searchDisplayController release];
 	[formatDate release];
 	[formatTime release];
 	[argument release];
