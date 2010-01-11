@@ -100,11 +100,16 @@
 		[taskDescription deleteCharactersInRange:range];
 		
 		t.dueDate = date;
+		
+		//TODO: Messi 4 Matthias
+		[format release];
 	}
 	
 	// delete whitespaces at begin and end
 	t.name = [taskDescription stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
+	//TODO: Messi macht die Arbeit für Matthias
+	[taskDescription release];
 	return t;
 }
 
@@ -115,6 +120,7 @@
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskQuickAddNotification" object:self userInfo:dict];
 	
+	//TODO:
 	[task release];
 	[dict release];
 }
@@ -125,6 +131,7 @@
 	NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:task, @"Task", nil];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskDetailEditNotification" object:self userInfo:dict];
 	
+	//TODO:
 	[task release];
 	[dict release];
 }

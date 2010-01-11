@@ -57,7 +57,7 @@
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
-			Context *context = [[objects objectAtIndex:i] retain];
+			Context *context = [objects objectAtIndex:i];
 			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			contextView.title = context.name;
 			contextView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];

@@ -53,7 +53,7 @@
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
-			Context *folder = [[objects objectAtIndex:i] retain];
+			Context *folder = [objects objectAtIndex:i];
 			TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			folderView.title = folder.name;
 			folderView.selector = @selector(getTasksInFolder:error:);

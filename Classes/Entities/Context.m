@@ -58,6 +58,7 @@
 	if (objects == nil) 
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		[request release];
 		return nil;
 	}
 	
@@ -92,6 +93,7 @@
 	if (objects == nil) 
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		[request release];
 		return nil;
 	}
 	

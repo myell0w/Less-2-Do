@@ -98,6 +98,8 @@
 	if (objects == nil) 
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		[request release];
+		
 		return nil;
 	}
 	
@@ -134,6 +136,8 @@
 	if (objects == nil) 
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		[request release];
+		
 		return nil;
 	}
 	
@@ -212,9 +216,8 @@
 {
     NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
 
-	NSMutableArray *resultSet = [[NSMutableArray alloc] init];
-	Task *t;
-	for(t in objects)
+	NSMutableArray *resultSet = [NSMutableArray array];
+	for(Task* t in objects)
 	{
 		if([t.tags count] == 0)
 		{

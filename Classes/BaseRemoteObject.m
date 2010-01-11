@@ -40,12 +40,15 @@
 	
 	/* apply filter string */
 	[request setPropertiesToFetch:[NSArray arrayWithObject:expressionDescription]];
+	[expressionDescription release];
 	
 	/* fetch objects */
 	NSArray *objects = [[self managedObjectContext] executeFetchRequest:request error:&fetchError];
 	if (objects == nil) 
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
+		[request release];
+		
 		return nil;
 	}
 	

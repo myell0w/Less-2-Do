@@ -747,6 +747,7 @@
 					[UIImage imageNamed:@"priority_1.png"],
 					[UIImage imageNamed:@"priority_0.png"],nil];
 	UISegmentedControl *priorityControl = [[UISegmentedControl alloc] initWithItems:img];
+	[img release];
 	priorityControl.frame = PRIORITY_RECT;
 	priorityControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	priorityControl.selectedSegmentIndex = 3;

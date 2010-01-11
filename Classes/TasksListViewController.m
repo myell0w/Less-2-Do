@@ -160,8 +160,11 @@
 		
 		if ([context hasGps]) {
 			distance = [[NSString alloc] initWithFormat:@"distance: %f", [context distanceTo:currentPosition]];
+			titleDetail.text = distance;
+			[distance release];
 		} else {
 			distance = @"No GPS";
+			titleDetail.text = distance;
 		}
 	}
 
@@ -205,6 +208,7 @@
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	[BaseManagedObject deleteObject:t error:&error];
+	//TODO: Matthias: Hier sollte ein release stehen
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

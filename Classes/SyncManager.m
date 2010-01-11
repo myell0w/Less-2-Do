@@ -33,7 +33,6 @@
 	{
 		NSLog(@"Name: %@ remoteId: %d", f.name,[f.remoteId integerValue]);
 	}
-	[testFuck release];
 	
 	
 	//AutoCommit disable
