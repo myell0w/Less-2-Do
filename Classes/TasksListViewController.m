@@ -28,6 +28,8 @@
 
 @synthesize image;
 @synthesize tasks;
+@synthesize filteredTasks;
+@synthesize searchDisplayController;
 @synthesize selector;
 @synthesize argument;
 @synthesize detailMode;
@@ -43,13 +45,26 @@
 
 - (void)viewDidLoad {
 	NSMutableArray *array = [[NSMutableArray alloc] init];
+	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
 	self.tasks = array;
+	self.filteredTasks = filteredArray;
 	[array release];
+	[filteredArray release];
 		
 	formatDate = [[NSDateFormatter alloc] init];
 	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
 	formatTime = [[NSDateFormatter alloc] init];
 	[formatTime setDateFormat:@"h:mm a"];
+	
+	self.tableView.scrollEnabled = YES;
+	
+	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 41.0)];
+	self.searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+	self.searchDisplayController.delegate = self;
+	self.searchDisplayController.searchResultsDataSource = self;
+	self.searchDisplayController.searchResultsDelegate = self;
+	[searchBar release];
+	self.tableView.tableHeaderView = self.searchDisplayController.searchBar;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,6 +92,7 @@
 - (void)viewDidUnload {
 	self.image = nil;
 	self.tasks = nil;
+	self.filteredTasks = nil;
 	self.argument = nil;
 	
 	[formatDate release];
@@ -88,6 +104,7 @@
 - (void)dealloc {
 	[image release];
 	[tasks release];
+	[filteredTasks release];
 	[formatDate release];
 	[formatTime release];
 	[argument release];
@@ -106,7 +123,11 @@
 
 
 // Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section {
+	if (aTableView == self.searchDisplayController.searchResultsTableView) {
+		return [self.filteredTasks count];
+	}
+	
 	return [tasks count];
 }
 
@@ -116,7 +137,13 @@
 	static NSString *reuseID = @"TaskInListCellID";
 	UITableViewCell *cell = nil;
 	int row = [indexPath row];
-	Task *t = [tasks objectAtIndex:row];
+	Task *t = nil;
+	
+	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		t = [filteredTasks objectAtIndex:row];
+	} else {
+		t = [tasks objectAtIndex:row];
+	}
 	
 	cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:reuseID];
 	
@@ -191,7 +218,11 @@
 										   initWithNibName:@"ShowTaskViewController" 
 										   bundle:nil];
 	stvc.title = @"Task Details";
-	stvc.task = [self.tasks objectAtIndex:indexPath.row];
+	if (tableView == self.searchDisplayController.searchResultsTableView) {
+		stvc.task = [self.filteredTasks objectAtIndex:indexPath.row];
+	} else {
+		stvc.task = [self.tasks objectAtIndex:indexPath.row];
+	}
 	
 	[self.navigationController pushViewController:stvc animated:YES];
 	[stvc release];
@@ -212,6 +243,41 @@
 	
 	ALog(@"Task gelöscht");
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Content Filtering
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+	// Update the filtered array based on the search text
+	
+	[self.filteredTasks removeAllObjects]; // First clear the filtered array.
+	
+	// Search the main list
+
+	for (Task *t in self.tasks) {
+		NSComparisonResult result = [t.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+
+        if (result == NSOrderedSame) {
+				[self.filteredTasks addObject:t];
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark UISearchDisplayController Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString scope:nil];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Custom Methods
