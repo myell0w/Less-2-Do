@@ -311,7 +311,7 @@
 		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 		label.tag = TAG_TIMER;
 		label.textAlignment = UITextAlignmentCenter;
-		label.text = [NSString stringWithFormat:@"Time: %d sec", self.task.timerValue];
+		label.text = [NSString stringWithFormat:@"Time: %d sec", [self.task.timerValue intValue]];
 		
 		[footerView addSubview:label];
 		[label release];
@@ -455,6 +455,12 @@
 		[button setTitle:@"Stop" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 		
+		timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+												 target:self
+											   selector:@selector(increaseTimer:)
+											   userInfo:nil
+												repeats:YES];
+		
 	} 
 	
 	// Stop
@@ -465,6 +471,8 @@
 		
 		[button setTitle:@"Start" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+		[timer invalidate];
 	}
 }
 
@@ -484,6 +492,21 @@
 - (IBAction)taskWasAdded:(NSNotification *)notification {
 	[self reloadProperties];
 	[self.tableView reloadData];
+}
+
+- (IBAction)increaseTimer:(NSTimer *) theTimer {
+	int value = [self.task.timerValue intValue];
+	NSNumber* newValue = nil;
+	UILabel *label = (UILabel *)[footerView viewWithTag:TAG_TIMER];
+	
+	value++;
+	newValue = [[NSNumber alloc] initWithInt:value];
+	
+	self.task.timerValue = newValue;
+	
+	label.text = [NSString stringWithFormat:@"Time: %d sec", [self.task.timerValue intValue]];
+	
+	[newValue release];
 }
 
 - (void)reloadProperties {

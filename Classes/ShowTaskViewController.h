@@ -23,6 +23,8 @@
 	
 	// footer view for start/stop
 	UIView *footerView;
+	// Timer for start/stop
+	NSTimer *timer;
 }
 
 @property (nonatomic, retain) Task* task;
@@ -32,6 +34,8 @@
 - (IBAction)startStopTask:(id)sender;
 - (IBAction)edit:(id)sender;
 - (IBAction)taskWasAdded:(NSNotification *)notification;
+// increases the value of the timer
+- (IBAction)increaseTimer:(NSTimer *) theTimer;
 
 // returns the cellID for a given indexPath
 - (NSString *) cellIDForIndexPath:(NSIndexPath *)indexPath;
