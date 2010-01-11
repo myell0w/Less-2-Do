@@ -214,7 +214,7 @@
 
 + (NSArray *) getTasksWithoutTag:(NSError **)error
 {
-  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count > 0"] error:error];
+  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0"] error:error];
 }
 
 @end
