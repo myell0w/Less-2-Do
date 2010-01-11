@@ -78,6 +78,7 @@
 		39D0535510C03EA50020D7D9 /* priority_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535110C03EA50020D7D9 /* priority_0.png */; };
 		39D0535610C03EA50020D7D9 /* priority_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535210C03EA50020D7D9 /* priority_1.png */; };
 		39D0535810C03EA50020D7D9 /* priority_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 39D0535410C03EA50020D7D9 /* priority_3.png */; };
+		39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E1376A10FB3C37003ED216 /* TDBadgedCell.m */; };
 		39E31A3010CC3657002F0D86 /* TaskEditTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E31A2F10CC3657002F0D86 /* TaskEditTagsViewController.m */; };
 		39E31A3510CC387A002F0D86 /* TaskEditTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */; };
 		39E31B0910CC4C4B002F0D86 /* TaskEditFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */; };
@@ -294,6 +295,8 @@
 		39D0535110C03EA50020D7D9 /* priority_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_0.png; sourceTree = "<group>"; };
 		39D0535210C03EA50020D7D9 /* priority_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_1.png; sourceTree = "<group>"; };
 		39D0535410C03EA50020D7D9 /* priority_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = priority_3.png; sourceTree = "<group>"; };
+		39E1376910FB3C37003ED216 /* TDBadgedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBadgedCell.h; sourceTree = "<group>"; };
+		39E1376A10FB3C37003ED216 /* TDBadgedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBadgedCell.m; sourceTree = "<group>"; };
 		39E31A2E10CC3657002F0D86 /* TaskEditTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditTagsViewController.h; sourceTree = "<group>"; };
 		39E31A2F10CC3657002F0D86 /* TaskEditTagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditTagsViewController.m; sourceTree = "<group>"; };
 		39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditTagsViewController.xib; path = Classes/TaskEditTagsViewController.xib; sourceTree = "<group>"; };
@@ -768,6 +771,8 @@
 		39C6D00210BEDED2000A0C70 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				39E1376910FB3C37003ED216 /* TDBadgedCell.h */,
+				39E1376A10FB3C37003ED216 /* TDBadgedCell.m */,
 				39C6D01310BEE3F3000A0C70 /* CustomCell.h */,
 				39C6D01410BEE3F3000A0C70 /* CustomCell.m */,
 				39C6D05A10BEE82E000A0C70 /* TaskPriorityCell.h */,
@@ -1160,6 +1165,7 @@
 				D4C4601010F25741008B07FB /* AddressAnnotation.m in Sources */,
 				398D634910F280980061BE66 /* BaseRemoteObject.m in Sources */,
 				D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */,
+				39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "HomeFirstLevelViewController.h"
 #import "HomeNavigationController.h"
 #import "TasksListViewController.h"
+#import "TDBadgedCell.h"
 #import "Task.h"
 
 #define TAG_COUNT 31
@@ -107,7 +108,7 @@
 }
 
 -(void)dealloc {
-	[tableView release];
+	[self.tableView release];
 	[controllersSection0 release];
 	[controllersSection1 release];
 	
@@ -132,31 +133,28 @@
 	
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+	TDBadgedCell *cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		UILabel *labelCount = [[UILabel alloc] initWithFrame:CGRectMake(250, 10, 30, 20)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(240, 2, 40, 30)];
+		label.text = @"Test";
+		label.backgroundColor = [UIColor yellowColor];
 		
-		labelCount.tag = TAG_COUNT;
-		labelCount.textColor = [UIColor grayColor];
-		labelCount.text = @"(0)";
-		
-		//[cell.contentView addSubview:labelCount];
+		[cell.contentView addSubview:label];
+						  
 	}
 	
 	// customize cell-appearance:
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	//NSString *detail = [[NSString alloc]initWithFormat:@"(%d)",[c taskCount]];
-	//UILabel *labelCount = (UILabel *)[cell viewWithTag:TAG_COUNT];
 	
-	cell.textLabel.text = c.title;
-	//labelCount.text = detail;
-	cell.imageView.image = c.image;
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	cell.textLabel.text = c.title; cell.textLabel.backgroundColor = [UIColor greenColor];
+	cell.badgeNumber = 2;//c.taskCount;
+    cell.imageView.image = c.image;
+	cell.imageView.backgroundColor = [UIColor redColor];
 	
-	//[detail release];
 	
 	return cell;
 }
