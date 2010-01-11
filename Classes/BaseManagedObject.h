@@ -10,12 +10,13 @@
 @interface BaseManagedObject : NSManagedObject {
 }
 
-@property (nonatomic, retain) NSNumber * remoteId;
+@property (nonatomic, retain) NSNumber *deleted;
 
 + (NSManagedObjectContext*) managedObjectContext;
 
 + (BaseManagedObject *)objectOfType:(NSString *)type;
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error;
++ (BOOL)deleteObjectFromPersistentStore:(BaseManagedObject *)theObject error:(NSError **)error;
 + (void)commit;
 
 @end

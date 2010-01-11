@@ -214,21 +214,7 @@
 - (int)taskCount {
 	//TODO: change, performance!
 	NSArray *objects = [self getTasks];
-	
-	if (objects == nil) {
-		ALog(@"There was an error!");
-		// Do whatever error handling is appropriate
-	}
-	else {
-		[self.tasks removeAllObjects];
-		// for schleife objekte erzeugen und array addObject:current Task
-		for (Task *t in objects) {
-			[self.tasks addObject:t];
-		}
-	}
-	
-	[self.tableView reloadData];
-	return [tasks count];
+	return [objects count];
 }
 
 - (void)setUpCell:(UITableViewCell *)cell {
@@ -348,6 +334,8 @@
 			return result;
 		}
 	} 
+
+	ALog("Method getAllTasks called");
 	
 	return [Task getAllTasks:&error];
 }

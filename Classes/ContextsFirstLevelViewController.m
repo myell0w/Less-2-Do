@@ -10,6 +10,7 @@
 #import "TasksListViewController.h"
 #import "EditContextViewController.h"
 #import "ContextsGPSViewController.h"
+#import "TDBadgedCell.h"
 
 @implementation ContextsFirstLevelViewController
 
@@ -118,17 +119,15 @@
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+	TDBadgedCell *cell = (TDBadgedCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
 	if(!(section == 0 && row == 1)) {
-		NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
-		cell.detailTextLabel.text = detail;
-		[detail release];
+		cell.badgeNumber = c.taskCount;
 	}
 	
 	cell.imageView.image = c.image;

@@ -118,31 +118,26 @@
 	NSUInteger row = [indexPath row];
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
-	UITableViewCell *cell;
+	TDBadgedCell *cell;
 	if(section==0)
-		cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+		cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
 	else {
-		cell = [self.tableView dequeueReusableCellWithIdentifier:folderCellID];
+		cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:folderCellID];
 	}
 
-	NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
-	
 	if (cell == nil) {
 		if(section==0)
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+			cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 		else {
-			//NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FolderCell" owner:self options:nil];
-			//for (id oneObject in nib) if ([oneObject isKindOfClass:[FolderCell class]])
-				cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
+			cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
 		}
 
 	}
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
+	cell.badgeNumber = c.taskCount;
 	
 	if(section==0) {
-		cell.detailTextLabel.text = detail;
 		cell.textLabel.text = c.title;
 		cell.imageView.image = c.image;
 		cell.editingAccessoryType = UITableViewCellAccessoryNone;
@@ -150,13 +145,11 @@
 	else {
 		Folder *folder = [self.list objectAtIndex:row];
 		((FolderCell *)cell).title.text = folder.name;
-		((FolderCell *)cell).detail.text = detail;
 		((FolderCell *)cell).imageView.backgroundColor = [folder color]; 
 		ALog ("%@: %@ %@ %@", folder.name, folder.r, folder.g, folder.b);
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	
-	[detail release];
 	
 	return cell;
 }

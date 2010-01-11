@@ -282,6 +282,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
 	
     if(footerView == nil) {
+		int value = [self.task.timerValue intValue];
+		int seconds = value % 60;
+		int minutes = value / 60;
+		int hours =  value / 3600;
+		NSString *s = [[NSString alloc] initWithFormat:@"Time: %02d:%02d:%02d h", hours, minutes, seconds];
+
         //allocate the view if it doesn't exist yet
         footerView  = [[UIView alloc] init];
 		
@@ -311,10 +317,11 @@
 		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 		label.tag = TAG_TIMER;
 		label.textAlignment = UITextAlignmentCenter;
-		label.text = [NSString stringWithFormat:@"Time: %d sec", self.task.timerValue];
+		label.text = s;
 		
 		[footerView addSubview:label];
 		[label release];
+		[s release];
     }
 	
     //return the view for the footer
@@ -455,6 +462,12 @@
 		[button setTitle:@"Stop" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
 		
+		timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+												 target:self
+											   selector:@selector(increaseTimer:)
+											   userInfo:nil
+												repeats:YES];
+		
 	} 
 	
 	// Stop
@@ -465,6 +478,8 @@
 		
 		[button setTitle:@"Start" forState:UIControlStateNormal];
         [button setBackgroundImage:image forState:UIControlStateNormal];
+		
+		[timer invalidate];
 	}
 }
 
@@ -484,6 +499,22 @@
 - (IBAction)taskWasAdded:(NSNotification *)notification {
 	[self reloadProperties];
 	[self.tableView reloadData];
+}
+
+- (IBAction)increaseTimer:(NSTimer *) theTimer {
+	int value = [self.task.timerValue intValue] + 1;
+	NSNumber* newNumber = [[NSNumber alloc] initWithInt:value];
+	int seconds = value % 60;
+	int minutes = value / 60;
+	int hours =  value / 3600;
+	UILabel *label = (UILabel *)[footerView viewWithTag:TAG_TIMER];
+	NSString *s = [[NSString alloc] initWithFormat:@"Time: %02d:%02d:%02d h", hours, minutes, seconds];
+	
+	self.task.timerValue = newNumber;
+	label.text = s;
+	
+	[newNumber release];
+	[s release];
 }
 
 - (void)reloadProperties {

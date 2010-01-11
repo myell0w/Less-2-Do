@@ -68,6 +68,8 @@
 
 - (void)commitDatabase:(NSTimer *) theTimer;
 -(NSString *)applicationDocumentsDirectory;
+-(void)startTimer;
+-(void)stopTimer;
 
 @end
 

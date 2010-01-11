@@ -37,6 +37,11 @@
 //TODO folder with rgb
 + (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;
 + (NSArray *)getRemoteStoredFolders:(NSError **)error;
++ (NSArray *)getRemoteStoredFoldersLocallyDeleted:(NSError **)error;
++ (NSArray *)getLocalStoredFoldersLocallyDeleted:(NSError **)error;
++ (NSArray *)getAllFoldersLocallyDeleted:(NSError **)error;
++ (NSArray *)getUnsyncedFolders:(NSError **)error;
++ (NSArray *)getModifiedFolders:(NSError **)error;
 
 - (UIColor *) color;
 

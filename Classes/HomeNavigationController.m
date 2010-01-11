@@ -9,6 +9,7 @@
 #import "HomeNavigationController.h"
 #import "QuickAddViewController.h"
 #import "EditTaskViewController.h"
+#import "SyncManager.h"
 
 
 @implementation HomeNavigationController
@@ -136,7 +137,7 @@
 	[self hideQuickAdd];
 	
 	if ([task.name length] > 0) {
-		ALog("Task to quickadd: %@", task);
+		ALog("Task to quickadd: %@ %@", task, task.timerValue);
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	}
 }
@@ -151,5 +152,12 @@
 		quickAddController = nil;		
 	}	
 }
+
+-(IBAction)syncButtonPressed:(id)sender {
+	NSError *error = nil;
+	[SyncManager syncWithPreference:SyncPreferRemote error:&error];
+	ALog(@"error after button (arschloch button): %@", error);
+	 
+	}
 
 @end
