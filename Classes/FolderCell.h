@@ -13,12 +13,10 @@
 @interface FolderCell : CustomCell {
 	// Outlet for ImageView to set the BackgroundColor
 	UIImageView *_imageview;
-	
 	UILabel *_title;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 @property (nonatomic, retain) IBOutlet UILabel *title;
-@property (nonatomic, retain) IBOutlet UILabel *detail;
 
 @end

@@ -264,10 +264,10 @@
 	// Search the main list
 
 	for (Task *t in self.tasks) {
-		NSComparisonResult result = [t.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-
-        if (result == NSOrderedSame) {
-				[self.filteredTasks addObject:t];
+		NSRange range = [t.name rangeOfString:searchText options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch];
+		
+		if (range.location != NSNotFound) {
+			[self.filteredTasks addObject:t];
 		}
 	}
 }
