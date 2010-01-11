@@ -119,9 +119,10 @@
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	TDBadgedCell *cell;
-	if(section==0)
+	
+	if(section==0) {
 		cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
-	else {
+	} else {
 		cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:folderCellID];
 	}
 
