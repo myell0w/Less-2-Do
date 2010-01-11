@@ -61,7 +61,7 @@
 		fetchedRemote = YES;
 		NSArray *remoteFolders = [tdApi getFolders:&localError];
 		NSArray *localFoldersWithRemoteIdArray = [Folder getRemoteStoredFolders:&localError];
-		NSMutableArray *localFoldersWithRemoteId = [[NSMutableArray alloc] init];
+		NSMutableArray *localFoldersWithRemoteId = [NSMutableArray array];
 		[localFoldersWithRemoteId addObjectsFromArray:localFoldersWithRemoteIdArray];
 		usedLocalEntityVersion = [[NSMutableArray alloc] init];
 		
@@ -128,7 +128,6 @@
 				[remoteFolder release];
 			}
 		}
-		[localFoldersWithRemoteId release];
 
 	}
 	
@@ -162,7 +161,6 @@
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
 			[newFolder release];
 		}
-
 		NSLog(@"NACH DER SCHLEIFE");
 	}
 	else // vergleiche sync date und mod date
@@ -217,6 +215,7 @@
 		Folder *folderToDeleteLocally = [foldersToDeleteLocally objectAtIndex:i];
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
 	}
+	[tdApi release];
 
 	//AutoCommit enabled
 	[self startAutocommit];

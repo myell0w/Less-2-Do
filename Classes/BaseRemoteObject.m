@@ -90,7 +90,7 @@
 	{
 		*error = [NSError errorWithDomain:DAOErrorDomain code:DAONotFetchedError userInfo:nil];
 		[request release];
-		
+ 
 		return nil;
 	}
 	

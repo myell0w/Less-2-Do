@@ -15,7 +15,6 @@
 	UIImageView *_imageview;
 	
 	UILabel *_title;
-	UILabel *_detail;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;

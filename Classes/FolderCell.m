@@ -12,7 +12,6 @@
 @implementation FolderCell
 @synthesize imageView = _imageview;
 @synthesize title = _title;
-@synthesize detail = _detail;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
