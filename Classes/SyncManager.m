@@ -49,6 +49,7 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
 	NSDate *lastRemoteFolderEditDate = [formatter dateFromString:lastRemoteFolderEditString];
+	[formatter release];
 	
 	BOOL fetchedRemote = NO;
 	NSMutableArray *usedLocalEntityVersion = nil;
@@ -161,7 +162,7 @@
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
 			[newFolder release];
 		}
-		[unsyncedFolders release];
+
 		NSLog(@"NACH DER SCHLEIFE");
 	}
 	else // vergleiche sync date und mod date
@@ -194,8 +195,6 @@
 			}
 
 		}
-		[modifiedFolders release];
-
 	}
 	// alle folder mit remoteId != nil && deleted == true ==> delete toodledo
 	
@@ -210,8 +209,6 @@
 		[newFolder release];
 	}
 	
-	[foldersToDeleteRemote release];
-	
 	// alle folder mit deleted == true lokal löschen
 	
 	NSArray *foldersToDeleteLocally = [Folder getAllFoldersLocallyDeleted:&localError];
@@ -220,13 +217,12 @@
 		Folder *folderToDeleteLocally = [foldersToDeleteLocally objectAtIndex:i];
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
 	}
-	[foldersToDeleteLocally release];
 
 	//AutoCommit enabled
 	[self startAutocommit];
 	
 	//ALog(@"Sync is done.");
-	
+	[tdApi release];
 }
 
 /*
