@@ -136,7 +136,7 @@
 	TDBadgedCell *cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil) {
-		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
+		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
@@ -144,8 +144,8 @@
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	
 	cell.textLabel.text = c.title; 
-	cell.badgeNumber = c.taskCount;
-    cell.imageView.image = c.image;
+	cell.badgeNumber = 1;//c.taskCount;
+  cell.imageView.image = c.image;
 	
 	return cell;
 }
