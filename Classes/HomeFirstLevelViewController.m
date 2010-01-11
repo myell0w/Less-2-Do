@@ -144,7 +144,7 @@
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	
 	cell.textLabel.text = c.title; 
-	cell.badgeNumber = 1;//c.taskCount;
+	cell.badgeNumber = c.taskCount;
   cell.imageView.image = c.image;
 	
 	return cell;

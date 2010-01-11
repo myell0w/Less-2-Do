@@ -282,6 +282,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
 	
     if(footerView == nil) {
+		int value = [self.task.timerValue intValue];
+		int seconds = value % 60;
+		int minutes = value / 60;
+		int hours =  value / 3600;
+		NSString *s = [[NSString alloc] initWithFormat:@"Time: %02d:%02d:%02d h", hours, minutes, seconds];
+
         //allocate the view if it doesn't exist yet
         footerView  = [[UIView alloc] init];
 		
@@ -311,10 +317,11 @@
 		label.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 		label.tag = TAG_TIMER;
 		label.textAlignment = UITextAlignmentCenter;
-		label.text = [NSString stringWithFormat:@"Time: %d sec", [self.task.timerValue intValue]];
+		label.text = s;
 		
 		[footerView addSubview:label];
 		[label release];
+		[s release];
     }
 	
     //return the view for the footer
@@ -495,18 +502,19 @@
 }
 
 - (IBAction)increaseTimer:(NSTimer *) theTimer {
-	int value = [self.task.timerValue intValue];
-	NSNumber* newValue = nil;
+	int value = [self.task.timerValue intValue] + 1;
+	NSNumber* newNumber = [[NSNumber alloc] initWithInt:value];
+	int seconds = value % 60;
+	int minutes = value / 60;
+	int hours =  value / 3600;
 	UILabel *label = (UILabel *)[footerView viewWithTag:TAG_TIMER];
+	NSString *s = [[NSString alloc] initWithFormat:@"Time: %02d:%02d:%02d h", hours, minutes, seconds];
 	
-	value++;
-	newValue = [[NSNumber alloc] initWithInt:value];
+	self.task.timerValue = newNumber;
+	label.text = s;
 	
-	self.task.timerValue = newValue;
-	
-	label.text = [NSString stringWithFormat:@"Time: %d sec", [self.task.timerValue intValue]];
-	
-	[newValue release];
+	[newNumber release];
+	[s release];
 }
 
 - (void)reloadProperties {
