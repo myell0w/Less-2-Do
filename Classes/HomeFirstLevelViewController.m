@@ -136,25 +136,16 @@
 	TDBadgedCell *cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil) {
-		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(240, 2, 40, 30)];
-		label.text = @"Test";
-		label.backgroundColor = [UIColor yellowColor];
-		
-		[cell.contentView addSubview:label];
-						  
 	}
 	
 	// customize cell-appearance:
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	
-	cell.textLabel.text = c.title; cell.textLabel.backgroundColor = [UIColor greenColor];
-	cell.badgeNumber = 2;//c.taskCount;
+	cell.textLabel.text = c.title; 
+	cell.badgeNumber = c.taskCount;
     cell.imageView.image = c.image;
-	cell.imageView.backgroundColor = [UIColor redColor];
-	
 	
 	return cell;
 }

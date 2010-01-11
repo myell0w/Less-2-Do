@@ -114,13 +114,11 @@
 	NSUInteger section = [indexPath section];
 	TasksListViewController *c = [[self sectionForIndex:section] objectAtIndex:row];
 	TDBadgedCell *cell = (TDBadgedCell *)[self.tableView dequeueReusableCellWithIdentifier:cellID];
-	//NSString *detail = [[NSString alloc]initWithFormat:@"[%d Tasks]",c.taskCount];
 	
 	if (cell == nil) {
-		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 	}
 	
-	//cell.detailTextLabel.text = detail;
 	cell.badgeNumber = c.taskCount;
 	cell.imageView.image = c.image;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -134,8 +132,6 @@
 		cell.textLabel.text = tag.name;
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
-	
-	//[detail release];
 	
 	return cell;
 }
