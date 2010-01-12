@@ -78,9 +78,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	NSLog(@"View for Annotation is called");
-	MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"ShowAddressAnotation"];
+	MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AddressAnnotation"];
 	if (annotationView == nil) {
-		annotationView = [(AddressAnnotation *)annotation viewForAnnotation];
+		annotationView = [AddressAnnotation viewForAnnotation:annotation withColor:MKPinAnnotationColorRed];
 		ALog ("Created View for Annotation");
 	}
 	else {

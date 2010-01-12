@@ -13,12 +13,16 @@
 	CLLocationCoordinate2D _coordinate;
 	NSString *_title;
 	NSString *_subtitle;
+	Context *_context;
 }
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *subtitle;
+@property (nonatomic, retain) Context *context;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 
-- (MKAnnotationView *)viewForAnnotation;
++ (MKPinAnnotationView *)viewForAnnotation:(AddressAnnotation *)annotation withColor:(MKPinAnnotationColor)color;
++ (MKPinAnnotationView *)viewForAnnotation:(AddressAnnotation *)annotation withColor:(MKPinAnnotationColor)color andContext:(Context *)context;
+
 
 @end
