@@ -82,7 +82,7 @@
 		if(self.mapViewController.view.superview == nil) {
 			
 			if(self.mapViewController.view == nil)
-				self.mapViewController = [[ContextsGPSMapViewController alloc] initWithNibName:@"ContextsGPSMapViewController" bundle:nil];
+				self.mapViewController = [[ContextsGPSMapViewController alloc] initWithNibName:@"ContextsGPSMapViewController" bundle:nil parent:self.navigationController];
 		
 			[self.listViewController.view removeFromSuperview];
 			[self.view insertSubview:self.mapViewController.view atIndex:0];

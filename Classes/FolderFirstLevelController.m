@@ -23,6 +23,13 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
 	ALog ("FolderDetailView start DidLoad");
+	self.title = @"Folder";
+	self.mustReorder = NO;
+	
+	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	self.list = [[NSMutableArray alloc] init];
@@ -67,16 +74,10 @@
 	DLog ("%d Items in FolderList", [self.list count]);
 	
 	self.controllersSection1 = array;
-	self.title = @"Folder";
 	[array release];
 	
-	self.mustReorder = NO;
-	
-	[super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
 	[self.tableView reloadData];
+	[super viewWillAppear:animated];
 }
 
 -(void)viewDidUnload {

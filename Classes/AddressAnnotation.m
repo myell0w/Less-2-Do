@@ -19,6 +19,7 @@
 @synthesize title=_title;
 @synthesize subtitle=_subtitle;
 @synthesize coordinate=_coordinate;
+@synthesize context = _context;
 
 -(id)initWithCoordinate:(CLLocationCoordinate2D) c{
 	self.coordinate=c;
@@ -26,19 +27,24 @@
 	return self;
 }
 
--(MKAnnotationView *)viewForAnnotation {
-	MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:self reuseIdentifier:@"ShowAddressAnotation"] autorelease];
++ (MKPinAnnotationView *)viewForAnnotation:(AddressAnnotation *)annotation withColor:(MKPinAnnotationColor)color {
+	MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"AddressAnotation"] autorelease];
 	annotationView.canShowCallout = YES;
 	
-	annotationView.image = [UIImage imageNamed:@"Pin.png"];
-	annotationView.centerOffset = CGPointMake(8, -10);
-	annotationView.calloutOffset = CGPointMake(-8, 0);
+	annotationView.pinColor=color;
 	
-	UIImageView *pinShadow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"PinShadow.png"]];
-	pinShadow.frame = CGRectMake(0, 0, 32, 39);
-	pinShadow.hidden = YES;
-	[annotationView addSubview:pinShadow];
-	[pinShadow release];
+	return annotationView;
+}
+
++ (MKPinAnnotationView *)viewForAnnotation:(AddressAnnotation *)annotation withColor:(MKPinAnnotationColor)color andContext:(Context *)context{
+	MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"ContextAnotation"] autorelease];
+	annotationView.canShowCallout = YES;
+	
+
+	annotationView.pinColor=color;
+	
+	UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+	annotationView.rightCalloutAccessoryView = rightButton;	
 	
 	return annotationView;
 }

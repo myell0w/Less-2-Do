@@ -132,8 +132,6 @@
 		D461AC3D10F925E00087E367 /* ContextsGPSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */; };
 		D461AC3E10F925E00087E367 /* ContextsGPSMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */; };
 		D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4858BFD10F37CA4005FB59C /* SyncManager.m */; };
-		D4858CE110F38C74005FB59C /* PinShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = D4858CDF10F38C74005FB59C /* PinShadow.png */; };
-		D4858CE210F38C74005FB59C /* Pin.png in Resources */ = {isa = PBXBuildFile; fileRef = D4858CE010F38C74005FB59C /* Pin.png */; };
 		D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B5FEDD10E65538003584A5 /* MapKit.framework */; };
 		D4B5FF4710E663C5003584A5 /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF4610E663C5003584A5 /* blueButton.png */; };
 		D4B5FF5410E66539003584A5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = D4B5FF5210E66539003584A5 /* location.png */; };
@@ -394,11 +392,9 @@
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsGPSMapViewController.h; sourceTree = "<group>"; };
 		D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsGPSMapViewController.m; sourceTree = "<group>"; };
-		D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsGPSMapViewController.xib; sourceTree = "<group>"; };
+		D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContextsGPSMapViewController.xib; path = Classes/ContextsGPSMapViewController.xib; sourceTree = "<group>"; };
 		D4858BFD10F37CA4005FB59C /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
 		D4858BFE10F37CA4005FB59C /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
-		D4858CDF10F38C74005FB59C /* PinShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PinShadow.png; sourceTree = "<group>"; };
-		D4858CE010F38C74005FB59C /* Pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pin.png; sourceTree = "<group>"; };
 		D4B5FEDD10E65538003584A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4B5FF4610E663C5003584A5 /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		D4B5FF5210E66539003584A5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
@@ -544,8 +540,6 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				D4858CDF10F38C74005FB59C /* PinShadow.png */,
-				D4858CE010F38C74005FB59C /* Pin.png */,
 				D4B5FF5210E66539003584A5 /* location.png */,
 				392B712410F10A37008106D0 /* button_start.png */,
 				392B712510F10A37008106D0 /* button_stop.png */,
@@ -683,7 +677,6 @@
 				D4C4600F10F25741008B07FB /* AddressAnnotation.m */,
 				D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */,
 				D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */,
-				D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -720,6 +713,7 @@
 				398AC82C10F252AB0015319A /* ContextsGPSViewController.xib */,
 				D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */,
 				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
+				D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */,
 				398AC7E610F24F590015319A /* ShowContextViewController.xib */,
 			);
 			name = contexts;
@@ -760,7 +754,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -1022,10 +1016,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1124,8 +1118,6 @@
 				D4C45F5610F243FD008B07FB /* TaskEditRecurrenceViewController.xib in Resources */,
 				398AC7E810F24F590015319A /* ShowContextViewController.xib in Resources */,
 				398AC82D10F252AB0015319A /* ContextsGPSViewController.xib in Resources */,
-				D4858CE110F38C74005FB59C /* PinShadow.png in Resources */,
-				D4858CE210F38C74005FB59C /* Pin.png in Resources */,
 				D461AC3E10F925E00087E367 /* ContextsGPSMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
