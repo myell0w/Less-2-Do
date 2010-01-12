@@ -15,9 +15,11 @@
 /*
  Führt eine Synchronisation mit automatischer Wahl des aktuelleren Datensatzes durch.
 */
-+(void)syncWithPreference:(SyncPreference)preference error:(NSError**)error
++(BOOL)syncWithPreference:(SyncPreference)preference error:(NSError**)error
 {
 	NSError *localError;
+	BOOL requestSuccessful = NO;
+	NSDate *currentDate = [NSDate date];
 	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
 	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&localError];
 	//ALog(@"tdApi init error: %@", localError);
@@ -49,6 +51,7 @@
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
 	NSDate *lastRemoteFolderEditDate = [formatter dateFromString:lastRemoteFolderEditString];
+	lastRemoteFolderEditDate = [lastRemoteFolderEditDate addTimeInterval:21600]; // hardcodiert: server time difference
 	[formatter release];
 	
 	BOOL fetchedRemote = NO;
@@ -75,6 +78,16 @@
 				if([localFolder.remoteId integerValue] == remoteFolder.uid)
 				{
 					foundLocalEntity = YES;
+					/*
+					   HIER VERSCHIEDENE MÖGLICHKEITEN EINBAUEN
+					   1. nach preference
+					        a) preferRemote --> überschreibe jedenfalls lokale Entities
+						    b) preferLocal --> überschreibe jedenfalls remote Entities
+					   2. nach datum
+					        geht nicht so recht für folder/contexts, weil dazu remote kein änderungsdatum gespeichert wird
+					        bei tasks:
+							  je nachdem, welches änderungsdatum neuer ist --> überschreibe ältere version
+					*/
 					if(preference == SyncPreferRemote)
 					{
 						localFolder.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
@@ -82,6 +95,7 @@
 						localFolder.name = remoteFolder.title;
 						localFolder.order = [NSNumber numberWithInteger:remoteFolder.order];
 						// weiter unten: nsset tasks
+						localFolder.lastSyncDate = currentDate;
 					}
 					else
 					{
@@ -100,6 +114,7 @@
 				newFolder.name = remoteFolder.title;
 				newFolder.order = [NSNumber numberWithInteger:remoteFolder.order];
 				newFolder.remoteId = [NSNumber numberWithInteger:remoteFolder.uid];
+				newFolder.lastSyncDate = currentDate;
 			}
 		}
 		
@@ -121,11 +136,21 @@
 				remoteFolder.title = localFolder.name;
 				remoteFolder.order = [localFolder.order integerValue];
 				remoteFolder.uid = [localFolder.remoteId integerValue];
+				requestSuccessful = YES;
 				if(localFolder.deleted == [NSNumber numberWithInteger:0])
 				{
-					BOOL successful = [tdApi editFolder:remoteFolder error:&localError];
+					localFolder.lastSyncDate = currentDate;
+					requestSuccessful = [tdApi editFolder:remoteFolder error:&localError];
 				}
 				[remoteFolder release];
+				if(!requestSuccessful)
+				{
+					*error = localError;
+					[BaseManagedObject rollback];
+					[self startAutocommit];
+					[tdApi release];
+					return NO;
+				}
 			}
 		}
 
@@ -141,8 +166,17 @@
 			newFolder.title = localFolder.name;
 			newFolder.order = [localFolder.order integerValue];
 			newFolder.uid = [localFolder.remoteId integerValue];
-			BOOL successful = [tdApi editFolder:newFolder error:&localError];
+			localFolder.lastSyncDate = currentDate;
+			requestSuccessful = [tdApi editFolder:newFolder error:&localError];
 			[newFolder release];
+			if(!requestSuccessful)
+			{
+				*error = localError;
+				[BaseManagedObject rollback];
+				[self startAutocommit];
+				[tdApi release];
+				return NO;
+			}
 		}
 		[usedLocalEntityVersion release];
 		
@@ -159,6 +193,7 @@
 			NSLog(@"ENDLOS OBEN");
 			
 			localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
+			localFolder.lastSyncDate = currentDate;
 			[newFolder release];
 		}
 		NSLog(@"NACH DER SCHLEIFE");
@@ -180,6 +215,7 @@
 				newFolder.order = [localFolder.order integerValue];
 				NSLog(@"ENDLOS UNTEN");
 				localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:newFolder error:&localError]];
+				localFolder.lastSyncDate = currentDate;
 				[newFolder release];
 			}
 			else 
@@ -188,8 +224,17 @@
 				newFolder.title = localFolder.name;
 				newFolder.order = [localFolder.order integerValue];
 				newFolder.uid = [localFolder.remoteId integerValue];
-				BOOL successful = [tdApi editFolder:newFolder error:&localError];
+				localFolder.lastSyncDate =currentDate; 
+				requestSuccessful = [tdApi editFolder:newFolder error:&localError];
 				[newFolder release];
+				if(!requestSuccessful)
+				{
+					*error = localError;
+					[BaseManagedObject rollback];
+					[self startAutocommit];
+					[tdApi release];
+					return NO;
+				}
 			}
 
 		}
@@ -203,8 +248,16 @@
 		Folder * folderToDeleteRemote = [foldersToDeleteRemote objectAtIndex:i];
 		GtdFolder *newFolder = [[GtdFolder alloc] init];
 		newFolder.uid = [folderToDeleteRemote.remoteId integerValue];
-		BOOL successful = [tdApi deleteFolder:newFolder error:&localError];
+		requestSuccessful = [tdApi deleteFolder:newFolder error:&localError];
 		[newFolder release];
+		if(!requestSuccessful)
+		{
+			*error = localError;
+			[BaseManagedObject rollback];
+			[self startAutocommit];
+			[tdApi release];
+			return NO;
+		}
 	}
 	
 	// alle folder mit deleted == true lokal löschen
@@ -217,12 +270,9 @@
 	}
 	
 	[BaseManagedObject commit];
-
-	//AutoCommit enabled
 	[self startAutocommit];
-	
-	//ALog(@"Sync is done.");
 	[tdApi release];
+	return YES;
 }
 
 /*

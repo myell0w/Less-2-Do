@@ -18,7 +18,7 @@ typedef enum {
 	SyncPreferRemote = 2
 } SyncPreference;
 
-+(void)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
++(BOOL)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
 +(void)overrideLocal:(NSError**)error;
 +(void)overrideRemote:(NSError**)error;
 +(void)stopAutocommit;

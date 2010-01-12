@@ -134,19 +134,19 @@
 
 + (NSArray *)getRemoteStoredFolders:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != nil" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != -1" error:error];	
 	return objects;
 }
 
 + (NSArray *)getRemoteStoredFoldersLocallyDeleted:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != nil AND deleted == TRUE" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != -1 AND deleted == TRUE" error:error];	
 	return objects;
 }
 
 + (NSArray *)getLocalStoredFoldersLocallyDeleted:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == nil AND deleted == TRUE" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == TRUE" error:error];	
 	return objects;
 }
 
