@@ -29,6 +29,15 @@
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error
 {
 	theObject.deleted = [NSNumber numberWithInteger:1];
+	ALog(@"deleted the object: %d", [theObject.deleted integerValue]);
+	if(theObject.deleted == [NSNumber numberWithInteger:1])
+	{
+		ALog(@"Passt 1");
+	}
+	if([theObject.deleted integerValue] == 1)
+	{
+		ALog(@"Passt 2");
+	}
 	return YES;
 }
 
@@ -81,7 +90,33 @@
 		
 		if (saveSuccessful == NO)
 		{
-			ALog(@"Error @ autocommit");
+			ALog(@"Error @ autocommit: %@", saveError);
+		}
+		else
+		{
+			ALog(@"Successfully autocommitted");
+		}
+	}
+	else
+		ALog(@"No changes - no autocommit");
+}
+
+/* wird benötigt, um beim commit nach einem Sync das automatische Generieren des
+   letzten lokalen Änderungsdatums zu unterbinden*/
++ (void)commitWithoutLocalModification
+{	
+	NSError *saveError;
+	/* check if there were changes */
+	
+	// ALog(@"Changed: %@", [[[self managedObjectContext] insertedObjects] count]);
+	
+	if([self managedObjectContext].hasChanges)
+	{
+		BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
+		
+		if (saveSuccessful == NO)
+		{
+			ALog(@"Error @ autocommit: %@", saveError);
 		}
 		else
 		{

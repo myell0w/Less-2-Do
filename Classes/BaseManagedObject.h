@@ -18,6 +18,7 @@
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error;
 + (BOOL)deleteObjectFromPersistentStore:(BaseManagedObject *)theObject error:(NSError **)error;
 + (void)commit;
++ (void)commitWithoutLocalModification;
 + (void)rollback;
 
 @end

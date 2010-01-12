@@ -6,7 +6,7 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
-#import "TDApi.h"
+//#import "TDApi.h"
 #import "SyncManager.h"
 #import "CustomGHUnitAppDelegate.h";
 
@@ -76,8 +76,8 @@
 }*/
 
 -(void)testSync {
-	NSError *error;
-	[SyncManager syncWithPreference:SyncPreferLocal error:&error];
+	//NSError *error;
+	//[SyncManager syncWithPreference:SyncPreferLocal error:&error];
 }
 /*-(void)testGetLastModificationDates {
 	NSError *error = nil;
@@ -94,10 +94,10 @@
 {		
 	CustomGHUnitAppDelegate *ghAppDelegate = [[UIApplication sharedApplication] delegate];
 	//ALog(@"Aktiver Timer: %@",  ghAppDelegate.timer);
-	[SyncManager stopAutocommit];
+	//[SyncManager stopAutocommit];
 	//ALog(@"Deaktivierter Timer isValid?: %@",  [ghAppDelegate.timer isValid]);
 	//ALog(@"Fuck");
-	[SyncManager startAutocommit];
+	//[SyncManager startAutocommit];
 	//ALog(@"Reaktivierter Timer: %@",  ghAppDelegate.timer);
 }
 

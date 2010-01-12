@@ -80,7 +80,7 @@
 	newFolder1.remoteId = [NSNumber numberWithInt:1];
 	Folder *newFolder2 = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder2.name=@"TestFolder2";
-	newFolder2.remoteId = nil;
+	newFolder2.remoteId = [NSNumber numberWithInt:-1];
 	Folder *newFolder3 = (Folder*)[Folder objectOfType:@"Folder"];
 	newFolder3.name=@"TestFolder3";
 	newFolder3.remoteId = [NSNumber numberWithInt:3];
@@ -90,6 +90,32 @@
 	NSArray* folders = [Folder getRemoteStoredFolders:&error];
 	GHAssertNil(error, @"Folder produced error: %@", error);
 	GHAssertEquals([folders count], (NSUInteger)2, @"Anzahl stimmt nicht");
+}
+
+-(void)testGetRemoteStoredFoldersLocallyDeleted {
+	NSError *error = nil;
+	
+	Folder *newFolder1 = (Folder*)[Folder objectOfType:@"Folder"];
+	newFolder1.name=@"TestFolder1";
+	newFolder1.remoteId = [NSNumber numberWithInt:1];
+	Folder *newFolder2 = (Folder*)[Folder objectOfType:@"Folder"];
+	newFolder2.name=@"TestFolder2";
+	Folder *newFolder3 = (Folder*)[Folder objectOfType:@"Folder"];
+	newFolder3.name=@"TestFolder3";
+	newFolder3.remoteId = [NSNumber numberWithInt:3];
+	[Folder deleteObject:newFolder3 error:&error];
+	
+	[Folder commitWithoutLocalModification];
+	
+	NSArray* allFolders = [Folder getAllFolders:&error];
+	for(Folder* folder in allFolders)
+	{
+		ALog(@"Name: %@, deleted: %d", folder.name, [folder.deleted integerValue]);
+	}
+	
+	NSArray* folders = [Folder getRemoteStoredFoldersLocallyDeleted:&error];
+	GHAssertNil(error, @"Folder produced error: %@", error);
+	GHAssertEquals([folders count], (NSUInteger)1, @"Anzahl stimmt nicht");
 }
 
 @end
