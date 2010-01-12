@@ -7,6 +7,7 @@
 //
 
 #import "ContextsGPSMapViewController.h"
+#import "Context.h"
 #import <MapKit/MapKit.h>
 
 @implementation ContextsGPSMapViewController
@@ -31,6 +32,25 @@
 	self.mapView.delegate = self;
 	[self showOwnLocation];
 	
+	NSError *error;
+	self.contexts = [Context getAllContexts:&error];
+	
+	for (Context *c in self.contexts) {
+		if ([c hasGps]) {
+			CLLocationCoordinate2D location;
+			location.latitude = [c.gpsX doubleValue];
+			location.longitude = [c.gpsY doubleValue];
+			
+			AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
+			addAnnotation.title = c.name;
+			
+			//addAnnotation.subtitle = [NSString stringWithFormat:@"%@ Tasks", [c.tasks count]];
+			
+			[self.mapView addAnnotation:addAnnotation];
+			[addAnnotation release];
+		}
+	}
+	
     [super viewDidLoad];
 }
 
@@ -39,9 +59,11 @@
 }
 
 - (void)viewDidUnload {
+	self.contexts = nil;
 }
 
 - (void)dealloc {
+	[_contexts release];
     [super dealloc];
 }
 
@@ -65,8 +87,8 @@
 	ALog ("Location found");
 	
 	MKCoordinateSpan span;
-	span.latitudeDelta=20;
-	span.longitudeDelta=20;
+	span.latitudeDelta=0.01;
+	span.longitudeDelta=0.01;
 	
 	MKCoordinateRegion region;
 	region.span = span;

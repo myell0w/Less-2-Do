@@ -21,6 +21,11 @@
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
+	self.title = @"Tags";
+	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	list = [[NSMutableArray alloc] init];
@@ -66,13 +71,10 @@
 	DLog ("%d Items in TagList", [list count]);
 	
 	self.controllersSection1 = array;
-	self.title = @"Tags";
 	[array release];
-	[super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+	
 	[self.tableView reloadData];
+	[super viewWillAppear:animated];
 }
 
 -(void)viewDidUnload {
