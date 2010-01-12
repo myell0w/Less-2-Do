@@ -13,7 +13,6 @@
 @interface FolderCell : CustomCell {
 	// Outlet for ImageView to set the BackgroundColor
 	UIImageView *_imageview;
-	
 	UILabel *_title;
 }
 

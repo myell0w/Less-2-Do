@@ -24,7 +24,9 @@
     NSManagedObjectContext *managedObjectContext;	    
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
 	
-	NSTimer *timer;
+	NSTimer *syncTimer;
+	NSTimer *reminderTimer;
+	NSMutableDictionary *alreadyReminded;
 
 	// the main window
     UIWindow *window;
@@ -51,7 +53,8 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (nonatomic, retain) NSTimer * timer;
+@property (nonatomic, retain) NSTimer * syncTimer;
+@property (nonatomic, retain) NSTimer * reminderTimer;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;
@@ -66,8 +69,11 @@
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)commitDatabase:(NSTimer *) theTimer;
 -(NSString *)applicationDocumentsDirectory;
+
+- (void)commitDatabase:(NSTimer *)timer;
+- (void)checkDueTasks:(NSTimer *)timer;
+
 -(void)startTimer;
 -(void)stopTimer;
 

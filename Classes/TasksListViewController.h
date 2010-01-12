@@ -19,15 +19,20 @@ typedef enum _TaskListDetailMode {
 } TaskListDetailMode;
 
 
-@interface TasksListViewController : UITableViewController {
+@interface TasksListViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate> {
 	// image that is shown in the table cell
 	UIImage *image;
 	// the tasks to show
 	NSMutableArray *tasks;
+	// the tasks to show when searching is active
+	NSMutableArray *filteredTasks;
 	// date formatter for due-date
 	NSDateFormatter *formatDate;
 	// date formatter for due-time
 	NSDateFormatter *formatTime;
+	
+	// used for searching tasks
+	UISearchDisplayController *searchDisplayController;
 
 	// flag to define what the detail-label should show
 	TaskListDetailMode detailMode;
@@ -45,6 +50,8 @@ typedef enum _TaskListDetailMode {
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) NSMutableArray *tasks;
+@property (nonatomic, retain) NSMutableArray *filteredTasks;
+@property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
 @property (nonatomic) TaskListDetailMode detailMode;
 @property (nonatomic) CLLocationCoordinate2D currentPosition;
 @property (nonatomic) SEL selector;
