@@ -64,7 +64,7 @@
 	
 	if([self managedObjectContext].hasChanges)
 	{
-		/*NSSet *insertedObjects = [[self managedObjectContext] insertedObjects];
+		NSSet *insertedObjects = [[self managedObjectContext] insertedObjects];
 		NSSet *updatedObjects = [[self managedObjectContext] updatedObjects];
 		NSSet *changedObjects = [insertedObjects setByAddingObjectsFromSet:updatedObjects];
 		//ALog(@"%d objects changed", [changedObjects count]);
@@ -75,7 +75,7 @@
 				remoteObject.lastLocalModification = [NSDate date];
 				//ALog(@"is Remote Object with new local date %@: %@", remoteObject.lastLocalModification, [remoteObject class]);
 			}
-		}*/
+		}
 		
 		BOOL saveSuccessful = [[self managedObjectContext] save:&saveError];
 		
@@ -90,6 +90,11 @@
 	}
 	else
 		ALog(@"No changes - no autocommit");
+}
+
++(void)rollback
+{
+	[[self managedObjectContext] rollback];
 }
 
 @end
