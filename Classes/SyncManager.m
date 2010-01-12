@@ -148,7 +148,7 @@
 		
 		// alle folder mit remoteId == nil && deleted == false ==> add toodledo
 		NSArray *unsyncedFolders = [Folder getUnsyncedFolders:&localError];
-		NSLog(@"VOR DER SCHLEIFE %d", [unsyncedFolders count]);
+		ALog(@"VOR DER SCHLEIFE %d", [unsyncedFolders count]);
 		for(Folder *localFolder in unsyncedFolders)
 		{
 			GtdFolder *newFolder = [[GtdFolder alloc] init];
@@ -215,7 +215,8 @@
 		Folder *folderToDeleteLocally = [foldersToDeleteLocally objectAtIndex:i];
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
 	}
-	[tdApi release];
+	
+	[BaseManagedObject commit];
 
 	//AutoCommit enabled
 	[self startAutocommit];
