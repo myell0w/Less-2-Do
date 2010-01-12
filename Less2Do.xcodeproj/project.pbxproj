@@ -382,7 +382,7 @@
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsGPSMapViewController.h; sourceTree = "<group>"; };
 		D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsGPSMapViewController.m; sourceTree = "<group>"; };
-		D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContextsGPSMapViewController.xib; sourceTree = "<group>"; };
+		D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContextsGPSMapViewController.xib; path = Classes/ContextsGPSMapViewController.xib; sourceTree = "<group>"; };
 		D4858BFD10F37CA4005FB59C /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
 		D4858BFE10F37CA4005FB59C /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
 		D4B5FEDD10E65538003584A5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -666,7 +666,6 @@
 				D4C4600F10F25741008B07FB /* AddressAnnotation.m */,
 				D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */,
 				D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */,
-				D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -703,6 +702,7 @@
 				398AC82C10F252AB0015319A /* ContextsGPSViewController.xib */,
 				D4C4C3D110D2574B00B55BA9 /* EditContextViewController.xib */,
 				39B6593E10B6B88B00825C1D /* ContextsTableView.xib */,
+				D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */,
 				398AC7E610F24F590015319A /* ShowContextViewController.xib */,
 			);
 			name = contexts;
@@ -1006,7 +1006,7 @@
 		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

@@ -19,6 +19,7 @@
 	CLLocationManager *_locationManager;
 	MKReverseGeocoder *_reverseGeocoder;
 	UITextField *_mapsearchTextField;
+	UINavigationController *_parent;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -28,7 +29,10 @@
 @property (nonatomic, retain) NSArray *addAnnotations;
 @property (nonatomic, retain) AddressAnnotation *ownLocation;
 @property (nonatomic, retain) NSArray *contexts;
+@property (nonatomic, retain) UINavigationController *parent;
 
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(UINavigationController *)aParent;
 - (IBAction) showOwnLocation;
 - (IBAction) textFieldDone:(id)sender;
 - (IBAction) showSearchedLocation;

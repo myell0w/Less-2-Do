@@ -57,6 +57,9 @@
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
 			Tag *tag = [objects objectAtIndex:i];
+			//if(tag.tasks != nil)
+				//ALog("%@ %@", tag.name, [tag.tasks count]);
+			
 			TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			tagView.title = tag.name;
 			tagView.image = [UIImage imageNamed:@"tag.png"];

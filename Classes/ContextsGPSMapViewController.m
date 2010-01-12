@@ -8,9 +8,11 @@
 
 #import "ContextsGPSMapViewController.h"
 #import "Context.h"
+#import "TasksListViewController.h"
 #import <MapKit/MapKit.h>
 
 @implementation ContextsGPSMapViewController
+@synthesize parent = _parent;
 @synthesize mapView = _mapView;
 @synthesize mapsearchTextField = _mapsearchTextField;
 @synthesize contexts = _contexts;
@@ -23,6 +25,13 @@
 #pragma mark -
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(UINavigationController *)aParent {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.parent = aParent;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
 	//Start LocationManager
@@ -37,6 +46,7 @@
 	self.contexts = [Context getAllContexts:&error];
 	
 	for (Context *c in self.contexts) {
+		//TODO: Only display Contexts with Tasks
 		if ([c hasGps]) {
 			CLLocationCoordinate2D location;
 			location.latitude = [c.gpsX doubleValue];
@@ -44,9 +54,15 @@
 			
 			AddressAnnotation *addAnnotation = [[AddressAnnotation alloc] initWithCoordinate:location];
 			addAnnotation.title = c.name;
-			addAnnotation.subtitle = @"2 Tasks";
 			addAnnotation.context = c;
 			
+			if (addAnnotation.context.tasks != nil) {
+				//ALog("%@", addAnnotation.context.name);
+				//ALog("%@", [addAnnotation.context.tasks count]);
+			}
+			
+			//TODO: Set SubTitle to Nr of Tasks
+			addAnnotation.subtitle = @"0 Tasks";
 			//addAnnotation.subtitle = [NSString stringWithFormat:@"%@ Tasks", [c.tasks count]];
 			
 			[self.mapView addAnnotation:addAnnotation];
@@ -63,6 +79,7 @@
 
 - (void)viewDidUnload {
 	self.contexts = nil;
+	self.parent = nil;
 }
 
 - (void)dealloc {
@@ -215,6 +232,24 @@
 	}
 	
 	return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	
+	if ([control isKindOfClass:[UIButton class]]) {	
+		ALog ("AccessoryButton pushed");
+			Context *context = ((AddressAnnotation *)view.annotation).context;
+			TasksListViewController *contextView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+			contextView.title = context.name;
+			contextView.image = [UIImage imageNamed:@"context_gps.png"];
+			contextView.selector = @selector(getTasksInContext:error:);
+			contextView.argument = context;
+			context = nil;
+			
+			[self.parent pushViewController:contextView animated:YES];
+			[contextView release];
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
