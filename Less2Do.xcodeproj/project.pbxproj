@@ -129,7 +129,6 @@
 		D436E98810BAB7D200EA7624 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98710BAB7D200EA7624 /* SettingsNavigationController.m */; };
 		D436E98B10BAB7F100EA7624 /* SettingsFirstLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */; };
 		D436E99510BAB94100EA7624 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D436E99410BAB94100EA7624 /* SettingsViewController.m */; };
-		D449FFF210FDCF4800AD1847 /* ContextMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = D449FFF110FDCF4800AD1847 /* ContextMapView.m */; };
 		D461AC3D10F925E00087E367 /* ContextsGPSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */; };
 		D461AC3E10F925E00087E367 /* ContextsGPSMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */; };
 		D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4858BFD10F37CA4005FB59C /* SyncManager.m */; };
@@ -391,9 +390,6 @@
 		D436E98A10BAB7F100EA7624 /* SettingsFirstLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsFirstLevelController.m; sourceTree = "<group>"; };
 		D436E99310BAB94100EA7624 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D436E99410BAB94100EA7624 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		D44900A310FDDE2300AD1847 /* MapViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewControllerProtocol.h; sourceTree = "<group>"; };
-		D449FFF010FDCF4800AD1847 /* ContextMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextMapView.h; sourceTree = "<group>"; };
-		D449FFF110FDCF4800AD1847 /* ContextMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextMapView.m; sourceTree = "<group>"; };
 		D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContextsGPSMapViewController.h; sourceTree = "<group>"; };
 		D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextsGPSMapViewController.m; sourceTree = "<group>"; };
 		D461AC3C10F925E00087E367 /* ContextsGPSMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ContextsGPSMapViewController.xib; path = Classes/ContextsGPSMapViewController.xib; sourceTree = "<group>"; };
@@ -681,9 +677,6 @@
 				D4C4600F10F25741008B07FB /* AddressAnnotation.m */,
 				D461AC3A10F925E00087E367 /* ContextsGPSMapViewController.h */,
 				D461AC3B10F925E00087E367 /* ContextsGPSMapViewController.m */,
-				D449FFF010FDCF4800AD1847 /* ContextMapView.h */,
-				D449FFF110FDCF4800AD1847 /* ContextMapView.m */,
-				D44900A310FDDE2300AD1847 /* MapViewControllerProtocol.h */,
 			);
 			name = contexts;
 			sourceTree = "<group>";
@@ -761,7 +754,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -1023,7 +1016,7 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libToodledoAPI.a;
@@ -1194,7 +1187,6 @@
 				D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */,
 				D461AC3D10F925E00087E367 /* ContextsGPSMapViewController.m in Sources */,
 				39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */,
-				D449FFF210FDCF4800AD1847 /* ContextMapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

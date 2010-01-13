@@ -10,9 +10,8 @@
 #import "ContextsFirstLevelViewController.h"
 #import <MapKit/MapKit.h>
 #import "AddressAnnotation.h"
-#import "MapViewControllerProtocol.h"
 
-@interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, MapViewControllerProtocol> {
+@interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	UITextField *_nameTextField;
 	UITextField *_mapsearchTextField;
 	Context *_context;   
@@ -21,11 +20,13 @@
 	AddressAnnotation *_addAnnotation;
 	CLLocationManager *_locationManager;
 	MKReverseGeocoder *_reverseGeocoder;
+	UIView *_overlayView;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *nameTextField;
 @property (nonatomic, retain) IBOutlet UITextField *mapsearchTextField;
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) IBOutlet UIView *overlayView;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) MKReverseGeocoder *reverseGeocoder;
 @property (nonatomic, retain) Context *context;
@@ -40,6 +41,8 @@
 - (IBAction)showSearchedLocation;
 - (IBAction) showOwnLocation;
 - (IBAction)scrollUp;
+- (IBAction) hideMap;
+- (void)resignActualFirstResponder;
 - (void) animateTextField:(UITextField*)textField up:(BOOL)up;
 - (CLLocationCoordinate2D)addressLocation:(NSString *)locationString;
 - (MKCoordinateSpan)addressSpan:(NSString *)locationString;

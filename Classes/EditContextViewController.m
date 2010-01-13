@@ -11,6 +11,7 @@
 #import "TasksListViewController.h"
 
 @implementation EditContextViewController
+@synthesize overlayView = _overlayView;
 @synthesize nameTextField = _nameTextField;
 @synthesize mapsearchTextField = _mapsearchTextField;
 @synthesize mapView = _mapView;
@@ -109,6 +110,10 @@
 		[self.mapView setRegion:region animated:TRUE];
 		[self.mapView regionThatFits:region];
 	}
+	
+	/*if(self.overlayView.superview != nil)
+		[self.overlayView removeFromSuperview];*/
+	self.overlayView.hidden = YES;
 	
 	[super viewDidLoad];
 }
@@ -321,6 +326,7 @@
 
 - (IBAction) scrollUp {
 	[self animateTextField:self.mapsearchTextField up:YES];
+	[self hideMap];
 }
 
 - (IBAction) showOwnLocation {
@@ -450,7 +456,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark MapViewControllerProtocol
+#pragma mark Hide- and ShowMapFunctions
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)resignActualFirstResponder {
@@ -460,6 +466,16 @@
 		[self animateTextField:self.mapsearchTextField up:NO];
 		[self.mapsearchTextField resignFirstResponder];
 	}
+	/*if(self.overlayView.superview != nil)
+		[self.overlayView removeFromSuperview];*/
+	self.overlayView.hidden = YES;
+}
+
+- (void)hideMap {
+	ALog ("Hide Map");
+	/*if(self.overlayView.superview == nil)
+		[self.view insertSubview:self.overlayView atIndex:1];*/
+	self.overlayView.hidden = NO;
 }
 
 @end

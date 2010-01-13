@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "AddressAnnotation.h"
-#import "MapViewControllerProtocol.h"
 
-@interface ContextsGPSMapViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, MapViewControllerProtocol> {
+@interface ContextsGPSMapViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
 	NSArray *_contexts;
 	MKMapView *_mapView;
 	NSArray *_addAnnotations;
@@ -20,10 +19,12 @@
 	MKReverseGeocoder *_reverseGeocoder;
 	UITextField *_mapsearchTextField;
 	UINavigationController *_parent;
+	UIView *_overlayView;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView *mapView;
 @property (nonatomic, retain) IBOutlet UITextField *mapsearchTextField;
+@property (nonatomic, retain) IBOutlet UIView *overlayView;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) MKReverseGeocoder *reverseGeocoder;
 @property (nonatomic, retain) NSArray *addAnnotations;
@@ -34,8 +35,10 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil parent:(UINavigationController *)aParent;
 - (IBAction) showOwnLocation;
+- (IBAction) hideMap;
 - (IBAction) textFieldDone:(id)sender;
 - (IBAction) showSearchedLocation;
+- (void)resignActualFirstResponder;
 - (void)startGeocoder:(CLLocationCoordinate2D)location;
 - (CLLocationCoordinate2D) addressLocation:(NSString *)locationString;
 

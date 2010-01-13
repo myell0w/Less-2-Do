@@ -219,7 +219,7 @@
 
 + (NSArray *) getTasksWithContext:(NSError **)error
 {
-	return [Task getTasksWithFilterString:@"context != nil" error:error];
+	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil" error:error];
 }
 
 @end

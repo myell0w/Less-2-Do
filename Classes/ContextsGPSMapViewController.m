@@ -14,6 +14,7 @@
 @implementation ContextsGPSMapViewController
 @synthesize parent = _parent;
 @synthesize mapView = _mapView;
+@synthesize overlayView = _overlayView;
 @synthesize mapsearchTextField = _mapsearchTextField;
 @synthesize contexts = _contexts;
 @synthesize addAnnotations = _addAnnotations;
@@ -70,6 +71,9 @@
 		}
 	}
 	
+	if(self.overlayView.superview != nil)
+		[self.overlayView removeFromSuperview];
+	
     [super viewDidLoad];
 }
 
@@ -93,17 +97,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (IBAction) showOwnLocation {
+	[self resignActualFirstResponder];
 	[self.locationManager startUpdatingLocation];
 	ALog ("Start searching for Location");
 }
 
 - (IBAction) textFieldDone:(id)sender {
-	[self.mapsearchTextField resignFirstResponder];
+	[self resignActualFirstResponder];
 }
 
 - (IBAction) showSearchedLocation {
 	//Hide the keypad
-	[self.mapsearchTextField resignFirstResponder];
+	[self resignActualFirstResponder];
 	
 	//Do nothing when no Text was entered
 	if ([[self.mapsearchTextField text] length] == 0)
@@ -293,11 +298,19 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark MapViewControllerProtocol
+#pragma mark Hide- and ShowMapFunctions
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (void)resignActualFirstResponder {
 	[self.mapsearchTextField resignFirstResponder];
+	if(self.overlayView.superview != nil)
+		[self.overlayView removeFromSuperview];
+}
+
+- (void)hideMap {
+	ALog ("Hide Map");
+	if(self.overlayView.superview == nil)
+		[self.view insertSubview:self.overlayView atIndex:1];
 }
 
 @end
