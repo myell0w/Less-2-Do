@@ -9,8 +9,11 @@
 #import "FolderFirstLevelController.h"
 #import "TasksListViewController.h"
 #import "Folder.h"
+#import "TDBadgedCell.h"
 #import "EditFolderViewController.h"
-#import "FolderCell.h"
+#import "Includes.h"
+
+#define FONT_SIZE 18
 
 @implementation FolderFirstLevelController
 @synthesize list = _list;
@@ -131,7 +134,24 @@
 		if(section==0)
 			cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID] autorelease];
 		else {
-			cell = (FolderCell *)[CustomCell loadFromNib:@"FolderCell" withOwner:self];
+			cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:folderCellID] autorelease];
+			
+			UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(12,12,22,22)];
+			colorView.tag = TAG_COLOR;
+			[cell.contentView addSubview:colorView];
+			[colorView release];
+			
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12,12,22,22)];
+			imageView.image = [UIImage imageNamed:@"smallWhiteBoarderedButton.png"];
+			imageView.tag = TAG_COLOR;
+			[cell.contentView addSubview:imageView];
+			[imageView release];
+			
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(46,10,190,27)];
+			label.tag = TAG_FOLDER;
+			label.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
+			[cell.contentView addSubview:label];
+			[label release];
 		}
 
 	}
@@ -146,9 +166,13 @@
 	}
 	else {
 		Folder *folder = [self.list objectAtIndex:row];
-		((FolderCell *)cell).title.text = folder.name;
-		((FolderCell *)cell).imageView.backgroundColor = [folder color]; 
-		ALog ("%@: %@ %@ %@", folder.name, folder.r, folder.g, folder.b);
+		
+		UIImageView *colorView = (UIImageView *)[cell.contentView viewWithTag:TAG_COLOR];
+		colorView.backgroundColor = [folder color];
+		
+		UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:TAG_FOLDER];
+		textLabel.text = folder.name;
+		
 		cell.editingAccessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 	

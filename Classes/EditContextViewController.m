@@ -286,8 +286,7 @@
 
 - (IBAction) showSearchedLocation {
 	//Hide the keypad
-	[self animateTextField:self.mapsearchTextField up:NO];
-	[self.mapsearchTextField resignFirstResponder];
+	[self resignActualFirstResponder];
 	
 	//Do nothing when no Text was entered
 	if ([[self.mapsearchTextField text] length] == 0)

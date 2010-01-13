@@ -129,6 +129,15 @@
 		
         lastIndexPath = indexPath;		
 		self.task.context = c;
+		 
+		if(c.tasks == nil) {
+			ALog ("Init new Set for Context-Task");
+			[c addTasks:[NSSet setWithObject:self.task]];
+		}
+		else {
+			ALog ("Set exists, added Task");
+			[c addTasksObject:self.task];
+		}
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -147,6 +156,15 @@
 	
 	[contexts addObject:context];
 	self.task.context = context;
+	if(context.tasks == nil) {
+		ALog ("Init new Set for Context-Task");
+		[context addTasks:[NSSet setWithObject:self.task]];
+	}
+	else {
+		ALog ("Set exists, added Task");
+		[context addTasksObject:self.task];
+	}
+	
 	
 	NSUInteger idx = [contexts indexOfObject:context];
 	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];

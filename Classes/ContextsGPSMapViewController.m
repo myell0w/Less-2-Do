@@ -57,14 +57,14 @@
 			addAnnotation.title = c.name;
 			addAnnotation.context = c;
 			
+			
+			
 			if (addAnnotation.context.tasks != nil) {
-				//ALog("%@", addAnnotation.context.name);
-				//ALog("%@", [addAnnotation.context.tasks count]);
+				addAnnotation.subtitle = [NSString stringWithFormat:@"%d Tasks", [c.tasks count]];
+			} else {
+				addAnnotation.subtitle = @"0 Tasks";
 			}
 			
-			//TODO: Set SubTitle to Nr of Tasks
-			addAnnotation.subtitle = @"0 Tasks";
-			//addAnnotation.subtitle = [NSString stringWithFormat:@"%@ Tasks", [c.tasks count]];
 			
 			[self.mapView addAnnotation:addAnnotation];
 			[addAnnotation release];
