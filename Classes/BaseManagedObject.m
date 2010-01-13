@@ -30,14 +30,6 @@
 {
 	theObject.deleted = [NSNumber numberWithInteger:1];
 	ALog(@"deleted the object: %d", [theObject.deleted integerValue]);
-	if(theObject.deleted == [NSNumber numberWithInteger:1])
-	{
-		ALog(@"Passt 1");
-	}
-	if([theObject.deleted integerValue] == 1)
-	{
-		ALog(@"Passt 2");
-	}
 	return YES;
 }
 
@@ -55,11 +47,11 @@
 	[[self managedObjectContext] deleteObject:theObject];
 	
 	/* commit deleting and check for errors */
-	BOOL deleteSuccessful = [[self managedObjectContext] save:&deleteError];
+	/*BOOL deleteSuccessful = [[self managedObjectContext] save:&deleteError];
 	if (deleteSuccessful == NO) {
 		*error = deleteError;
 		return NO;
-	}
+	}*/
 	
 	return YES;
 }
