@@ -232,7 +232,7 @@
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	
-	self.tableView.contentOffset = CGPointMake(0., 44.);
+	//self.tableView.contentOffset = CGPointMake(0., 44.);
 	
 	ALog(@"Task gelöscht");
 }

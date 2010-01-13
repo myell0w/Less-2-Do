@@ -104,7 +104,7 @@
 
 + (NSArray *) getAllContexts:(NSError **)error
 {
-	NSArray* objects = [Context getContextsWithFilterString:nil error:error];	
+	NSArray* objects = [Context getContextsWithFilterString:@"deleted == NO" error:error];	
 	return objects;
 }
 
