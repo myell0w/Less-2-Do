@@ -23,6 +23,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(void)viewDidLoad {
+	self.title = @"Contexts";
+	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	list = [[NSMutableArray alloc] init];
@@ -67,17 +72,12 @@
 			[contextView release];
 		}
 	}
-
+	
 	[list addObjectsFromArray:objects];
 	DLog ("%d Items in ContextList", [list count]);
-	
 	self.controllersSection1 = array;
-	self.title = @"Contexts";
 	[array release];
-	[super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+	
 	[self.tableView reloadData];
 	[super viewWillAppear:animated];
 }

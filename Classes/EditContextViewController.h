@@ -10,8 +10,9 @@
 #import "ContextsFirstLevelViewController.h"
 #import <MapKit/MapKit.h>
 #import "AddressAnnotation.h"
+#import "MapViewControllerProtocol.h"
 
-@interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
+@interface EditContextViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, MapViewControllerProtocol> {
 	UITextField *_nameTextField;
 	UITextField *_mapsearchTextField;
 	Context *_context;   

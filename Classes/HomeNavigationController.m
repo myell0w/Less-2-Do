@@ -157,9 +157,16 @@
 
 -(IBAction)syncButtonPressed:(id)sender {
 	NSError *error = nil;
-	[SyncManager syncWithPreference:SyncPreferRemote error:&error];
-	ALog(@"error after button (arschloch button): %@", error);
-	 
+	BOOL successful = [SyncManager syncWithPreference:SyncPreferLocal error:&error];
+	if(!successful)
+	{
+		ALog(@"Error syncWithPreference:SyncPreferLocal = %@", error);
 	}
+	else
+	{
+		ALog(@"syncWithPreference:SyncPreferLocal was successful");
+	}
+
+}
 
 @end

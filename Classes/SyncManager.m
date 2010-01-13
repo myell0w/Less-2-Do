@@ -14,6 +14,9 @@
 
 /*
  Führt eine Synchronisation mit automatischer Wahl des aktuelleren Datensatzes durch.
+ Die automatische Wahl funktioniert jedoch nur für Tasks, nicht für Folder und Contexts,
+ weil bei letzteren auf Seiten von Toodledo keine Modified-Dates gespeichert werden.
+ Die Preference (SyncPreferLocal/SyncPreferRemote) bezieht sich also nur auf Folder und Contexts.
 */
 +(BOOL)syncWithPreference:(SyncPreference)preference error:(NSError**)error
 {
@@ -49,7 +52,8 @@
 	NSString  *lastRemoteFolderEditString = [remoteDates valueForKey:@"lastFolderEdit"];
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+	//[formatter setDateFormat:@"yyyy-MM-dd H:mm:ss"];
+	[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	NSDate *lastRemoteFolderEditDate = [formatter dateFromString:lastRemoteFolderEditString];
 	lastRemoteFolderEditDate = [lastRemoteFolderEditDate addTimeInterval:21600]; // hardcodiert: server time difference
 	[formatter release];
@@ -75,6 +79,7 @@
 			for(int i=0; i<[localFoldersWithRemoteId count]; i++)
 			{
 				Folder *localFolder = [localFoldersWithRemoteId objectAtIndex:i];
+				ALog(@"%@ - %d", localFolder.name, [localFolder.deleted integerValue]);
 				if([localFolder.remoteId integerValue] == remoteFolder.uid)
 				{
 					foundLocalEntity = YES;
@@ -128,22 +133,23 @@
 		}
 		else
 		{
-			// toodledo update localFoldersWithRemoteId
+			// toodledo add localFoldersWithRemoteId
 			for(int i=0;i<[localFoldersWithRemoteId count];i++)
 			{
 				GtdFolder *remoteFolder = [[GtdFolder alloc] init];
 				Folder *localFolder = [localFoldersWithRemoteId objectAtIndex:i];
 				remoteFolder.title = localFolder.name;
 				remoteFolder.order = [localFolder.order integerValue];
-				remoteFolder.uid = [localFolder.remoteId integerValue];
+				//remoteFolder.uid = [localFolder.remoteId integerValue];
 				requestSuccessful = YES;
-				if(localFolder.deleted == [NSNumber numberWithInteger:0])
+				localError = nil;
+				if([localFolder.deleted intValue] == 0)
 				{
 					localFolder.lastSyncDate = currentDate;
-					requestSuccessful = [tdApi editFolder:remoteFolder error:&localError];
+					localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:remoteFolder error:&localError]];
 				}
 				[remoteFolder release];
-				if(!requestSuccessful)
+				if(localError != nil)
 				{
 					*error = localError;
 					[BaseManagedObject rollback];
@@ -166,8 +172,16 @@
 			newFolder.title = localFolder.name;
 			newFolder.order = [localFolder.order integerValue];
 			newFolder.uid = [localFolder.remoteId integerValue];
-			localFolder.lastSyncDate = currentDate;
-			requestSuccessful = [tdApi editFolder:newFolder error:&localError];
+			
+			// sende update request nur, wenn der folder nicht sowieso gelöscht wird
+			requestSuccessful = YES;
+			ALog(@"lastSync: %@, lastLocalMod: %@, deleted: %d", localFolder.lastSyncDate, localFolder.lastLocalModification, [localFolder.deleted integerValue]);
+			if([localFolder.deleted intValue] == 0)
+			{
+				localFolder.lastSyncDate = currentDate;
+				requestSuccessful = [tdApi editFolder:newFolder error:&localError];
+			}
+			
 			[newFolder release];
 			if(!requestSuccessful)
 			{
@@ -208,7 +222,7 @@
 				// else ==> update toodledo		
 		for(Folder * localFolder in modifiedFolders)
 		{
-			if(localFolder.remoteId == [NSNumber numberWithInteger:-1])
+			if([localFolder.remoteId intValue] == -1)
 			{
 				GtdFolder *newFolder = [[GtdFolder alloc] init];
 				newFolder.title = localFolder.name;
@@ -240,9 +254,10 @@
 		}
 	}
 	// alle folder mit remoteId != nil && deleted == true ==> delete toodledo
-	
+	localError = nil;
 	NSArray *foldersToDeleteRemote = [Folder getRemoteStoredFoldersLocallyDeleted:&localError];
-	
+	if(localError != nil)
+	ALog(@"Error ftdr: %@", localError);
 	for(int i=0; i<[foldersToDeleteRemote count]; i++)
 	{
 		Folder * folderToDeleteRemote = [foldersToDeleteRemote objectAtIndex:i];
@@ -269,7 +284,7 @@
 		[Folder deleteObjectFromPersistentStore:folderToDeleteLocally error:&localError];
 	}
 	
-	[BaseManagedObject commit];
+	[BaseManagedObject commitWithoutLocalModification];
 	[self startAutocommit];
 	[tdApi release];
 	return YES;

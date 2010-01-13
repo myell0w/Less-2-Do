@@ -217,4 +217,9 @@
   return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0"] error:error];
 }
 
++ (NSArray *) getTasksWithContext:(NSError **)error
+{
+	return [Task getTasksWithFilterString:@"context != nil" error:error];
+}
+
 @end

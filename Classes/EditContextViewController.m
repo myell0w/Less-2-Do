@@ -194,9 +194,9 @@
 
 - (void) animateTextField:(UITextField*)textField up:(BOOL)up
 {
-	int movementDistance = 210;
+	int movementDistance = 216;
 	if (self.context != nil)
-		movementDistance = 210 - 50;
+		movementDistance = 216 - 50;
     const float movementDuration = 0.3f;
 	
     int movement = (up ? -movementDistance : movementDistance);
@@ -276,12 +276,7 @@
 }
 
 - (IBAction) textFieldDone:(id)sender {
-	[self.nameTextField resignFirstResponder];
-
-	if ([self.mapsearchTextField isFirstResponder]) {
-		[self animateTextField:self.mapsearchTextField up:NO];
-		[self.mapsearchTextField resignFirstResponder];
-	}
+	[self resignActualFirstResponder];
 }
 
 - (IBAction) showSearchedLocation {
@@ -329,8 +324,14 @@
 }
 
 - (IBAction) showOwnLocation {
+	[self resignActualFirstResponder];
+	
 	[self.locationManager startUpdatingLocation];
 	ALog ("Start searching for Location");
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	ALog ("Oh, i got touched :)");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,9 +382,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	NSLog(@"View for Annotation is called");
-	MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"ShowAddressAnotation"];
+	MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AddressAnotation"];
 	if (annotationView == nil) {
-		annotationView = [(AddressAnnotation *)annotation viewForAnnotation];
+		annotationView = [AddressAnnotation viewForAnnotation:(AddressAnnotation *)annotation withColor:MKPinAnnotationColorRed];
 		ALog ("Created View for Annotation");
 	}
 	else {
@@ -405,7 +406,7 @@
 			if ([[self.nameTextField text] length] != 0)
 				self.addAnnotation.title = [self.nameTextField text];
 			else {
-				self.addAnnotation.title = nil;
+				self.addAnnotation.title = @"New Context";
 			}
 		}
 		ALog ("Finished Geocoding: %@", [[newPlacemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "]);
@@ -420,9 +421,15 @@
 	if (self.addAnnotation != nil) {
 		if (self.addAnnotation.coordinate.latitude == geocoder.coordinate.latitude && self.addAnnotation.coordinate.longitude == geocoder.coordinate.longitude) {
 			self.addAnnotation.subtitle = nil;
+			if ([[self.nameTextField text] length] != 0)
+				self.addAnnotation.title = [self.nameTextField text];
+			else {
+				self.addAnnotation.title = @"New Context";
+			}
 		}
 		ALog ("Error during Geocoding");
 	}
+	
 	
 	[self.reverseGeocoder cancel];
 	self.reverseGeocoder.delegate = nil;
@@ -439,6 +446,20 @@
 	self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:location];
 	self.reverseGeocoder.delegate = self;
 	[self.reverseGeocoder start];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark MapViewControllerProtocol
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)resignActualFirstResponder {
+	[self.nameTextField resignFirstResponder];
+	
+	if ([self.mapsearchTextField isFirstResponder]) {
+		[self animateTextField:self.mapsearchTextField up:NO];
+		[self.mapsearchTextField resignFirstResponder];
+	}
 }
 
 @end

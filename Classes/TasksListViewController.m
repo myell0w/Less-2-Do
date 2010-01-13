@@ -44,6 +44,7 @@
 }
 
 - (void)viewDidLoad {
+	ALog ("viewDidLoad of TasksListViewController");
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
 	self.tasks = array;
@@ -72,25 +73,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	NSArray *objects = nil;
-	
-	objects = [self getTasks];
-	
-	if (objects == nil) {
-		ALog(@"There was an error!");
-		// Do whatever error handling is appropriate
-	}
-	else {
-		[self.tasks removeAllObjects];
-		// for schleife objekte erzeugen und array addObject:current Task
-		for (Task *t in objects) {
-			[self.tasks addObject:t];
-		}
-	}
-	
-	
-	[self.tableView reloadData];
-	
+	ALog ("viewWillAppear of TasksListViewController");
+	[self loadData];	
 	[super viewWillAppear:animated];
 }
 
@@ -291,6 +275,27 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Custom Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)loadData {
+	NSArray *objects = nil;
+	
+	objects = [self getTasks];
+	
+	if (objects == nil) {
+		ALog(@"There was an error!");
+		// Do whatever error handling is appropriate
+	}
+	else {
+		[self.tasks removeAllObjects];
+		// for schleife objekte erzeugen und array addObject:current Task
+		for (Task *t in objects) {
+			[self.tasks addObject:t];
+		}
+	}
+	
+	
+	[self.tableView reloadData];	
+}
 
 - (int)taskCount {
 	//TODO: change, performance!

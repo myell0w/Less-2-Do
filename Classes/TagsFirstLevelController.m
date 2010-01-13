@@ -21,6 +21,11 @@
 #pragma mark View Lifecycle
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)viewDidLoad {
+	self.title = @"Tags";
+	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
 	// array to hold the second-level controllers
 	NSMutableArray *array = [[NSMutableArray alloc] init];
 	list = [[NSMutableArray alloc] init];
@@ -52,6 +57,9 @@
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
 			Tag *tag = [objects objectAtIndex:i];
+			//if(tag.tasks != nil)
+				//ALog("%@ %@", tag.name, [tag.tasks count]);
+			
 			TasksListViewController *tagView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			tagView.title = tag.name;
 			tagView.image = [UIImage imageNamed:@"tag.png"];
@@ -66,13 +74,10 @@
 	DLog ("%d Items in TagList", [list count]);
 	
 	self.controllersSection1 = array;
-	self.title = @"Tags";
 	[array release];
-	[super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
+	
 	[self.tableView reloadData];
+	[super viewWillAppear:animated];
 }
 
 -(void)viewDidUnload {

@@ -19,7 +19,7 @@
 @dynamic b;
 
 - (NSString *)description {
-	return self.name;
+	return [NSString stringWithFormat:@"<Folder remoteId='%d' name='%@' deleted='%d' order='%d' lastLocalMod='%@' lastSync='%@'>", [self.remoteId intValue], self.name, [self.deleted intValue], [self.order intValue], self.lastLocalModification, self.lastSyncDate];
 }
 
 + (NSArray *) getFoldersWithFilterString:(NSString*)filterString error:(NSError **)error
@@ -34,6 +34,7 @@
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
+	[request setIncludesPendingChanges:YES];
 	
 	/* apply sort order */
 	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
@@ -73,6 +74,7 @@
 	/* create new fetch request */
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityDescription];
+	[request setIncludesPendingChanges:YES];
 	
 	/* apply sort order */
 	NSSortDescriptor *sortByOrder = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
@@ -140,26 +142,88 @@
 
 + (NSArray *)getRemoteStoredFoldersLocallyDeleted:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != -1 AND deleted == TRUE" error:error];	
-	return objects;
+	/*NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId != -1 AND deleted == YES" error:error];	
+	return objects;*/
+	
+	/* HACK DES JAHRES - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Folder getFoldersWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Folder *folder in objects)
+	{
+		if(!(folder.remoteId != [NSNumber numberWithInt:-1] && [folder.deleted intValue] == 1))
+			[mutable removeObject:folder];
+	}
+	/*for(int i=0;i<[mutable count];i++)
+	{
+		Folder *folder = [mutable objectAtIndex:i];
+		if(!(folder.remoteId != [NSNumber numberWithInt:-1] && folder.deleted == [NSNumber numberWithInt:1]))
+			[mutable removeObjectAtIndex:i];
+	}*/
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
 }
 
 + (NSArray *)getLocalStoredFoldersLocallyDeleted:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == TRUE" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == YES" error:error];	
 	return objects;
+	
+	/* HACK DES JAHRES #2 - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	/*NSArray *objects = [Folder getFoldersWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(int i=0;i<[mutable count];i++)
+	{
+		Folder *folder = [mutable objectAtIndex:i];
+		if(!(folder.remoteId == [NSNumber numberWithInt:-1] && folder.deleted == [NSNumber numberWithInt:1]))
+			[mutable removeObjectAtIndex:i];
+	}
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;*/
 }
 
 + (NSArray *)getAllFoldersLocallyDeleted:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == TRUE" error:error];	
-	return objects;
+	/*NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == YES" error:error];	
+	return objects;*/
+	
+	/* HACK DES JAHRES #3 - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Folder getFoldersWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Folder *folder in objects)
+	{
+		if(!([folder.deleted intValue] == 1))
+			[mutable removeObject:folder];
+	}
+	/*for(int i=0;i<[mutable count];i++)
+	 {
+	 Folder *folder = [mutable objectAtIndex:i];
+	 if(!(folder.remoteId != [NSNumber numberWithInt:-1] && folder.deleted == [NSNumber numberWithInt:1]))
+	 [mutable removeObjectAtIndex:i];
+	 }*/
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
 }
 
 + (NSArray *)getUnsyncedFolders:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == FALSE" error:error];	
+	NSArray* objects = [Folder getFoldersWithFilterString:@"remoteId == -1 AND deleted == NO" error:error];	
 	return objects;
+	
+	/* HACK DES JAHRES #4 - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	/*NSArray *objects = [Folder getFoldersWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(int i=0;i<[mutable count];i++)
+	{
+		Folder *folder = [mutable objectAtIndex:i];
+		if(!(folder.remoteId == [NSNumber numberWithInt:-1] && folder.deleted == [NSNumber numberWithInt:0]))
+			[mutable removeObjectAtIndex:i];
+	}
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;*/
 }
 
 + (NSArray *)getModifiedFolders:(NSError **)error
