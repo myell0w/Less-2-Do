@@ -103,9 +103,10 @@
     }
 	
     // Set up the cell...
-	cell.textLabel.text = [[tags objectAtIndex:row] description];
+	Tag *tag = (Tag *)[tags objectAtIndex:row];
+	cell.textLabel.text = tag.name;
 	cell.imageView.image = [UIImage imageNamed:@"tag.png"];
-	cell.accessoryType = ([selectedTags containsObject:[tags objectAtIndex:row]]) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	cell.accessoryType = ([selectedTags containsObject:tag]) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	
     return cell;
 }
