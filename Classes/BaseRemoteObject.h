@@ -13,11 +13,16 @@
 
 }
 
+typedef enum {
+	DateTypeYoungest = 0,
+	DateTypeOldest = 1
+} DateType;
+
 @property (nonatomic, retain) NSNumber *remoteId;
 @property (nonatomic, retain) NSDate * lastSyncDate;
 @property (nonatomic, retain) NSDate * lastLocalModification;
 
-+ (NSDate *) oldestModificationDateOfType:(NSString *)type error:(NSError **)error;
-+ (NSDate *) oldestSyncDateOfType:(NSString *)type error:(NSError **)error;
++ (NSDate *) modificationDateOfType:(NSString *)type dateType:(DateType)dateType error:(NSError **)error;
++ (NSDate *) syncDateOfType:(NSString *)type dateType:(DateType)dateType error:(NSError **)error;
 
 @end
