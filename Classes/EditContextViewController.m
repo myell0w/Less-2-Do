@@ -194,9 +194,9 @@
 
 - (void) animateTextField:(UITextField*)textField up:(BOOL)up
 {
-	int movementDistance = 210;
+	int movementDistance = 216;
 	if (self.context != nil)
-		movementDistance = 210 - 50;
+		movementDistance = 216 - 50;
     const float movementDuration = 0.3f;
 	
     int movement = (up ? -movementDistance : movementDistance);
@@ -276,12 +276,7 @@
 }
 
 - (IBAction) textFieldDone:(id)sender {
-	[self.nameTextField resignFirstResponder];
-
-	if ([self.mapsearchTextField isFirstResponder]) {
-		[self animateTextField:self.mapsearchTextField up:NO];
-		[self.mapsearchTextField resignFirstResponder];
-	}
+	[self resignActualFirstResponder];
 }
 
 - (IBAction) showSearchedLocation {
@@ -329,8 +324,14 @@
 }
 
 - (IBAction) showOwnLocation {
+	[self resignActualFirstResponder];
+	
 	[self.locationManager startUpdatingLocation];
 	ALog ("Start searching for Location");
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	ALog ("Oh, i got touched :)");
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -445,6 +446,20 @@
 	self.reverseGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:location];
 	self.reverseGeocoder.delegate = self;
 	[self.reverseGeocoder start];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark MapViewControllerProtocol
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)resignActualFirstResponder {
+	[self.nameTextField resignFirstResponder];
+	
+	if ([self.mapsearchTextField isFirstResponder]) {
+		[self animateTextField:self.mapsearchTextField up:NO];
+		[self.mapsearchTextField resignFirstResponder];
+	}
 }
 
 @end

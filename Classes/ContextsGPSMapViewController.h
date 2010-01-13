@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "AddressAnnotation.h"
+#import "MapViewControllerProtocol.h"
 
-
-@interface ContextsGPSMapViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate> {
+@interface ContextsGPSMapViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, MapViewControllerProtocol> {
 	NSArray *_contexts;
 	MKMapView *_mapView;
 	NSArray *_addAnnotations;

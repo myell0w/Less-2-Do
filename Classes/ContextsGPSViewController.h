@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ContextsGPSMapViewController.h"
-#import "ContextsNavigationController.h"
+#import "TasksListViewController.h"
 
 
 @interface ContextsGPSViewController : UIViewController {
@@ -17,14 +17,14 @@
 	UIImage *_image;
 	
 	ContextsGPSMapViewController *_mapViewController;
-	ContextsNavigationController *_listViewController;
+	TasksListViewController *_listViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) ContextsGPSMapViewController *mapViewController;
-@property (nonatomic, retain) ContextsNavigationController *listViewController;
+@property (nonatomic, retain) TasksListViewController *listViewController;
 
 - (IBAction) switchViews:(id)sender;
 

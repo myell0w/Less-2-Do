@@ -8,7 +8,7 @@
 
 #import "ContextsGPSViewController.h"
 #import "ContextsGPSMapViewController.h"
-#import "ContextsNavigationController.h"
+#import "TasksListViewController.h"
 
 @implementation ContextsGPSViewController
 
@@ -36,9 +36,13 @@
 	self.navigationItem.titleView = self.segmentedControl;
 	
 	//init MapView
-	self.listViewController = [[ContextsNavigationController alloc] initWithNibName:@"ContextsTableView" bundle:nil];
+	self.listViewController = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+	self.listViewController.title = @"Nearest Tasks";
+	self.listViewController.image = [UIImage imageNamed:@"context_gps.png"];
+	self.listViewController.selector = @selector(getTasksWithContext:);
+	//self.listViewController.argument = context;
 	[self.view insertSubview:self.listViewController.view atIndex:0];
-	
+	[self.listViewController loadData];
     [super viewDidLoad];
 }
 
@@ -70,8 +74,12 @@
 	if([sender selectedSegmentIndex] == 0) {
 		if(self.listViewController.view.superview == nil) {
 			
-			if(self.listViewController.view == nil)
-				self.listViewController = [[ContextsNavigationController alloc] initWithNibName:@"ContextsNavigationController" bundle:nil];
+			if(self.listViewController.view == nil) {
+				self.listViewController = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
+				self.listViewController.title = @"Nearest Tasks";
+				self.listViewController.image = [UIImage imageNamed:@"context_gps.png"];
+				self.listViewController.selector = @selector(getAllTasks:error:);
+			}
 				
 			[self.mapViewController.view removeFromSuperview];
 			[self.view insertSubview:self.listViewController.view atIndex:0];

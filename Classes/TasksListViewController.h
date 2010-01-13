@@ -57,6 +57,7 @@ typedef enum _TaskListDetailMode {
 @property (nonatomic) SEL selector;
 @property (nonatomic, retain) id argument;
 
+- (void)loadData;
 // returns the number of tasks shown in this TableView
 - (int) taskCount;
 // set Up a Cell
