@@ -8,7 +8,7 @@
 
 #import "TaskEditFolderViewController.h"
 #import "Folder.h"
-#import "FolderCell.h"
+
 
 #define FONT_SIZE 15
 
