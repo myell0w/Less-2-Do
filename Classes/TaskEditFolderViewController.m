@@ -106,10 +106,11 @@
 	if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
 		
-		UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(12,12,22,22)];
-		colorView.tag = TAG_COLOR;
-		[cell.contentView addSubview:colorView];
-		[colorView release];
+		UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12,12,22,22)];
+		imageView.image = [UIImage imageNamed:@"smallWhiteBoarderedButton.png"];
+		imageView.tag = TAG_COLOR;
+		[cell.contentView addSubview:imageView];
+		[imageView release];
 		
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(46,10,235,27)];
 		label.tag = TAG_FOLDER;

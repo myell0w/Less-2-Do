@@ -136,11 +136,6 @@
 		else {
 			cell = [[[TDBadgedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:folderCellID] autorelease];
 			
-			UIView *colorView = [[UIView alloc] initWithFrame:CGRectMake(12,12,22,22)];
-			colorView.tag = TAG_COLOR;
-			[cell.contentView addSubview:colorView];
-			[colorView release];
-			
 			UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12,12,22,22)];
 			imageView.image = [UIImage imageNamed:@"smallWhiteBoarderedButton.png"];
 			imageView.tag = TAG_COLOR;
