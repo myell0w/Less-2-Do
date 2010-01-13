@@ -46,8 +46,8 @@
 	// suche ältestes lokales Änderungsdatum
 	// hole remote-Änderungsdatum der Folder
 	// wenn das remote-Änderungsdatum neuer ist als die letzte lokale Änderung --> hole Folders, sonst nicht (spart traffic)
-	NSDate *oldestLocalFolderDate = [Folder oldestModificationDateOfType:@"Folder" error:&localError];
-	NSDate *oldestLocalSyncDate = [Folder oldestSyncDateOfType:@"Folder" error:&localError];
+	NSDate *oldestLocalFolderDate = [Folder modificationDateOfType:@"Folder" dateType:((preference == SyncPreferRemote)?DateTypeOldest:DateTypeYoungest) error:&localError];
+	NSDate *oldestLocalSyncDate = [Folder syncDateOfType:@"Folder" dateType:((preference == SyncPreferRemote)?DateTypeOldest:DateTypeYoungest) error:&localError];
 	NSMutableDictionary *remoteDates = [tdApi getLastModificationsDates:&localError];
 	NSString  *lastRemoteFolderEditString = [remoteDates valueForKey:@"lastFolderEdit"];
 	

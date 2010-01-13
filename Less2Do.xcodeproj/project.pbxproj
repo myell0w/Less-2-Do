@@ -114,7 +114,6 @@
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
 		A3E338A210BC5C6D004F0F39 /* ABContact.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389B10BC5C6D004F0F39 /* ABContact.m */; };
 		A3E338A310BC5C6D004F0F39 /* ExtendedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */; };
-		CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */; };
 		CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF879D8F10D5B490004D6770 /* ColorChooserCell.m */; };
 		CFB932F510BC872B004EAF93 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF1D52910D571A1005AB0BE /* UIColor+ColorComponents.m */; };
@@ -359,8 +358,6 @@
 		A3E3389C10BC5C6D004F0F39 /* ExtendedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedInfo.h; path = Entities/ExtendedInfo.h; sourceTree = "<group>"; };
 		A3E3389D10BC5C6D004F0F39 /* ExtendedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedInfo.m; path = Entities/ExtendedInfo.m; sourceTree = "<group>"; };
 		A3E3398810BC7EDE004F0F39 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
-		CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSyncObject.h; sourceTree = "<group>"; };
-		CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSyncObject.m; sourceTree = "<group>"; };
 		CF879D8E10D5B490004D6770 /* ColorChooserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorChooserCell.h; sourceTree = "<group>"; };
 		CF879D8F10D5B490004D6770 /* ColorChooserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorChooserCell.m; sourceTree = "<group>"; };
 		CFB932F310BC872B004EAF93 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Entities/Context.h; sourceTree = "<group>"; };
@@ -864,8 +861,6 @@
 			children = (
 				D4858BFE10F37CA4005FB59C /* SyncManager.h */,
 				D4858BFD10F37CA4005FB59C /* SyncManager.m */,
-				CF04579C10E2F12A00DED3CF /* BaseSyncObject.h */,
-				CF04579D10E2F12A00DED3CF /* BaseSyncObject.m */,
 				398D634710F280980061BE66 /* BaseRemoteObject.h */,
 				398D634810F280980061BE66 /* BaseRemoteObject.m */,
 			);
@@ -1148,7 +1143,6 @@
 				CFF1D52A10D571A1005AB0BE /* UIColor+ColorComponents.m in Sources */,
 				CF879D9010D5B490004D6770 /* ColorChooserCell.m in Sources */,
 				A3706ABE10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
-				CF04579E10E2F12A00DED3CF /* BaseSyncObject.m in Sources */,
 				39F5AFD210ED19FC00E54EB1 /* ShowTaskViewController.m in Sources */,
 				D4C45C8310F1E001008B07FB /* SettingsSyncViewController.m in Sources */,
 				D4C45F5710F243FD008B07FB /* TaskEditRecurrenceViewController.m in Sources */,

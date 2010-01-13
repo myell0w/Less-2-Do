@@ -15,11 +15,19 @@
 @dynamic lastSyncDate;
 @dynamic lastLocalModification;
 
-+ (NSDate *) oldestModificationDateOfType:(NSString *)type error:(NSError **)error
+/*
+   min: ältestes
+   max: jüngstes*/
++ (NSDate *) modificationDateOfType:(NSString *)type dateType:(DateType)dateType error:(NSError **)error;
 {
-	
+	NSString *function = nil;
+	if(dateType == DateTypeYoungest)
+		function = @"max:";
+	else 
+		function = @"min:";
+
 	NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"lastLocalModification"];
-	NSExpression *minModDateExpression = [NSExpression expressionForFunction:@"min:"
+	NSExpression *minModDateExpression = [NSExpression expressionForFunction:function
 																   arguments:[NSArray arrayWithObject:keyPathExpression]];
 	NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
 	[expressionDescription setName:@"minModDate"];
@@ -57,11 +65,16 @@
 	return [[objects objectAtIndex:0] objectForKey:@"minModDate"];
 }
 
-+ (NSDate *) oldestSyncDateOfType:(NSString *)type error:(NSError **)error
++ (NSDate *) syncDateOfType:(NSString *)type dateType:(DateType)dateType error:(NSError **)error
 {
+	NSString *function = nil;
+	if(dateType == DateTypeYoungest)
+		function = @"max:";
+	else 
+		function = @"min:";
 	
 	NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@"lastSyncDate"];
-	NSExpression *minSyncDateExpression = [NSExpression expressionForFunction:@"min:"
+	NSExpression *minSyncDateExpression = [NSExpression expressionForFunction:function
 																   arguments:[NSArray arrayWithObject:keyPathExpression]];
 	NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
 	[expressionDescription setName:@"minSyncDate"];
@@ -98,17 +111,6 @@
 	
 	return [[objects objectAtIndex:0] objectForKey:@"minSyncDate"];
 }
-
-/*+ (BaseManagedObject *)objectOfType:(NSString *)type
-{
-
-	BaseRemoteObject *castValue = [NSEntityDescription insertNewObjectForEntityForName:type 
-										 inManagedObjectContext:[BaseManagedObject managedObjectContext]]; 
-	ALog(@"remoteId vor dem -1 setzten: %d", [castValue.remoteId integerValue]);
-	castValue.remoteId = [NSNumber numberWithInteger:-1];
-	ALog(@"remoteId NACH dem -1 setzten: %d", [castValue.remoteId integerValue]);
-	return castValue;
-}*/
 
 
 @end
