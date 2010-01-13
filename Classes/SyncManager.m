@@ -133,22 +133,23 @@
 		}
 		else
 		{
-			// toodledo update localFoldersWithRemoteId
+			// toodledo add localFoldersWithRemoteId
 			for(int i=0;i<[localFoldersWithRemoteId count];i++)
 			{
 				GtdFolder *remoteFolder = [[GtdFolder alloc] init];
 				Folder *localFolder = [localFoldersWithRemoteId objectAtIndex:i];
 				remoteFolder.title = localFolder.name;
 				remoteFolder.order = [localFolder.order integerValue];
-				remoteFolder.uid = [localFolder.remoteId integerValue];
+				//remoteFolder.uid = [localFolder.remoteId integerValue];
 				requestSuccessful = YES;
-				if(localFolder.deleted == [NSNumber numberWithInteger:0])
+				localError = nil;
+				if([localFolder.deleted intValue] == 0)
 				{
 					localFolder.lastSyncDate = currentDate;
-					requestSuccessful = [tdApi editFolder:remoteFolder error:&localError];
+					localFolder.remoteId = [NSNumber numberWithInteger:[tdApi addFolder:remoteFolder error:&localError]];
 				}
 				[remoteFolder release];
-				if(!requestSuccessful)
+				if(localError != nil)
 				{
 					*error = localError;
 					[BaseManagedObject rollback];
@@ -172,11 +173,10 @@
 			newFolder.order = [localFolder.order integerValue];
 			newFolder.uid = [localFolder.remoteId integerValue];
 			
-			// sende update request nur, wenn sich etwas geändert hat seit dem letzten sync
-			// d.h. wenn lastLocalModification > lastSyncDate
+			// sende update request nur, wenn der folder nicht sowieso gelöscht wird
 			requestSuccessful = YES;
 			ALog(@"lastSync: %@, lastLocalMod: %@, deleted: %d", localFolder.lastSyncDate, localFolder.lastLocalModification, [localFolder.deleted integerValue]);
-			if([localFolder.lastSyncDate compare:localFolder.lastLocalModification] == NSOrderedAscending && localFolder.deleted == [NSNumber numberWithInteger:1])
+			if([localFolder.deleted intValue] == 0)
 			{
 				localFolder.lastSyncDate = currentDate;
 				requestSuccessful = [tdApi editFolder:newFolder error:&localError];
@@ -222,7 +222,7 @@
 				// else ==> update toodledo		
 		for(Folder * localFolder in modifiedFolders)
 		{
-			if(localFolder.remoteId == [NSNumber numberWithInteger:-1])
+			if([localFolder.remoteId intValue] == -1)
 			{
 				GtdFolder *newFolder = [[GtdFolder alloc] init];
 				newFolder.title = localFolder.name;
