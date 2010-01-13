@@ -123,7 +123,7 @@
 	colorView.backgroundColor = [folder color];
 	
 	UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:TAG_FOLDER];
-	textLabel.text = [folder description];
+	textLabel.text = folder.name;
 	cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	
     return cell;
@@ -162,6 +162,9 @@
 	Folder *folder = (Folder *)[Folder objectOfType:@"Folder"];
 	folder.name = addFolderControl.text;
 	folder.order = order;
+	folder.r = [NSNumber numberWithDouble:1.0];
+	folder.g = [NSNumber numberWithDouble:1.0];
+	folder.b = [NSNumber numberWithDouble:1.0];
 	[order release];
 	
 	ALog ("Folder %@ inserted", folder);
