@@ -231,4 +231,13 @@
 	GHAssertEquals([tasks count], (NSUInteger)1, @"Getting tasks that are completed failed!");
 }
 
+- (void)testNextDueDate {
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	
+	newTask1.name = @"Task 1";
+	//newTask1.dueDate = 
+	//TODO: test method nextDueDate
+}
+
 @end

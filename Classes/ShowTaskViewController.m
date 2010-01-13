@@ -171,7 +171,7 @@
 		NSString *dueDateAndTime = nil;
 		if (task.dueDate != nil) {
 			dueDateAndTime = [[NSString alloc] initWithFormat:@"due: %@, %@",
-							  [formatDate stringFromDate:task.dueDate],
+							  [formatDate stringFromDate:[task nextDueDate]],
 							  task.dueTime != nil ? [formatTime stringFromDate:task.dueTime] : @"no time"];
 		} else {
 			dueDateAndTime = @"no due date";

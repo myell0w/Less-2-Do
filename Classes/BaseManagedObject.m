@@ -35,7 +35,7 @@
 
 + (BOOL)deleteObjectFromPersistentStore:(BaseManagedObject *)theObject error:(NSError **)error
 {
-	NSError *deleteError;
+	//NSError *deleteError;
 	
 	/* show if parameter is set */
 	if(theObject == nil) {

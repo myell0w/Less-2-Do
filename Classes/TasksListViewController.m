@@ -164,7 +164,7 @@
 	NSString *dueDateAndTime = nil;
 		if (t.dueDate != nil) {
 			dueDateAndTime = [[NSString alloc] initWithFormat:@"due: %@, %@",
-							  [formatDate stringFromDate:t.dueDate],
+							  [formatDate stringFromDate:[t nextDueDate]],
 							  t.dueTime != nil ? [formatTime stringFromDate:t.dueTime] : @"no time"];
 		} else {
 			dueDateAndTime = @"no due date";
@@ -196,7 +196,7 @@
 	priorityView.image = [UIImage imageNamed:priorityName];
 	[priorityName release];
 	
-	if (t.repeat != nil && ([t.repeat intValue]%100) != 0) {
+	if ([t isRepeating]) {
 		UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
 		recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
 	}

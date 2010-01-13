@@ -70,6 +70,76 @@
 	}
 }
 
+- (BOOL)isRepeating {
+	return self.repeat != nil && ([self.repeat intValue]%100 != 0);
+}
+
+- (NSDate *)nextDueDate {
+	if (![self isRepeating]) {
+		return self.dueDate;
+	} else {
+		NSDate *d = self.dueDate;
+		NSDate *now = [[NSDate alloc] init];
+		NSCalendar *cal = [NSCalendar currentCalendar];
+		NSDateComponents *comp = [[NSDateComponents alloc] init];
+		//TODO: support dueDate from completion-date
+		
+		switch ([self.repeat intValue]) {
+			// repeat weekly
+			case 1:
+				[comp setDay:7];
+				break;
+			// repeat monthly
+			case 2:
+				[comp setMonth:1];
+				break;
+			// repeat yearly
+			case 3:
+				[comp setYear:1];
+				break;
+			// repeat daily
+			case 4:
+				[comp setDay:1];
+				break;
+			// repeat biweekly
+			case 5:
+				[comp setDay:14];
+				break;
+			// repeat bimonthly
+			case 6:
+				[comp setMonth:2];
+				break;
+			// repeat semiannually
+			case 7:
+				[comp setMonth:6];
+				break;
+			// repeat quarterly
+			case 8:
+				[comp setMonth:3];
+				break;
+			// repeat with parent
+			case 9:
+			default:
+				[comp release];
+				[now release];
+				return self.dueDate;
+				break;
+		}
+		
+		for (int i=0; YES ; i++) {
+			d = [cal dateByAddingComponents:comp toDate:d options:0];
+			
+			// return first dueDate, that is in the future
+			if ([d compare:now] == NSOrderedDescending) {
+				[comp release];
+				[now release];
+				
+				return d;
+			}
+		}
+	}
+}
+
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error {
 	NSError *fetchError;
 	

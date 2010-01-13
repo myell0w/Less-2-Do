@@ -321,7 +321,7 @@
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
-		A3227ECD10FD21540093C8CB /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncTest.m; path = "../../ObjC/Less-2-Do/SyncTest.m"; sourceTree = SOURCE_ROOT; };
+		A3227ECD10FD21540093C8CB /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };

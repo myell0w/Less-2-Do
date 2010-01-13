@@ -65,6 +65,8 @@
 - (void)removeContext;
 
 - (NSString *)tagsDescription;
+- (NSDate *)nextDueDate;
+- (BOOL)isRepeating;
 
 // general fetch-methods for tasks
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error;
