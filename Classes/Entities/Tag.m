@@ -90,6 +90,11 @@
 	return objects;
 }
 
++ (NSArray *)getAllTagsInStore:(NSError **)error
+{
+	return [self getAllTags:error];
+}
+
 + (NSArray *) getAllTags:(NSError **)error {
 	NSArray* objects = [Tag getTagsWithFilterString:nil error:error];	
 	return objects;

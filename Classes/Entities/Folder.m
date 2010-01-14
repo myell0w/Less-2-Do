@@ -101,6 +101,12 @@
 	return objects;
 }
 
++ (NSArray *)getAllFoldersInStore:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterString:nil error:error];	
+	return objects;
+}
+
 + (NSArray *) getAllFolders:(NSError **)error
 {
 	NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == NO" error:error];	

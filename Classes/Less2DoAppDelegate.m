@@ -221,7 +221,7 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+/*- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 	
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
@@ -242,11 +242,71 @@
 		 * The schema for the persistent store is incompatible with current managed object model
 		 Check the error message to determine what the actual problem was.
 		 */
-		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+/*		NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 		abort();
     }    
 	
     return persistentStoreCoordinator;
+}*/
+
+/**
+ Returns the persistent store coordinator for the application.
+ If the coordinator doesn't already exist, it is created and the application's store added to it.
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+	if (persistentStoreCoordinator != nil) {
+		return persistentStoreCoordinator;
+	}
+    VVLog(@"creating NSPersistentStoreCoordinator");  
+	
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"clearDatabase"]) {
+		ALog(@"Clear Cache requested!");
+		[[NSUserDefaults standardUserDefaults] setObject:NO forKey:@"clearDatabase"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		[self clearPersistentStore];
+	}
+	
+#ifdef CLEAR_PERSISTENT_STORE
+	[self clearPersistentStore];
+#endif
+	
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Less2Do.sqlite"]];
+    
+    NSError *error = nil;
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], 
+							 NSMigratePersistentStoresAutomaticallyOption, 
+							 [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+	
+	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil 
+															 URL:storeUrl options:options error:&error]) {
+		// error! we delete the store and start over...
+        DLog(@"error creating persistent store: %@", error);
+		
+		if([self clearPersistentStore]) {
+			persistentStoreCoordinator = nil;
+			return self.persistentStoreCoordinator; // potential loop. if this fails everything's not gonna work anyway...
+		}else {
+			return nil;
+		}
+	}  
+	return persistentStoreCoordinator;
+}
+
+/**
+ *  Simply deletes the sql file that is the persistent store.
+ */
+- (BOOL)clearPersistentStore {
+	DLog(@"purging the persistent store...");
+	
+	NSURL *storeURL = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Less2Do.sqlite"]];
+	NSError *error = nil;
+	if(![[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error]) {
+		ALog(@"Deleting the store at url %@ failed: %@", storeURL, error);
+		return NO;
+	}
+	return YES;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

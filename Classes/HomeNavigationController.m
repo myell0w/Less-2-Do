@@ -157,8 +157,8 @@
 
 -(IBAction)syncButtonPressed:(id)sender {
 	NSError *error = nil;
-	SyncManager *syncManager = [[SyncManager alloc] init];
-	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
+	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
+	/*BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	if(!successful)
 	{
 		ALog(@"Error syncWithPreference:SyncPreferRemote = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
@@ -166,6 +166,15 @@
 	else
 	{
 		ALog(@"syncWithPreference:SyncPreferRemote was successful");
+	}*/
+	BOOL successful = [syncManager overwriteRemote:&error];
+	if(!successful)
+	{
+		ALog(@"Error overwriteLocal: = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
+	}
+	else
+	{
+		ALog(@"overwriteLocal: was successful");
 	}
 }
 

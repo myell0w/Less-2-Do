@@ -33,6 +33,7 @@
 + (NSArray *) getFoldersWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 // specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method
++ (NSArray *)getAllFoldersInStore:(NSError **)error;
 + (NSArray *)getAllFolders:(NSError **)error; //Automatisch geordnet nach Order
 //TODO folder with rgb
 + (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error;

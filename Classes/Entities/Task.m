@@ -280,6 +280,12 @@
 	return returnValue;
 }
 
++ (NSArray *)getAllTasksInStore:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
+	return objects;
+}
+
 + (NSArray *) getAllTasks:(NSError **)error {
 	NSArray* objects = [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"] error:error];	
 	return objects;

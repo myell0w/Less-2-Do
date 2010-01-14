@@ -28,6 +28,7 @@
 + (NSArray *) getTagsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 // specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method
++ (NSArray *)getAllTagsInStore:(NSError **)error;
 + (NSArray *) getAllTags:(NSError **)error;
 
 @end

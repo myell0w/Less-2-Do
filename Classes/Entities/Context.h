@@ -36,6 +36,7 @@
 + (NSArray *) getContextsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 // specialized fetch-methods for contexts - each method encapsulates a call to a general fetch-method
++ (NSArray *)getAllContextsInStore:(NSError **)error;
 + (NSArray *) getAllContexts:(NSError **)error;
 + (NSArray *)getRemoteStoredContexts:(NSError **)error;
 + (NSArray *)getRemoteStoredContextsLocallyDeleted:(NSError **)error;

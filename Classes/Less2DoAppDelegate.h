@@ -74,6 +74,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 -(NSString *)applicationDocumentsDirectory;
+- (BOOL)clearPersistentStore;
 
 - (void)commitDatabase:(NSTimer *)timer;
 - (void)checkDueTasks:(NSTimer *)timer;

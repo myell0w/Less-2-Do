@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TDApi.h"
 #import "GtdApi.h"
+#import "Tag.h"
 #import "Less2DoAppDelegate.h"
 
 
@@ -32,8 +33,8 @@ typedef enum {
 /* Public usable functions */
 +(BOOL)syncWithPreferenceOld:(SyncPreference)preference error:(NSError**)error; //deprecated
 -(BOOL)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
--(void)overrideLocal:(NSError**)error;
--(void)overrideRemote:(NSError**)error;
+-(BOOL)overwriteLocal:(NSError**)error;
+-(BOOL)overwriteRemote:(NSError**)error;
 
 +(NSString *)gtdErrorMessage:(NSInteger)errorCode;
 
@@ -42,6 +43,15 @@ typedef enum {
 -(BOOL)syncFoldersPreferRemote;
 -(BOOL)syncContextsPreferLocal;
 -(BOOL)syncContextsPreferRemote;
+
+-(BOOL)deleteAllLocalFolders;
+-(BOOL)deleteAllLocalContexts;
+-(BOOL)deleteAllLocalTags;
+-(BOOL)deleteAllLocalTasks;
+
+-(BOOL)deleteAllRemoteFolders;
+-(BOOL)deleteAllRemoteContexts;
+-(BOOL)deleteAllRemoteTasks;
 
 -(BOOL)exitFailure:(NSError**)error;
 

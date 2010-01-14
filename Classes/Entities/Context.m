@@ -102,6 +102,12 @@
 	return objects;
 }
 
++ (NSArray *)getAllContextsInStore:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:nil error:error];	
+	return objects;
+}
+
 + (NSArray *) getAllContexts:(NSError **)error
 {
 	NSArray* objects = [Context getContextsWithFilterString:@"deleted == NO" error:error];	

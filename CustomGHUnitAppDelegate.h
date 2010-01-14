@@ -23,6 +23,7 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (NSString *)applicationDocumentsDirectory;
+- (BOOL)clearPersistentStore;
 - (void)commitDatabase:(NSTimer *) theTimer;
 - (void)startTimer;
 - (void)stopTimer;

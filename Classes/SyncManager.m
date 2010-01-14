@@ -308,10 +308,8 @@
 	
 	if(syncError != nil) // error establishing connection
 	{
-		//*error = syncError;
-		//wasSuccessful = NO;
-		
-			return [self exitFailure:error];
+		*error = syncError;
+		wasSuccessful = NO;
 	}
 	else // successfully connected
 	{
@@ -321,9 +319,9 @@
 		if(preference == SyncPreferLocal)
 		{
 			// 1. Folders
-			/*wasSuccessful = [self syncFoldersPreferLocal];
+			wasSuccessful = [self syncFoldersPreferLocal];
 			if(!wasSuccessful)
-				return [self exitFailure:error];*/
+				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferLocal];
 			if(!wasSuccessful)
@@ -332,9 +330,9 @@
 		else
 		{
 			// 1. Folders
-			/*wasSuccessful = [self syncFoldersPreferRemote];
+			wasSuccessful = [self syncFoldersPreferRemote];
 			if(!wasSuccessful)
-				return [self exitFailure:error];*/
+				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferRemote];
 			if(!wasSuccessful)
@@ -354,58 +352,146 @@
  Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die lokale
  Version bevorzugt wird.
 */
--(void)overrideLocal:(NSError**)error
+-(BOOL)overwriteLocal:(NSError**)error
 {
+	// 1. init members
+	BOOL wasSuccessful = YES;
+	isConnected = NO;
+	currentDate = [NSDate date];
+	syncError = nil;
+	*error = nil;
+	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
+	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&syncError];
 	
+	if(syncError != nil) // error establishing connection
+	{
+		*error = syncError;
+		wasSuccessful = NO;
+	}
+	else // successfully connected
+	{
+		[self stopAutocommit];
+		
+		// ------ FIRST: DELETE ALL LOCAL DATA ------
+		
+		// delete Folders
+		wasSuccessful = [self deleteAllLocalFolders];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// delete Contexts
+		wasSuccessful = [self deleteAllLocalContexts];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		/*// delete Tags
+		wasSuccessful = [self deleteAllLocalTags];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// delete Tasks
+		wasSuccessful = [self deleteAllLocalTasks];
+		if(!wasSuccessful)
+			return [self exitFailure:error];*/
+		
+		// später: deleteAllExtendedInfos
+		
+		// ------ SECOND: GET DATA FROM REMOTE STORE
+		
+		// 1. get Folders
+		wasSuccessful = [self syncFoldersPreferRemote];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		// 2. get Contexts
+		wasSuccessful = [self syncContextsPreferRemote];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// syncTasksPreferRemote // die Tags sind in syncTasks enthalten
+		
+		[BaseManagedObject commitWithoutLocalModification];
+		[self startAutocommit];
+		[tdApi release];
+		return YES;
+	}
+	
+	return wasSuccessful;
 }
 
 /*
  Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die remote-
  Version bevorzugt wird.
 */
--(void)overrideRemote:(NSError**)error
+-(BOOL)overwriteRemote:(NSError**)error
 {
-	/*
-	 --- remote -> local ---
-	 0. hole remote-modification-dates (syncapi.getmodificationdates)
-	 1. erzeuge backup-moc fürs reinschreiben (wird erst mit dem programm-moc gemerged, wenn alles erfolgreich war)
-	 2. z.b.: folders (das selbe für tasks und contexts)
-		    hole jüngstes lokales modification-date, vergleiche mit folder-remote-moddate
-			wenn remote-moddate > local moddate
-			-->
-			hole alle toodledo-folders
-			vergleiche uids && moddates, wenn lokal vorhanden (remoteId != nil) --> überschreibe lokale felder
-							 wenn nicht vorhanden --> lege lokal an
-	 3. alle lokalen folders, die noch nicht verglichen wurden (muss mitgezählt werden), wurden in der zwischenzeit
-	    aus dem remote-speicher gelöscht --> delete them locally
-	 4. ersetze programm-moc durch backup-moc
-	 Jetzt sollten alle lokalen Task zumindest auf dem Stand von Toodledo sein, dh man kann jetzt alles zurückschreiben.
-	 
-	 --- local -> remote ---
-	 5. z.b.: folders (das selbe für tasks und contexts)
-			gehe alle lokalen folders durch
-			wenn isDeleted --> delete remote
-			für den rest:
-			vergleiche uids && moddates, wenn lokal nicht vorhanden (remoteId != nil) --> add remote
-										 wenn vorhanden, aber moddates verschieden --> edit remote
-										
-	 */
+	// 1. init members
+	BOOL wasSuccessful = YES;
+	isConnected = NO;
+	currentDate = [NSDate date];
+	syncError = nil;
+	*error = nil;
+	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
+	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&syncError];
+	
+	if(syncError != nil) // error establishing connection
+	{
+		*error = syncError;
+		wasSuccessful = NO;
+	}
+	else // successfully connected
+	{
+		[self stopAutocommit];
+		
+		// ------ FIRST: DELETE ALL REMOTE DATA ------
+		
+		// 1. delete Folders
+		wasSuccessful = [self deleteAllRemoteFolders];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// 1. delete Contexts
+		wasSuccessful = [self deleteAllRemoteContexts];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// deleteRemoteTasks
+		
+		// ------ SECOND: WRITE LOCAL DATA TO REMOTE STORE
+		
+		// 1. write Folders
+		wasSuccessful = [self syncFoldersPreferLocal];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		// 2. write Contexts
+		wasSuccessful = [self syncContextsPreferLocal];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
+		
+		// syncTasksPreferLocal // die Tags sind in syncTasks enthalten
+		
+		[BaseManagedObject commitWithoutLocalModification];
+		[self startAutocommit];
+		[tdApi release];
+		return YES;
+	}
+	
+	return wasSuccessful;
 }
 
 +(NSString *)gtdErrorMessage:(NSInteger)errorCode
 {
-/*GtdApiNoConnectionError = 10,
-GtdApiNotReachableError = 20,
-GtdApiDataError = 30,
-GtdApiMissingParameters = 40,
-GtdApiMissingCredentialsError = 110,
-GtdApiWrongCredentialsError = 120,
-GtdApiFolderNotAddedError = 210,
-GtdApiFolderNotDeletedError = 310,
-GtdApiFolderNotEditedError = 410,
-GtdApiContextNotAddedError = 510,
-GtdApiContextNotDeletedError = 520,
-GtdApiContextNotEditedError = 530*/
+	/*GtdApiNoConnectionError = 10,
+	 GtdApiNotReachableError = 20,
+	 GtdApiDataError = 30,
+	 GtdApiMissingParameters = 40,
+	 GtdApiMissingCredentialsError = 110,
+	 GtdApiWrongCredentialsError = 120,
+	 GtdApiFolderNotAddedError = 210,
+	 GtdApiFolderNotDeletedError = 310,
+	 GtdApiFolderNotEditedError = 410,
+	 GtdApiContextNotAddedError = 510,
+	 GtdApiContextNotDeletedError = 520,
+	 GtdApiContextNotEditedError = 530*/
 	switch (errorCode) {
 		case GtdApiNoConnectionError:
 			return @"Toodledo API no connection";
@@ -893,6 +979,95 @@ GtdApiContextNotEditedError = 530*/
 	return YES;
 }
 
+-(BOOL)deleteAllLocalFolders
+{
+	NSArray *allFolders = [Folder getAllFoldersInStore:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Folder *folder in allFolders)
+	{
+		[Folder deleteObjectFromPersistentStore:folder error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllLocalContexts
+{
+	NSArray *allContexts = [Context getAllContextsInStore:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Context *context in allContexts)
+	{
+		[Context deleteObjectFromPersistentStore:context error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllLocalTags
+{
+	NSArray *allTags = [Tag getAllTagsInStore:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Tag *tag in allTags)
+	{
+		[Tag deleteObjectFromPersistentStore:tag error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllLocalTasks
+{
+	NSArray *allTasks = [Task getAllTasksInStore:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Task *task in allTasks)
+	{
+		[Task deleteObjectFromPersistentStore:task error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllRemoteFolders
+{
+	NSArray *allFolders = [tdApi getFolders:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(GtdFolder *folder in allFolders)
+	{
+		BOOL successful = [tdApi deleteFolder:folder error:&syncError];
+		if(!successful)
+			ALog(@"Error deleting folder... continued");
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllRemoteContexts
+{
+	NSArray *allContexts = [tdApi getContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(GtdContext *context in allContexts)
+	{
+		BOOL successful = [tdApi deleteContext:context error:&syncError];
+		if(!successful)
+			ALog(@"Error deleting context... continued");
+	}
+	return YES;
+}
+
+-(BOOL)deleteAllRemoteTasks
+{
+	// TODO implement delete all tasks
+	return YES;
+}
 
 
 -(BOOL)exitFailure:(NSError **)error
