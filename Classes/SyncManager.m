@@ -1073,9 +1073,9 @@
 -(BOOL)exitFailure:(NSError **)error
 {
 	*error = syncError;
-	//[BaseManagedObject rollback];
-	//[self startAutocommit];
-	//[tdApi release];
+	[BaseManagedObject rollback];
+	[self startAutocommit];
+	[tdApi release];
 	return NO;
 }
 
