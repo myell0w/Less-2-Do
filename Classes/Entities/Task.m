@@ -269,12 +269,12 @@
 }
 
 + (NSArray *) getAllTasks:(NSError **)error {
-	NSArray* objects = [Task getTasksWithFilterString:nil error:error];	
+	NSArray* objects = [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"] error:error];	
 	return objects;
 }
 
 + (NSArray *) getStarredTasks:(NSError **)error {
-	NSArray* objects = [Task getTasksWithFilterString:@"star == 1" error:error];	
+	NSArray* objects = [Task getTasksWithFilterString:@"star == 1 and isCompleted == NO" error:error];	
 	return objects;
 }
 
@@ -287,7 +287,7 @@
 																		   type:NSEqualToPredicateOperatorType
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return objects;
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
 }
 
 + (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error {	
@@ -299,7 +299,7 @@
 																		   type:NSContainsPredicateOperatorType
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return objects;
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
 }
 
 + (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error {	
@@ -312,7 +312,7 @@
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	
-	return objects;
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
 }
 
 + (NSArray *) getCompletedTasks:(NSError **)error
@@ -336,12 +336,12 @@
 
 + (NSArray *) getTasksWithoutTag:(NSError **)error
 {
-  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0"] error:error];
+  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0 and isCompleted == NO"] error:error];
 }
 
 + (NSArray *) getTasksWithContext:(NSError **)error
 {
-	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil" error:error];
+	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO" error:error];
 }
 
 @end
