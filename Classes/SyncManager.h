@@ -40,6 +40,9 @@ typedef enum {
 /* Internal functions */
 -(BOOL)syncFoldersPreferLocal;
 -(BOOL)syncFoldersPreferRemote;
+-(BOOL)syncContextsPreferLocal;
+
+-(BOOL)exitFailure:(NSError**)error;
 
 /* helpers */
 -(void)stopAutocommit;

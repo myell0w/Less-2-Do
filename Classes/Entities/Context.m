@@ -108,4 +108,61 @@
 	return objects;
 }
 
++ (NSArray *)getRemoteStoredContexts:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:@"remoteId != -1" error:error];	
+	return objects;
+}
+
++ (NSArray *)getRemoteStoredContextsLocallyDeleted:(NSError **)error
+{
+	/* HACK DES JAHRES - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Context getContextsWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Context *context in objects)
+	{
+		if(!(context.remoteId != [NSNumber numberWithInt:-1] && [context.deleted intValue] == 1))
+			[mutable removeObject:context];
+	}
+
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
+}
+
++ (NSArray *)getLocalStoredContextsLocallyDeleted:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:@"remoteId == -1 AND deleted == YES" error:error];	
+	return objects;
+}
+
++ (NSArray *)getAllContextsLocallyDeleted:(NSError **)error
+{
+	/* HACK DES JAHRES #3 - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Context getContextsWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Context *context in objects)
+	{
+		if(!([context.deleted intValue] == 1))
+			[mutable removeObject:context];
+	}
+
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
+}
+
++ (NSArray *)getUnsyncedContexts:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:@"remoteId == -1 AND deleted == NO" error:error];	
+	return objects;
+}
+
++ (NSArray *)getModifiedContexts:(NSError **)error
+{
+	NSArray* objects = [Context getContextsWithFilterString:@"lastLocalModification > lastSyncDate" error:error];	
+	return objects;
+}
+
+
 @end

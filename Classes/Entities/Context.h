@@ -37,6 +37,12 @@
 
 // specialized fetch-methods for contexts - each method encapsulates a call to a general fetch-method
 + (NSArray *) getAllContexts:(NSError **)error;
++ (NSArray *)getRemoteStoredContexts:(NSError **)error;
++ (NSArray *)getRemoteStoredContextsLocallyDeleted:(NSError **)error;
++ (NSArray *)getLocalStoredContextsLocallyDeleted:(NSError **)error;
++ (NSArray *)getAllContextsLocallyDeleted:(NSError **)error;
++ (NSArray *)getUnsyncedContexts:(NSError **)error;
++ (NSArray *)getModifiedContexts:(NSError **)error;
 
 @end
 

@@ -308,8 +308,10 @@
 	
 	if(syncError != nil) // error establishing connection
 	{
-		*error = syncError;
-		wasSuccessful = NO;
+		//*error = syncError;
+		//wasSuccessful = NO;
+		
+			return [self exitFailure:error];
 	}
 	else // successfully connected
 	{
@@ -318,27 +320,20 @@
 		
 		if(preference == SyncPreferLocal)
 		{
-			wasSuccessful = [self syncFoldersPreferLocal];
+			// 1. Folders
+			/*wasSuccessful = [self syncFoldersPreferLocal];
 			if(!wasSuccessful)
-			{
-				*error = syncError;
-				[BaseManagedObject rollback];
-				[self startAutocommit];
-				[tdApi release];
-				return NO;
-			}
+				return [self exitFailure:error];*/
+			// 2. Contexts
+			wasSuccessful = [self syncContextsPreferLocal];
+			if(!wasSuccessful)
+				return [self exitFailure:error];
 		}
 		else
 		{
 			wasSuccessful = [self syncFoldersPreferRemote];
 			if(!wasSuccessful)
-			{
-				*error = syncError;
-				[BaseManagedObject rollback];
-				[self startAutocommit];
-				[tdApi release];
-				return NO;
-			}
+				return [self exitFailure:error];
 		}
 		
 		[BaseManagedObject commitWithoutLocalModification];
@@ -558,6 +553,7 @@ GtdApiContextNotEditedError = 530*/
 			// anderen in der Zwischenzeit gelöscht
 			if(![syncError code] == GtdApiFolderNotDeletedError)
 				return NO;
+			syncError = nil;
 		}
 	}
 	
@@ -666,6 +662,152 @@ GtdApiContextNotEditedError = 530*/
 	}
 	
 	return YES;
+}
+
+-(BOOL)syncContextsPreferLocal
+{
+	NSArray *remoteContexts = [tdApi getContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	NSArray *localContextsWithRemoteIdArray = [Context getRemoteStoredContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	// initialisiere zunächst mit allen bereits gesyncten Kontexten
+	// sobald ein remote-pendant gefunden wurde, entferne context aus dieser collection
+	// die übrig gebliebenen wurden remote entfernt, müssen aber aufgrund der
+	// höheren priorität der lokalen version remote wieder geadded werden
+	NSMutableArray *localContextsWithRemoteId = [NSMutableArray array];
+	[localContextsWithRemoteId addObjectsFromArray:localContextsWithRemoteIdArray];
+	NSMutableArray *usedLocalEntityVersion = [[[NSMutableArray alloc] init] autorelease];
+	
+	for(GtdContext *remoteContext in remoteContexts)
+	{
+		BOOL foundLocalEntity = NO;
+		// durchsuche lokale Contexte, ob gleiche id existiert
+		for(int i=0; i<[localContextsWithRemoteId count]; i++)
+		{
+			Context *localContext = [localContextsWithRemoteId objectAtIndex:i];
+			if([localContext.remoteId integerValue] == remoteContext.uid)
+			{
+				foundLocalEntity = YES;
+				[usedLocalEntityVersion addObject:localContext];
+				[localContextsWithRemoteId removeObject:localContext];
+				break;
+			}
+		}
+		if(!foundLocalEntity)
+		{
+			// add local
+			Context *newContext = (Context*)[Context objectOfType:@"Context"];
+			newContext.name = remoteContext.title;
+			newContext.remoteId = [NSNumber numberWithInteger:remoteContext.uid];
+			newContext.lastSyncDate = currentDate;
+		}
+	}
+	
+	// füge nun remote gelöschte contexts wieder hinzu, aber nur wenn sie nicht
+	// auch zufällig lokal als gekennzeichnet wurden
+	for(int i=0;i<[localContextsWithRemoteId count];i++)
+	{
+		GtdContext *remoteContext = [[GtdContext alloc] init];
+		Context *localContext = [localContextsWithRemoteId objectAtIndex:i];
+		remoteContext.title = localContext.name;
+		if([localContext.deleted intValue] == 0)
+		{
+			localContext.lastSyncDate = currentDate;
+			localContext.remoteId = [NSNumber numberWithInteger:[tdApi addContext:remoteContext error:&syncError]];
+		}
+		[remoteContext release];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	// update die toodledo context, bei allen contexten, die schon mal gesynct wurden
+	for(Context *localContext in usedLocalEntityVersion)
+	{
+		// update toodledo
+		GtdContext *newContext = [[GtdContext alloc] init];
+		newContext.title = localContext.name;
+		newContext.uid = [localContext.remoteId integerValue];
+		
+		// sende update request nur, wenn der context nicht sowieso gelöscht wird
+		BOOL requestSuccessful = YES;
+		if([localContext.deleted intValue] == 0)
+		{
+			localContext.lastSyncDate = currentDate;
+			requestSuccessful = [tdApi editContext:newContext error:&syncError];
+		}
+		
+		[newContext release];
+		if(!requestSuccessful)
+			return NO;
+	}
+	
+	// jetzt fehlen nur noch die noch nie gesyncten lokalen Contexte
+	// --> toodledo-add
+	NSArray *unsyncedContexts = [Context getUnsyncedContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Context *localContext in unsyncedContexts)
+	{
+		GtdContext *newContext = [[GtdContext alloc] init];
+		newContext.title = localContext.name;
+		newContext.uid = -1;
+		
+		localContext.remoteId = [NSNumber numberWithInteger:[tdApi addContext:newContext error:&syncError]];
+		localContext.lastSyncDate = currentDate;
+		[newContext release];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	// alle contexte mit remoteId != nil && deleted == true ==> delete toodledo
+	NSArray *contextsToDeleteRemote = [Context getRemoteStoredContextsLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[contextsToDeleteRemote count]; i++)
+	{
+		Context * contextToDeleteRemote = [contextsToDeleteRemote objectAtIndex:i];
+		GtdContext *newContext = [[GtdContext alloc] init];
+		newContext.uid = [contextToDeleteRemote.remoteId integerValue];
+		BOOL requestSuccessful = YES;
+		requestSuccessful = [tdApi deleteContext:newContext error:&syncError];
+		[newContext release];
+		if(!requestSuccessful)
+		{
+			// ignoriere Fehler, dann wurde der Context eben schon von einem
+			// anderen in der Zwischenzeit gelöscht
+			if(![syncError code] == GtdApiContextNotDeletedError)
+				return NO;
+			syncError = nil;
+		}
+	}
+	
+	// alle contexte mit deleted == true lokal löschen
+	NSArray *contextsToDeleteLocally = [Context getAllContextsLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[contextsToDeleteLocally count]; i++)
+	{
+		Context *contextToDeleteLocally = [contextsToDeleteLocally objectAtIndex:i];
+		[Context deleteObjectFromPersistentStore:contextToDeleteLocally error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	return YES;
+}
+
+
+-(BOOL)exitFailure:(NSError **)error
+{
+	*error = syncError;
+	//[BaseManagedObject rollback];
+	//[self startAutocommit];
+	//[tdApi release];
+	return NO;
 }
 
 -(void)stopAutocommit {
