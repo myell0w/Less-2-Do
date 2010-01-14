@@ -41,6 +41,7 @@ typedef enum {
 -(BOOL)syncFoldersPreferLocal;
 -(BOOL)syncFoldersPreferRemote;
 -(BOOL)syncContextsPreferLocal;
+-(BOOL)syncContextsPreferRemote;
 
 -(BOOL)exitFailure:(NSError**)error;
 

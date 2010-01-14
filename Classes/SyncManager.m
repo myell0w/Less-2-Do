@@ -331,7 +331,12 @@
 		}
 		else
 		{
-			wasSuccessful = [self syncFoldersPreferRemote];
+			// 1. Folders
+			/*wasSuccessful = [self syncFoldersPreferRemote];
+			if(!wasSuccessful)
+				return [self exitFailure:error];*/
+			// 2. Contexts
+			wasSuccessful = [self syncContextsPreferRemote];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 		}
@@ -799,6 +804,95 @@ GtdApiContextNotEditedError = 530*/
 	
 	return YES;
 }
+
+-(BOOL)syncContextsPreferRemote
+{
+	NSArray *remoteContexts = [tdApi getContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	NSArray *localContextsWithRemoteIdArray = [Context getRemoteStoredContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	// initialisiere zunächst mit allen bereits gesyncten Contextn
+	// sobald ein remote-pendant gefunden wurde, entferne context aus dieser collection
+	// die übrig gebliebenen wurden remote entfernt, müssen daher aufgrund
+	// der höheren Priorität der remote Version lokal gelöscht werden
+	NSMutableArray *localContextsWithRemoteId = [NSMutableArray array];
+	[localContextsWithRemoteId addObjectsFromArray:localContextsWithRemoteIdArray];
+	
+	for(GtdContext *remoteContext in remoteContexts)
+	{
+		BOOL foundLocalEntity = NO;
+		// durchsuche lokale Context, ob gleiche id existiert
+		for(int i=0; i<[localContextsWithRemoteId count]; i++)
+		{
+			Context *localContext = [localContextsWithRemoteId objectAtIndex:i];
+			if([localContext.remoteId integerValue] == remoteContext.uid)
+			{
+				foundLocalEntity = YES;
+				
+				localContext.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
+				// überschreibe lokale Felder
+				localContext.name = remoteContext.title;
+				// weiter unten: nsset tasks
+				localContext.lastSyncDate = currentDate;
+				
+				[localContextsWithRemoteId removeObject:localContext];
+				break;
+			}
+		}
+		if(!foundLocalEntity)
+		{
+			// add local
+			Context *newContext = (Context*)[Context objectOfType:@"Context"];
+			newContext.name = remoteContext.title;
+			newContext.remoteId = [NSNumber numberWithInteger:remoteContext.uid];
+			newContext.lastSyncDate = currentDate;
+		}
+	}
+	
+	// merke alle lokalen Context, zu denen kein remote-Pendant gefunden wurde
+	// zum löschen vor
+	for(int i=0;i<[localContextsWithRemoteId count];i++)
+	{
+		Context *localContext = [localContextsWithRemoteId objectAtIndex:i];
+		localContext.deleted = [NSNumber numberWithInteger:1];
+	}
+	
+	// alle context mit remoteId == nil && deleted == false ==> add toodledo
+	NSArray *unsyncedContexts = [Context getUnsyncedContexts:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Context *localContext in unsyncedContexts)
+	{
+		GtdContext *newContext = [[GtdContext alloc] init];
+		newContext.title = localContext.name;
+		newContext.uid = -1;
+		
+		localContext.remoteId = [NSNumber numberWithInteger:[tdApi addContext:newContext error:&syncError]];
+		localContext.lastSyncDate = currentDate;
+		[newContext release];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	// alle context mit deleted == true lokal löschen
+	NSArray *contextsToDeleteLocally = [Context getAllContextsLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[contextsToDeleteLocally count]; i++)
+	{
+		Context *contextToDeleteLocally = [contextsToDeleteLocally objectAtIndex:i];
+		[Context deleteObjectFromPersistentStore:contextToDeleteLocally error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	return YES;
+}
+
 
 
 -(BOOL)exitFailure:(NSError **)error

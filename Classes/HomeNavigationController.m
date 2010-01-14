@@ -158,7 +158,7 @@
 -(IBAction)syncButtonPressed:(id)sender {
 	NSError *error = nil;
 	SyncManager *syncManager = [[SyncManager alloc] init];
-	BOOL successful = [syncManager syncWithPreference:SyncPreferLocal error:&error];
+	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	if(!successful)
 	{
 		ALog(@"Error syncWithPreference:SyncPreferRemote = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
