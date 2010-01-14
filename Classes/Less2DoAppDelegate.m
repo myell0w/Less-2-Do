@@ -28,6 +28,8 @@
 @synthesize syncTimer;
 @synthesize reminderTimer;
 
+@synthesize currentEditedTask;
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -153,6 +155,14 @@
  applicationWillTerminate: saves changes in the application's managed object context before the application terminates.
  */
 - (void)applicationWillTerminate:(UIApplication *)application {
+	
+	if (self.currentEditedTask != nil) {
+		ALog("delete task");
+		[BaseManagedObject deleteObject:self.currentEditedTask error:nil];
+	}
+	
+	ALog("Last commit");
+	[BaseManagedObject commit];
 	
     NSError *error = nil;
     if (managedObjectContext != nil) {

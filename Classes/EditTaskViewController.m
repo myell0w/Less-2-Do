@@ -6,6 +6,7 @@
 //  Copyright 2009 BIAC. All rights reserved.
 //
 
+#import "Less2DoAppDelegate.h"
 #import "EditTaskViewController.h"
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
@@ -512,6 +513,9 @@
 		// if the user really wants to abort, delete the modal view and show the parent view again
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
 			if (self.mode == TaskControllerAddMode) {
+				Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+				delegate.currentEditedTask = nil;
+				
 				[self dismissModalViewControllerAnimated:YES];
 				[BaseManagedObject deleteObject:task error:&error];
 			} else {
@@ -635,6 +639,9 @@
 	}
 	
 	ALog("Task to save: %@", task);
+	
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	delegate.currentEditedTask = nil;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	
