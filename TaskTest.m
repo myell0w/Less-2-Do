@@ -89,19 +89,37 @@
 	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
 	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
 	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
-	newTask1.name = @"Task 1: 2009-12-05";
+	Task *newTask4 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask5 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask6 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"Task 1";
 	newTask1.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
-	newTask2.name = @"Task 2: 2009-12-04";
+	newTask1.dueTime = nil;
+	newTask2.name = @"Task 2";
 	//newTask2.dueDate = [[NSDate alloc] initWithString:@"2009-12-04 00:00:00 +0100"];
 	newTask2.dueDate = nil;
-	newTask3.name = @"Task 3: 2009-12-03";
-	newTask3.dueDate = [[NSDate alloc] initWithString:@"2009-12-03 00:00:00 +0100"];
+	newTask3.name = @"Task 3";
+	newTask3.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
+	newTask3.dueTime = [[NSDate alloc] initWithString:@"2009-12-05 10:40:00 +0100"];
+	newTask4.name = @"Task 4";
+	newTask4.dueDate = nil;
+	newTask5.name = @"Task 5";
+	newTask5.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
+	newTask5.dueTime = [[NSDate alloc] initWithString:@"2009-12-05 10:20:00 +0100"];
+	newTask6.name = @"Task 6";
+	newTask6.dueDate = [[NSDate alloc] initWithString:@"2009-12-10 00:00:00 +0100"];
 	[managedObjectContext save:&error];
 	
 	NSArray *tasks = [Task getTasksWithFilterString:nil error:&error];
-	GHAssertEquals([tasks count], (NSUInteger)3, @"0 starred tasks not successful");
+	ALog(@"ORDERING OF TASKS");
+	for(int i=0;i<[tasks count];i++)
+	{
+		Task *task = [tasks objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	/*GHAssertEquals([tasks count], (NSUInteger)3, @"0 starred tasks not successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	GHFail(output);
+	GHFail(output);*/
 	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 

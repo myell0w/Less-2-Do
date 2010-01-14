@@ -153,11 +153,11 @@
 	[request setEntity:entityDescription];
 	
 	/* apply sort order */
-	/*NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	 NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	 [request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
-	 [sortByDueDate release];
-	 [sortByDueTime release];*/
+	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
+	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	[sortByDueDate release];
+	[sortByDueTime release];
 	
 	/* apply filter string */
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
@@ -173,9 +173,35 @@
 		return nil;
 	}
 	
+	/* rearrange array */
+	NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:objects];
+	NSMutableArray *tasksWithNilDueDate = [NSMutableArray array];
+	for(int i=0;i<[mutableObjects count];i++)
+	{
+		Task* task = [mutableObjects objectAtIndex:i];
+		if(task.dueDate == nil)
+			[tasksWithNilDueDate addObject:task];
+	}
+	
+	for(int i=0;i<[tasksWithNilDueDate count];i++)
+	{
+		Task *task = [tasksWithNilDueDate objectAtIndex:i];
+		[mutableObjects removeObject:task];
+		[mutableObjects addObject:task];
+	}
+	
+	NSArray *returnValue = [NSArray arrayWithArray:mutableObjects];
+	
+	ALog(@"SORTED DATES OF TASKS:");
+	for(int i=0;i<[returnValue count];i++)
+	{
+		Task *task = [returnValue objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	
 	[request release];
 	
-	return objects;
+	return returnValue;
 }
 
 + (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error
@@ -192,11 +218,11 @@
 	[request setEntity:entityDescription];
 	
 	/* apply sort order */
-	/*NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	 NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	 [request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
-	 [sortByDueDate release];
-	 [sortByDueTime release];*/
+	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
+	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	[sortByDueDate release];
+	[sortByDueTime release];
 	
 	/* apply filter string */
 	[request setPredicate:filterPredicate];

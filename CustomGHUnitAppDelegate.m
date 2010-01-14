@@ -124,11 +124,11 @@
 	[super applicationDidFinishLaunching:application];
 	
 	// start timer for committing to database
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
+	/*self.timer = [NSTimer scheduledTimerWithTimeInterval:20.0
 												  target:self
 												selector:@selector(commitDatabase:)
 												userInfo:nil
-												 repeats:YES];
+												 repeats:YES];*/
 }
 
 
