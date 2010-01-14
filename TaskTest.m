@@ -258,4 +258,97 @@
 	//TODO: test method nextDueDate
 }
 
+/* test ordering of tasks */
+- (void)testTasksToday {
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask4 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"Task 1";
+	newTask1.dueDate = [NSDate date];
+	newTask2.name = @"Task 2";
+	newTask2.dueDate = nil;
+	newTask3.name = @"Task 3";
+	newTask3.dueDate = [NSDate date];
+	newTask4.name = @"Task 4";
+	newTask4.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksToday:&error];
+	ALog(@"TASKS TODAY");
+	for(int i=0;i<[tasks count];i++)
+	{
+		Task *task = [tasks objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks today not successful");
+	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
+	 GHFail(output);*/
+	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
+}
+
+/* test ordering of tasks */
+- (void)testTasksThisWeek {
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask4 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"Task 1";
+	newTask1.dueDate = [NSDate date];
+	newTask2.name = @"Task 2";
+	newTask2.dueDate = nil;
+	newTask3.name = @"Task 3";
+	newTask3.dueDate = [NSDate date];
+	newTask4.name = @"Task 4";
+	newTask4.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksThisWeek:&error];
+	ALog(@"TASKS THIS WEEK");
+	for(int i=0;i<[tasks count];i++)
+	{
+		Task *task = [tasks objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks this week not successful");
+	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
+	 GHFail(output);*/
+	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
+}
+
+/* test ordering of tasks */
+- (void)testTasksOverdue {
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask4 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"Task 1";
+	newTask1.dueDate = [[NSDate date] addTimeInterval:-5];
+	newTask2.name = @"Task 2";
+	newTask2.dueDate = nil;
+	newTask3.name = @"Task 3";
+	newTask3.dueDate = [[NSDate date] addTimeInterval:-5];
+	newTask4.name = @"Task 4";
+	newTask4.dueDate = [[NSDate alloc] initWithString:@"2100-12-05 00:00:00 +0100"];
+	[managedObjectContext save:&error];
+	
+	NSArray *tasks = [Task getTasksOverdue:&error];
+	ALog(@"TASKS OVERDUE");
+	for(int i=0;i<[tasks count];i++)
+	{
+		Task *task = [tasks objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks this week not successful");
+	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
+	 GHFail(output);*/
+	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
+}
+
 @end

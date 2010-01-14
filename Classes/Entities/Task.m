@@ -344,4 +344,73 @@
 	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO" error:error];
 }
 
++ (NSArray *) getTasksToday:(NSError **)error
+{	
+	NSCalendar *gregorian = [[[NSCalendar alloc]
+							  initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+	NSDate *todayDate = [NSDate date];
+	NSDateComponents *todayComponents = [gregorian components:unitFlags fromDate:todayDate];
+	
+	NSDateComponents *todayLow = [[[NSDateComponents alloc] init] autorelease];
+	[todayLow setDay:[todayComponents day]];
+	[todayLow setMonth:[todayComponents month]];
+	[todayLow setYear:[todayComponents year]];
+	[todayLow setHour:0];
+	[todayLow setMinute:0];
+	[todayLow setSecond:0];
+	NSDateComponents *todayHigh = [[[NSDateComponents alloc] init] autorelease];
+	[todayHigh setDay:[todayComponents day]];
+	[todayHigh setMonth:[todayComponents month]];
+	[todayHigh setYear:[todayComponents year]];
+	[todayHigh setHour:23];
+	[todayHigh setMinute:59];
+	[todayHigh setSecond:59];
+	
+	NSDate *dateLow = [gregorian dateFromComponents:todayLow];
+	NSDate *dateHigh = [gregorian dateFromComponents:todayHigh];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate <= %@ and dueDate >= %@", dateHigh, dateLow];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+}
+
++ (NSArray *) getTasksThisWeek:(NSError **)error
+{	
+	NSCalendar *gregorian = [[[NSCalendar alloc]
+							  initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+	unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSWeekdayCalendarUnit;
+	
+	NSDate *theDate = [NSDate date];
+	NSDateComponents *todayComponents = [gregorian components:unitFlags fromDate:theDate];
+
+	int weekday;
+	if([todayComponents weekday] == 1) // mache sonntag zur höchsten zahl
+		weekday = 7;
+	else
+		weekday = [todayComponents weekday] - 1;
+	
+	NSDateComponents *todayLow = [[[NSDateComponents alloc] init] autorelease];
+	[todayLow setDay:[todayComponents day]];
+	[todayLow setMonth:[todayComponents month]];
+	[todayLow setYear:[todayComponents year]];
+	[todayLow setHour:0];
+	[todayLow setMinute:0];
+	[todayLow setSecond:0];
+	NSDate *todayDate = [gregorian dateFromComponents:todayLow];
+	NSDate *firstWeekday = [todayDate addTimeInterval:-((weekday-1)*60*60*24)];
+	NSDate *firstDayNextWeek = [todayDate addTimeInterval:((8 - weekday)*60*60*24)];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate <= %@ and dueDate >= %@", firstDayNextWeek, firstWeekday];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+}
+
++ (NSArray *) getTasksOverdue:(NSError **)error
+{	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate < %@", [NSDate date]];
+	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+}
+
 @end

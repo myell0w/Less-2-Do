@@ -84,6 +84,10 @@
 + (NSArray *) getTasksWithoutContext:(NSError **)error;
 + (NSArray *) getTasksWithoutTag:(NSError **)error;
 
++ (NSArray *) getTasksToday:(NSError **)error;
++ (NSArray *) getTasksThisWeek:(NSError **)error;
++ (NSArray *) getTasksOverdue:(NSError **)error;
+
 /*
 alle Tasks, die completed sind (done)
 alle Tasks die keinen Folder haben (done)
