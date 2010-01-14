@@ -62,6 +62,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *overdue = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	overdue.title = @"Overdue";
+	overdue.selector = @selector(getTasksOverdue:);
 	overdue.image = [UIImage imageNamed:@"home_overdue.png"];
 	[array addObject:overdue];
 	[overdue release];
@@ -69,6 +70,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *today = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	today.title = @"Today";
+	today.selector = @selector(getTasksToday:);
 	today.image = [UIImage imageNamed:@"home_today.png"];
 	[array addObject:today];
 	[today release];
@@ -76,6 +78,7 @@
 	// init Second-Level Views in Section Home
 	TasksListViewController *week = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	week.title = @"This Week";
+	week.selector = @selector(getTasksThisWeek:);
 	week.image = [UIImage imageNamed:@"home_this_week.png"];
 	[array addObject:week];
 	[week release];
