@@ -166,10 +166,10 @@
 	
 	/* apply sort order */
 	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	//NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, /*sortByDueTime,*/ nil]];
 	[sortByDueDate release];
-	[sortByDueTime release];
+	//[sortByDueTime release];
 	
 	/* apply filter string */
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:filterString];
@@ -231,10 +231,10 @@
 	
 	/* apply sort order */
 	NSSortDescriptor *sortByDueDate = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-	NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
-	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, sortByDueTime, nil]];
+	//NSSortDescriptor *sortByDueTime = [[NSSortDescriptor alloc] initWithKey:@"dueTime" ascending:YES];
+	[request setSortDescriptors:[NSArray arrayWithObjects:sortByDueDate, /*sortByDueTime,*/ nil]];
 	[sortByDueDate release];
-	[sortByDueTime release];
+	//[sortByDueTime release];
 	
 	/* apply filter string */
 	[request setPredicate:filterPredicate];
