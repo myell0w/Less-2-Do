@@ -237,9 +237,35 @@
 		return nil;
 	}
 	
+	/* rearrange array */
+	NSMutableArray *mutableObjects = [NSMutableArray arrayWithArray:objects];
+	NSMutableArray *tasksWithNilDueDate = [NSMutableArray array];
+	for(int i=0;i<[mutableObjects count];i++)
+	{
+		Task* task = [mutableObjects objectAtIndex:i];
+		if(task.dueDate == nil)
+			[tasksWithNilDueDate addObject:task];
+	}
+	
+	for(int i=0;i<[tasksWithNilDueDate count];i++)
+	{
+		Task *task = [tasksWithNilDueDate objectAtIndex:i];
+		[mutableObjects removeObject:task];
+		[mutableObjects addObject:task];
+	}
+	
+	NSArray *returnValue = [NSArray arrayWithArray:mutableObjects];
+	
+	ALog(@"SORTED DATES OF TASKS:");
+	for(int i=0;i<[returnValue count];i++)
+	{
+		Task *task = [returnValue objectAtIndex:i];
+		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
+	}
+	
 	[request release];
 	
-	return objects;
+	return returnValue;
 }
 
 + (NSArray *) getAllTasks:(NSError **)error {
