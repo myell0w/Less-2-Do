@@ -47,6 +47,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
 	if (task.dueDate == nil)
 		task.dueTime = nil;
+	
 	[super viewWillDisappear:animated];
 }
 
@@ -70,11 +71,32 @@
 #pragma mark Action-Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
--(IBAction)selectionChanged:(id)sender {
-	task.dueDate = [datePicker date];
-	NSDateFormatter *format = [[NSDateFormatter alloc] init];
-	[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+- (void)changeDate:(NSDate *)d {
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSDateComponents *comp = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit| NSDayCalendarUnit) fromDate:d];
 	
+	if (self.task.dueTime == nil) {
+		[comp setHour:0];
+		[comp setMinute:0];
+		[comp setSecond:0];
+	} else {
+		NSDateComponents *timeComp = [cal components:(NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit) fromDate:self.task.dueTime];
+		
+		[comp setHour:[timeComp hour]];
+		[comp setMinute:[timeComp minute]];
+		[comp setSecond:[timeComp second]];
+	}
+	
+	task.dueDate = [cal dateFromComponents:comp];
+}
+
+-(IBAction)selectionChanged:(id)sender {
+	NSDateFormatter *format = [[NSDateFormatter alloc] init];
+	
+	if (sender != nil)
+		[self changeDate:[datePicker date]];
+	
+	[format setDateFormat:@"EEEE, YYYY-MM-dd"];
 	dateLabel.text = [format stringFromDate:task.dueDate];
 	
 	[format release];
@@ -84,7 +106,7 @@
 -(IBAction)setToday {
 	NSDate *d = [[NSDate alloc] init];
 	
-	task.dueDate = d;
+	[self changeDate:d];
 	datePicker.date = d;
 	[d release];
 	
@@ -95,7 +117,7 @@
 -(IBAction)setTomorrow {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24];
 	
-	task.dueDate = d;
+	[self changeDate:d];
 	datePicker.date = d;
 	[d release];
 	
@@ -106,7 +128,7 @@
 -(IBAction)setNextWeek {
 	NSDate *d = [[NSDate alloc] initWithTimeIntervalSinceNow:60*60*24*7];
 	
-	task.dueDate = d;
+	[self changeDate:d];
 	datePicker.date = d;
 	[d release];
 	
@@ -116,6 +138,7 @@
 // set due-date to none
 -(IBAction)setNone {
 	task.dueDate = nil;
+	
 	self.dateLabel.text = @"No Due Date";
 }
 

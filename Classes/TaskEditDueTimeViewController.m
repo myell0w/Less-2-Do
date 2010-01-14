@@ -64,8 +64,30 @@
 #pragma mark Action Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+- (void)changeDate {
+	NSCalendar *cal = [NSCalendar currentCalendar];
+	NSDateComponents *comp = [cal components:(NSYearCalendarUnit|NSMonthCalendarUnit| NSDayCalendarUnit) fromDate:self.task.dueDate];
+	
+	if (self.task.dueTime == nil) {
+		[comp setHour:0];
+		[comp setMinute:0];
+		[comp setSecond:0];
+	} else {
+		NSDateComponents *timeComp = [cal components:(NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit) fromDate:self.task.dueTime];
+		
+		[comp setHour:[timeComp hour]];
+		[comp setMinute:[timeComp minute]];
+		[comp setSecond:[timeComp second]];
+	}
+	
+	task.dueDate = [cal dateFromComponents:comp];
+}
+
+
 -(IBAction)selectionChanged:(id)sender {
-	task.dueTime = [datePicker date];
+	if (sender != nil)
+		task.dueTime = [datePicker date];
+	[self changeDate];
 	NSDateFormatter *format = [[NSDateFormatter alloc] init];
 	[format setDateFormat:@"h:mm a"];
 	
@@ -105,8 +127,7 @@
 }
 
 -(IBAction)setNone {
-	task.dueTime = nil;
-	//self.task.dueTime = nil;
+	self.task.dueTime = nil;
 	self.dateLabel.text = @"No Due Time";
 }
 

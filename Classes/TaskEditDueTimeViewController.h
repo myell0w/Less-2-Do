@@ -33,12 +33,13 @@
 #pragma mark Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
--(IBAction)selectionChanged:(id)sender;
+- (void)changeDate;
+- (IBAction)selectionChanged:(id)sender;
 
--(IBAction)setNow;
--(IBAction)setOneHourFromNow;
--(IBAction)setTwoHoursFromNow;
--(IBAction)setNone;
+- (IBAction)setNow;
+- (IBAction)setOneHourFromNow;
+- (IBAction)setTwoHoursFromNow;
+- (IBAction)setNone;
 
 
 @end
