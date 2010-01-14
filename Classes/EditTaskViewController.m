@@ -6,6 +6,7 @@
 //  Copyright 2009 BIAC. All rights reserved.
 //
 
+#import "Less2DoAppDelegate.h"
 #import "EditTaskViewController.h"
 #import "TaskEditDueDateViewController.h"
 #import "TaskEditDueTimeViewController.h"
@@ -226,10 +227,13 @@
 			tagAsNum = [[NSNumber alloc] initWithInt:TAG_COMPLETED];
 			tempValue = [tempData objectForKey:tagAsNum];
 			
+			ALog("TempValue: %@", tempValue);
+			ALog("Completed: %@", [task isCompleted]);
+			
 			if (tempValue != nil) {
 				[completedCB setOn:[tempValue boolValue]];
 			} else {
-				if (task.completionDate != nil || task.isCompleted != nil) {
+				if ([[task isCompleted] boolValue]) {
 					[completedCB setOn:YES];
 				} else {
 					[completedCB setOn:NO];
@@ -305,12 +309,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_RECURRENCE]) {
 		if (task.repeat != nil) {
-			NSArray *array = [[NSArray alloc] initWithObjects:@"No Repeat", @"Weekly", @"Monthly", @"Yearly", @"Daily", @"Biweekly", 
-							  @"Bimonthly", @"Semiannually", @"Quarterly", nil];
-			
-			cell.detailTextLabel.text = [array objectAtIndex:[task.repeat intValue]%100];
-			
-			[array release];
+			cell.detailTextLabel.text = [task repeatString];
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
@@ -319,7 +318,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
 		if (task.folder != nil) {
-			cell.detailTextLabel.text = [task.folder description];
+			cell.detailTextLabel.text = task.folder.name;
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
@@ -327,7 +326,7 @@
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 		if (task.context != nil) {
-			cell.detailTextLabel.text = [task.context description];
+			cell.detailTextLabel.text = ((Context *)task.context).name;
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
@@ -514,6 +513,9 @@
 		// if the user really wants to abort, delete the modal view and show the parent view again
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
 			if (self.mode == TaskControllerAddMode) {
+				Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+				delegate.currentEditedTask = nil;
+				
 				[self dismissModalViewControllerAnimated:YES];
 				[BaseManagedObject deleteObject:task error:&error];
 			} else {
@@ -637,6 +639,9 @@
 	}
 	
 	ALog("Task to save: %@", task);
+	
+	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+	delegate.currentEditedTask = nil;
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
 	

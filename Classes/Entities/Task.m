@@ -40,6 +40,18 @@
 @dynamic abContact;
 @dynamic extendedInfo;
 
+
+- (NSString *)repeatString {
+	NSArray *array = [NSArray arrayWithObjects:@"No Repeat", @"Weekly", @"Monthly", @"Yearly", @"Daily", @"Biweekly", 
+			  				   					      @"Bimonthly", @"Semiannually", @"Quarterly", nil];
+	
+	if (self.repeat != nil) {
+		return [array objectAtIndex:[self.repeat intValue]%100];
+	} else {
+		return @"No Repeat";
+	}
+}
+
 - (NSString *)description {
 	return self.name;
 }
