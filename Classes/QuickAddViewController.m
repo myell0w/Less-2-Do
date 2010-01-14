@@ -110,6 +110,7 @@
 	
 	//TODO: Messi macht die Arbeit für Matthias
 	[taskDescription release];
+	
 	return t;
 }
 
