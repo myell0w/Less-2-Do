@@ -431,4 +431,34 @@
 	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
 }
 
+//Gibt die Tags im Format für toodledo zurück
+- (NSString *) tagsAsString:(NSError **)error
+{
+	NSSet *tags = self.tags;
+	NSString *result = [NSString string];
+	
+	for(Tag* tag in tags)
+	{
+		result = [[result stringByAppendingString:@", "] stringByAppendingString:tag.name];
+	}
+    return result;
+}
+
+//Wandelt Tags vom toodledo format um in ein NSSet von Tags
+- (NSSet *) tagStringToTags:(NSString *)tagString error:(NSError **)error
+{
+	NSArray *tagList = [tagString componentsSeparatedByString:@", "];
+	
+	for(NSString *tag in tagList)
+	{
+		// TODO: Prüfung ob Tag schon existiert
+		Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
+		newTag.name = tag;
+		[tag.tasks addObject:self]; //Nötig?
+		[self.tags addObject:newTag];
+	}
+	return self.tags;
+}
+
+
 @end

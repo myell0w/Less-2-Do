@@ -75,7 +75,7 @@
 + (NSArray *) getTasksWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 // specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method
-+ (NSArray *)getAllTasksInStore:(NSError **)error;
++ (NSArray *) getAllTasksInStore:(NSError **)error;
 + (NSArray *) getAllTasks:(NSError **)error;
 + (NSArray *) getStarredTasks:(NSError **)error;
 + (NSArray *) getTasksInFolder:(Folder*)theFolder error:(NSError **)error;
@@ -91,6 +91,9 @@
 + (NSArray *) getTasksThisWeek:(NSError **)error;
 + (NSArray *) getTasksOverdue:(NSError **)error;
 
+//Tags conversion functions
+- (NSString *) tagsAsString:(NSError **)error;
+- (NSSet *) tagStringToTags:(NSString *)tagString error:(NSError **)error;
 /*
 alle Tasks, die completed sind (done)
 alle Tasks die keinen Folder haben (done)
