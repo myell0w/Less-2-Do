@@ -1067,7 +1067,7 @@
 	{
 		BOOL successful = [tdApi deleteFolder:folder error:&syncError];
 		if(!successful)
-			ALog(@"Error deleting folder... continued");
+			ALog(@"Error deleting folder... continued to prevent inconsistency");
 	}
 	return YES;
 }
@@ -1081,14 +1081,22 @@
 	{
 		BOOL successful = [tdApi deleteContext:context error:&syncError];
 		if(!successful)
-			ALog(@"Error deleting context... continued");
+			ALog(@"Error deleting context... continued to prevent inconsistency");
 	}
 	return YES;
 }
 
 -(BOOL)deleteAllRemoteTasks
 {
-	// TODO implement delete all tasks
+	NSArray *allTasks = [tdApi getTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(GtdTask *task in allTasks)
+	{
+		BOOL successful = [tdApi deleteTask:task error:&syncError];
+		if(!successful)
+			ALog(@"Error deleting task... continued to prevent inconsistency");
+	}
 	return YES;
 }
 
