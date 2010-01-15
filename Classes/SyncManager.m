@@ -999,7 +999,28 @@
 -(BOOL)syncTasksMatchDates
 {
 	// TODO implement
-	return YES;
+	
+	//Get remote Tasks
+	
+	
+	//Get local Tasks
+	
+	
+	//get local to add remote
+	
+	//get remote to add local
+	
+	
+	// Proof dates on both exist
+	
+	
+	//<== overwrite local
+	
+	
+	//==> overwrite remote
+	
+	
+	//crash and kill humanity
 }
 
 -(BOOL)deleteAllLocalFolders
