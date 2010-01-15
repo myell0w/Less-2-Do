@@ -454,7 +454,7 @@
 		// TODO: Prüfung ob Tag schon existiert
 		Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
 		newTag.name = tag;
-		[tag.tasks addObject:self]; //Nötig?
+		[newTag.tasks addObject:self]; //Nötig?
 		[self.tags addObject:newTag];
 	}
 	return self.tags;
