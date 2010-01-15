@@ -1021,6 +1021,8 @@
 	
 	
 	//crash and kill humanity
+	
+	return YES;
 }
 
 -(BOOL)deleteAllLocalFolders

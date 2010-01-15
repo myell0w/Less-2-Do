@@ -42,7 +42,8 @@
 
 // setUp-Functions for Cells
 - (void)setUpTitleCell:(UITableViewCell *)cell;
-- (void)setUpFolderContextTagsCell:(UITableViewCell *)cell;
+- (void)setUpFolderCell:(UITableViewCell *)cell;
+- (void)setUpContextTagsCell:(UITableViewCell *)cell;
 - (void)setUpNotesCell:(UITableViewCell *)cell;
 
 - (void)reloadProperties;

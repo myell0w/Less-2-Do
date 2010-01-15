@@ -126,19 +126,19 @@
 		// Init-Folder-Cell
 		else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
-			[self setUpFolderContextTagsCell:cell];
+			[self setUpFolderCell:cell];
 		}
 		
 		// Init-Context-Cell
 		else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
-			[self setUpFolderContextTagsCell:cell];
+			[self setUpContextTagsCell:cell];
 		}
 		
 		// Init-Tags-Cell
 		else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
-			[self setUpFolderContextTagsCell:cell];
+			[self setUpContextTagsCell:cell];
 		}
 		
 		// Init-Notes-Cell
@@ -197,7 +197,7 @@
 		imageView.backgroundColor = task.folder != nil ? task.folder.color : [UIColor whiteColor];
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
-		textView.text = [task.folder description];
+		textView.text = task.folder.name;
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_CONTEXT]) {
@@ -207,7 +207,7 @@
 		cell.accessoryType = [context hasGps] ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryNone;
 		
 		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
-		textView.text = [task.context description];
+		textView.text = context.name;
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_TAGS]) {
@@ -332,7 +332,7 @@
 	ShowContextViewController *scvc = [[ShowContextViewController alloc] 
 									initWithNibName:@"ShowContextViewController" 
 									bundle:nil];
-	scvc.title = [self.task.context description];
+	scvc.title = ((Context *)self.task.context).name;
 	scvc.context = (Context *)self.task.context;
 	
 	[self.navigationController pushViewController:scvc animated:YES];
@@ -412,7 +412,7 @@
 	
 }
 
-- (void)setUpFolderContextTagsCell:(UITableViewCell *)cell {
+- (void)setUpContextTagsCell:(UITableViewCell *)cell {
 	UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
 	imageView.tag = TAG_IMAGE;
 	[cell.contentView addSubview:imageView];
@@ -424,6 +424,28 @@
 	// add Label to Cell
 	[cell.contentView addSubview:textLabel];
 	[textLabel release];
+}
+
+- (void)setUpFolderCell:(UITableViewCell *)cell {
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(11,11,22,22)];
+	imageView.image = [UIImage imageNamed:@"smallWhiteBoarderedButton.png"];
+	imageView.tag = TAG_IMAGE;
+	[cell.contentView addSubview:imageView];
+	[imageView release];
+	
+	
+	/*UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
+	imageView.tag = TAG_IMAGE;
+	[cell.contentView addSubview:imageView];
+	[imageView release];*/
+	
+	UILabel *textLabel = [[UILabel alloc] initWithFrame:TEXT_RECT];
+	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+	textLabel.tag = TAG_TEXT;
+	// add Label to Cell
+	[cell.contentView addSubview:textLabel];
+	[textLabel release];
+	
 }
 
 - (void)setUpNotesCell:(UITableViewCell *)cell {
