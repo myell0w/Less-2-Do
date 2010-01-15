@@ -326,6 +326,10 @@
 			wasSuccessful = [self syncContextsPreferLocal];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
+			// 3. Tasks
+			wasSuccessful = [self syncTasksMatchDates];
+			if(!wasSuccessful)
+				return [self exitFailure:error];
 		}
 		else
 		{
@@ -335,6 +339,10 @@
 				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferRemote];
+			if(!wasSuccessful)
+				return [self exitFailure:error];
+			// 3. Tasks
+			wasSuccessful = [self syncTasksMatchDates];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 		}
@@ -384,7 +392,7 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		/*// delete Tags
+		// delete Tags
 		wasSuccessful = [self deleteAllLocalTags];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
@@ -392,7 +400,7 @@
 		// delete Tasks
 		wasSuccessful = [self deleteAllLocalTasks];
 		if(!wasSuccessful)
-			return [self exitFailure:error];*/
+			return [self exitFailure:error];
 		
 		// später: deleteAllExtendedInfos
 		
@@ -407,7 +415,10 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// syncTasksPreferRemote // die Tags sind in syncTasks enthalten
+		// 3. write Tasks
+		wasSuccessful = [self syncTasksMatchDates];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		[BaseManagedObject commitWithoutLocalModification];
 		[self startAutocommit];
@@ -444,17 +455,20 @@
 		
 		// ------ FIRST: DELETE ALL REMOTE DATA ------
 		
-		// 1. delete Folders
+		// delete Folders
 		wasSuccessful = [self deleteAllRemoteFolders];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// 1. delete Contexts
+		// delete Contexts
 		wasSuccessful = [self deleteAllRemoteContexts];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// deleteRemoteTasks
+		// delete Tasks
+		wasSuccessful = [self deleteAllRemoteTasks];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		// ------ SECOND: WRITE LOCAL DATA TO REMOTE STORE
 		
@@ -467,7 +481,10 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// syncTasksPreferLocal // die Tags sind in syncTasks enthalten
+		// 3. write Tasks
+		wasSuccessful = [self syncTasksMatchDates];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		[BaseManagedObject commitWithoutLocalModification];
 		[self startAutocommit];
@@ -979,6 +996,33 @@
 	return YES;
 }
 
+-(BOOL)syncTasksMatchDates
+{
+	// TODO implement
+	
+	//Get remote Tasks
+	
+	
+	//Get local Tasks
+	
+	
+	//get local to add remote
+	
+	//get remote to add local
+	
+	
+	// Proof dates on both exist
+	
+	
+	//<== overwrite local
+	
+	
+	//==> overwrite remote
+	
+	
+	//crash and kill humanity
+}
+
 -(BOOL)deleteAllLocalFolders
 {
 	NSArray *allFolders = [Folder getAllFoldersInStore:&syncError];
@@ -1044,7 +1088,7 @@
 	{
 		BOOL successful = [tdApi deleteFolder:folder error:&syncError];
 		if(!successful)
-			ALog(@"Error deleting folder... continued");
+			ALog(@"Error deleting folder... continued to prevent inconsistency");
 	}
 	return YES;
 }
@@ -1058,14 +1102,22 @@
 	{
 		BOOL successful = [tdApi deleteContext:context error:&syncError];
 		if(!successful)
-			ALog(@"Error deleting context... continued");
+			ALog(@"Error deleting context... continued to prevent inconsistency");
 	}
 	return YES;
 }
 
 -(BOOL)deleteAllRemoteTasks
 {
-	// TODO implement delete all tasks
+	NSArray *allTasks = [tdApi getTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(GtdTask *task in allTasks)
+	{
+		BOOL successful = [tdApi deleteTask:task error:&syncError];
+		if(!successful)
+			ALog(@"Error deleting task... continued to prevent inconsistency");
+	}
 	return YES;
 }
 
