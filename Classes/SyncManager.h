@@ -43,6 +43,7 @@ typedef enum {
 -(BOOL)syncFoldersPreferRemote;
 -(BOOL)syncContextsPreferLocal;
 -(BOOL)syncContextsPreferRemote;
+-(BOOL)syncTasksMatchDates;
 
 -(BOOL)deleteAllLocalFolders;
 -(BOOL)deleteAllLocalContexts;

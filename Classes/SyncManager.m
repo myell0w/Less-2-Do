@@ -326,6 +326,10 @@
 			wasSuccessful = [self syncContextsPreferLocal];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
+			// 3. Tasks
+			wasSuccessful = [self syncTasksMatchDates];
+			if(!wasSuccessful)
+				return [self exitFailure:error];
 		}
 		else
 		{
@@ -335,6 +339,10 @@
 				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferRemote];
+			if(!wasSuccessful)
+				return [self exitFailure:error];
+			// 3. Tasks
+			wasSuccessful = [self syncTasksMatchDates];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 		}
@@ -384,7 +392,7 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		/*// delete Tags
+		// delete Tags
 		wasSuccessful = [self deleteAllLocalTags];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
@@ -392,7 +400,7 @@
 		// delete Tasks
 		wasSuccessful = [self deleteAllLocalTasks];
 		if(!wasSuccessful)
-			return [self exitFailure:error];*/
+			return [self exitFailure:error];
 		
 		// später: deleteAllExtendedInfos
 		
@@ -407,7 +415,10 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// syncTasksPreferRemote // die Tags sind in syncTasks enthalten
+		// 3. write Tasks
+		wasSuccessful = [self syncTasksMatchDates];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		[BaseManagedObject commitWithoutLocalModification];
 		[self startAutocommit];
@@ -444,17 +455,20 @@
 		
 		// ------ FIRST: DELETE ALL REMOTE DATA ------
 		
-		// 1. delete Folders
+		// delete Folders
 		wasSuccessful = [self deleteAllRemoteFolders];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// 1. delete Contexts
+		// delete Contexts
 		wasSuccessful = [self deleteAllRemoteContexts];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// deleteRemoteTasks
+		// delete Tasks
+		wasSuccessful = [self deleteAllRemoteTasks];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		// ------ SECOND: WRITE LOCAL DATA TO REMOTE STORE
 		
@@ -467,7 +481,10 @@
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
-		// syncTasksPreferLocal // die Tags sind in syncTasks enthalten
+		// 3. write Tasks
+		wasSuccessful = [self syncTasksMatchDates];
+		if(!wasSuccessful)
+			return [self exitFailure:error];
 		
 		[BaseManagedObject commitWithoutLocalModification];
 		[self startAutocommit];
@@ -976,6 +993,12 @@
 			return NO;
 	}
 	
+	return YES;
+}
+
+-(BOOL)syncTasksMatchDates
+{
+	// TODO implement
 	return YES;
 }
 
