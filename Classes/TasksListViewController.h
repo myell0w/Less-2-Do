@@ -31,6 +31,9 @@ typedef enum _TaskListDetailMode {
 	// date formatter for due-time
 	NSDateFormatter *formatTime;
 	
+	// parent for case of being subviewed controller (needed for property navigationcontroller
+	UIViewController *parent;
+	
 	// used for searching tasks
 	UISearchDisplayController *searchDisplayController;
 
@@ -52,6 +55,7 @@ typedef enum _TaskListDetailMode {
 @property (nonatomic, retain) NSMutableArray *tasks;
 @property (nonatomic, retain) NSMutableArray *filteredTasks;
 @property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
+@property (nonatomic, retain) UIViewController *parent;
 @property (nonatomic) TaskListDetailMode detailMode;
 @property (nonatomic) CLLocationCoordinate2D currentPosition;
 @property (nonatomic) SEL selector;

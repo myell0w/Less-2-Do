@@ -34,6 +34,7 @@
 @synthesize argument;
 @synthesize detailMode;
 @synthesize currentPosition;
+@synthesize parent;
 
 - (id)initWithStyle:(UITableViewStyle)style {
 	if (self = [super initWithStyle:style]) {
@@ -84,6 +85,7 @@
 	self.filteredTasks = nil;
 	self.argument = nil;
 	self.searchDisplayController = nil;
+	self.parent = nil;
 	
 	[formatDate release];
 	formatDate = nil;
@@ -99,6 +101,7 @@
 	[formatDate release];
 	[formatTime release];
 	[argument release];
+	[parent release];
 	
 	[super dealloc];
 }
@@ -177,7 +180,13 @@
 		Context* context = (Context *)t.context;
 		
 		if ([context hasGps]) {
-			distance = [[NSString alloc] initWithFormat:@"distance: %f", [context distanceTo:currentPosition]];
+			double distanceDouble = [context distanceTo:currentPosition];
+			if(distanceDouble>1000)
+				distance = [[NSString alloc] initWithFormat:@"distance: %.2f km", distanceDouble/1000];
+			else {
+				distance = [[NSString alloc] initWithFormat:@"distance: %.0f m", distanceDouble];
+			}
+
 			titleDetail.text = distance;
 			[distance release];
 		} else {
@@ -214,8 +223,10 @@
 	} else {
 		stvc.task = [self.tasks objectAtIndex:indexPath.row];
 	}
-	
-	[self.navigationController pushViewController:stvc animated:YES];
+	if(self.parent == nil)
+		[self.navigationController pushViewController:stvc animated:YES];
+	else
+		[self.parent.navigationController pushViewController:stvc animated:YES];
 	[stvc release];
 }
 

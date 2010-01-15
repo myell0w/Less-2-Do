@@ -9,6 +9,7 @@
 #import "Context.h"
 
 #import "Task.h"
+#import <MapKit/MapKit.h>
 
 @implementation Context 
 
@@ -27,8 +28,13 @@
 }
 
 - (double)distanceTo:(CLLocationCoordinate2D)pos {
-	//TODO:implement
-	return 0.;
+	CLLocation *loc1 = [[CLLocation alloc] initWithLatitude:[self.gpsX doubleValue] longitude:[self.gpsY doubleValue]];
+	CLLocation *loc2 = [[CLLocation alloc] initWithLatitude:pos.latitude longitude:pos.longitude];
+	
+	double distance = [loc1 getDistanceFrom:loc2];
+	[loc1 release];
+	[loc2 release];
+	return distance;
 }
 
 + (NSArray *) getContextsWithFilterString:(NSString*)filterString error:(NSError **)error
