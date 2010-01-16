@@ -109,4 +109,18 @@
 	return NO;
 }
 
++ (Tag*) getTagWithName:(NSString*)theName error:(NSError **)error
+{
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",theName];
+	NSArray *result = [Tag getTagsWithFilterPredicate:predicate error:error];
+	if([result count]!= 1)
+	{
+		return nil;
+	}else {
+		return [result objectAtIndex:0];
+	}
+
+	 
+}
+
 @end

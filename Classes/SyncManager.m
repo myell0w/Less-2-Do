@@ -997,21 +997,7 @@
 }
 
 -(BOOL)syncTasksMatchDates
-{
-	// TODO implement
-	/*
-	 
-	 before : A date formated as YYYY-MM-DD. Used to find tasks with due-dates before this date.
-	 after : A date formated as YYYY-MM-DD. Used to find tasks with due-dates after this date.
-	 startbefore : A date formated as YYYY-MM-DD. Used to find tasks with start-dates before this date.
-	 startafter : A date formated as YYYY-MM-DD. Used to find tasks with start-dates after this date.
-	 modbefore : A date-time formated as YYYY-MM-DD HH:MM:SS. Used to find tasks with a modified date and time before this date and time.
-	 modafter : A date-time formated as YYYY-MM-DD HH:MM:SS or a unix timestamp. Used to find tasks with a modified date and time after this date and time.
-	 compbefore : A date formated as YYYY-MM-DD. Used to find tasks with a completed date before this date.
-	 compafter : A date formated as YYYY-MM-DD. Used to find tasks with a completed date after this date.
-	 notcomp : Set to 1 to omit completed tasks. Omit variable, or set to 0 to retrieve both completed and uncompleted tasks.
-	 */
-	
+{	
 	NSArray *remoteTasks = [tdApi getTasks:&syncError];
 	if(syncError != nil)
 		return NO;
@@ -1040,7 +1026,7 @@
 			
 			if([localTask.remoteId integerValue] == remoteTask.uid)
 			{
-				ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
+				//ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
 				
 				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending) // Remote aktueller als Folder
 				{
@@ -1052,14 +1038,24 @@
 					//localTask.lastLocalModification = remoteTask.date_modified;
 					localTask.startDateAnnoy = remoteTask.date_start; // ???
 					localTask.dueDate = remoteTask.date_due;
-					/*
-					for(NSString *tag in newTask.tags)
-					{ // TODO: Tags überschreiben
-						Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
-						newTag.name = tag;
-						[newTag addTasksObject:newTask];
-						[localTask addTagsObject:newTag];
-					}*/
+					
+					for(NSString *remoteTag in remoteTask.tags)
+					{
+						if(![remoteTag isEqualToString:@""])
+						{
+							Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+							if(syncError != nil)
+								return NO;
+							if(tag == nil)
+							{
+								tag = (Tag*)[Tag objectOfType:@"Tag"];
+								tag.name = remoteTag;
+							}	
+							[tag addTasksObject:localTask];
+							[localTask addTagsObject:tag];
+						}
+					}
+					
 					Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 					if(syncError != nil)
 						return NO;
@@ -1108,12 +1104,18 @@
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
 			newTask.dueDate = remoteTask.date_due;
-			for(NSString *tag in newTask.tags)
+			for(NSString *remoteTag in remoteTask.tags)
 			{
-				Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
-				newTag.name = tag;
-				[newTag addTasksObject:newTask];
-				[newTask addTagsObject:newTag];
+				Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+				if(syncError != nil)
+					return NO;
+				if(tag == nil)
+				{
+					Tag *tag = (Tag*)[Tag objectOfType:@"Tag"];
+					tag.name = remoteTag;
+				}	
+				[tag addTasksObject:newTask];
+				[newTask addTagsObject:tag];
 			}
 			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 			if(syncError != nil)
@@ -1192,12 +1194,9 @@
 		// sende update request nur, wenn der task nicht sowieso gelöscht wird
 		BOOL requestSuccessful = YES;
 		
-		// TODO: Proof auf fucking date
-		
 		if([localTask.deleted intValue] == 0)
 		{
 			remoteTask.uid = [localTask.remoteId integerValue];
-			ALog(@"UID FUCK: %@", remoteTask.uid);
 			remoteTask.title = localTask.name;
 			remoteTask.date_created = localTask.creationDate;
 			remoteTask.date_modified = localTask.lastLocalModification;
@@ -1344,14 +1343,24 @@
 			newTask.name = remoteTask.title;
 			newTask.creationDate = remoteTask.date_created;
 			newTask.modificationDate = remoteTask.date_modified;
-			newTask.startDateAnnoy = remoteTask.date_start; // ???
+			newTask.startDateAnnoy = remoteTask.date_start; 
 			newTask.dueDate = remoteTask.date_due;
-			for(NSString *tag in newTask.tags)
+			
+			for(NSString *remoteTag in remoteTask.tags)
 			{
-				Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
-				newTag.name = tag;
-				[newTag addTasksObject:newTask];
-				[newTask addTagsObject:newTag];
+				if(![remoteTag isEqualToString:@""])
+				{
+					Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+					if(syncError != nil)
+						return NO;
+					if(tag == nil)
+					{
+						tag = (Tag*)[Tag objectOfType:@"Tag"];
+						tag.name = remoteTag;
+					}	
+					[tag addTasksObject:newTask];
+					[newTask addTagsObject:tag];
+				}				
 			}
 			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 			if(syncError != nil)
