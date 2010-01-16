@@ -17,6 +17,7 @@
 @dynamic name;
 @dynamic gpsX;
 @dynamic tasks;
+@dynamic span;
 
 - (NSString *)description {
 	return self.name;

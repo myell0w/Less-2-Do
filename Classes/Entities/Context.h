@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * gpsX;
 @property (nonatomic, retain) NSSet* tasks;
+@property (nonatomic, retain) NSNumber *span;
 
 @end
 

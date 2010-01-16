@@ -998,18 +998,60 @@
 
 -(BOOL)syncTasksMatchDates
 {
+	NSError *error;
 	// TODO implement
+	/*
+	 
+	 before : A date formated as YYYY-MM-DD. Used to find tasks with due-dates before this date.
+	 after : A date formated as YYYY-MM-DD. Used to find tasks with due-dates after this date.
+	 startbefore : A date formated as YYYY-MM-DD. Used to find tasks with start-dates before this date.
+	 startafter : A date formated as YYYY-MM-DD. Used to find tasks with start-dates after this date.
+	 modbefore : A date-time formated as YYYY-MM-DD HH:MM:SS. Used to find tasks with a modified date and time before this date and time.
+	 modafter : A date-time formated as YYYY-MM-DD HH:MM:SS or a unix timestamp. Used to find tasks with a modified date and time after this date and time.
+	 compbefore : A date formated as YYYY-MM-DD. Used to find tasks with a completed date before this date.
+	 compafter : A date formated as YYYY-MM-DD. Used to find tasks with a completed date after this date.
+	 notcomp : Set to 1 to omit completed tasks. Omit variable, or set to 0 to retrieve both completed and uncompleted tasks.
+	 
+	 */
 	
 	//Get remote Tasks
-	
+	NSArray *remoteTasks =[tdApi getTasks:error];
+	NSMutableArray *remoteTasksToAddLocal = [NSMutableArray array];
+	NSMutableArray *remoteTasksToCompair = [NSMutableArray array];
 	
 	//Get local Tasks
+	NSArray *localTasks = [Task getAllTasks:error];
+	NSMutableArray *localTasksToAddRemote = [NSMutableArray array];
+	NSMutableArray *localTasksToCompair = [NSMutableArray array];
+	
+	
+	for(Task *task in localTasks)
+	{
+		if(task.remoteId == -1)
+		{
+			[localTasksToAddRemote addObject:task];
+		}
+		else 
+		{
+			[localTasksToCompair addObject:task];
+		}
+		if(localMinDate < task.modificationDate)
+		{
+			[localMinDate 
+
+	}
+	
+	for(GtdTask *task in remoteTasks)
+	{
+		
+	}
+	
 	
 	
 	//get local to add remote
 	
 	//get remote to add local
-	
+
 	
 	// Proof dates on both exist
 	
