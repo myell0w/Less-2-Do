@@ -155,10 +155,12 @@
 	}	
 }
 
--(IBAction)syncButtonPressed:(id)sender {
+-(IBAction)syncButtonPressed:(id)sender 
+{
 	NSError *error = nil;
 	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
-	BOOL successful = [syncManager syncWithPreference:SyncPreferLocal error:&error];
+	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
+	//BOOL successful = [syncManager overwriteRemote:&error];
 	if(!successful)
 	{
 		ALog(@"Error syncWithPreference:SyncPreferLocal = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
