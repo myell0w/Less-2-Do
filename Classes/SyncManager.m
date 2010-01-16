@@ -23,7 +23,7 @@
 	BOOL requestSuccessful = NO;
 	NSDate *currentDate = [NSDate date];
 	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&localError];
+	TDApi *tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&localError];
 	//ALog(@"tdApi init error: %@", localError);
 
 	
@@ -304,7 +304,7 @@
 	syncError = nil;
 	*error = nil;
 	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&syncError];
+	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
@@ -319,15 +319,15 @@
 		if(preference == SyncPreferLocal)
 		{
 			// 1. Folders
-			wasSuccessful = [self syncFoldersPreferLocal];
+			/*wasSuccessful = [self syncFoldersPreferLocal];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferLocal];
 			if(!wasSuccessful)
-				return [self exitFailure:error];
+				return [self exitFailure:error];*/
 			// 3. Tasks
-			wasSuccessful = [self syncTasksMatchDates];
+			wasSuccessful = [self syncTasksPreferLocal];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 		}
@@ -369,7 +369,7 @@
 	syncError = nil;
 	*error = nil;
 	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&syncError];
+	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
@@ -442,7 +442,7 @@
 	syncError = nil;
 	*error = nil;
 	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"fubar100508529" error:&syncError];
+	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
@@ -1025,6 +1025,244 @@
 	return YES;
 }
 
+-(BOOL)syncTasksPreferLocal
+{	
+	NSArray *remoteTasks = [tdApi getTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	NSArray *localTasksWithRemoteIdArray = [Task getRemoteStoredTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	// initialisiere zunächst mit allen bereits gesyncten Tasks
+	// sobald ein remote-pendant gefunden wurde, entferne task aus dieser collection
+	// die übrig gebliebenen wurden remote entfernt, müssen aber aufgrund der
+	// höheren priorität der lokalen version remote wieder geadded werden
+	NSMutableArray *localTasksWithRemoteId = [NSMutableArray array];
+	[localTasksWithRemoteId addObjectsFromArray:localTasksWithRemoteIdArray];
+	NSMutableArray *usedLocalEntityVersion = [[[NSMutableArray alloc] init] autorelease];
+	
+	for(GtdTask *remoteTask in remoteTasks)
+	{
+		BOOL foundLocalEntity = NO;
+		// durchsuche lokale Task, ob gleiche id existiert
+		for(int i=0; i<[localTasksWithRemoteId count]; i++)
+		{
+			Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
+			if([localTask.remoteId integerValue] == remoteTask.uid)
+			{
+				foundLocalEntity = YES;
+				[usedLocalEntityVersion addObject:localTask];
+				[localTasksWithRemoteId removeObject:localTask];
+				break;
+			}
+		}
+		if(!foundLocalEntity)
+		{
+			// add local
+			Task *newTask = (Task*)[Task objectOfType:@"Task"];
+			newTask.name = remoteTask.title;
+			newTask.creationDate = remoteTask.date_created;
+			newTask.modificationDate = remoteTask.date_modified;
+			newTask.startDateAnnoy = remoteTask.date_start; // ???
+			newTask.dueDate = remoteTask.date_due;
+			for(NSString *tag in newTask.tags)
+			{
+				Tag *newTag = (Tag*)[Tag objectOfType:@"Tag"];
+				newTag.name = tag;
+				[newTag addTasksObject:newTask];
+				[newTask addTagsObject:newTag];
+			}
+			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
+			if(syncError != nil)
+				return NO;
+			if(folder != nil)
+			{
+				[folder addTasksObject:newTask];
+				[newTask setFolder:folder];
+			}
+			Context *context = [Context getContextWithRemoteId:[NSNumber numberWithInteger:remoteTask.context] error:&syncError];
+			if(syncError != nil)
+				return NO;
+			if(context != nil)
+			{
+				[context addTasksObject:newTask];
+				[newTask setContext:context];
+			}
+			newTask.priority = [NSNumber numberWithInteger:remoteTask.priority];
+			newTask.isCompleted = (remoteTask.completed != nil ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0]);
+			newTask.duration = [NSNumber numberWithInteger:remoteTask.length]; // number of minutes to complete???
+			newTask.note = remoteTask.note;
+			newTask.star = [NSNumber numberWithBool:remoteTask.star];
+			newTask.repeat = [NSNumber numberWithInteger:remoteTask.repeat];
+			//newTask.whatever = remoteTask.status; // wird bei uns nicht verwendet
+			newTask.reminder = [NSNumber numberWithInteger:remoteTask.reminder];
+			//newTask.parentId = remoteTask.parentId; // wird bei uns nicht verwendet
+			newTask.remoteId = [NSNumber numberWithInteger:remoteTask.uid];
+			newTask.lastSyncDate = currentDate;
+		}
+	}
+	
+	// füge nun remote gelöschte task wieder hinzu, aber nur wenn sie nicht
+	// auch zufällig lokal als gekennzeichnet wurden
+	for(int i=0;i<[localTasksWithRemoteId count];i++)
+	{
+		GtdTask *remoteTask = [[GtdTask alloc] init];
+		Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
+		if([localTask.deleted intValue] == 0)
+		{
+			remoteTask.title = localTask.name;
+			remoteTask.date_created = localTask.creationDate;
+			remoteTask.date_modified = localTask.lastLocalModification;
+			remoteTask.date_start = localTask.startDateAnnoy;
+			remoteTask.date_due = localTask.dueDate;
+			NSMutableArray *mutableTags = [NSMutableArray array];
+			for(Tag *tag in localTask.tags)
+			{
+				[mutableTags addObject:tag.name];
+			}
+			remoteTask.tags = [NSArray arrayWithArray:mutableTags];
+			remoteTask.folder = [localTask.folder.remoteId integerValue];
+			remoteTask.context = [localTask.context.remoteId integerValue];
+			remoteTask.priority = [localTask.priority integerValue];
+			remoteTask.completed = ([localTask.isCompleted boolValue] ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+			remoteTask.length = [localTask.duration integerValue];
+			remoteTask.note = localTask.note;
+			remoteTask.star = [localTask.star boolValue];
+			remoteTask.repeat = [localTask.repeat integerValue];
+			remoteTask.reminder = [localTask.reminder integerValue];
+			
+			localTask.lastSyncDate = currentDate;
+			localTask.remoteId = [NSNumber numberWithInteger:[tdApi addTask:remoteTask error:&syncError]];
+		}
+		[remoteTask release];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	// update die toodledo task, bei allen taskn, die schon mal gesynct wurden
+	for(Task *localTask in usedLocalEntityVersion)
+	{
+		// update toodledo
+		GtdTask *remoteTask = [[GtdTask alloc] init];
+		
+		// sende update request nur, wenn der task nicht sowieso gelöscht wird
+		BOOL requestSuccessful = YES;
+		if([localTask.deleted intValue] == 0)
+		{
+			remoteTask.uid = [localTask.remoteId integerValue];
+			remoteTask.title = localTask.name;
+			remoteTask.date_created = localTask.creationDate;
+			remoteTask.date_modified = localTask.lastLocalModification;
+			remoteTask.date_start = localTask.startDateAnnoy;
+			remoteTask.date_due = localTask.dueDate;
+			ALog(@"remoteTask.date_due: %@, localTask.dueDate: %@, localTask.dueTime: %@", remoteTask.date_due, localTask.dueDate, localTask.dueTime);
+			NSMutableArray *mutableTags = [NSMutableArray array];
+			for(Tag *tag in localTask.tags)
+			{
+				[mutableTags addObject:tag.name];
+			}
+			remoteTask.tags = [NSArray arrayWithArray:mutableTags];
+			remoteTask.folder = [localTask.folder.remoteId integerValue];
+			remoteTask.context = [localTask.context.remoteId integerValue];
+			remoteTask.priority = [localTask.priority integerValue];
+			remoteTask.completed = ([localTask.isCompleted boolValue] ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+			remoteTask.length = [localTask.duration integerValue];
+			remoteTask.note = localTask.note;
+			remoteTask.star = [localTask.star boolValue];
+			remoteTask.repeat = [localTask.repeat integerValue];
+			remoteTask.reminder = [localTask.reminder integerValue];
+			
+			localTask.lastSyncDate = currentDate;
+			requestSuccessful = [tdApi editTask:remoteTask error:&syncError];
+		}
+		
+		[remoteTask release];
+		if(!requestSuccessful)
+			return NO;
+	}
+	
+	// jetzt fehlen nur noch die noch nie gesyncten lokalen Task
+	// --> toodledo-add
+	NSArray *unsyncedTasks = [Task getUnsyncedTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Task *localTask in unsyncedTasks)
+	{
+		GtdTask *remoteTask = [[GtdTask alloc] init];
+		remoteTask.uid = -1;
+		remoteTask.title = localTask.name;
+		remoteTask.date_created = localTask.creationDate;
+		remoteTask.date_modified = localTask.lastLocalModification;
+		remoteTask.date_start = localTask.startDateAnnoy;
+		remoteTask.date_due = localTask.dueDate;
+		NSMutableArray *mutableTags = [NSMutableArray array];
+		for(Tag *tag in localTask.tags)
+		{
+			[mutableTags addObject:tag.name];
+		}
+		remoteTask.tags = [NSArray arrayWithArray:mutableTags];
+		remoteTask.folder = [localTask.folder.remoteId integerValue];
+		remoteTask.context = [localTask.context.remoteId integerValue];
+		remoteTask.priority = [localTask.priority integerValue];
+		remoteTask.completed = (localTask.isCompleted ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+		remoteTask.length = [localTask.duration integerValue];
+		remoteTask.note = localTask.note;
+		remoteTask.star = [localTask.star boolValue];
+		remoteTask.repeat = [localTask.repeat integerValue];
+		remoteTask.reminder = [localTask.reminder integerValue];
+		
+		localTask.remoteId = [NSNumber numberWithInteger:[tdApi addTask:remoteTask error:&syncError]];
+		localTask.lastSyncDate = currentDate;
+		[remoteTask release];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	// alle task mit remoteId != nil && deleted == true ==> delete toodledo
+	NSArray *tasksToDeleteRemote = [Task getRemoteStoredTasksLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[tasksToDeleteRemote count]; i++)
+	{
+		Task * taskToDeleteRemote = [tasksToDeleteRemote objectAtIndex:i];
+		GtdTask *newTask = [[GtdTask alloc] init];
+		newTask.uid = [taskToDeleteRemote.remoteId integerValue];
+		BOOL requestSuccessful = YES;
+		requestSuccessful = [tdApi deleteTask:newTask error:&syncError];
+		[newTask release];
+		if(!requestSuccessful)
+		{
+			// ignoriere Fehler, dann wurde der Task eben schon von einem
+			// anderen in der Zwischenzeit gelöscht
+			if(![syncError code] == GtdApiDataError)
+				return NO;
+			syncError = nil;
+		}
+	}
+	
+	// alle task mit deleted == true lokal löschen
+	NSArray *tasksToDeleteLocally = [Task getAllTasksLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[tasksToDeleteLocally count]; i++)
+	{
+		Task *taskToDeleteLocally = [tasksToDeleteLocally objectAtIndex:i];
+		[Task deleteObjectFromPersistentStore:taskToDeleteLocally error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	
+	return YES;
+	
+}
+
+-(BOOL)syncTasksPreferRemote
+{
+	return YES;
+}
+
 -(BOOL)deleteAllLocalFolders
 {
 	NSArray *allFolders = [Folder getAllFoldersInStore:&syncError];
@@ -1112,10 +1350,12 @@
 -(BOOL)deleteAllRemoteTasks
 {
 	NSArray *allTasks = [tdApi getTasks:&syncError];
+	ALog(@"Received %d tasks to delete", [allTasks count]);
 	if(syncError != nil)
 		return NO;
 	for(GtdTask *task in allTasks)
 	{
+		ALog(@"Trying to delete tasks with id %d and title %a", [task uid], [task title]);
 		BOOL successful = [tdApi deleteTask:task error:&syncError];
 		if(!successful)
 			ALog(@"Error deleting task... continued to prevent inconsistency");

@@ -238,6 +238,14 @@
 	return objects;
 }
 
++ (Folder *)getFolderWithRemoteId:(NSNumber*)remoteId error:(NSError **)error
+{
+	NSArray* objects = [Folder getFoldersWithFilterPredicate:[NSPredicate predicateWithFormat:@"remoteId == %d", remoteId] error:error];
+	if([objects count] != 1)
+		return nil;
+	return [objects objectAtIndex:0];
+}
+
 - (UIColor *) color {
 	return [UIColor colorWithRed:[self.r floatValue] green:[self.g floatValue] blue:[self.b floatValue] alpha:1.f];
 }

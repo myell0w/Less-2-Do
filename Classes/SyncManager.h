@@ -44,6 +44,8 @@ typedef enum {
 -(BOOL)syncContextsPreferLocal;
 -(BOOL)syncContextsPreferRemote;
 -(BOOL)syncTasksMatchDates;
+-(BOOL)syncTasksPreferLocal;
+-(BOOL)syncTasksPreferRemote;
 
 -(BOOL)deleteAllLocalFolders;
 -(BOOL)deleteAllLocalContexts;

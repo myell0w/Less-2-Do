@@ -287,12 +287,12 @@
 }
 
 + (NSArray *) getAllTasks:(NSError **)error {
-	NSArray* objects = [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"] error:error];	
+	NSArray* objects = [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"] error:error];	
 	return objects;
 }
 
 + (NSArray *) getStarredTasks:(NSError **)error {
-	NSArray* objects = [Task getTasksWithFilterString:@"star == 1 and isCompleted == NO" error:error];	
+	NSArray* objects = [Task getTasksWithFilterString:@"star == 1 and isCompleted == NO and deleted == NO" error:error];	
 	return objects;
 }
 
@@ -305,7 +305,7 @@
 																		   type:NSEqualToPredicateOperatorType
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 + (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error {	
@@ -317,7 +317,7 @@
 																		   type:NSContainsPredicateOperatorType
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 + (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error {	
@@ -330,12 +330,12 @@
 																		options:0];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 + (NSArray *) getCompletedTasks:(NSError **)error
 {
-	NSArray* objects = [Task getTasksWithFilterString:@"isCompleted == YES" error:error];	
+	NSArray* objects = [Task getTasksWithFilterString:@"isCompleted == YES and deleted == NO" error:error];	
 	return objects;
 }
 
@@ -354,12 +354,12 @@
 
 + (NSArray *) getTasksWithoutTag:(NSError **)error
 {
-  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0 and isCompleted == NO"] error:error];
+  return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0 and isCompleted == NO and deleted == NO"] error:error];
 }
 
 + (NSArray *) getTasksWithContext:(NSError **)error
 {
-	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO" error:error];
+	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO and deleted == NO" error:error];
 }
 
 + (NSArray *) getTasksToday:(NSError **)error
@@ -390,7 +390,7 @@
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate <= %@ and dueDate >= %@", dateHigh, dateLow];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 + (NSArray *) getTasksThisWeek:(NSError **)error
@@ -421,14 +421,14 @@
 	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate <= %@ and dueDate >= %@", firstDayNextWeek, firstWeekday];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 + (NSArray *) getTasksOverdue:(NSError **)error
 {	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate < %@", [NSDate date]];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
-	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO"]];
+	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 //Gibt die Tags im Format für toodledo zurück
@@ -458,6 +458,62 @@
 		[self.tags setByAddingObject:newTag];
 	}
 	return self.tags;
+}
+
++ (NSArray *)getRemoteStoredTasks:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:@"remoteId != -1" error:error];	
+	return objects;
+}
+
++ (NSArray *)getRemoteStoredTasksLocallyDeleted:(NSError **)error
+{
+	/* HACK DES JAHRES - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Task getTasksWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Task *task in objects)
+	{
+		if(!(task.remoteId != [NSNumber numberWithInt:-1] && [task.deleted intValue] == 1))
+			[mutable removeObject:task];
+	}
+	
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
+}
+
++ (NSArray *)getLocalStoredTasksLocallyDeleted:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:@"remoteId == -1 AND deleted == YES" error:error];	
+	return objects;
+}
+
++ (NSArray *)getAllTasksLocallyDeleted:(NSError **)error
+{
+	/* HACK DES JAHRES #3 - inperformant bis zum geht nicht mehr, aber wenigstens korrekt */
+	NSArray *objects = [Task getTasksWithFilterString:nil error:error];
+	NSMutableArray *mutable = [[[NSMutableArray alloc] init] autorelease];
+	[mutable setArray:objects];
+	for(Task *task in objects)
+	{
+		if(!([task.deleted intValue] == 1))
+			[mutable removeObject:task];
+	}
+	
+	NSArray *returnValue = [NSArray arrayWithArray:mutable];
+	return returnValue;
+}
+
++ (NSArray *)getUnsyncedTasks:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:@"remoteId == -1 AND deleted == NO" error:error];	
+	return objects;
+}
+
++ (NSArray *)getModifiedTasks:(NSError **)error
+{
+	NSArray* objects = [Task getTasksWithFilterString:@"lastLocalModification > lastSyncDate" error:error];	
+	return objects;
 }
 
 
