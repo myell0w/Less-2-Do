@@ -154,6 +154,8 @@
 					[BaseManagedObject rollback];
 					[self startAutocommit];
 					[tdApi release];
+					[usedLocalEntityVersion release];
+					
 					return NO;
 				}
 			}
@@ -188,6 +190,8 @@
 				[BaseManagedObject rollback];
 				[self startAutocommit];
 				[tdApi release];
+				[usedLocalEntityVersion release];
+				
 				return NO;
 			}
 		}
