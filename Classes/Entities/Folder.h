@@ -43,6 +43,7 @@
 + (NSArray *)getAllFoldersLocallyDeleted:(NSError **)error;
 + (NSArray *)getUnsyncedFolders:(NSError **)error;
 + (NSArray *)getModifiedFolders:(NSError **)error;
++ (Folder *)getFolderWithRemoteId:(NSNumber*)remoteId error:(NSError **)error;
 
 - (UIColor *) color;
 

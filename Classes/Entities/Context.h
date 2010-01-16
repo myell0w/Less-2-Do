@@ -45,6 +45,7 @@
 + (NSArray *)getAllContextsLocallyDeleted:(NSError **)error;
 + (NSArray *)getUnsyncedContexts:(NSError **)error;
 + (NSArray *)getModifiedContexts:(NSError **)error;
++ (Context*)getContextWithRemoteId:(NSNumber*)remoteId error:(NSError **)error;
 
 @end
 

@@ -39,7 +39,7 @@
 @property (nonatomic, retain) NSDate * creationDate;
 @property (nonatomic, retain) NSDate * endTimeAnnoy;
 @property (nonatomic, retain) Folder * folder;
-@property (nonatomic, retain) NSManagedObject * context;
+@property (nonatomic, retain) Context * context;
 @property (nonatomic, retain) NSSet* tags;
 @property (nonatomic, retain) NSManagedObject * abContact;
 @property (nonatomic, retain) NSSet* extendedInfo;
@@ -94,6 +94,13 @@
 //Tags conversion functions
 - (NSString *) tagsAsString:(NSError **)error;
 - (NSSet *) tagStringToTags:(NSString *)tagString error:(NSError **)error;
+
++ (NSArray *)getRemoteStoredTasks:(NSError **)error;
++ (NSArray *)getRemoteStoredTasksLocallyDeleted:(NSError **)error;
++ (NSArray *)getLocalStoredTasksLocallyDeleted:(NSError **)error;
++ (NSArray *)getAllTasksLocallyDeleted:(NSError **)error;
++ (NSArray *)getUnsyncedTasks:(NSError **)error;
++ (NSArray *)getModifiedTasks:(NSError **)error;
 /*
 alle Tasks, die completed sind (done)
 alle Tasks die keinen Folder haben (done)
