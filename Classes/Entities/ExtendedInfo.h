@@ -6,6 +6,9 @@
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
+
+#define EXTENDED_INFO_IMAGE 1
+
 @class Task;
 
 @interface ExtendedInfo :  BaseManagedObject  

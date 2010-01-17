@@ -10,6 +10,7 @@
 
 #import "Folder.h"
 #import "Tag.h"
+#import "ExtendedInfo.h"
 
 #define MAX_TAGS_COUNT 20
 
@@ -150,6 +151,24 @@
 			}
 		}
 	}
+}
+
+- (BOOL)hasImage {
+	if (self.extendedInfo != nil && [self.extendedInfo count] > 0) {
+		if (((ExtendedInfo *)[self.extendedInfo anyObject]).type = [NSNumber numberWithInt:EXTENDED_INFO_IMAGE]) {
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+- (NSData *)imageData {
+	if ([self hasImage]) {
+		return ((ExtendedInfo *)[self.extendedInfo anyObject]).data;
+	}
+	
+	return nil;
 }
 
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error {

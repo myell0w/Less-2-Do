@@ -22,7 +22,6 @@
 #define TEXT_RECT		  CGRectMake(47, 10, 180, 24)
 #define NOTES_RECT		  CGRectMake(47, 13, 250, 24)
 
-#define TAG_IMAGE	30
 #define TAG_TEXT	31
 #define TAG_TIMER   32
 

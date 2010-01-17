@@ -15,6 +15,8 @@
 #import "TaskEditFolderViewController.h"
 #import "TaskEditContextViewController.h"
 #import "TaskEditRecurrenceViewController.h"
+#import "TaskEditImageViewController.h"
+#import "ExtendedInfo.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -93,7 +95,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	//TODO:change
     return 3;
 }
 
@@ -106,7 +107,7 @@
 	else if (section == 1)
 		return 3;
 	else if (section == 2)
-		return 1;
+		return 2;
 	
 	return 0;
 }
@@ -198,6 +199,13 @@
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		
+		// Init-Pictures-Cell
+		else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Image";
+		}
+		
 		// set font
 		cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
     }
@@ -226,9 +234,6 @@
 		if (completedCB != nil) {
 			tagAsNum = [[NSNumber alloc] initWithInt:TAG_COMPLETED];
 			tempValue = [tempData objectForKey:tagAsNum];
-			
-			ALog("TempValue: %@", tempValue);
-			ALog("Completed: %@", [task isCompleted]);
 			
 			if (tempValue != nil) {
 				[completedCB setOn:[tempValue boolValue]];
@@ -354,6 +359,19 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+		if ([task hasImage]) {
+			cell.accessoryView = nil;
+			cell.detailTextLabel.text = @"1 Image";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			UIButton *addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+			[addButton addTarget:self action:@selector(setImage:) forControlEvents:UIControlEventTouchUpInside];
+			cell.accessoryView = addButton;
+		}
+
+	}
+	
     return cell;
 }
 
@@ -362,7 +380,8 @@
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
 	// These rows can't be selected:
-	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY])
+	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY] ||
+		([cellID isEqualToString:CELL_ID_IMAGE] && ![task hasImage]))
 		return nil;
 	
 	return indexPath;
@@ -455,7 +474,18 @@
 		[self.navigationController pushViewController:nvc animated:YES];
 		[nvc release];
 	}	
+	
+	else if ([cellID isEqualToString:CELL_ID_IMAGE]) {
+		TaskEditImageViewController *ivc = [[TaskEditImageViewController alloc] 
+											initWithNibName:@"TaskEditImageViewController" 
+											bundle:nil];
+		ivc.title = @"Image";
+		ivc.task = self.task;
+		[self.navigationController pushViewController:ivc animated:YES];
+		[ivc release];
+	}	
 }
+
 
 // specify the height of your footer section
 /*- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -635,6 +665,8 @@
 			task.tags = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_NOTES) {
 			task.note = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_IMAGE) {
+			//TODO:implement
 		}
 	}
 	
@@ -676,6 +708,16 @@
 	
 }
 
+- (IBAction)setImage:(id)sender {
+	if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
+		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+		picker.delegate = self; 
+		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; 
+		[self presentModalViewController:picker animated:YES];
+		[picker release];
+	}
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -706,6 +748,8 @@
 	
 	else if (section == 2 && row == 0)
 		return CELL_ID_NOTES;
+	else if (section == 2 && row == 1)
+		return CELL_ID_IMAGE;
 	
 	return nil;
 }
@@ -767,5 +811,20 @@
 	[priorityControl release];
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Picker Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image 
+				  editingInfo:(NSDictionary *)editingInfo {
+	ExtendedInfo *info = (ExtendedInfo *)[BaseManagedObject objectOfType:@"ExtendedInfo"];
+	
+	info.type = [NSNumber numberWithInt:EXTENDED_INFO_IMAGE];
+	info.data = UIImagePNGRepresentation(image);
+	
+	[self.task addExtendedInfoObject:info];
+	[picker dismissModalViewControllerAnimated:YES];
+}
 @end
 
