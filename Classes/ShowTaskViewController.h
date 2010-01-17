@@ -45,6 +45,7 @@
 - (void)setUpFolderCell:(UITableViewCell *)cell;
 - (void)setUpContextTagsCell:(UITableViewCell *)cell;
 - (void)setUpNotesCell:(UITableViewCell *)cell;
+- (void)setUpImageCell:(UITableViewCell *)cell;
 
 - (void)reloadProperties;
 

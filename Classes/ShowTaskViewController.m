@@ -9,6 +9,7 @@
 #import "ShowTaskViewController.h"
 #import "EditTaskViewController.h"
 #import "ShowContextViewController.h"
+#import "TaskEditImageViewController.h"
 #import "UICheckBox.h"
 
 #define TITLE_LABEL_RECT  CGRectMake(47, 3, 180, 21)
@@ -146,6 +147,12 @@
 			[self setUpNotesCell:cell];
 		}
 		
+		// Init-Image-Cell
+		else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			[self setUpImageCell:cell];
+		}
+		
 		// set font
 		cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
     }
@@ -185,7 +192,7 @@
 		priorityView.image = [UIImage imageNamed:priorityName];
 		[priorityName release];
 		
-		if (task.repeat != nil && ([task.repeat intValue]%100) != 0) {
+		if ([task isRepeating]) {
 			UIImageView *recurrenceView = (UIImageView *)[cell.contentView viewWithTag:TAG_RECURRENCE];
 			recurrenceView.image = [UIImage imageNamed:@"recurrence.png"];
 		}
@@ -226,15 +233,42 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+		UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:TAG_IMAGE];
+		UIImage *img = [[UIImage alloc] initWithData: [self.task imageData]];
+		imageView.image = img;
+		[img release];
+		
+		UILabel *textView = (UILabel *)[cell.contentView viewWithTag:TAG_TEXT];
+		textView.text = @"1 Image";
+	}
+	
 	
     return cell;
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//NSString *cellID = [self cellIDForIndexPath:indexPath];
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
-	// No rows can't be selected
+	if ([cellID isEqualToString:CELL_ID_IMAGE])
+		return indexPath;
+	
+	// No other rows can't be selected
 	return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *cellID = [self cellIDForIndexPath:indexPath];
+	
+	if ([cellID isEqualToString:CELL_ID_IMAGE]) {
+		TaskEditImageViewController *ivc = [[TaskEditImageViewController alloc] 
+											initWithNibName:@"TaskEditImageViewController" 
+											bundle:nil];
+		ivc.title = @"Image";
+		ivc.task = self.task;
+		[self.navigationController pushViewController:ivc animated:YES];
+		[ivc release];
+	}	
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -433,11 +467,6 @@
 	[imageView release];
 	
 	
-	/*UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
-	imageView.tag = TAG_IMAGE;
-	[cell.contentView addSubview:imageView];
-	[imageView release];*/
-	
 	UILabel *textLabel = [[UILabel alloc] initWithFrame:TEXT_RECT];
 	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 	textLabel.tag = TAG_TEXT;
@@ -458,6 +487,20 @@
 	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
 	textLabel.tag = TAG_NOTES;
 	textLabel.lineBreakMode = UILineBreakModeWordWrap;
+	// add Label to Cell
+	[cell.contentView addSubview:textLabel];
+	[textLabel release];
+}
+
+- (void)setUpImageCell:(UITableViewCell *)cell {
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:IMAGE_RECT];
+	imageView.tag = TAG_IMAGE;
+	[cell.contentView addSubview:imageView];
+	[imageView release];
+	
+	UILabel *textLabel = [[UILabel alloc] initWithFrame:TEXT_RECT];
+	textLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
+	textLabel.tag = TAG_TEXT;
 	// add Label to Cell
 	[cell.contentView addSubview:textLabel];
 	[textLabel release];
@@ -555,6 +598,9 @@
 	
 	if (self.task.note != nil && [self.task.note length] > 0)
 		[properties addObject:CELL_ID_NOTES];
+	
+	if ([self.task hasImage])
+		[properties addObject:CELL_ID_IMAGE];
 	
 }
 
