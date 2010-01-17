@@ -239,6 +239,7 @@
 	
 	Task *t = (Task *)[self.tasks objectAtIndex:row];
 	[Task deleteObject:t error:&error];
+	[BaseManagedObject commit];
 	
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
