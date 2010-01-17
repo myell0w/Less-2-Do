@@ -289,7 +289,7 @@
 	else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
 		if (task.dueDate != nil) {
 			NSDateFormatter *format = [[NSDateFormatter alloc] init];
-			[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+			[format setDateFormat:@"EEEE, yyyy-MM-dd"];
 			
 			cell.detailTextLabel.text = [format stringFromDate:task.dueDate];
 			

@@ -54,7 +54,7 @@
 	[filteredArray release];
 		
 	formatDate = [[NSDateFormatter alloc] init];
-	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
+	[formatDate setDateFormat:@"EE, yyyy-MM-dd"];
 	formatTime = [[NSDateFormatter alloc] init];
 	[formatTime setDateFormat:@"h:mm a"];
 	
