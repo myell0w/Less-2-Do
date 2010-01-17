@@ -550,6 +550,7 @@
 				
 				[self dismissModalViewControllerAnimated:YES];
 				[BaseManagedObject deleteObject:task error:&error];
+				[BaseManagedObject commit];
 			} else {
 				[self.navigationController popViewControllerAnimated:YES];
 			}
