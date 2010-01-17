@@ -7,23 +7,13 @@
 //
 
 #import "TaskEditImageViewController.h"
+#import "ExtendedInfo.h"
 
 
 @implementation TaskEditImageViewController
 
 @synthesize task;
 @synthesize imageView;
-
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -36,13 +26,6 @@
 	}
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -52,13 +35,54 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+	self.task = nil;
+	self.imageView = nil;
 }
 
 
 - (void)dealloc {
     [super dealloc];
+	
+	[task release];
+	[imageView release];
+}
+
+- (IBAction)deleteImage:(id)sender {
+	self.task.extendedInfo = nil;
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)changeImage:(id)sender {
+	if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
+		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+		picker.delegate = self; 
+		picker.allowsImageEditing = YES;
+		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; 
+		[self presentModalViewController:picker animated:YES];
+		[picker release];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error accessing photo library"
+														message:@"Device does not support a photo library" delegate:nil
+											  cancelButtonTitle:@"Ok!" otherButtonTitles:nil]; 
+		[alert show]; 
+		[alert release];
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Picker Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image 
+				  editingInfo:(NSDictionary *)editingInfo {
+	ExtendedInfo *info = (ExtendedInfo *)[self.task.extendedInfo anyObject];
+	
+	info.type = [NSNumber numberWithInt:EXTENDED_INFO_IMAGE];
+	info.data = UIImagePNGRepresentation(image);
+	
+	imageView.image = image;
+	[picker dismissModalViewControllerAnimated:YES];
 }
 
 

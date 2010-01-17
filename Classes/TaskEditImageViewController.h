@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TaskEditImageViewController : UIViewController {
+@interface TaskEditImageViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
 	Task *task;
 	UIImageView *imageView;
 }
 
 @property (nonatomic, retain) Task *task;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
+
+- (IBAction)deleteImage:(id)sender;
+- (IBAction)changeImage:(id)sender;
 
 @end
