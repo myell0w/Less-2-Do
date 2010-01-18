@@ -152,6 +152,13 @@
 		NSUInteger row = [indexPath row];	
 		NSError *error;
 		Context *context = [list objectAtIndex:row];
+		
+		for (Task *t in context.tasks) {
+			t.context = nil;
+		}
+		
+		[context removeTasks:context.tasks];
+		
 		DLog ("Try to delete Context '%@'", context.name);
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 

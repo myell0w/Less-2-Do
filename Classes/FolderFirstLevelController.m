@@ -63,7 +63,7 @@
 	{
 		// for schleife objekte erzeugen und array addObject:currentContext
 		for (int i=0; i<[objects count]; i++) {
-			Context *folder = [objects objectAtIndex:i];
+			Folder *folder = [objects objectAtIndex:i];
 			TasksListViewController *folderView = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 			folderView.title = folder.name;
 			folderView.selector = @selector(getTasksInFolder:error:);
@@ -177,10 +177,16 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		
 		NSUInteger row = [indexPath row];	
 		NSError *error;
 		Folder *folder = [self.list objectAtIndex:row];
+		
+		for (Task *t in folder.tasks) {
+			t.folder = nil;
+		}
+		
+		[folder removeTasks:folder.tasks];
+		
 		DLog ("Try to delete Folder '%@'", folder.name);
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
