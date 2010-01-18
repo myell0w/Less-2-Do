@@ -30,6 +30,9 @@ typedef enum _TaskControllerMode {
 	TaskControllerMode mode;
 	// footer view
 	UIView *footerView;
+									   
+    Folder *oldFolder;
+    Context *oldContext;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

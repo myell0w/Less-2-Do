@@ -51,12 +51,16 @@
 	NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 	
 	self.tempData = dict;
+	
 	self.navigationItem.leftBarButtonItem = cancel;
 	self.navigationItem.rightBarButtonItem = save;
 	
 	[save release];
 	[cancel release];
 	[dict release];
+	
+	oldFolder = (Folder *)[self.task.folder retain];
+	oldContext = (Context *)[self.task.context retain];
 	
     [super viewDidLoad];
 }
@@ -74,12 +78,18 @@
 	self.task = nil;
 	self.tempData = nil;
 	self.textFieldBeingEdited = nil;
+	[oldFolder release];
+	oldFolder = nil;
+	[oldContext release];
+	oldContext = nil;
 }
 
 - (void)dealloc {
 	[task release];
 	[tempData release];
 	[textFieldBeingEdited release];
+	[oldFolder release];
+	[oldContext release];
 	
     [super dealloc];
 }
@@ -544,6 +554,9 @@
 	if ([actionSheet.title isEqualToString:@"Really Cancel?"]) {
 		// if the user really wants to abort, delete the modal view and show the parent view again
 		if (buttonIndex != [actionSheet cancelButtonIndex]) {
+			self.task.folder = oldFolder;
+			self.task.context = oldContext;
+			
 			if (self.mode == TaskControllerAddMode) {
 				Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 				delegate.currentEditedTask = nil;
