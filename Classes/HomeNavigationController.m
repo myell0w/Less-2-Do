@@ -138,9 +138,12 @@
 	
 	if ([task.name length] > 0) {
 		ALog("Task to quickadd: %@", task);
+		
+		Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+		delegate.currentEditedTask = nil;
+		
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
 	}
-	//TODO: Matthias: release
 	[task release];
 }
 
