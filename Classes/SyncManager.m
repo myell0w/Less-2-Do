@@ -868,20 +868,24 @@
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
 			newTask.dueDate = remoteTask.date_due;
+			
 			for(NSString *remoteTag in remoteTask.tags)
 			{
-				Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
-				if(syncError != nil)
-					return NO;
-				if(tag == nil)
+				if(![remoteTag isEqualToString:@""])
 				{
-					tag = (Tag*)[Tag objectOfType:@"Tag"];
-					tag.name = remoteTag;
-				}	
-				if(![[tag tasks] containsObject:newTask])
-					[tag addTasksObject:newTask];
-				if(![[newTask tags] containsObject:tag])
-					[newTask addTagsObject:tag];
+					Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+					if(syncError != nil)
+						return NO;
+					if(tag == nil)
+					{
+						tag = (Tag*)[Tag objectOfType:@"Tag"];
+						tag.name = remoteTag;
+					}
+					if(![[tag tasks] containsObject:newTask])
+						[tag addTasksObject:newTask];
+					if(![[newTask tags] containsObject:tag])
+						[newTask addTagsObject:tag];
+				}
 			}
 			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 			if(syncError != nil)
@@ -1123,11 +1127,14 @@
 					{
 						tag = (Tag*)[Tag objectOfType:@"Tag"];
 						tag.name = remoteTag;
-					}	
-					[tag addTasksObject:newTask];
-					[newTask addTagsObject:tag];
-				}				
+					}
+					if(![[tag tasks] containsObject:newTask])
+						[tag addTasksObject:newTask];
+					if(![[newTask tags] containsObject:tag])
+						[newTask addTagsObject:tag];
+				}
 			}
+			
 			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 			if(syncError != nil)
 				return NO;
