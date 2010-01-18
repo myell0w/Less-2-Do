@@ -147,12 +147,25 @@
 		NSUInteger row = [indexPath row];	
 		NSError *error;
 		Tag *tag = [list objectAtIndex:row];
+		
+		NSMutableArray *tasksToRemove = [NSMutableArray array];
+		for(Task *t in tag.tasks)
+		{
+			[tasksToRemove addObject:t];
+		}
+		for(Task *t in tasksToRemove)
+		{
+			[t removeTagsObject:tag];
+		}
+		[tag removeTasks:[NSSet setWithArray:tasksToRemove]];
+		
+		
 		DLog ("Try to delete Tag '%@'", tag.name);
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 							  withRowAnimation:UITableViewRowAnimationFade];
 		DLog ("Removed Tag '%@' from SectionController", tag.name);
-		if(![BaseManagedObject deleteObject:tag error:&error]) {
+		if(![BaseManagedObject deleteObjectFromPersistentStore:tag error:&error]) {
 			ALog("Error occured while deleting Tag");
 		}
 		else
