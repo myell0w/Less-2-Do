@@ -9,6 +9,7 @@
 #import "Less2DoAppDelegate.h"
 #import "HomeNavigationController.h"
 #import "SyncManager.h"
+#import "Setting.h"
 
 
 #define SYNC_TIMER_INTERVAL 20.0
@@ -29,6 +30,7 @@
 @synthesize reminderTimer;
 
 @synthesize currentEditedTask;
+
 
 @synthesize activityViewContainer;
 @synthesize activityView;
@@ -167,6 +169,18 @@
 														selector:@selector(checkDueTasks:)
 														userInfo:nil
 														 repeats:YES];
+	
+	//Check Settings
+	NSError *error;
+	Setting *settings = [Setting getSettings:&error];
+	if(settings == nil) {
+		ALog ("No Settings available");
+		settings = (Setting*)[BaseManagedObject objectOfType:@"Setting"];
+		settings.tdEmail = @"";
+		settings.useTDSync = [NSNumber numberWithInt:0];
+	} else {
+		ALog ("Toodledo-User: %@", settings.tdEmail);
+	}
 }
 
 /**

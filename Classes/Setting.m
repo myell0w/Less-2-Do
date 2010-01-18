@@ -55,4 +55,9 @@
 	return returnValue;
 }
 
+-(NSString *) getPassword:(NSError **)error {
+	NSString *password = [SFHFKeychainUtils getPasswordForUsername:self.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:error]
+	return password;
+}
+
 @end

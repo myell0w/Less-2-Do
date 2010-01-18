@@ -13,10 +13,23 @@
 
 @synthesize eMail;
 @synthesize password;
-
+@synthesize settings;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	NSError *error;
+	self.settings = [Setting getSettings:&error];
+	if(self.settings == nil) {
+		self.settings = (Setting*)[BaseManagedObject objectOfType:@"Setting"];
+		self.settings.tdEmail = @"";
+		self.settings.useTDSync = [NSNumber numberWithInt:0];
+	}
+	else {
+		self.eMail.text = self.settings.tdEmail;
+		NSError *error;
+		self.password.text = [SFHFKeychainUtils getPasswordForUsername:self.eMail.text andServiceName:@"Less2DoToodleDoAccount" error:&error];
+	}
+	
 	UIBarButtonItem *leftButton = self.navigationItem.leftBarButtonItem;
 	leftButton.action = @selector(saveSettings);
     [super viewDidLoad];
@@ -30,21 +43,34 @@
 }
 
 - (void)viewDidUnload {
-
+	self.settings = nil;
 }
 
 
 - (void)dealloc {
+	[settings release];
     [super dealloc];
 }
 
 - (void)saveSettings {
 	NSError *error;
-	[SFHFKeychainUtils storeUsername:[self.eMail text]
-						 andPassword:[self.password text]
-					  forServiceName:@"Less2DoToodleDoAccount"
-					  updateExisting:YES
-							   error:&error];
+	if([self.settings.useTDSync intValue] == 1) {
+		[SFHFKeychainUtils deleteItemForUsername:self.settings.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:&error];
+	}
+	
+	if([self.eMail.text length]!=0) {
+		[SFHFKeychainUtils storeUsername:[self.eMail text]
+							 andPassword:[self.password text]
+						  forServiceName:@"Less2DoToodleDoAccount"
+						  updateExisting:YES
+								   error:&error];
+		self.settings.tdEmail = [self.eMail text];
+		self.settings.useTDSync = [NSNumber numberWithInt:1];
+	} else {
+		self.settings.tdEmail = @"";
+		self.settings.useTDSync = [NSNumber numberWithInt:0];
+	}
+
 }
 
 - (IBAction)forceLocalToRemoteSync:(id)sender {
@@ -57,7 +83,10 @@
 
 - (IBAction)unlinkAccount:(id)sender {
 	NSError *error;
-	[SFHFKeychainUtils deleteItemForUsername:[self.eMail text] andServiceName:@"Less2DoToodleDoAccount" error:&error];
+	[SFHFKeychainUtils deleteItemForUsername:self.settings.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:&error];
+	self.settings.useTDSync = [NSNumber numberWithInt:0];
+	self.eMail.text = @"";
+	self.password.text = @"";
 }
 
 - (IBAction)textFinished {

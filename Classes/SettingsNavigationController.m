@@ -7,7 +7,7 @@
 //
 
 #import "SettingsNavigationController.h"
-
+#import "SettingsSyncViewController.h"
 
 @implementation SettingsNavigationController
 
@@ -60,8 +60,12 @@
 }
 
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
-	ALog ("Pop that thing");
-	return [super popViewControllerAnimated:animated];
+	
+	UIViewController *controller=[super popViewControllerAnimated:animated];
+	if([controller isKindOfClass:[SettingsSyncViewController class]]) {
+		[((SettingsSyncViewController *) controller) saveSettings];
+	}
+	return controller;
 }
 
 @end

@@ -8,18 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "SettingsViewController.h"
+#import "Setting.h"
 
 
 @interface SettingsSyncViewController : SettingsViewController {
+	Setting *settings;
 	UITextField *eMail;
 	UITextField *password;
 }
 
+@property (nonatomic, retain) Setting *settings;
+
 @property (nonatomic, retain) IBOutlet UITextField *eMail;
 @property (nonatomic, retain) IBOutlet UITextField *password;
+
 
 - (IBAction)forceLocalToRemoteSync:(id)sender;
 - (IBAction)forceRemoteToLocalSync:(id)sender;
 - (IBAction)unlinkAccount:(id)sender;
 - (IBAction)textFinished;
+
+-  (void)saveSettings;
 @end

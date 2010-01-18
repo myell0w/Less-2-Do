@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSNumber * useTDSync;
 
 +(Setting*) getSettings:(NSError **)error;
+-(NSString *) getPassword:(NSError **)error;
 
 @end
