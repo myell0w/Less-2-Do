@@ -381,4 +381,9 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
 #endif
 
++ (NSString *) getPasswordForUsername:(NSString *)username error:(NSError **)error {
+	NSString *password = [SFHFKeychainUtils getPasswordForUsername:username andServiceName:@"Less2DoToodleDoAccount" error:error];
+	return password;
+}
+
 @end

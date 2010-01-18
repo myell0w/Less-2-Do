@@ -15,7 +15,10 @@
 @property (nonatomic, retain) NSNumber * useTDSync;
 @property (nonatomic, retain) NSNumber * preferToodleDo;
 
+@end
+
+@interface Setting (CoreDataGeneratedAccessors)
+
 +(Setting*) getSettings:(NSError **)error;
--(NSString *) getPassword:(NSError **)error;
 
 @end

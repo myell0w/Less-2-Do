@@ -7,7 +7,8 @@
 //
 
 #import "SyncManager.h"
-
+#import "Setting.h"
+#import "SFHFKeychainUtils.h"
 
 @implementation SyncManager
 
@@ -30,15 +31,15 @@
 	currentDate = [NSDate date];
 	syncError = nil;
 	*error = nil;
-	Setting *settings = (Setting*)[Setting getSettings:&syncError];
+	Setting *settings = (Setting *)[Setting getSettings:&syncError];
 	if(settings == nil)
 	{
 		*error = syncError;
 		return NO;
 	}
 	ALog(@"settings: %@", settings);
-	//NSString *tdPassword = [settings getPassword:&syncError];
-	NSString *tdPassword = @"less-2-do";
+	NSString *tdPassword = [SFHFKeychainUtils getPasswordForUsername:settings.tdEmail error:&syncError];
+	//NSString *tdPassword = @"less-2-do";
 	if(syncError != nil)
 	{
 		*error = syncError;
