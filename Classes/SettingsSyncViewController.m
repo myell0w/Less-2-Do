@@ -7,7 +7,7 @@
 //
 
 #import "SettingsSyncViewController.h"
-
+#import "SFHFKeychainUtils.h"
 
 @implementation SettingsSyncViewController
 
@@ -39,7 +39,12 @@
 }
 
 - (void)saveSettings {
-	
+	NSError *error;
+	[SFHFKeychainUtils storeUsername:[self.eMail text]
+						 andPassword:[self.password text]
+					  forServiceName:@"Less2DoToodleDoAccount"
+					  updateExisting:YES
+							   error:&error];
 }
 
 - (IBAction)forceLocalToRemoteSync:(id)sender {
@@ -51,7 +56,8 @@
 }
 
 - (IBAction)unlinkAccount:(id)sender {
-	
+	NSError *error;
+	[SFHFKeychainUtils deleteItemForUsername:[self.eMail text] andServiceName:@"Less2DoToodleDoAccount" error:&error];
 }
 
 - (IBAction)textFinished {

@@ -143,12 +143,12 @@
 	activityViewContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 	activityViewContainer.backgroundColor = [UIColor blackColor];
 	activityViewContainer.alpha = 0.80;
-	activityViewContainer.hidden = YES;
+	//activityViewContainer.hidden = YES;
 	
 	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	[activityView setCenter:CGPointMake(160.0f, 208.0f)];
 	[activityViewContainer addSubview:activityView];
-	[window addSubview:activityViewContainer];
+	//[window addSubview:activityViewContainer];
 	[activityView release];
 	
 	[window makeKeyAndVisible];
@@ -362,13 +362,32 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 }
 
 -(void)startAnimating {
-	activityViewContainer.hidden = NO;
+	[NSThread detachNewThreadSelector:@selector(startAnimatingInThread) toTarget:self withObject:nil];
+}
+
+-(void)startAnimatingInThread {
+	[window addSubview:activityViewContainer];
 	[activityView startAnimating];
 }
 
--(void)stopAnimating {;
+-(void)stopAnimating {
+	[activityViewContainer removeFromSuperview];
+	[self stopAnimatingWithTitle:nil andMessage:nil];
+}
+
+-(void)stopAnimatingWithTitle:(NSString *)title andMessage:(NSString *)message {
 	activityViewContainer.hidden = YES;
 	[activityView stopAnimating];
+	
+	if(title!=nil && message != nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+														message:message
+													   delegate:self
+											  cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 @end

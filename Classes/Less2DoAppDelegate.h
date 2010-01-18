@@ -90,7 +90,9 @@
 -(void)stopTimer;
 
 -(void)startAnimating;
+-(void)startAnimatingInThread;
 -(void)stopAnimating;
+-(void)stopAnimatingWithTitle:(NSString *)title andMessage:(NSString *)message;
 
 @end
 
