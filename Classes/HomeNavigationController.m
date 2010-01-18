@@ -158,6 +158,10 @@
 -(IBAction)syncButtonPressed:(id)sender 
 {
 	NSError *error = nil;
+	
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate startAnimating];
+	
 	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
 	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	//BOOL successful = [syncManager overwriteRemote:&error];
@@ -178,6 +182,7 @@
 	{
 		ALog(@"overwriteLocal: was successful");
 	}*/
+	[appDelegate stopAnimating];
 }
 
 @end

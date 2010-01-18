@@ -31,7 +31,6 @@ typedef enum {
 } SyncPreference;
 
 /* Public usable functions */
-+(BOOL)syncWithPreferenceOld:(SyncPreference)preference error:(NSError**)error; //deprecated
 -(BOOL)syncWithPreference:(SyncPreference)preference error:(NSError**)error;
 -(BOOL)overwriteLocal:(NSError**)error;
 -(BOOL)overwriteRemote:(NSError**)error;
