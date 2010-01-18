@@ -271,6 +271,8 @@
 	 GtdApiContextNotAddedError = 510,
 	 GtdApiContextNotDeletedError = 520,
 	 GtdApiContextNotEditedError = 530*/
+	ALog(@"gtdErrorMessage called with errorCode %d", errorCode);
+	return [NSString stringWithFormat:@"gtdErrorMessage errorCode=%d", errorCode];
 	switch (errorCode) {
 		case GtdApiNoConnectionError:
 			return @"Toodledo API no connection";
