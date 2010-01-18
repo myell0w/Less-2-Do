@@ -77,7 +77,7 @@
 		[SFHFKeychainUtils storeUsername:[self.eMail text]
 							 andPassword:[self.password text]
 						  forServiceName:@"Less2DoToodleDoAccount"
-						  updateExisting:YES
+						  updateExisting:NO
 								   error:&error];
 		if (error != nil) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
