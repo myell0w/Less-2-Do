@@ -50,14 +50,19 @@
 		return nil;
 	}
 	
+	ALog(@"settings count: %d", [objects count]);
+	
 	Setting *returnValue = [objects objectAtIndex:0];
+	
+	ALog(@"returnValue email: %@", returnValue.tdEmail);
 	
 	return returnValue;
 }
 
 -(NSString *) getPassword:(NSError **)error {
-	NSString *password = [SFHFKeychainUtils getPasswordForUsername:self.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:error]
-	return password;
+	//NSString *password = [SFHFKeychainUtils getPasswordForUsername:self.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:error]
+	//return password;
+	return @"no pass";
 }
 
 @end

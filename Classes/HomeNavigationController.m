@@ -166,12 +166,18 @@
 	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
 	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	//BOOL successful = [syncManager overwriteRemote:&error];
+	NSString *stopTitle = nil;
+	NSString *stopMessage = nil;
 	if(!successful)
 	{
+		stopTitle = @"Error";
+		stopMessage = [SyncManager gtdErrorMessage:[error code]];
 		ALog(@"Error syncWithPreference:SyncPreferLocal = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
 	}
 	else
 	{
+		stopTitle = @"Success";
+		stopMessage = @"Sync with ToodleDo was successful";
 		ALog(@"syncWithPreference:SyncPreferLocal was successful");
 	}
 	/*BOOL successful = [syncManager overwriteRemote:&error];
@@ -183,7 +189,7 @@
 	{
 		ALog(@"overwriteLocal: was successful");
 	}*/
-	[appDelegate stopAnimatingWithTitle:@"der titel" andMessage:@"die nachricht ist ganz lang weil ich möcht ja schaun wie viel man da schreiben kann"];
+	[appDelegate stopAnimatingWithTitle:stopTitle andMessage:stopMessage];
 }
 
 @end

@@ -30,8 +30,21 @@
 	currentDate = [NSDate date];
 	syncError = nil;
 	*error = nil;
-	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
+	Setting *settings = (Setting*)[Setting getSettings:&syncError];
+	if(settings == nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	ALog(@"settings: %@", settings);
+	//NSString *tdPassword = [settings getPassword:&syncError];
+	NSString *tdPassword = @"less-2-do";
+	if(syncError != nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	tdApi = [[TDApi alloc] initWithUsername:settings.tdEmail password:tdPassword error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
@@ -95,8 +108,20 @@
 	currentDate = [NSDate date];
 	syncError = nil;
 	*error = nil;
-	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
+	Setting *settings = [Setting getSettings:&syncError];
+	if(settings == nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	//NSString *tdPassword = [settings getPassword:&syncError];
+	NSString *tdPassword = @"less-2-do";
+	if(syncError != nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	tdApi = [[TDApi alloc] initWithUsername:settings.tdEmail password:tdPassword error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
@@ -168,8 +193,20 @@
 	currentDate = [NSDate date];
 	syncError = nil;
 	*error = nil;
-	//TDApi *tdApi = [[TDApi alloc] initWithUsername:@"g.schraml@gmx.at" password:@"vryehlgg" error:&localError];
-	tdApi = [[TDApi alloc] initWithUsername:@"j.kurz@gmx.at" password:@"less-2-do" error:&syncError];
+	Setting *settings = [Setting getSettings:&syncError];
+	if(settings == nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	//NSString *tdPassword = [settings getPassword:&syncError];
+	NSString *tdPassword = @"less-2-do";
+	if(syncError != nil)
+	{
+		*error = syncError;
+		return NO;
+	}
+	tdApi = [[TDApi alloc] initWithUsername:settings.tdEmail password:tdPassword error:&syncError];
 	
 	if(syncError != nil) // error establishing connection
 	{
