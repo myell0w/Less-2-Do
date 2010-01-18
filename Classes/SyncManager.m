@@ -801,6 +801,16 @@
 					localTask.startDateAnnoy = remoteTask.date_start; // ???
 					localTask.dueDate = remoteTask.date_due;
 					
+					NSMutableArray *tagsToRemove = [NSMutableArray array];
+					for(Tag *tag in localTask.tags)
+					{
+						[tagsToRemove addObject:tag];
+					}
+					for(Tag *tag in tagsToRemove)
+					{
+						[tag removeTasksObject:localTask];
+					}
+					[localTask removeTags:localTask.tags];
 					for(NSString *remoteTag in remoteTask.tags)
 					{
 						if(![remoteTag isEqualToString:@""])
