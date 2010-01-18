@@ -162,7 +162,9 @@
 	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	[appDelegate startAnimating];
 	
+	
 	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
+	usleep(10000000);
 	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	//BOOL successful = [syncManager overwriteRemote:&error];
 	if(!successful)
