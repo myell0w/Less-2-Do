@@ -376,7 +376,7 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 }
 
 -(void)stopAnimatingWithTitle:(NSString *)title andMessage:(NSString *)message {
-	activityViewContainer.hidden = YES;
+	[activityViewContainer removeFromSuperview];
 	[activityView stopAnimating];
 	
 	if(title!=nil && message != nil) {
