@@ -7,7 +7,7 @@
 //
 
 #import "Setting.h"
-
+#import "SFHFKeychainUtils.h"
 
 @implementation Setting
 
@@ -60,9 +60,8 @@
 }
 
 -(NSString *) getPassword:(NSError **)error {
-	//NSString *password = [SFHFKeychainUtils getPasswordForUsername:self.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:error]
-	//return password;
-	return @"no pass";
+	NSString *password = [SFHFKeychainUtils getPasswordForUsername:self.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:error];
+	return password;
 }
 
 @end
