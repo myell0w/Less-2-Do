@@ -59,13 +59,13 @@
 		if(preference == SyncPreferLocal)
 		{
 			// 1. Folders
-			/*wasSuccessful = [self syncFoldersPreferLocal];
+			wasSuccessful = [self syncFoldersPreferLocal];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 			// 2. Contexts
 			wasSuccessful = [self syncContextsPreferLocal];
 			if(!wasSuccessful)
-				return [self exitFailure:error];*/
+				return [self exitFailure:error];
 			// 3. Tasks
 			wasSuccessful = [self syncTasksPreferLocal];
 			if(!wasSuccessful)
@@ -74,13 +74,13 @@
 		else
 		{
 			// 1. Folders
-			/*wasSuccessful = [self syncFoldersPreferRemote];
+			wasSuccessful = [self syncFoldersPreferRemote];
 			if(!wasSuccessful)
-				return [self exitFailure:error];*/
+				return [self exitFailure:error];
 			// 2. Contexts
-			/*wasSuccessful = [self syncContextsPreferRemote];
+			wasSuccessful = [self syncContextsPreferRemote];
 			if(!wasSuccessful)
-				return [self exitFailure:error];*/
+				return [self exitFailure:error];
 			// 3. Tasks
 			wasSuccessful = [self syncTasksMatchDates];
 			if(!wasSuccessful)
