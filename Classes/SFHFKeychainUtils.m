@@ -32,7 +32,7 @@
 
 static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && TARGET_IPHONE_SIMULATOR
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && (TARGET_IPHONE_SIMULATOR || !TARGET_OS_IPHONE)
 @interface SFHFKeychainUtils (PrivateMethods)
 + (SecKeychainItemRef) getKeychainItemReferenceForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
 @end
@@ -40,7 +40,7 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
 @implementation SFHFKeychainUtils
 	
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && TARGET_IPHONE_SIMULATOR
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && (TARGET_IPHONE_SIMULATOR || !TARGET_OS_IPHONE)
 
 + (NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error {
 	if (!username || !serviceName) {
