@@ -271,6 +271,8 @@
 	 GtdApiContextNotAddedError = 510,
 	 GtdApiContextNotDeletedError = 520,
 	 GtdApiContextNotEditedError = 530*/
+	ALog(@"gtdErrorMessage called with errorCode %d", errorCode);
+	return [NSString stringWithFormat:@"gtdErrorMessage errorCode=%d", errorCode];
 	switch (errorCode) {
 		case GtdApiNoConnectionError:
 			return @"Toodledo API no connection";
@@ -788,9 +790,9 @@
 			
 			if([localTask.remoteId integerValue] == remoteTask.uid)
 			{
-				//ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
+				ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
 				
-				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending) // Remote aktueller als Folder
+				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending || localTask.lastLocalModification == nil) // Remote aktueller als Folder
 				{
 					localTask.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
 																		  // überschreibe lokale Felder

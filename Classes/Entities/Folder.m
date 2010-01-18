@@ -240,7 +240,7 @@
 
 + (Folder *)getFolderWithRemoteId:(NSNumber*)remoteId error:(NSError **)error
 {
-	NSArray* objects = [Folder getFoldersWithFilterPredicate:[NSPredicate predicateWithFormat:@"remoteId == %d", remoteId] error:error];
+	NSArray* objects = [Folder getFoldersWithFilterPredicate:[NSPredicate predicateWithFormat:@"remoteId == %d", [remoteId integerValue]] error:error];
 	if([objects count] != 1)
 		return nil;
 	return [objects objectAtIndex:0];
