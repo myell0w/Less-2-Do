@@ -13,6 +13,7 @@
 
 @property (nonatomic, retain) NSString * tdEmail;
 @property (nonatomic, retain) NSNumber * useTDSync;
+@property (nonatomic, retain) NSNumber * preferToodleDo;
 
 +(Setting*) getSettings:(NSError **)error;
 -(NSString *) getPassword:(NSError **)error;

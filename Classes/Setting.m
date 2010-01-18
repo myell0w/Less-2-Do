@@ -13,6 +13,7 @@
 
 @dynamic tdEmail;
 @dynamic useTDSync;
+@dynamic preferToodleDo;
 
 +(Setting*) getSettings:(NSError **)error
 {
