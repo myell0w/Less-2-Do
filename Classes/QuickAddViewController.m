@@ -101,7 +101,6 @@
 		
 		t.dueDate = date;
 		
-		//TODO: Messi 4 Matthias
 		[format release];
 	}
 	
@@ -111,7 +110,6 @@
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	delegate.currentEditedTask = t;
 	
-	//TODO: Messi macht die Arbeit für Matthias
 	[taskDescription release];
 	
 	return t;

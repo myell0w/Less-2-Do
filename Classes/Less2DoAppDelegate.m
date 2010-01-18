@@ -192,6 +192,7 @@
 	if (self.currentEditedTask != nil) {
 		NSError *error;
 		[BaseManagedObject deleteObject:self.currentEditedTask error:&error];
+		ALog("Deleted Task because Adding was interrupted!");
 	}
 	
 	ALog("Last commit");
