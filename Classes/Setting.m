@@ -50,7 +50,11 @@
 		return nil;
 	}
 	
+	ALog(@"settings count: %d", [objects count]);
+	
 	Setting *returnValue = [objects objectAtIndex:0];
+	
+	ALog(@"returnValue email: %@", returnValue.tdEmail);
 	
 	return returnValue;
 }

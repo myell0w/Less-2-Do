@@ -11,6 +11,7 @@
 #import "GtdApi.h"
 #import "Tag.h"
 #import "Less2DoAppDelegate.h"
+#import "Setting.h"
 
 
 @interface SyncManager : NSObject {
