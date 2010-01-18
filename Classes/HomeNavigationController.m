@@ -164,7 +164,6 @@
 	
 	
 	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
-	usleep(10000000);
 	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 	//BOOL successful = [syncManager overwriteRemote:&error];
 	if(!successful)
@@ -184,7 +183,7 @@
 	{
 		ALog(@"overwriteLocal: was successful");
 	}*/
-	//[appDelegate stopAnimating];
+	[appDelegate stopAnimatingWithTitle:@"der titel" andMessage:@"die nachricht ist ganz lang weil ich möcht ja schaun wie viel man da schreiben kann"];
 }
 
 @end
