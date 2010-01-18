@@ -788,9 +788,9 @@
 			
 			if([localTask.remoteId integerValue] == remoteTask.uid)
 			{
-				//ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
+				ALog(@"Das remoteDate: %@ das localDate: %@",remoteTask.date_modified,localTask.lastLocalModification); 
 				
-				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending) // Remote aktueller als Folder
+				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending || localTask.lastLocalModification == nil) // Remote aktueller als Folder
 				{
 					localTask.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
 																		  // überschreibe lokale Felder
