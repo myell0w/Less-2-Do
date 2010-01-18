@@ -99,7 +99,7 @@
 /*
  Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die lokale
  Version bevorzugt wird.
-*/
+ */
 -(BOOL)overwriteLocal:(NSError**)error
 {
 	// 1. init members
@@ -183,7 +183,7 @@
 /*
  Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die remote-
  Version bevorzugt wird.
-*/
+ */
 -(BOOL)overwriteRemote:(NSError**)error
 {
 	// 1. init members
@@ -469,7 +469,7 @@
 			if([localFolder.remoteId integerValue] == remoteFolder.uid)
 			{
 				foundLocalEntity = YES;
-
+				
 				localFolder.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
 				// überschreibe lokale Felder
 				localFolder.name = remoteFolder.title;
@@ -793,7 +793,7 @@
 				if([remoteTask.date_modified compare:localTask.lastLocalModification] == NSOrderedDescending || localTask.lastLocalModification == nil) // Remote aktueller als Folder
 				{
 					localTask.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
-																		  // überschreibe lokale Felder
+					// überschreibe lokale Felder
 					localTask.lastSyncDate = currentDate;
 					localTask.name = remoteTask.title;
 					localTask.creationDate = remoteTask.date_created;
@@ -820,6 +820,11 @@
 						}
 					}
 					
+					if(localTask.folder != nil)
+					{
+						[localTask.folder removeTasksObject:localTask];
+						localTask.folder = nil;
+					}
 					Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 					if(syncError != nil)
 						return NO;
@@ -827,6 +832,12 @@
 					{
 						[folder addTasksObject:localTask];
 						[localTask setFolder:folder];
+					}
+					
+					if(localTask.context != nil)
+					{
+						[localTask.context removeTasksObject:localTask];
+						localTask.context = nil;
 					}
 					Context *context = [Context getContextWithRemoteId:[NSNumber numberWithInteger:remoteTask.context] error:&syncError];
 					if(syncError != nil)
@@ -852,7 +863,7 @@
 				else
 				{
 					[usedLocalEntityVersion addObject:localTask];
-
+					
 				}
 				[localTasksWithRemoteId removeObject:localTask];
 				foundLocalEntity = YES;
@@ -914,6 +925,24 @@
 			//newTask.parentId = remoteTask.parentId; // wird bei uns nicht verwendet
 			newTask.remoteId = [NSNumber numberWithInteger:remoteTask.uid];
 			newTask.lastSyncDate = currentDate;
+		}
+	}
+	
+	// lösche alle remote gelöschten tasks, die nach der letzten lokalen änderung gelöscht wurden
+	NSArray *deletedTasks = [tdApi getDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(GtdTask *deletedTask in deletedTasks)
+	{
+		for(int i=0;i<[localTasksWithRemoteId count];i++)
+		{
+			Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
+			ALog(@"local task: %@ - date local %@ - date deleted %@", localTask, localTask.lastLocalModification, deletedTask.date_deleted);
+			if(deletedTask.uid == [localTask.remoteId integerValue] && [deletedTask.date_deleted compare:localTask.lastLocalModification] == NSOrderedDescending)
+			{
+				localTask.deleted = [NSNumber numberWithBool:YES];
+				[localTasksWithRemoteId removeObject:localTask];
+			}
 		}
 	}
 	
