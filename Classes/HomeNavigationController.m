@@ -192,7 +192,9 @@
 	{
 		ALog(@"overwriteLocal: was successful");
 	}*/
+	
 	[appDelegate stopAnimatingWithTitle:stopTitle andMessage:stopMessage];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
 }
 
 @end
