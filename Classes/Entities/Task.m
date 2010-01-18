@@ -10,6 +10,7 @@
 
 #import "Folder.h"
 #import "Tag.h"
+#import "ExtendedInfo.h"
 
 #define MAX_TAGS_COUNT 20
 
@@ -150,6 +151,24 @@
 			}
 		}
 	}
+}
+
+- (BOOL)hasImage {
+	if (self.extendedInfo != nil && [self.extendedInfo count] > 0) {
+		if (((ExtendedInfo *)[self.extendedInfo anyObject]).type = [NSNumber numberWithInt:EXTENDED_INFO_IMAGE]) {
+			return YES;
+		}
+	}
+	
+	return NO;
+}
+
+- (NSData *)imageData {
+	if ([self hasImage]) {
+		return ((ExtendedInfo *)[self.extendedInfo anyObject]).data;
+	}
+	
+	return nil;
 }
 
 + (NSArray *) getTasksWithFilterString:(NSString*)filterString error:(NSError **)error {
@@ -340,16 +359,21 @@
 }
 
 + (NSArray *) getTasksWithoutFolder:(NSError **)error
-{ 
+{
+	// edited by Matthias
+	return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"folder == nil and isCompleted == NO and deleted == NO"] error:error];
+	
 	// TODO: WARUM GEHT DAS NICHT - Folder default belegung?
-	NSArray* objects = [Task getTasksInFolder:nil error:error];	
-	return objects;
+	//NSArray* objects = [Task getTasksInFolder:nil error:error];	
+	//return objects;
 }
 
 + (NSArray *) getTasksWithoutContext:(NSError **)error
 {
-	NSArray* objects = [Task getTasksInContext:nil error:error];	
-	return objects;
+	// edited by Matthias
+	return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"context == nil and isCompleted == NO and deleted == NO"] error:error];
+	//NSArray* objects = [Task getTasksInContext:nil error:error];	
+	//return objects;
 }
 
 + (NSArray *) getTasksWithoutTag:(NSError **)error
@@ -453,21 +477,18 @@
 	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
-+ (NSArray *) getTasksOverdue:(NSError **)error
-{	
++ (NSArray *) getTasksOverdue:(NSError **)error {	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"dueDate < %@", [NSDate date]];
 	NSArray* objects = [Task getTasksWithFilterPredicate:predicate error:error];
 	return [objects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"]];
 }
 
 //Gibt die Tags im Format für toodledo zurück
-- (NSString *) tagsAsString:(NSError **)error
-{
+- (NSString *) tagsAsString:(NSError **)error {
 	NSSet *tags = self.tags;
 	NSString *result = [NSString string];
 	
-	for(Tag* tag in tags)
-	{
+	for(Tag* tag in tags) {
 		result = [[result stringByAppendingString:@", "] stringByAppendingString:tag.name];
 	}
     return result;

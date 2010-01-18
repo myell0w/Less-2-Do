@@ -15,6 +15,8 @@
 #import "TaskEditFolderViewController.h"
 #import "TaskEditContextViewController.h"
 #import "TaskEditRecurrenceViewController.h"
+#import "TaskEditImageViewController.h"
+#import "ExtendedInfo.h"
 #import "UICheckBox.h"
 
 #define PRIORITY_RECT CGRectMake(97, 7, 193, 29)
@@ -55,7 +57,7 @@
 	[save release];
 	[cancel release];
 	[dict release];
-		
+	
     [super viewDidLoad];
 }
 
@@ -93,7 +95,6 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	//TODO:change
     return 3;
 }
 
@@ -106,7 +107,7 @@
 	else if (section == 1)
 		return 3;
 	else if (section == 2)
-		return 1;
+		return 2;
 	
 	return 0;
 }
@@ -198,6 +199,13 @@
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		
+		// Init-Pictures-Cell
+		else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseID] autorelease];
+			
+			cell.textLabel.text = @"Image";
+		}
+		
 		// set font
 		cell.textLabel.font = cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:NORMAL_FONT_SIZE];
     }
@@ -226,9 +234,6 @@
 		if (completedCB != nil) {
 			tagAsNum = [[NSNumber alloc] initWithInt:TAG_COMPLETED];
 			tempValue = [tempData objectForKey:tagAsNum];
-			
-			ALog("TempValue: %@", tempValue);
-			ALog("Completed: %@", [task isCompleted]);
 			
 			if (tempValue != nil) {
 				[completedCB setOn:[tempValue boolValue]];
@@ -284,7 +289,7 @@
 	else if ([reuseID isEqualToString:CELL_ID_DUEDATE]) {
 		if (task.dueDate != nil) {
 			NSDateFormatter *format = [[NSDateFormatter alloc] init];
-			[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+			[format setDateFormat:@"EEEE, yyyy-MM-dd"];
 			
 			cell.detailTextLabel.text = [format stringFromDate:task.dueDate];
 			
@@ -313,7 +318,7 @@
 		} else {
 			cell.detailTextLabel.text = @"None";
 		}
-
+		
 	}
 	
 	else if ([reuseID isEqualToString:CELL_ID_FOLDER]) {
@@ -354,6 +359,21 @@
 		}
 	}
 	
+	else if ([reuseID isEqualToString:CELL_ID_IMAGE]) {
+		if ([task hasImage]) {
+			cell.accessoryView = nil;
+			cell.detailTextLabel.text = @"1 Image";
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			UIButton *addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+			[addButton addTarget:self action:@selector(setImage:) forControlEvents:UIControlEventTouchUpInside];
+			
+			cell.accessoryView = addButton;
+			cell.detailTextLabel.text = @"";
+		}
+		
+	}
+	
     return cell;
 }
 
@@ -362,7 +382,8 @@
 	NSString *cellID = [self cellIDForIndexPath:indexPath];
 	
 	// These rows can't be selected:
-	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY])
+	if ([cellID isEqualToString:CELL_ID_TITLE] || [cellID isEqualToString:CELL_ID_PRIORITY] ||
+		([cellID isEqualToString:CELL_ID_IMAGE] && ![task hasImage]))
 		return nil;
 	
 	return indexPath;
@@ -407,8 +428,8 @@
 	
 	else if ([cellID isEqualToString:CELL_ID_RECURRENCE]) {
 		TaskEditRecurrenceViewController *rvc = [[TaskEditRecurrenceViewController alloc] 
-											   initWithNibName:@"TaskEditRecurrenceViewController" 
-											   bundle:nil];
+												 initWithNibName:@"TaskEditRecurrenceViewController" 
+												 bundle:nil];
 		rvc.title = @"Recurrence";
 		rvc.task = self.task;
 		[self.navigationController pushViewController:rvc animated:YES];
@@ -417,8 +438,8 @@
 	
 	else if ([cellID isEqualToString:CELL_ID_FOLDER]) {
 		TaskEditFolderViewController *fvc = [[TaskEditFolderViewController alloc] 
-										   initWithNibName:@"TaskEditFolderViewController" 
-										   bundle:nil];
+											 initWithNibName:@"TaskEditFolderViewController" 
+											 bundle:nil];
 		fvc.title = @"Folder";
 		fvc.task = self.task;
 		[self.navigationController pushViewController:fvc animated:YES];
@@ -427,8 +448,8 @@
 	
 	else if ([cellID isEqualToString:CELL_ID_CONTEXT]) {
 		TaskEditContextViewController *cvc = [[TaskEditContextViewController alloc] 
-										   initWithNibName:@"TaskEditContextViewController" 
-										   bundle:nil];
+											  initWithNibName:@"TaskEditContextViewController" 
+											  bundle:nil];
 		cvc.title = @"Context";
 		cvc.task = self.task;
 		[self.navigationController pushViewController:cvc animated:YES];
@@ -438,8 +459,8 @@
 	
 	else if ([cellID isEqualToString:CELL_ID_TAGS]) {
 		TaskEditTagsViewController *tvc = [[TaskEditTagsViewController alloc] 
-											   initWithNibName:@"TaskEditTagsViewController" 
-											   bundle:nil];
+										   initWithNibName:@"TaskEditTagsViewController" 
+										   bundle:nil];
 		tvc.title = @"Tags";
 		tvc.task = self.task;
 		[self.navigationController pushViewController:tvc animated:YES];
@@ -448,58 +469,69 @@
 	
 	else if ([cellID isEqualToString:CELL_ID_NOTES]) {
 		TaskEditNotesViewController *nvc = [[TaskEditNotesViewController alloc] 
-													   initWithNibName:@"TaskEditNotesViewController" 
-													   bundle:nil];
+											initWithNibName:@"TaskEditNotesViewController" 
+											bundle:nil];
 		nvc.title = @"Notes";
 		nvc.task = self.task;
 		[self.navigationController pushViewController:nvc animated:YES];
 		[nvc release];
 	}	
+	
+	else if ([cellID isEqualToString:CELL_ID_IMAGE]) {
+		TaskEditImageViewController *ivc = [[TaskEditImageViewController alloc] 
+											initWithNibName:@"TaskEditImageViewController" 
+											bundle:nil];
+		ivc.title = @"Image";
+		ivc.task = self.task;
+		[self.navigationController pushViewController:ivc animated:YES];
+		[ivc release];
+	}	
 }
+
 
 // specify the height of your footer section
 /*- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    // no footer in add-mode
-	if (mode == TaskControllerAddMode) 
-		return 0;
-	
-	return section == 2 ? 60 : 0;
-}
-
-// custom view for footer. will be adjusted to default or specified footer height
-// Notice: this will work only for one section within the table view
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if(footerView == nil && mode == TaskControllerEditMode) {
-        //allocate the view if it doesn't exist yet
-        footerView  = [[UIView alloc] init];
-		
-        //we would like to show a gloosy red button, so get the image first
-        UIImage *image = [[UIImage imageNamed:@"button_red.png"]
-						  stretchableImageWithLeftCapWidth:8 topCapHeight:8];
-		
-        //create the button
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setBackgroundImage:image forState:UIControlStateNormal];
-		
-        //the button should be as big as a table view cell
-        [button setFrame:CGRectMake(10, 10, 300, 44)];
-		
-        //set title, font size and font color
-        [button setTitle:@"Delete Task" forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-		
-        //set action of the button
-        [button addTarget:self action:@selector(deleteTask:)
-		 forControlEvents:UIControlEventTouchUpInside];
-		
-        //add the button to the view
-        [footerView addSubview:button];
-    }
-	
-    //return the view for the footer
-    return footerView;
-}*/
+ // no footer in add-mode
+ if (mode == TaskControllerAddMode) 
+ return 0;
+ 
+ return section == 2 ? 60 : 0;
+ }
+ 
+ // custom view for footer. will be adjusted to default or specified footer height
+ // Notice: this will work only for one section within the table view
+ - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+ if(footerView == nil && mode == TaskControllerEditMode) {
+ //allocate the view if it doesn't exist yet
+ footerView  = [[UIView alloc] init];
+ 
+ //we would like to show a gloosy red button, so get the image first
+ UIImage *image = [[UIImage imageNamed:@"button_red.png"]
+ stretchableImageWithLeftCapWidth:8 topCapHeight:8];
+ 
+ //create the button
+ UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+ [button setBackgroundImage:image forState:UIControlStateNormal];
+ 
+ //the button should be as big as a table view cell
+ [button setFrame:CGRectMake(10, 10, 300, 44)];
+ 
+ //set title, font size and font color
+ [button setTitle:@"Delete Task" forState:UIControlStateNormal];
+ [button.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+ [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+ 
+ //set action of the button
+ [button addTarget:self action:@selector(deleteTask:)
+ forControlEvents:UIControlEventTouchUpInside];
+ 
+ //add the button to the view
+ [footerView addSubview:button];
+ }
+ 
+ //return the view for the footer
+ return footerView;
+ }*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark ActionSheet-Delegate Methods
@@ -518,6 +550,7 @@
 				
 				[self dismissModalViewControllerAnimated:YES];
 				[BaseManagedObject deleteObject:task error:&error];
+				[BaseManagedObject commit];
 			} else {
 				[self.navigationController popViewControllerAnimated:YES];
 			}
@@ -536,9 +569,9 @@
 			}
 		}
 	}
-				 
+	
 }
-		
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark TextField-Delegate Methods
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -635,6 +668,8 @@
 			task.tags = [tempData objectForKey:key];
 		} else if ([key intValue] == TAG_NOTES) {
 			task.note = [tempData objectForKey:key];
+		} else if ([key intValue] == TAG_IMAGE) {
+			//TODO:implement
 		}
 	}
 	
@@ -676,6 +711,23 @@
 	
 }
 
+- (IBAction)setImage:(id)sender {
+	if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]) {
+		UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+		picker.delegate = self; 
+		picker.allowsImageEditing = YES;
+		picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary; 
+		[self presentModalViewController:picker animated:YES];
+		[picker release];
+	} else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error accessing photo library"
+														message:@"Device does not support a photo library" delegate:nil
+											  cancelButtonTitle:@"Ok!" otherButtonTitles:nil]; 
+		[alert show]; 
+		[alert release];
+	}
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -706,6 +758,8 @@
 	
 	else if (section == 2 && row == 0)
 		return CELL_ID_NOTES;
+	else if (section == 2 && row == 1)
+		return CELL_ID_IMAGE;
 	
 	return nil;
 }
@@ -767,5 +821,20 @@
 	[priorityControl release];
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+#pragma mark Image Picker Delegate Methods
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image 
+				  editingInfo:(NSDictionary *)editingInfo {
+	ExtendedInfo *info = (ExtendedInfo *)[BaseManagedObject objectOfType:@"ExtendedInfo"];
+	
+	info.type = [NSNumber numberWithInt:EXTENDED_INFO_IMAGE];
+	info.data = UIImagePNGRepresentation(image);
+	
+	[self.task addExtendedInfoObject:info];
+	[picker dismissModalViewControllerAnimated:YES];
+}
 @end
 

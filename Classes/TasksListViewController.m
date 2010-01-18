@@ -54,7 +54,7 @@
 	[filteredArray release];
 		
 	formatDate = [[NSDateFormatter alloc] init];
-	[formatDate setDateFormat:@"EE, YYYY-MM-dd"];
+	[formatDate setDateFormat:@"EE, yyyy-MM-dd"];
 	formatTime = [[NSDateFormatter alloc] init];
 	[formatTime setDateFormat:@"h:mm a"];
 	
@@ -239,6 +239,7 @@
 	
 	Task *t = (Task *)[self.tasks objectAtIndex:row];
 	[Task deleteObject:t error:&error];
+	[BaseManagedObject commit];
 	
 	[self.tasks removeObjectAtIndex:row]; 
 	[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];

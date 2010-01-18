@@ -67,6 +67,8 @@
 - (NSString *)tagsDescription;
 - (NSDate *)nextDueDate;
 - (BOOL)isRepeating;
+- (BOOL)hasImage;
+- (NSData *)imageData;
 
 - (NSString *)repeatString;
 

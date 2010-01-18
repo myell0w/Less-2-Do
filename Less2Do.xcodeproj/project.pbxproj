@@ -55,6 +55,9 @@
 		39A1F32610B9F89300671B42 /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F32410B9F89300671B42 /* star_on.png */; };
 		39A1F33710BA006300671B42 /* QuickAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F33510BA006300671B42 /* QuickAddViewController.m */; };
 		39A1F33810BA006300671B42 /* QuickAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A1F33610BA006300671B42 /* QuickAddViewController.xib */; };
+		39A984491103398E00FCE7D5 /* TaskEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A984471103398E00FCE7D5 /* TaskEditImageViewController.m */; };
+		39A9844A1103398E00FCE7D5 /* TaskEditImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39A984481103398E00FCE7D5 /* TaskEditImageViewController.xib */; };
+		39A986CE1103961100FCE7D5 /* recurrence.png in Resources */ = {isa = PBXBuildFile; fileRef = 39A986CD1103961100FCE7D5 /* recurrence.png */; };
 		39B6584910B615FF00825C1D /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6584810B615FF00825C1D /* HomeNavigationController.m */; };
 		39B6586310B618F600825C1D /* HomeTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586210B618F600825C1D /* HomeTableView.xib */; };
 		39B6587010B61E1E00825C1D /* sync.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B6586F10B61E1E00825C1D /* sync.png */; };
@@ -278,6 +281,10 @@
 		39A1F33410BA006300671B42 /* QuickAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickAddViewController.h; sourceTree = "<group>"; };
 		39A1F33510BA006300671B42 /* QuickAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickAddViewController.m; sourceTree = "<group>"; };
 		39A1F33610BA006300671B42 /* QuickAddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = QuickAddViewController.xib; path = Classes/QuickAddViewController.xib; sourceTree = "<group>"; };
+		39A984461103398E00FCE7D5 /* TaskEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskEditImageViewController.h; sourceTree = "<group>"; };
+		39A984471103398E00FCE7D5 /* TaskEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskEditImageViewController.m; sourceTree = "<group>"; };
+		39A984481103398E00FCE7D5 /* TaskEditImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TaskEditImageViewController.xib; path = Classes/TaskEditImageViewController.xib; sourceTree = "<group>"; };
+		39A986CD1103961100FCE7D5 /* recurrence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recurrence.png; sourceTree = "<group>"; };
 		39B6584710B615FF00825C1D /* HomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNavigationController.h; sourceTree = "<group>"; };
 		39B6584810B615FF00825C1D /* HomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNavigationController.m; sourceTree = "<group>"; };
 		39B6586210B618F600825C1D /* HomeTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeTableView.xib; path = Classes/HomeTableView.xib; sourceTree = "<group>"; };
@@ -556,6 +563,7 @@
 				39A1F32410B9F89300671B42 /* star_on.png */,
 				39A1F31B10B9F68A00671B42 /* task_off.png */,
 				39A1F31C10B9F68A00671B42 /* task_on.png */,
+				39A986CD1103961100FCE7D5 /* recurrence.png */,
 				39B6593D10B6B86200825C1D /* ci */,
 				39B6593C10B6B85400825C1D /* tablecells */,
 				39B6587110B61E2200825C1D /* navbar */,
@@ -601,6 +609,8 @@
 				39E31B0710CC4C4B002F0D86 /* TaskEditFolderViewController.m */,
 				39E31B0B10CC4C57002F0D86 /* TaskEditContextViewController.h */,
 				39E31B0C10CC4C57002F0D86 /* TaskEditContextViewController.m */,
+				39A984461103398E00FCE7D5 /* TaskEditImageViewController.h */,
+				39A984471103398E00FCE7D5 /* TaskEditImageViewController.m */,
 			);
 			name = task;
 			sourceTree = "<group>";
@@ -618,6 +628,7 @@
 				39E31A3410CC387A002F0D86 /* TaskEditTagsViewController.xib */,
 				39E31B0810CC4C4B002F0D86 /* TaskEditFolderViewController.xib */,
 				39E31B0D10CC4C57002F0D86 /* TaskEditContextViewController.xib */,
+				39A984481103398E00FCE7D5 /* TaskEditImageViewController.xib */,
 			);
 			name = task;
 			sourceTree = "<group>";
@@ -1101,6 +1112,8 @@
 				398AC82D10F252AB0015319A /* ContextsGPSViewController.xib in Resources */,
 				D461AC3E10F925E00087E367 /* ContextsGPSMapViewController.xib in Resources */,
 				D4CBA7C1110395640018FBCC /* bluedot.png in Resources */,
+				39A9844A1103398E00FCE7D5 /* TaskEditImageViewController.xib in Resources */,
+				39A986CE1103961100FCE7D5 /* recurrence.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1180,7 @@
 				D461AC3D10F925E00087E367 /* ContextsGPSMapViewController.m in Sources */,
 				39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */,
 				D4CBA6EC11037B980018FBCC /* SFHFKeychainUtils.m in Sources */,
+				39A984491103398E00FCE7D5 /* TaskEditImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

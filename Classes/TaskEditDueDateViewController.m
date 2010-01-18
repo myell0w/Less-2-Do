@@ -26,7 +26,7 @@
 	if (task.dueDate != nil) {
 		datePicker.date = task.dueDate;
 		NSDateFormatter *format = [[NSDateFormatter alloc] init];
-		[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+		[format setDateFormat:@"EEEE, yyyy-MM-dd"];
 		
 		dateLabel.text = [format stringFromDate:task.dueDate];
 		[format release];
@@ -96,7 +96,7 @@
 	if (sender != nil)
 		[self changeDate:[datePicker date]];
 	
-	[format setDateFormat:@"EEEE, YYYY-MM-dd"];
+	[format setDateFormat:@"EEEE, yyyy-MM-dd"];
 	dateLabel.text = [format stringFromDate:task.dueDate];
 	
 	[format release];

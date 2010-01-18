@@ -17,7 +17,9 @@ typedef enum _TaskControllerMode {
 	TaskControllerAddMode
 } TaskControllerMode;
 
-@interface EditTaskViewController : UITableViewController <UIActionSheetDelegate, UITextFieldDelegate, UITableViewDelegate> {
+@interface EditTaskViewController : 
+			UITableViewController <UIActionSheetDelegate, UITextFieldDelegate, UITableViewDelegate, 
+								   UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
 	// the task to add/edit
 	Task *task;
 	// temporary data
@@ -55,6 +57,7 @@ typedef enum _TaskControllerMode {
 - (IBAction)checkBoxValueChanged:(id)sender;
 // delete a task (only in edit mode)
 - (IBAction)deleteTask:(id)sender;
+- (IBAction)setImage:(id)sender;
 
 // setUp-Functions for Cells
 - (void) setUpTitleCell:(UITableViewCell *)cell;

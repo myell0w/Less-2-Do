@@ -175,8 +175,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 	
 	if (self.currentEditedTask != nil) {
-		ALog("delete task");
-		[BaseManagedObject deleteObject:self.currentEditedTask error:nil];
+		NSError *error;
+		[BaseManagedObject deleteObject:self.currentEditedTask error:&error];
 	}
 	
 	ALog("Last commit");
