@@ -37,8 +37,11 @@
 	// pre-check row if task has context set
 	if (self.task.context != nil) {
 		NSUInteger idx = [contexts indexOfObject:self.task.context];
-		lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+		lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:1];
+	} else {
+		lastIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
 	}
+
 		
     [super viewWillAppear:animated];
 }
@@ -84,12 +87,15 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == 0)
+		return 1;
+	
     return [contexts count];
 }
 
@@ -97,49 +103,82 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellID = @"ContextCellInTaskEdit";
-	int row = [indexPath row];
-    
-    UITableViewCell *cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellIDNoContext = @"ContextCellInTaskEditNoContext";
+	
+    UITableViewCell *cell = nil;
+	
+	if (indexPath.section == 0) {
+		cell = [aTableView dequeueReusableCellWithIdentifier:cellIDNoContext];
+	} else {
+		cell = [aTableView dequeueReusableCellWithIdentifier:cellID];
+	}
+
+	
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		if (indexPath.section == 0) {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIDNoContext] autorelease];
+		} else {
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID] autorelease];
+		}
+
 		cell.textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
     }
 	
     // Set up the cell...
-	Context *context = (Context *)[contexts objectAtIndex:row];
-	cell.textLabel.text = context.name;
-	cell.imageView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
-	cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	if (indexPath.section == 0) {
+		cell.textLabel.text = @"No Context";
+		cell.imageView.image = [UIImage imageNamed:@"no_context.png"];
+		cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	} else {
+		Context *context = (Context *)[contexts objectAtIndex:indexPath.row];
+		cell.textLabel.text = context.name;
+		cell.imageView.image = [context hasGps] ? [UIImage imageNamed:@"context_gps.png"] : [UIImage imageNamed:@"context_no_gps.png"];
+		cell.accessoryType = [indexPath isEqual:lastIndexPath] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	}
 	
     return cell;
 }
 
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	int row = [indexPath row];
-	Context *c = (Context *)[contexts objectAtIndex:row];
-    
-	[addContextControl resignFirstResponder];
-	
-    if (![indexPath isEqual:lastIndexPath]) {
-        UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-        newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-        
-        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:lastIndexPath]; 
-        oldCell.accessoryType = UITableViewCellAccessoryNone;
+	if (indexPath.section == 0) {
+		[addContextControl resignFirstResponder];
 		
-        lastIndexPath = indexPath;		
-		self.task.context = c;
-		 
-		if(c.tasks == nil) {
-			ALog ("Init new Set for Context-Task");
-			[c addTasks:[NSSet setWithObject:self.task]];
+		if (![indexPath isEqual:lastIndexPath]) {
+			UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+			newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+			
+			UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:lastIndexPath]; 
+			oldCell.accessoryType = UITableViewCellAccessoryNone;
+			
+			lastIndexPath = indexPath;		
+			self.task.context = nil;
 		}
-		else {
-			ALog ("Set exists, added Task");
-			[c addTasksObject:self.task];
+	} else {
+		Context *c = (Context *)[contexts objectAtIndex:indexPath.row];
+		
+		[addContextControl resignFirstResponder];
+		
+		if (![indexPath isEqual:lastIndexPath]) {
+			UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+			newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+			
+			UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:lastIndexPath]; 
+			oldCell.accessoryType = UITableViewCellAccessoryNone;
+			
+			lastIndexPath = indexPath;		
+			self.task.context = c;
+			
+			if(c.tasks == nil) {
+				ALog ("Init new Set for Context-Task");
+				[c addTasks:[NSSet setWithObject:self.task]];
+			}
+			else {
+				ALog ("Set exists, added Task");
+				[c addTasksObject:self.task];
+			}
 		}
-    }
+	}
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -168,7 +207,7 @@
 	
 	
 	NSUInteger idx = [contexts indexOfObject:context];
-	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+	lastIndexPath = [NSIndexPath indexPathForRow:idx inSection:1];
 	
 	self.addContextControl.text = @"";
 	[self.tableView reloadData];

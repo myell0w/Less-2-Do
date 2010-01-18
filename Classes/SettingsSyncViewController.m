@@ -58,17 +58,36 @@
 }
 
 - (void)saveSettings {
-	NSError *error;
+	NSError *error=nil;
 	if([self.settings.useTDSync intValue] == 1) {
 		[SFHFKeychainUtils deleteItemForUsername:self.settings.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:&error];
 	}
 	
+	if (error != nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:@"Error with Keychain during delete"
+													   delegate:self
+											  cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	error = nil;
 	if([self.eMail.text length]!=0) {
 		[SFHFKeychainUtils storeUsername:[self.eMail text]
 							 andPassword:[self.password text]
 						  forServiceName:@"Less2DoToodleDoAccount"
-						  updateExisting:YES
+						  updateExisting:NO
 								   error:&error];
+		if (error != nil) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+															message:@"Error with Keychain during save"
+														   delegate:self
+												  cancelButtonTitle:@"Ok"
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+		}
 		self.settings.tdEmail = [self.eMail text];
 		self.settings.useTDSync = [NSNumber numberWithInt:1];
 		self.settings.preferToodleDo = self.preferToodleDo.on == YES ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
@@ -134,6 +153,15 @@
 - (IBAction)unlinkAccount:(id)sender {
 	NSError *error;
 	[SFHFKeychainUtils deleteItemForUsername:self.settings.tdEmail andServiceName:@"Less2DoToodleDoAccount" error:&error];
+	if (error != nil) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+														message:@"Error with Keychain during delete"
+													   delegate:self
+											  cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 	self.settings.useTDSync = [NSNumber numberWithInt:0];
 	self.eMail.text = @"";
 	self.password.text = @"";
