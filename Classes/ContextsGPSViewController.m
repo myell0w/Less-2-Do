@@ -58,6 +58,13 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	ALog ("ContextsGPSViewController appeared");
+	if(self.listViewController != nil)
+		[self.listViewController loadData];
+	[super viewWillAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 	
