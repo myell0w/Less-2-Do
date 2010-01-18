@@ -678,7 +678,7 @@
 	Less2DoAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	delegate.currentEditedTask = nil;
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
 	
 	if (self.mode == TaskControllerAddMode) {
 		[self dismissModalViewControllerAnimated:YES];

@@ -8,6 +8,8 @@
 
 #import "SettingsSyncViewController.h"
 #import "SFHFKeychainUtils.h"
+#import "SyncManager.h"
+#import "Less2DoAppDelegate.h"
 
 @implementation SettingsSyncViewController
 
@@ -79,12 +81,55 @@
 }
 
 - (IBAction)forceLocalToRemoteSync:(id)sender {
+	[self saveSettings];
+	NSError *error = nil;
 	
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate startAnimating];
+	
+	
+	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
+	BOOL successful = [syncManager overwriteRemote:&error];
+	NSString *stopTitle = nil;
+	NSString *stopMessage = nil;
+	if(!successful)
+	{
+		stopTitle = @"Error";
+		stopMessage = [SyncManager gtdErrorMessage:[error code]];
+	}
+	else
+	{
+		stopTitle = @"Success";
+		stopMessage = @"Sync with ToodleDo was successful";
+	}
+	[appDelegate stopAnimatingWithTitle:stopTitle andMessage:stopMessage];
 }
 
 - (IBAction)forceRemoteToLocalSync:(id)sender {
+	[self saveSettings];
+	NSError *error = nil;
 	
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate startAnimating];
+	
+	
+	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
+	BOOL successful = [syncManager overwriteLocal:&error];
+	NSString *stopTitle = nil;
+	NSString *stopMessage = nil;
+	if(!successful)
+	{
+		stopTitle = @"Error";
+		stopMessage = [SyncManager gtdErrorMessage:[error code]];
+	}
+	else
+	{
+		stopTitle = @"Success";
+		stopMessage = @"Sync with ToodleDo was successful";
+	}
+	[appDelegate stopAnimatingWithTitle:stopTitle andMessage:stopMessage];
 }
+
 
 - (IBAction)unlinkAccount:(id)sender {
 	NSError *error;
