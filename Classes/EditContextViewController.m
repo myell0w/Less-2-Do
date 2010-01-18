@@ -9,6 +9,7 @@
 #import "EditContextViewController.h"
 #import "Context.h"
 #import "TasksListViewController.h"
+#import "Less2DoAppDelegate.h"
 
 @implementation EditContextViewController
 @synthesize overlayView = _overlayView;
@@ -331,6 +332,8 @@
 - (IBAction) showOwnLocation {
 	[self resignActualFirstResponder];
 	
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate startAnimating];
 	[self.locationManager startUpdatingLocation];
 	ALog ("Start searching for Location");
 }
@@ -369,6 +372,8 @@
 	[self.mapView regionThatFits:region];
 	
 	[self.locationManager stopUpdatingLocation];
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate stopAnimating];
 	ALog ("Stop LocationManager");
 	
 	//Try to ReverseGeocoding
@@ -381,6 +386,8 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error getting Location"
 													message:errorType delegate:nil
 										  cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate stopAnimating];
 	[alert show];
 	[alert release];
 }

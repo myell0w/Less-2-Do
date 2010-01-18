@@ -21,4 +21,5 @@
 - (IBAction)forceLocalToRemoteSync:(id)sender;
 - (IBAction)forceRemoteToLocalSync:(id)sender;
 - (IBAction)unlinkAccount:(id)sender;
+- (IBAction)textFinished;
 @end

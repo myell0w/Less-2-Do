@@ -45,6 +45,11 @@
 	TagsNavigationController *tagsController;
 	// Navigation Controller for Section "Settings"
 	SettingsNavigationController *settingsController;
+	
+	//Container for ActivityIndicator
+	UIView *activityViewContainer;
+	//ActivityIndicator
+	UIActivityIndicatorView *activityView;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +73,8 @@
 @property (nonatomic, retain) IBOutlet TagsNavigationController *tagsController;
 @property (nonatomic, retain) IBOutlet SettingsNavigationController *settingsController;
 
+@property (nonatomic, retain) UIView *activityViewContainer;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Methods
@@ -81,6 +88,9 @@
 
 -(void)startTimer;
 -(void)stopTimer;
+
+-(void)startAnimating;
+-(void)stopAnimating;
 
 @end
 

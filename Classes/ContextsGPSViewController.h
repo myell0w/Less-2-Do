@@ -17,7 +17,6 @@
 	UIImage *_image;
 	UIView *_viewContainer;
 	UITextField *_mapsearchTextField;
-	UIActivityIndicatorView *_activityView;
 	UIView *_overlayView;
 	
 	ContextsGPSMapViewController *_mapViewController;
@@ -33,7 +32,6 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) IBOutlet UIView *viewContainer;
 @property (nonatomic, retain) IBOutlet UITextField *mapsearchTextField;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityView;
 @property (nonatomic, retain) IBOutlet UIView *overlayView;
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) UIImage *image;

@@ -9,7 +9,7 @@
 #import "EditTagViewController.h"
 #import "Tag.h"
 #import "TasksListViewController.h"
-
+#import "Less2DoAppDelegate.h"
 
 @implementation EditTagViewController
 @synthesize nameTextField = _nameTextField;

@@ -147,6 +147,9 @@
 		D4C4C3D810D2574B00B55BA9 /* EditContextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C4C3D210D2574B00B55BA9 /* EditContextViewController.m */; };
 		D4C4C49B10D28BB800B55BA9 /* whiteBoarderedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */; };
 		D4C4C4DA10D2918400B55BA9 /* smallWhiteBoarderedButton.png in Resources */ = {isa = PBXBuildFile; fileRef = D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */; };
+		D4CBA6E711037B780018FBCC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CBA6E611037B780018FBCC /* Security.framework */; };
+		D4CBA6EC11037B980018FBCC /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CBA6EA11037B980018FBCC /* SFHFKeychainUtils.m */; };
+		D4CBA7C1110395640018FBCC /* bluedot.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CBA7C0110395640018FBCC /* bluedot.png */; };
 		D4CEBA8910F12EFE00B4DBC9 /* home_completed.png in Resources */ = {isa = PBXBuildFile; fileRef = D4CEBA8810F12EFE00B4DBC9 /* home_completed.png */; };
 /* End PBXBuildFile section */
 
@@ -409,6 +412,10 @@
 		D4C4C3D310D2574B00B55BA9 /* EditContextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContextViewController.h; sourceTree = "<group>"; };
 		D4C4C49A10D28BB800B55BA9 /* whiteBoarderedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteBoarderedButton.png; sourceTree = "<group>"; };
 		D4C4C4D910D2918400B55BA9 /* smallWhiteBoarderedButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallWhiteBoarderedButton.png; sourceTree = "<group>"; };
+		D4CBA6E611037B780018FBCC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D4CBA6EA11037B980018FBCC /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		D4CBA6EB11037B980018FBCC /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		D4CBA7C0110395640018FBCC /* bluedot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluedot.png; sourceTree = "<group>"; };
 		D4CEBA8810F12EFE00B4DBC9 /* home_completed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_completed.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -424,6 +431,7 @@
 				A38B3AB610BFF91100D5D87F /* CoreLocation.framework in Frameworks */,
 				D4B5FEDE10E65538003584A5 /* MapKit.framework in Frameworks */,
 				78A1595810FB4CF5006CD6BC /* liblibToodledoAPIiPhone.a in Frameworks */,
+				D4CBA6E711037B780018FBCC /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +521,7 @@
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 				28D801B30F44B63D00FB423F /* CoreData.framework */,
 				D4B5FEDD10E65538003584A5 /* MapKit.framework */,
+				D4CBA6E611037B780018FBCC /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 		392325AB10B2EE7D00075370 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				D4CBA7C0110395640018FBCC /* bluedot.png */,
 				D4B5FF5210E66539003584A5 /* location.png */,
 				392B712410F10A37008106D0 /* button_start.png */,
 				392B712510F10A37008106D0 /* button_stop.png */,
@@ -741,7 +751,7 @@
 		39B659F910B7080D00825C1D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */,
+				39B65A0110B7080D00825C1D /* libToodledoAPI.a */,
 				39F5AFCA10ED19AF00E54EB1 /* libToodledoAPIMac.a */,
 				39B65A0310B7080D00825C1D /* UnitTests.octest */,
 				39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */,
@@ -900,6 +910,8 @@
 		D436E98510BAB76300EA7624 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				D4CBA6EA11037B980018FBCC /* SFHFKeychainUtils.m */,
+				D4CBA6EB11037B980018FBCC /* SFHFKeychainUtils.h */,
 				D4C45C8010F1E001008B07FB /* SettingsSyncViewController.m */,
 				D4C45C8110F1E001008B07FB /* SettingsSyncViewController.h */,
 				D436E98610BAB7D200EA7624 /* SettingsNavigationController.h */,
@@ -987,10 +999,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		39B65A0110B7080D00825C1D /* liblibToodledoAPI.a */ = {
+		39B65A0110B7080D00825C1D /* libToodledoAPI.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibToodledoAPI.a;
+			path = libToodledoAPI.a;
 			remoteRef = 39B65A0010B7080D00825C1D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1088,6 +1100,7 @@
 				398AC7E810F24F590015319A /* ShowContextViewController.xib in Resources */,
 				398AC82D10F252AB0015319A /* ContextsGPSViewController.xib in Resources */,
 				D461AC3E10F925E00087E367 /* ContextsGPSMapViewController.xib in Resources */,
+				D4CBA7C1110395640018FBCC /* bluedot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,6 +1166,7 @@
 				D4858BFF10F37CA4005FB59C /* SyncManager.m in Sources */,
 				D461AC3D10F925E00087E367 /* ContextsGPSMapViewController.m in Sources */,
 				39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */,
+				D4CBA6EC11037B980018FBCC /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

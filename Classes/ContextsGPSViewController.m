@@ -9,13 +9,13 @@
 #import "ContextsGPSViewController.h"
 #import "ContextsGPSMapViewController.h"
 #import "TasksListViewController.h"
+#import "Less2DoAppDelegate.h"
 
 @implementation ContextsGPSViewController
 
 @synthesize segmentedControl = _segmentedControl;
 @synthesize viewContainer = _viewContainer;
 @synthesize mapsearchTextField = _mapsearchTextField;
-@synthesize activityView = _activityView;
 @synthesize overlayView = _overlayView;
 @synthesize image = _image;
 @synthesize text = _text;
@@ -42,9 +42,12 @@
 	self.listViewController = [[TasksListViewController alloc] initWithStyle:UITableViewStylePlain];
 	self.listViewController.title = @"Nearest Tasks";
 	self.listViewController.image = [UIImage imageNamed:@"context_gps.png"];
-	self.listViewController.selector = @selector(getTasksWithContext:);
+	self.listViewController.selector = @selector(getTasksWithContext:error:);
 	self.listViewController.detailMode = TaskListDetailDistanceMode;
 	self.listViewController.currentPosition = self.location;
+	CLLocation *locationObject = [[CLLocation alloc] initWithLatitude:self.location.latitude longitude:self.location.longitude];
+	self.listViewController.argument = locationObject;
+	[locationObject release];
 	self.listViewController.parent = self;
 	[self.viewContainer insertSubview:self.listViewController.view atIndex:0];
 	self.viewContainer.frame = CGRectMake(0, 24, 320, 323);
@@ -89,6 +92,9 @@
 				self.listViewController.title = @"Nearest Tasks";
 				self.listViewController.image = [UIImage imageNamed:@"context_gps.png"];
 				self.listViewController.selector = @selector(getAllTasks:error:);
+				CLLocation *locationObject = [[CLLocation alloc] initWithLatitude:self.location.latitude longitude:self.location.longitude];
+				self.listViewController.argument = locationObject;
+				[locationObject release];
 				self.listViewController.detailMode = TaskListDetailDistanceMode;
 				self.listViewController.parent = self;
 			}
@@ -131,7 +137,8 @@
 }
 
 - (IBAction) refreshOwnLocation:(id)sender {
-	[self.activityView startAnimating];
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate startAnimating];
 	[self.locationManager startUpdatingLocation];
 }
 
@@ -148,7 +155,8 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 	
 	ALog ("Location found");
-	[self.activityView stopAnimating];
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate stopAnimating];
 
 	
 	self.location = newLocation.coordinate;
@@ -179,7 +187,8 @@
 										  cancelButtonTitle:@"Okay" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-	[self.activityView stopAnimating];
+	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	[appDelegate stopAnimating];
 }
 
 - (IBAction) showSearchedLocation {

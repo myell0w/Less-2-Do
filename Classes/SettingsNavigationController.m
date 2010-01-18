@@ -59,5 +59,9 @@
     [super dealloc];
 }
 
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated {
+	ALog ("Pop that thing");
+	return [super popViewControllerAnimated:animated];
+}
 
 @end

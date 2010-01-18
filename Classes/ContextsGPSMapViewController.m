@@ -10,6 +10,7 @@
 #import "Context.h"
 #import "TasksListViewController.h"
 #import <MapKit/MapKit.h>
+#import <MapKit/MKUserLocation.h>
 
 @implementation ContextsGPSMapViewController
 @synthesize parent = _parent;
@@ -117,11 +118,15 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	NSLog(@"View for Annotation is called");
-	MKPinAnnotationView *annotationView =nil;
+	MKAnnotationView *annotationView =nil;
 	if(((AddressAnnotation *)annotation).context == nil) {
-		annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AddressAnnotation"];
+		annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"blueDot"];
 		if (annotationView == nil) {
-			annotationView = [AddressAnnotation viewForAnnotation:annotation withColor:MKPinAnnotationColorGreen];
+			//annotationView = [AddressAnnotation viewForAnnotation:annotation withColor:MKPinAnnotationColorGreen];
+			//annotationView = [[[NSClassFromString(@"MKUserLocationView") alloc] initWithAnnotation:annotation reuseIdentifier:@"blueDot"] autorelease];
+			annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"blueDot"] autorelease];
+			annotationView.image = [UIImage imageNamed:@"bluedot.png"];
+			
 			ALog ("Created View for Annotation");
 		}
 		else {

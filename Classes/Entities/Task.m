@@ -357,9 +357,38 @@
   return [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"tags.@count == 0 and isCompleted == NO and deleted == NO"] error:error];
 }
 
-+ (NSArray *) getTasksWithContext:(NSError **)error
++ (NSArray *) getTasksWithContext:(CLLocation *)theLocation error:(NSError **)error
 {
-	return [Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO and deleted == NO" error:error];
+	NSMutableArray *result = [[NSMutableArray alloc] init];
+	[result addObjectsFromArray:[Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO and deleted == NO" error:error]];
+	
+	NSMutableArray *sorted = [[[NSMutableArray alloc] init] autorelease];
+	
+	int nearest = 0;
+	while ([result count]!=0) {
+
+		nearest = 0;
+		for(int i=0; i<[result count]; i++) {
+			Task *nearestTask = (Task *)[result objectAtIndex:nearest];
+			Task *task = (Task *)[result objectAtIndex:i];
+			
+			
+			CLLocation *locNearest = [[CLLocation alloc] initWithLatitude:[nearestTask.context.gpsX doubleValue] longitude:[nearestTask.context.gpsY doubleValue]];
+			CLLocation *locTask = [[CLLocation alloc] initWithLatitude:[task.context.gpsX doubleValue] longitude:[task.context.gpsY doubleValue]];
+			
+			if ([theLocation getDistanceFrom:locTask] > [theLocation getDistanceFrom:locNearest]) {
+				nearest = i;
+			}
+			[locNearest release];
+			[locTask release];
+		}
+		[sorted addObject:[result objectAtIndex:nearest]];
+		
+		[result removeObjectAtIndex:nearest];
+	}
+	[result release];
+	
+	return sorted;
 }
 
 + (NSArray *) getTasksToday:(NSError **)error

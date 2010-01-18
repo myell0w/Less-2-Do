@@ -81,6 +81,7 @@
 + (NSArray *) getTasksInFolder:(Folder*)theFolder error:(NSError **)error;
 + (NSArray *) getTasksWithTag:(Tag*)theTag error:(NSError **)error;
 + (NSArray *) getTasksInContext:(Context*)theContext error:(NSError **)error;
++ (NSArray *) getTasksWithContext:(CLLocation *)theLocation error:(NSError **)error;
 
 + (NSArray *) getCompletedTasks:(NSError **)error;
 + (NSArray *) getTasksWithoutFolder:(NSError **)error;

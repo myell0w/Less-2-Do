@@ -30,6 +30,9 @@
 
 @synthesize currentEditedTask;
 
+@synthesize activityViewContainer;
+@synthesize activityView;
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -50,6 +53,9 @@
 	[settingsController release];
 	[alreadyReminded release];
 	
+	
+	[activityView release];
+	[activityViewContainer release];
 	[window release];
 	
 	[super dealloc];
@@ -131,8 +137,20 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    // add rootControllers-View as subview of main-window  
+	// add rootControllers-View as subview of main-window  
 	[window addSubview:rootController.view];
+	
+	activityViewContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+	activityViewContainer.backgroundColor = [UIColor blackColor];
+	activityViewContainer.alpha = 0.80;
+	activityViewContainer.hidden = YES;
+	
+	activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	[activityView setCenter:CGPointMake(160.0f, 208.0f)];
+	[activityViewContainer addSubview:activityView];
+	[window addSubview:activityViewContainer];
+	[activityView release];
+	
 	[window makeKeyAndVisible];
 	
 	// start timer for committing to database
@@ -342,5 +360,16 @@ NSString *const DAOErrorDomain = @"com.ASE_06.Less2Do.DAOErrorDomain";
 	[self.syncTimer invalidate];	
 	//timer = nil;
 }
+
+-(void)startAnimating {
+	activityViewContainer.hidden = NO;
+	[activityView startAnimating];
+}
+
+-(void)stopAnimating {;
+	activityViewContainer.hidden = YES;
+	[activityView stopAnimating];
+}
+
 @end
 
