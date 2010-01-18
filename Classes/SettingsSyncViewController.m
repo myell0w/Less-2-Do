@@ -81,6 +81,7 @@
 }
 
 - (IBAction)forceLocalToRemoteSync:(id)sender {
+	[self saveSettings];
 	NSError *error = nil;
 	
 	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -105,6 +106,7 @@
 }
 
 - (IBAction)forceRemoteToLocalSync:(id)sender {
+	[self saveSettings];
 	NSError *error = nil;
 	
 	Less2DoAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
