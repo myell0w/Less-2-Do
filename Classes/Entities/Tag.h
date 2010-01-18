@@ -24,7 +24,7 @@
 - (void)removeTasks:(NSSet *)value;
 
 // general fetch-methods for tasks
-+ (NSArray *) getTasgsWithFilterString:(NSString*)filterString error:(NSError **)error;
++ (NSArray *) getTagsWithFilterString:(NSString*)filterString error:(NSError **)error;
 + (NSArray *) getTagsWithFilterPredicate:(NSPredicate*)filterPredicate error:(NSError **)error;
 
 // specialized fetch-methods for tasks - each method encapsulates a call to a general fetch-method

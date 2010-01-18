@@ -18,7 +18,9 @@ typedef enum {
 	DAONotFetchedError = 10,
 	DAONotAddedError   = 11,
 	DAONotDeletedError = 12,
-	DAONotEditedError  = 13
+	DAONotEditedError  = 13,
+	SettingNotFound = 20,
+	SettingMoreThanOne = 21,
 	/* ... and so on ... */
 } L2DError;
 

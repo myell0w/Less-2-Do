@@ -182,7 +182,7 @@
 	{
 		ALog(@"overwriteLocal: was successful");
 	}*/
-	[appDelegate stopAnimating];
+	//[appDelegate stopAnimating];
 }
 
 @end

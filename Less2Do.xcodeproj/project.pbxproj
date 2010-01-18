@@ -112,6 +112,9 @@
 		A38B3ADD10BFFB1300D5D87F /* GHUnitIPhoneTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3AD810BFFB1300D5D87F /* GHUnitIPhoneTestMain.m */; };
 		A38B3ADE10BFFB1300D5D87F /* libGHUnitIPhone3_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A38B3ADA10BFFB1300D5D87F /* libGHUnitIPhone3_0.a */; };
 		A38B3B0510BFFC9E00D5D87F /* ContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A38B3B0410BFFC9E00D5D87F /* ContextTest.m */; };
+		A396B81D11046E2200C5D254 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = A396B81C11046E2200C5D254 /* Setting.m */; };
+		A396B81E11046E2200C5D254 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = A396B81C11046E2200C5D254 /* Setting.m */; };
+		A396B84A1104716000C5D254 /* SettingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A396B8491104716000C5D254 /* SettingTest.m */; };
 		A3E3389E10BC5C6D004F0F39 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A3E3389F10BC5C6D004F0F39 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389510BC5C6D004F0F39 /* Tag.m */; };
 		A3E338A010BC5C6D004F0F39 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389710BC5C6D004F0F39 /* Task.m */; };
@@ -357,6 +360,9 @@
 		A38B3ADB10BFFB1300D5D87F /* NSException+GHTestFailureExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSException+GHTestFailureExceptions.h"; path = "libGHUnitIPhone3_0-0.4.13/NSException+GHTestFailureExceptions.h"; sourceTree = "<group>"; };
 		A38B3ADC10BFFB1300D5D87F /* NSValue+GHValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+GHValueFormatter.h"; path = "libGHUnitIPhone3_0-0.4.13/NSValue+GHValueFormatter.h"; sourceTree = "<group>"; };
 		A38B3B0410BFFC9E00D5D87F /* ContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContextTest.m; sourceTree = "<group>"; };
+		A396B81B11046E2200C5D254 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		A396B81C11046E2200C5D254 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		A396B8491104716000C5D254 /* SettingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTest.m; sourceTree = "<group>"; };
 		A3E3389210BC5C6D004F0F39 /* Folder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = Entities/Folder.h; sourceTree = "<group>"; };
 		A3E3389310BC5C6D004F0F39 /* Folder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = Entities/Folder.m; sourceTree = "<group>"; };
 		A3E3389410BC5C6D004F0F39 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Entities/Tag.h; sourceTree = "<group>"; };
@@ -829,6 +835,7 @@
 				A36CFA6610D64524007482E3 /* TaskTest.m */,
 				A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */,
 				A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */,
+				A396B8491104716000C5D254 /* SettingTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -873,6 +880,8 @@
 				A3706ABB10D7AFFC00E6D556 /* BaseManagedObject.h */,
 				A3706ABC10D7AFFC00E6D556 /* BaseManagedObject.m */,
 				A34471E710BF239000851DCD /* DAOError.h */,
+				A396B81B11046E2200C5D254 /* Setting.h */,
+				A396B81C11046E2200C5D254 /* Setting.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1181,6 +1190,7 @@
 				39E1376B10FB3C37003ED216 /* TDBadgedCell.m in Sources */,
 				D4CBA6EC11037B980018FBCC /* SFHFKeychainUtils.m in Sources */,
 				39A984491103398E00FCE7D5 /* TaskEditImageViewController.m in Sources */,
+				A396B81D11046E2200C5D254 /* Setting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1201,6 +1211,8 @@
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
 				A3227ECE10FD21540093C8CB /* SyncTest.m in Sources */,
+				A396B81E11046E2200C5D254 /* Setting.m in Sources */,
+				A396B84A1104716000C5D254 /* SettingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
