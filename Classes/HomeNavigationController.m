@@ -166,35 +166,39 @@
 	[appDelegate startAnimating];
 	
 	
-	SyncManager *syncManager = [[[SyncManager alloc] init] autorelease];
-	BOOL successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
-	//BOOL successful = [syncManager overwriteRemote:&error];
+	SyncManager *syncManager = [[SyncManager alloc] init];
+	Setting *settings = [Setting getSettings:&error];
 	NSString *stopTitle = nil;
 	NSString *stopMessage = nil;
-	if(!successful)
+	if(error == nil)
 	{
+		BOOL successful = NO;
+		if(settings.preferToodleDo)
+			successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
+		else
+			successful = [syncManager syncWithPreference:SyncPreferLocal error:&error];
+
+		if(!successful)
+		{
+			stopTitle = @"Error";
+			stopMessage = [SyncManager gtdErrorMessage:[error code]];
+			ALog(@"Error syncWithPreference:SyncPreferLocal = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
+		}
+		else
+		{
+			stopTitle = @"Success";
+			stopMessage = @"Sync with ToodleDo was successful";
+			ALog(@"syncWithPreference:SyncPreferLocal was successful");
+		}
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
+	}
+	else {
 		stopTitle = @"Error";
-		stopMessage = [SyncManager gtdErrorMessage:[error code]];
-		ALog(@"Error syncWithPreference:SyncPreferLocal = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
+		stopMessage = @"Could not retrieve Toodledo account settings";
 	}
-	else
-	{
-		stopTitle = @"Success";
-		stopMessage = @"Sync with ToodleDo was successful";
-		ALog(@"syncWithPreference:SyncPreferLocal was successful");
-	}
-	/*BOOL successful = [syncManager overwriteRemote:&error];
-	if(!successful)
-	{
-		ALog(@"Error overwriteLocal: = %@: %@", [SyncManager gtdErrorMessage:[error code]], error);
-	}
-	else
-	{
-		ALog(@"overwriteLocal: was successful");
-	}*/
-	
+
 	[appDelegate stopAnimatingWithTitle:stopTitle andMessage:stopMessage];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"TaskAddedNotification" object:nil];
+	[syncManager release];
 }
 
 @end

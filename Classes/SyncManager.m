@@ -271,8 +271,6 @@
 	 GtdApiContextNotAddedError = 510,
 	 GtdApiContextNotDeletedError = 520,
 	 GtdApiContextNotEditedError = 530*/
-	ALog(@"gtdErrorMessage called with errorCode %d", errorCode);
-	return [NSString stringWithFormat:@"gtdErrorMessage errorCode=%d", errorCode];
 	switch (errorCode) {
 		case GtdApiNoConnectionError:
 			return @"Toodledo API no connection";
@@ -1023,7 +1021,7 @@
 		remoteTask.folder = [localTask.folder.remoteId integerValue];
 		remoteTask.context = [localTask.context.remoteId integerValue];
 		remoteTask.priority = [localTask.priority integerValue];
-		remoteTask.completed = (localTask.isCompleted ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+		remoteTask.completed = ([localTask.isCompleted boolValue] ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
 		remoteTask.length = [localTask.duration integerValue];
 		remoteTask.note = localTask.note;
 		remoteTask.star = [localTask.star boolValue];
