@@ -168,6 +168,9 @@
 	if(self.listViewController != nil) {
 		self.listViewController.currentPosition = self.location;
 		ALog ("Data loaded");
+		CLLocation *locationObject = [[CLLocation alloc] initWithLatitude:self.location.latitude longitude:self.location.longitude];
+		self.listViewController.argument = locationObject;
+		[locationObject release];
 		[self.listViewController loadData];
 	}
 	
@@ -212,6 +215,9 @@
 	
 	if (self.listViewController != nil) {
 		self.listViewController.currentPosition = self.location;
+		CLLocation *locationObject = [[CLLocation alloc] initWithLatitude:self.location.latitude longitude:self.location.longitude];
+		self.listViewController.argument = locationObject;
+		[locationObject release];
 		[self.listViewController loadData];
 	}
 	

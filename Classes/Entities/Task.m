@@ -400,7 +400,7 @@
 			CLLocation *locNearest = [[CLLocation alloc] initWithLatitude:[nearestTask.context.gpsX doubleValue] longitude:[nearestTask.context.gpsY doubleValue]];
 			CLLocation *locTask = [[CLLocation alloc] initWithLatitude:[task.context.gpsX doubleValue] longitude:[task.context.gpsY doubleValue]];
 			
-			if ([theLocation getDistanceFrom:locTask] > [theLocation getDistanceFrom:locNearest]) {
+			if ([theLocation getDistanceFrom:locTask] < [theLocation getDistanceFrom:locNearest]) {
 				nearest = i;
 			}
 			[locNearest release];
