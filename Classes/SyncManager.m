@@ -39,7 +39,6 @@
 	}
 	ALog(@"settings: %@", settings);
 	NSString *tdPassword = [SFHFKeychainUtils getPasswordForUsername:settings.tdEmail error:&syncError];
-	//NSString *tdPassword = @"less-2-do";
 	if(syncError != nil)
 	{
 		*error = syncError;
@@ -115,8 +114,7 @@
 		*error = syncError;
 		return NO;
 	}
-	//NSString *tdPassword = [settings getPassword:&syncError];
-	NSString *tdPassword = @"less-2-do";
+	NSString *tdPassword = [SFHFKeychainUtils getPasswordForUsername:settings.tdEmail error:&syncError];
 	if(syncError != nil)
 	{
 		*error = syncError;
@@ -200,8 +198,7 @@
 		*error = syncError;
 		return NO;
 	}
-	//NSString *tdPassword = [settings getPassword:&syncError];
-	NSString *tdPassword = @"less-2-do";
+	NSString *tdPassword = [SFHFKeychainUtils getPasswordForUsername:settings.tdEmail error:&syncError];
 	if(syncError != nil)
 	{
 		*error = syncError;
