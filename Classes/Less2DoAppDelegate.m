@@ -178,6 +178,7 @@
 		settings = (Setting*)[BaseManagedObject objectOfType:@"Setting"];
 		settings.tdEmail = @"";
 		settings.useTDSync = [NSNumber numberWithInt:0];
+		settings.preferToodleDo = [NSNumber numberWithInt:0];
 	} else {
 		ALog ("Toodledo-User: %@", settings.tdEmail);
 	}

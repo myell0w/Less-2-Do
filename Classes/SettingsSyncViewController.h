@@ -15,12 +15,14 @@
 	Setting *settings;
 	UITextField *eMail;
 	UITextField *password;
+	UISwitch *preferToodleDo;
 }
 
 @property (nonatomic, retain) Setting *settings;
 
 @property (nonatomic, retain) IBOutlet UITextField *eMail;
 @property (nonatomic, retain) IBOutlet UITextField *password;
+@property (nonatomic, retain) IBOutlet UISwitch *preferToodleDo;
 
 
 - (IBAction)forceLocalToRemoteSync:(id)sender;

@@ -14,6 +14,7 @@
 @synthesize eMail;
 @synthesize password;
 @synthesize settings;
+@synthesize preferToodleDo;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -23,9 +24,11 @@
 		self.settings = (Setting*)[BaseManagedObject objectOfType:@"Setting"];
 		self.settings.tdEmail = @"";
 		self.settings.useTDSync = [NSNumber numberWithInt:0];
+		self.settings.preferToodleDo = [NSNumber numberWithInt:0];
 	}
 	else {
 		self.eMail.text = self.settings.tdEmail;
+		self.preferToodleDo.on = [self.settings.preferToodleDo intValue] == 1;
 		NSError *error;
 		self.password.text = [SFHFKeychainUtils getPasswordForUsername:self.eMail.text andServiceName:@"Less2DoToodleDoAccount" error:&error];
 	}
@@ -66,9 +69,11 @@
 								   error:&error];
 		self.settings.tdEmail = [self.eMail text];
 		self.settings.useTDSync = [NSNumber numberWithInt:1];
+		self.settings.preferToodleDo = self.preferToodleDo.on == YES ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0];
 	} else {
 		self.settings.tdEmail = @"";
 		self.settings.useTDSync = [NSNumber numberWithInt:0];
+		self.settings.preferToodleDo = [NSNumber numberWithInt:0];
 	}
 
 }
@@ -87,6 +92,7 @@
 	self.settings.useTDSync = [NSNumber numberWithInt:0];
 	self.eMail.text = @"";
 	self.password.text = @"";
+	self.preferToodleDo.on = NO;
 }
 
 - (IBAction)textFinished {
