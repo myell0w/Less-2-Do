@@ -30,7 +30,7 @@
 #import "SFHFKeychainUtils.h"
 #import <Security/Security.h>
 
-static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
+/*static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && (TARGET_IPHONE_SIMULATOR || !TARGET_OS_IPHONE)
 @interface SFHFKeychainUtils (PrivateMethods)
@@ -385,5 +385,28 @@ static NSString *SFHFKeychainUtilsErrorDomain = @"SFHFKeychainUtilsErrorDomain";
 	NSString *password = [SFHFKeychainUtils getPasswordForUsername:username andServiceName:@"Less2DoToodleDoAccount" error:error];
 	return password;
 }
+
+@end*/
+
+@implementation SFHFKeychainUtils
+//HACK FROM MESSI WORKAROUND
+
+
++ (NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error {
+	return @"less-2-do";
+}
+
++ (void) storeUsername: (NSString *) username andPassword: (NSString *) password forServiceName: (NSString *) serviceName updateExisting: (BOOL) updateExisting error: (NSError **) error {
+	
+}
+
++ (void) deleteItemForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error {
+	
+}
+
++ (NSString *) getPasswordForUsername:(NSString *)username error:(NSError **)error {
+	return @"less-2-do";
+}
+
 
 @end
