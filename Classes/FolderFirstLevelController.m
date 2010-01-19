@@ -293,6 +293,7 @@
 		DLog ("Try to update Folders (ordering): %@, order %@", folder.name, folder.order);
 	}
 	self.mustReorder = NO;
+	[self viewWillAppear:NO];
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
