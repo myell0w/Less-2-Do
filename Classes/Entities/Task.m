@@ -307,7 +307,20 @@
 
 + (NSArray *) getAllTasks:(NSError **)error {
 	NSArray* objects = [Task getTasksWithFilterPredicate:[NSPredicate predicateWithFormat:@"isCompleted == NO and deleted == NO"] error:error];	
-	return objects;
+	NSMutableArray *notDeleted = [NSMutableArray array];
+	
+	for(Task *t in objects)
+	{
+		if([t.deleted boolValue] == NO)
+		{
+			[notDeleted addObject:t]; 
+		}
+	}
+	
+	return [NSArray arrayWithArray:notDeleted];
+	
+	//return objects;
+	
 }
 
 + (NSArray *) getStarredTasks:(NSError **)error {

@@ -49,12 +49,15 @@
 }
 
 /* adds 3 contexts - count must be 3 */
-- (void)testAddContextWithName {
+- (void)testAddContext {
 	NSError *error = nil;
 	
 	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
 	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
 	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.name = @"c1";
+	newContext2.name = @"c2";
+	newContext3.name = @"c3";
 	
 	NSArray *contexts = [Context getAllContexts:&error];
 	GHAssertEquals([contexts count], (NSUInteger)3, @"Add context not successful");
@@ -83,40 +86,135 @@
 	GHAssertEquals([contexts count], (NSUInteger)0, @"Delete context not successful");
 }
 
-/* first adds a context and then updates it */
-- (void)testUpdateContext {
-	Context *newContext = (Context*)[Context objectOfType:@"Context"];
-	
-	newContext.name = @"UPDATE";
-	
-	GHAssertTrue([newContext isUpdated], @"Update context not successful");
-	
-	/*//[NSThread sleepForTimeInterval:2];
-	
-	NSArray *contexts = [ContextDAO allContexts:&error];
-	GHAssertEquals([contexts count], (NSUInteger)1, @"Add context not successful");
-	Context *context = [contexts objectAtIndex:0];
-	GHAssertEqualStrings([context name], [newContext name], @"Update context not successful"); */
-}
-
 - (void)testAllContextsOrdered {
 	NSError *error = nil;
 	
 	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
 	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
 	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
-	newContext1.name = @"Eontext";
-	newContext2.name = @"Dontext";
-	newContext3.name = @"Context";
+	newContext1.name = @"C";
+	newContext2.name = @"A";
+	newContext3.name = @"B";
 	 
 	NSArray *contexts = [Context getAllContexts:&error];
 	GHAssertEquals([contexts count], (NSUInteger)3, @"Add contextnot successful");
 	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [contexts objectAtIndex:0], [contexts objectAtIndex:1], [contexts objectAtIndex:2]];
-	GHAssertEqualStrings(output, @"0: Context, 1: Dontext, 2: Eontext", @"Ordered Contexts not successful");
+	GHAssertEqualStrings(output, @"0: A, 1: B, 2: C", @"Ordered Contexts not successful");
 }
 
+-(void) testGetRemoteStoredContexts
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.remoteId = [NSNumber numberWithInt:-1];
+	newContext2.remoteId = [NSNumber numberWithInt:20000];
+	newContext3.remoteId = [NSNumber numberWithInt:23000];
+	
+	NSArray *contexts = [Context getRemoteStoredContexts:&error];
+	GHAssertEquals([contexts count], (NSUInteger)2, @"");
+}
+
+-(void) testGetRemoteStoredContextsLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.remoteId = [NSNumber numberWithInt:-1];
+	newContext2.remoteId = [NSNumber numberWithInt:20000];
+	newContext3.remoteId = [NSNumber numberWithInt:23000];
+	[Context deleteObject:newContext3 error:&error];
+	
+	NSArray *contexts = [Context getRemoteStoredContextsLocallyDeleted:&error];
+	GHAssertEquals([contexts count], (NSUInteger)1, @"");
+}
+
+-(void) testGetLocalStoredContextsLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.remoteId = [NSNumber numberWithInt:-1];
+	newContext2.remoteId = [NSNumber numberWithInt:-1];
+	newContext3.remoteId = [NSNumber numberWithInt:23000];
+	[Context deleteObject:newContext2 error:&error];
+	[Context commit];
+	
+	NSArray *contexts = [Context getLocalStoredContextsLocallyDeleted:&error];
+	GHAssertEquals([contexts count], (NSUInteger)1, @"");
+}
+
+-(void) testGetAllContextsLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.remoteId = [NSNumber numberWithInt:-1];
+	newContext2.remoteId = [NSNumber numberWithInt:20000];
+	newContext3.remoteId = [NSNumber numberWithInt:23000];
+	[Context deleteObject:newContext2 error:&error];
+	[Context deleteObject:newContext1 error:&error];
+	
+	NSArray *contexts = [Context getAllContextsLocallyDeleted:&error];
+	GHAssertEquals([contexts count], (NSUInteger)2, @"");
+}
+
+-(void) testGetUnsyncedContexts
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.remoteId = [NSNumber numberWithInt:-1];
+	newContext2.remoteId = [NSNumber numberWithInt:20000];
+	newContext3.remoteId = [NSNumber numberWithInt:23000];
+	
+	NSArray *contexts = [Context getUnsyncedContexts:&error];
+	GHAssertEquals([contexts count], (NSUInteger)1, @"");
+}
+
+-(void) testGetModifiedContexts
+{
+	NSError *error = nil;
+	
+	Context *newContext1 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext2 = (Context*)[Context objectOfType:@"Context"];
+	Context *newContext3 = (Context*)[Context objectOfType:@"Context"];
+	newContext1.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:0];
+	newContext1.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+	newContext2.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:15];
+	newContext2.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+	newContext3.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:20];
+	newContext3.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+
+	
+	NSArray *contexts = [Context getModifiedContexts:&error];
+	GHAssertEquals([contexts count], (NSUInteger)2, @"");
+}
+
+-(void) testGetContextWithRemoteId
+{
+	NSError *error = nil;
+	
+	Context *newContext = (Context*)[Context objectOfType:@"Context"];
+	newContext.remoteId = [NSNumber numberWithInt:20000];
+	
+	Context *theResult = [Context getContextWithRemoteId:[NSNumber numberWithInt:20000] error:&error];
+	GHAssertNotNil(theResult, @"");
+}
+
+
 /* adds 3 contexts - count must be 3 */
-- (void)testOldestModificationDate {
+/*- (void)testOldestModificationDate {
 	NSError *error = nil;
 	
 	NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -137,6 +235,6 @@
 	if (![oldestDate isEqualToDate:newContext1.lastLocalModification]) {
 		GHFail(@"Oldest Mod Date not successful");
 	}
-}
+}*/
 
 @end
