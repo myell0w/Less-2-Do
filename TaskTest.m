@@ -1,14 +1,14 @@
 //
-//  TaskTest.m
+//  TaskDAOTest.m
 //  Less2Do
 //
-//  Created by Gerhard Schraml on 14.12.09.
+//  Created by Gerhard Schraml on 27.11.09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
 #import "Task.h"
-#import "Folder.h"
 #import "Tag.h"
+#import "Folder.h"
 #import "CustomGHUnitAppDelegate.h";
 
 @interface TaskTest : GHTestCase {
@@ -21,7 +21,7 @@
 
 - (void)setUp {
 	
-	/* delete all Tasks from the persistent store */
+	/* delete all tasks from the persistent store */
 	CustomGHUnitAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
 	managedObjectContext = [delegate managedObjectContext];
 	
@@ -43,6 +43,196 @@
 	/* do nothing */
 }
 
+/* Tests receiving all tasks without adding tasks before */
+- (void)testAllTasksEmpty {
+	NSError *error = nil;
+	NSArray *tasks = [Task getAllTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)0, @"Task count must be 0");
+}
+
+/* adds 3 tasks - count must be 3 */
+- (void)testAddTask {
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"c1";
+	newTask2.name = @"c2";
+	newTask3.name = @"c3";
+	
+	NSArray *tasks = [Task getAllTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)3, @"Add task not successful");
+}
+
+/* Tests deleting a task with nil as parameter */
+- (void)testDeleteTaskWithNilParameter {
+	NSError *error = nil;
+	BOOL returnValue = [Task deleteObject:nil error:&error];
+	GHAssertEquals([error code], DAOMissingParametersError, @"Task must not be deleted without reference");
+	GHAssertFalse(returnValue, @"Return value must be NO.");
+}
+
+/* first adds a task and then deletes it - count then must be 0 */
+- (void)testDeleteTask {
+	NSError *error = nil;
+	Task *newTask = (Task*)[Task objectOfType:@"Task"];
+	
+	NSArray *tasks = [Task getAllTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)1, @"Add task not successful");
+	
+	BOOL deleteSuccessful = [Task deleteObject:newTask error:&error];
+	GHAssertTrue(deleteSuccessful, @"Delete task not successful");
+	
+	tasks = [Task getAllTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)0, @"Delete task not successful");
+}
+
+- (void)testAllTasksOrdered {
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.name = @"C";
+	newTask1.dueDate = [NSDate dateWithTimeIntervalSince1970:20];
+	newTask2.name = @"A";
+	newTask2.dueDate = [NSDate dateWithTimeIntervalSince1970:10];
+	newTask3.name = @"B";
+	newTask3.dueDate = [NSDate dateWithTimeIntervalSince1970:15];
+	
+	NSArray *tasks = [Task getAllTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)3, @"Add tasknot successful");
+	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [[tasks objectAtIndex:0] name], [[tasks objectAtIndex:1] name], [[tasks objectAtIndex:2] name]];
+	GHAssertEqualStrings(output, @"0: A, 1: B, 2: C", @"Ordered Tasks not successful");
+}
+
+-(void) testGetRemoteStoredTasks
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.remoteId = [NSNumber numberWithInt:-1];
+	newTask2.remoteId = [NSNumber numberWithInt:20000];
+	newTask3.remoteId = [NSNumber numberWithInt:23000];
+	
+	NSArray *tasks = [Task getRemoteStoredTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"");
+}
+
+-(void) testGetRemoteStoredTasksLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.remoteId = [NSNumber numberWithInt:-1];
+	newTask2.remoteId = [NSNumber numberWithInt:20000];
+	newTask3.remoteId = [NSNumber numberWithInt:23000];
+	[Task deleteObject:newTask3 error:&error];
+	
+	NSArray *tasks = [Task getRemoteStoredTasksLocallyDeleted:&error];
+	GHAssertEquals([tasks count], (NSUInteger)1, @"");
+}
+
+-(void) testGetLocalStoredTasksLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.remoteId = [NSNumber numberWithInt:-1];
+	newTask2.remoteId = [NSNumber numberWithInt:-1];
+	newTask3.remoteId = [NSNumber numberWithInt:23000];
+	[Task deleteObject:newTask2 error:&error];
+	[Task commit];
+	
+	NSArray *tasks = [Task getLocalStoredTasksLocallyDeleted:&error];
+	GHAssertEquals([tasks count], (NSUInteger)1, @"");
+}
+
+-(void) testGetAllTasksLocallyDeleted
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.remoteId = [NSNumber numberWithInt:-1];
+	newTask2.remoteId = [NSNumber numberWithInt:20000];
+	newTask3.remoteId = [NSNumber numberWithInt:23000];
+	[Task deleteObject:newTask2 error:&error];
+	[Task deleteObject:newTask1 error:&error];
+	
+	NSArray *tasks = [Task getAllTasksLocallyDeleted:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"");
+}
+
+-(void) testGetUnsyncedTasks
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.remoteId = [NSNumber numberWithInt:-1];
+	newTask2.remoteId = [NSNumber numberWithInt:20000];
+	newTask3.remoteId = [NSNumber numberWithInt:23000];
+	
+	NSArray *tasks = [Task getUnsyncedTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)1, @"");
+}
+
+-(void) testGetModifiedTasks
+{
+	NSError *error = nil;
+	
+	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+	newTask1.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:0];
+	newTask1.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+	newTask2.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:15];
+	newTask2.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+	newTask3.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:20];
+	newTask3.lastSyncDate = [NSDate dateWithTimeIntervalSince1970:5];
+	
+	
+	NSArray *tasks = [Task getModifiedTasks:&error];
+	GHAssertEquals([tasks count], (NSUInteger)2, @"");
+}
+
+
+/* adds 3 tasks - count must be 3 */
+/*- (void)testOldestModificationDate {
+ NSError *error = nil;
+ 
+ NSDateFormatter *format = [[NSDateFormatter alloc] init];
+ [format setDateFormat:@"yyyy:mm:dd hh:mm "];
+ 
+ Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
+ Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
+ Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
+ 
+ newTask1.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:2];
+ newTask2.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:3];
+ newTask3.lastLocalModification = [NSDate dateWithTimeIntervalSince1970:4];
+ ALog(@"date1: %@", newTask1.lastLocalModification);
+ 
+ [BaseRemoteObject commit];
+ 
+ NSDate *oldestDate = [Task oldestModificationDateOfType:@"Task" error:&error];
+ if (![oldestDate isEqualToDate:newTask1.lastLocalModification]) {
+ GHFail(@"Oldest Mod Date not successful");
+ }
+ }*/
+
+/* ===================================================================================================== */
+
 /* test all tasks */
 - (void)testAllTasks {
 	NSError *error = nil;
@@ -57,8 +247,6 @@
 	
 	NSArray *tasks = [Task getAllTasks:&error];
 	GHAssertEquals([tasks count], (NSUInteger)3, @"Add tasks not successful");
-	//NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 
 /* test starred tasks */
@@ -78,49 +266,6 @@
 	
 	NSArray *tasks = [Task getStarredTasks:&error];
 	GHAssertEquals([tasks count], (NSUInteger)1, @"0 starred tasks not successful");
-	//NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
-}
-
-/* test ordering of tasks */
-- (void)testOrderedTasks {
-	NSError *error = nil;
-	
-	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask3 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask4 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask5 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask6 = (Task*)[Task objectOfType:@"Task"];
-	newTask1.name = @"Task 1";
-	newTask1.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
-	newTask1.dueTime = nil;
-	newTask2.name = @"Task 2";
-	//newTask2.dueDate = [[NSDate alloc] initWithString:@"2009-12-04 00:00:00 +0100"];
-	newTask2.dueDate = nil;
-	newTask3.name = @"Task 3";
-	newTask3.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
-	newTask3.dueTime = [[NSDate alloc] initWithString:@"2009-12-05 10:40:00 +0100"];
-	newTask4.name = @"Task 4";
-	newTask4.dueDate = nil;
-	newTask5.name = @"Task 5";
-	newTask5.dueDate = [[NSDate alloc] initWithString:@"2009-12-05 00:00:00 +0100"];
-	newTask5.dueTime = [[NSDate alloc] initWithString:@"2009-12-05 10:20:00 +0100"];
-	newTask6.name = @"Task 6";
-	newTask6.dueDate = [[NSDate alloc] initWithString:@"2009-12-10 00:00:00 +0100"];
-	[managedObjectContext save:&error];
-	
-	NSArray *tasks = [Task getTasksWithFilterString:nil error:&error];
-	ALog(@"ORDERING OF TASKS");
-	for(int i=0;i<[tasks count];i++)
-	{
-		Task *task = [tasks objectAtIndex:i];
-		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
-	}
-	/*GHAssertEquals([tasks count], (NSUInteger)3, @"0 starred tasks not successful");
-	NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	GHFail(output);*/
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 
 - (void)testGetTasksInFolder {
@@ -249,16 +394,6 @@
 	GHAssertEquals([tasks count], (NSUInteger)1, @"Getting tasks that are completed failed!");
 }
 
-- (void)testNextDueDate {
-	Task *newTask1 = (Task*)[Task objectOfType:@"Task"];
-	Task *newTask2 = (Task*)[Task objectOfType:@"Task"];
-	
-	newTask1.name = @"Task 1";
-	//newTask1.dueDate = 
-	//TODO: test method nextDueDate
-}
-
-/* test ordering of tasks */
 - (void)testTasksToday {
 	NSError *error = nil;
 	
@@ -284,12 +419,8 @@
 		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
 	}
 	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks today not successful");
-	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	 GHFail(output);*/
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 
-/* test ordering of tasks */
 - (void)testTasksThisWeek {
 	NSError *error = nil;
 	
@@ -315,12 +446,8 @@
 		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
 	}
 	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks this week not successful");
-	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	 GHFail(output);*/
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 
-/* test ordering of tasks */
 - (void)testTasksOverdue {
 	NSError *error = nil;
 	
@@ -346,9 +473,6 @@
 		ALog(@"%d - %@ dueDate: %@ dueTime:%@", i, task.name, task.dueDate, task.dueTime);
 	}
 	GHAssertEquals([tasks count], (NSUInteger)2, @"tasks this week not successful");
-	/* NSString *output = [NSString stringWithFormat:@"0: %@, 1: %@, 2: %@", [tasks objectAtIndex:0], [tasks objectAtIndex:1], [tasks objectAtIndex:2]];
-	 GHFail(output);*/
-	//GHAssertEqualStrings(output, @"0: Task 1, 1: Task 2, 2: Task 3", @"Ordered Folders not successful");
 }
 
 @end

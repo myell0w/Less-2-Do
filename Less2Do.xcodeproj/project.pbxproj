@@ -94,8 +94,8 @@
 		A30A5FA310C15B5F00673F02 /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB932F410BC872B004EAF93 /* Context.m */; };
 		A30A608E10C16A7C00673F02 /* Less2DoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* Less2DoAppDelegate.m */; };
 		A30A609A10C16AAB00673F02 /* Less2Do.xcdatamodel in Resources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* Less2Do.xcdatamodel */; };
-		A3227ECE10FD21540093C8CB /* SyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A3227ECD10FD21540093C8CB /* SyncTest.m */; };
 		A3227EE910FD226A0093C8CB /* liblibToodledoAPIiPhone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39F5AFCC10ED19AF00E54EB1 /* liblibToodledoAPIiPhone.a */; };
+		A328F8E711060EE600867D30 /* TagTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A328F8E611060EE600867D30 /* TagTest.m */; };
 		A36CF93810D634C9007482E3 /* FolderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CF93710D634C9007482E3 /* FolderTest.m */; };
 		A36CF97510D639E4007482E3 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E3389310BC5C6D004F0F39 /* Folder.m */; };
 		A36CFA6710D64524007482E3 /* TaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A36CFA6610D64524007482E3 /* TaskTest.m */; };
@@ -333,7 +333,7 @@
 		39F5AFD310ED1A0B00E54EB1 /* ShowTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ShowTaskViewController.xib; path = Classes/ShowTaskViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Less2Do-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Less2Do-Info.plist"; sourceTree = "<group>"; };
 		A30A5FE910C15D7200673F02 /* Tests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests_Prefix.pch; sourceTree = "<group>"; };
-		A3227ECD10FD21540093C8CB /* SyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTest.m; sourceTree = "<group>"; };
+		A328F8E611060EE600867D30 /* TagTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTest.m; sourceTree = "<group>"; };
 		A34471E710BF239000851DCD /* DAOError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAOError.h; sourceTree = "<group>"; };
 		A36CF93710D634C9007482E3 /* FolderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderTest.m; sourceTree = "<group>"; };
 		A36CFA6610D64524007482E3 /* TaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTest.m; sourceTree = "<group>"; };
@@ -828,7 +828,6 @@
 		A38B3ADF10BFFB7A00D5D87F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A3227ECD10FD21540093C8CB /* SyncTest.m */,
 				A38B3B0410BFFC9E00D5D87F /* ContextTest.m */,
 				A38B3AE010BFFB8800D5D87F /* GHUnit */,
 				A36CF93710D634C9007482E3 /* FolderTest.m */,
@@ -836,6 +835,7 @@
 				A37069C210D7919200E6D556 /* CustomGHUnitAppDelegate.h */,
 				A37069C310D7919200E6D556 /* CustomGHUnitAppDelegate.m */,
 				A396B8491104716000C5D254 /* SettingTest.m */,
+				A328F8E611060EE600867D30 /* TagTest.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -1210,9 +1210,9 @@
 				A36CFA6710D64524007482E3 /* TaskTest.m in Sources */,
 				A37069C410D7919200E6D556 /* CustomGHUnitAppDelegate.m in Sources */,
 				A3706ABD10D7AFFC00E6D556 /* BaseManagedObject.m in Sources */,
-				A3227ECE10FD21540093C8CB /* SyncTest.m in Sources */,
 				A396B81E11046E2200C5D254 /* Setting.m in Sources */,
 				A396B84A1104716000C5D254 /* SettingTest.m in Sources */,
+				A328F8E711060EE600867D30 /* TagTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
