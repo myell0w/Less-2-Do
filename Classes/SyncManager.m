@@ -97,8 +97,7 @@
 }
 
 /*
- Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die lokale
- Version bevorzugt wird.
+ Der komplette lokale Stand wird gelöscht und mit dem aktuellen Remote-Stand überschrieben.
  */
 -(BOOL)overwriteLocal:(NSError**)error
 {
@@ -167,7 +166,7 @@
 			return [self exitFailure:error];
 		
 		// 3. write Tasks
-		wasSuccessful = [self syncTasksMatchDates];
+		wasSuccessful = [self syncTasksPreferRemote];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
@@ -181,8 +180,7 @@
 }
 
 /*
- Führt eine Synchronisation durch, bei der im Falle gleicher Datensätze die remote-
- Version bevorzugt wird.
+ Der komplette Remote-Stand wird gelöscht und mit dem aktuellen lokalen Stand überschrieben.
  */
 -(BOOL)overwriteRemote:(NSError**)error
 {
@@ -244,7 +242,7 @@
 			return [self exitFailure:error];
 		
 		// 3. write Tasks
-		wasSuccessful = [self syncTasksMatchDates];
+		wasSuccessful = [self syncTasksPreferLocal];
 		if(!wasSuccessful)
 			return [self exitFailure:error];
 		
@@ -1152,7 +1150,7 @@
 			newTask.name = remoteTask.title;
 			newTask.creationDate = remoteTask.date_created;
 			newTask.modificationDate = remoteTask.date_modified;
-			newTask.startDateAnnoy = remoteTask.date_start; 
+			newTask.startDateAnnoy = remoteTask.date_start; // ???
 			newTask.dueDate = remoteTask.date_due;
 			
 			for(NSString *remoteTag in remoteTask.tags)
@@ -1173,7 +1171,6 @@
 						[newTask addTagsObject:tag];
 				}
 			}
-			
 			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
 			if(syncError != nil)
 				return NO;
@@ -1205,7 +1202,7 @@
 	}
 	
 	// füge nun remote gelöschte task wieder hinzu, aber nur wenn sie nicht
-	// auch zufällig lokal als gekennzeichnet wurden
+	// auch zufällig lokal als deleted gekennzeichnet wurden
 	for(int i=0;i<[localTasksWithRemoteId count];i++)
 	{
 		GtdTask *remoteTask = [[GtdTask alloc] init];
@@ -1217,6 +1214,7 @@
 			remoteTask.date_modified = localTask.lastLocalModification;
 			remoteTask.date_start = localTask.startDateAnnoy;
 			remoteTask.date_due = localTask.dueDate;
+			
 			NSMutableArray *mutableTags = [NSMutableArray array];
 			for(Tag *tag in localTask.tags)
 			{
@@ -1249,6 +1247,7 @@
 		
 		// sende update request nur, wenn der task nicht sowieso gelöscht wird
 		BOOL requestSuccessful = YES;
+		
 		if([localTask.deleted intValue] == 0)
 		{
 			remoteTask.uid = [localTask.remoteId integerValue];
@@ -1306,7 +1305,7 @@
 		remoteTask.folder = [localTask.folder.remoteId integerValue];
 		remoteTask.context = [localTask.context.remoteId integerValue];
 		remoteTask.priority = [localTask.priority integerValue];
-		remoteTask.completed = (localTask.isCompleted ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+		remoteTask.completed = ([localTask.isCompleted boolValue] ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
 		remoteTask.length = [localTask.duration integerValue];
 		remoteTask.note = localTask.note;
 		remoteTask.star = [localTask.star boolValue];
@@ -1360,6 +1359,228 @@
 
 -(BOOL)syncTasksPreferRemote
 {
+	NSArray *remoteTasks = [tdApi getTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	NSArray *localTasksWithRemoteIdArray = [Task getRemoteStoredTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	
+	// initialisiere zunächst mit allen bereits gesyncten Taskn
+	// sobald ein remote-pendant gefunden wurde, entferne task aus dieser collection
+	// die übrig gebliebenen wurden remote entfernt, müssen daher aufgrund
+	// der höheren Priorität der remote Version lokal gelöscht werden
+	NSMutableArray *localTasksWithRemoteId = [NSMutableArray array];
+	[localTasksWithRemoteId addObjectsFromArray:localTasksWithRemoteIdArray];
+	
+	for(GtdTask *remoteTask in remoteTasks)
+	{
+		BOOL foundLocalEntity = NO;
+		// durchsuche lokale Task, ob gleiche id existiert
+		for(int i=0; i<[localTasksWithRemoteId count]; i++)
+		{
+			Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
+			if([localTask.remoteId integerValue] == remoteTask.uid)
+			{
+				foundLocalEntity = YES;
+				
+				localTask.deleted = [NSNumber numberWithInteger:0]; // verhindere möglichen Löschvorgang
+				// überschreibe lokale Felder
+				localTask.lastSyncDate = currentDate;
+				localTask.name = remoteTask.title;
+				localTask.creationDate = remoteTask.date_created;
+				//localTask.lastLocalModification = remoteTask.date_modified;
+				localTask.startDateAnnoy = remoteTask.date_start; // ???
+				localTask.dueDate = remoteTask.date_due;
+				
+				NSMutableArray *tagsToRemove = [NSMutableArray array];
+				for(Tag *tag in localTask.tags)
+				{
+					[tagsToRemove addObject:tag];
+				}
+				for(Tag *tag in tagsToRemove)
+				{
+					[tag removeTasksObject:localTask];
+				}
+				[localTask removeTags:localTask.tags];
+				for(NSString *remoteTag in remoteTask.tags)
+				{
+					if(![remoteTag isEqualToString:@""])
+					{
+						Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+						if(syncError != nil)
+							return NO;
+						if(tag == nil)
+						{
+							tag = (Tag*)[Tag objectOfType:@"Tag"];
+							tag.name = remoteTag;
+						}
+						if(![[tag tasks] containsObject:localTask])
+							[tag addTasksObject:localTask];
+						if(![[localTask tags] containsObject:tag])
+							[localTask addTagsObject:tag];
+					}
+				}
+				
+				if(localTask.folder != nil)
+				{
+					[localTask.folder removeTasksObject:localTask];
+					localTask.folder = nil;
+				}
+				Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
+				if(syncError != nil)
+					return NO;
+				if(folder != nil)
+				{
+					[folder addTasksObject:localTask];
+					[localTask setFolder:folder];
+				}
+				
+				if(localTask.context != nil)
+				{
+					[localTask.context removeTasksObject:localTask];
+					localTask.context = nil;
+				}
+				Context *context = [Context getContextWithRemoteId:[NSNumber numberWithInteger:remoteTask.context] error:&syncError];
+				if(syncError != nil)
+					return NO;
+				if(context != nil)
+				{
+					[context addTasksObject:localTask];
+					[localTask setContext:context];
+				}
+				localTask.priority = [NSNumber numberWithInteger:remoteTask.priority];
+				localTask.isCompleted = (remoteTask.completed != nil ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0]);
+				localTask.duration = [NSNumber numberWithInteger:remoteTask.length]; // number of minutes to complete???
+				localTask.note = remoteTask.note;
+				localTask.star = [NSNumber numberWithBool:remoteTask.star];
+				localTask.repeat = [NSNumber numberWithInteger:remoteTask.repeat];
+				//newTask.whatever = remoteTask.status; // wird bei uns nicht verwendet
+				localTask.reminder = [NSNumber numberWithInteger:remoteTask.reminder];
+				//newTask.parentId = remoteTask.parentId; // wird bei uns nicht verwendet
+				localTask.remoteId = [NSNumber numberWithInteger:remoteTask.uid];
+				localTask.lastSyncDate = currentDate;
+				
+				[localTasksWithRemoteId removeObject:localTask];
+				break;
+			}
+		}
+		if(!foundLocalEntity)
+		{
+			// add local
+			Task *newTask = (Task*)[Task objectOfType:@"Task"];
+			newTask.name = remoteTask.title;
+			newTask.creationDate = remoteTask.date_created;
+			newTask.modificationDate = remoteTask.date_modified;
+			newTask.startDateAnnoy = remoteTask.date_start; // ???
+			newTask.dueDate = remoteTask.date_due;
+			
+			for(NSString *remoteTag in remoteTask.tags)
+			{
+				if(![remoteTag isEqualToString:@""])
+				{
+					Tag* tag = [Tag getTagWithName:remoteTag error:&syncError];
+					if(syncError != nil)
+						return NO;
+					if(tag == nil)
+					{
+						tag = (Tag*)[Tag objectOfType:@"Tag"];
+						tag.name = remoteTag;
+					}
+					if(![[tag tasks] containsObject:newTask])
+						[tag addTasksObject:newTask];
+					if(![[newTask tags] containsObject:tag])
+						[newTask addTagsObject:tag];
+				}
+			}
+			Folder *folder = [Folder getFolderWithRemoteId:[NSNumber numberWithInteger:remoteTask.folder] error:&syncError];
+			if(syncError != nil)
+				return NO;
+			if(folder != nil)
+			{
+				[folder addTasksObject:newTask];
+				[newTask setFolder:folder];
+			}
+			Context *context = [Context getContextWithRemoteId:[NSNumber numberWithInteger:remoteTask.context] error:&syncError];
+			if(syncError != nil)
+				return NO;
+			if(context != nil)
+			{
+				[context addTasksObject:newTask];
+				[newTask setContext:context];
+			}
+			newTask.priority = [NSNumber numberWithInteger:remoteTask.priority];
+			newTask.isCompleted = (remoteTask.completed != nil ? [NSNumber numberWithInt:1] : [NSNumber numberWithInt:0]);
+			newTask.duration = [NSNumber numberWithInteger:remoteTask.length]; // number of minutes to complete???
+			newTask.note = remoteTask.note;
+			newTask.star = [NSNumber numberWithBool:remoteTask.star];
+			newTask.repeat = [NSNumber numberWithInteger:remoteTask.repeat];
+			//newTask.whatever = remoteTask.status; // wird bei uns nicht verwendet
+			newTask.reminder = [NSNumber numberWithInteger:remoteTask.reminder];
+			//newTask.parentId = remoteTask.parentId; // wird bei uns nicht verwendet
+			newTask.remoteId = [NSNumber numberWithInteger:remoteTask.uid];
+			newTask.lastSyncDate = currentDate;
+		}
+	}
+	
+	// merke alle lokalen Task, zu denen kein remote-Pendant gefunden wurde
+	// zum löschen vor
+	for(int i=0;i<[localTasksWithRemoteId count];i++)
+	{
+		Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
+		localTask.deleted = [NSNumber numberWithInteger:1];
+	}
+	
+	// jetzt fehlen nur noch die noch nie gesyncten lokalen Task
+	// --> toodledo-add
+	NSArray *unsyncedTasks = [Task getUnsyncedTasks:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(Task *localTask in unsyncedTasks)
+	{
+		GtdTask *remoteTask = [[GtdTask alloc] init];
+		remoteTask.uid = -1;
+		remoteTask.title = localTask.name;
+		remoteTask.date_created = localTask.creationDate;
+		remoteTask.date_modified = localTask.lastLocalModification;
+		remoteTask.date_start = localTask.startDateAnnoy;
+		remoteTask.date_due = localTask.dueDate;
+		NSMutableArray *mutableTags = [NSMutableArray array];
+		for(Tag *tag in localTask.tags)
+		{
+			[mutableTags addObject:tag.name];
+		}
+		remoteTask.tags = [NSArray arrayWithArray:mutableTags];
+		remoteTask.folder = [localTask.folder.remoteId integerValue];
+		remoteTask.context = [localTask.context.remoteId integerValue];
+		remoteTask.priority = [localTask.priority integerValue];
+		remoteTask.completed = ([localTask.isCompleted boolValue] ? [NSDate dateWithTimeIntervalSince1970:0] : nil);
+		remoteTask.length = [localTask.duration integerValue];
+		remoteTask.note = localTask.note;
+		remoteTask.star = [localTask.star boolValue];
+		remoteTask.repeat = [localTask.repeat integerValue];
+		remoteTask.reminder = [localTask.reminder integerValue];
+		
+		localTask.remoteId = [NSNumber numberWithInteger:[tdApi addTask:remoteTask error:&syncError]];
+		localTask.lastSyncDate = currentDate;
+		[remoteTask release];
+		if(syncError != nil)
+			return NO;
+	}	
+	
+	// alle task mit deleted == true lokal löschen
+	NSArray *tasksToDeleteLocally = [Task getAllTasksLocallyDeleted:&syncError];
+	if(syncError != nil)
+		return NO;
+	for(int i=0; i<[tasksToDeleteLocally count]; i++)
+	{
+		Task *taskToDeleteLocally = [tasksToDeleteLocally objectAtIndex:i];
+		[Task deleteObjectFromPersistentStore:taskToDeleteLocally error:&syncError];
+		if(syncError != nil)
+			return NO;
+	}
+	
 	return YES;
 }
 
