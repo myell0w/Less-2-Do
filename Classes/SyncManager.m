@@ -67,7 +67,7 @@
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 			// 3. Tasks
-			wasSuccessful = [self syncTasksPreferLocal];
+			wasSuccessful = [self syncTasksMatchDates];
 			if(!wasSuccessful)
 				return [self exitFailure:error];
 		}
@@ -798,6 +798,7 @@
 					//localTask.lastLocalModification = remoteTask.date_modified;
 					localTask.startDateAnnoy = remoteTask.date_start; // ???
 					localTask.dueDate = remoteTask.date_due;
+					localTask.dueTime = remoteTask.date_due;
 					
 					NSMutableArray *tagsToRemove = [NSMutableArray array];
 					for(Tag *tag in localTask.tags)
@@ -887,6 +888,7 @@
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
 			newTask.dueDate = remoteTask.date_due;
+			newTask.dueTime = remoteTask.date_due;
 			
 			for(NSString *remoteTag in remoteTask.tags)
 			{
@@ -946,7 +948,7 @@
 		{
 			Task *localTask = [localTasksWithRemoteId objectAtIndex:i];
 			ALog(@"local task: %@ - date local %@ - date deleted %@", localTask, localTask.lastLocalModification, deletedTask.date_deleted);
-			if(deletedTask.uid == [localTask.remoteId integerValue] && [deletedTask.date_deleted compare:localTask.lastLocalModification] == NSOrderedDescending)
+			if(deletedTask.uid == [localTask.remoteId integerValue] && ([deletedTask.date_deleted compare:localTask.lastLocalModification] == NSOrderedDescending || localTask.lastLocalModification == nil))
 			{
 				localTask.deleted = [NSNumber numberWithBool:YES];
 				[localTasksWithRemoteId removeObject:localTask];
