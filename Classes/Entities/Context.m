@@ -117,8 +117,19 @@
 
 + (NSArray *) getAllContexts:(NSError **)error
 {
-	NSArray* objects = [Context getContextsWithFilterString:@"deleted == NO" error:error];	
-	return objects;
+	NSArray* objects = [Context getContextsWithFilterString:@"deleted == NO" error:error];
+	
+	NSMutableArray *notDeleted = [NSMutableArray array];
+	
+	for(Context *c in objects)
+	{
+		if([c.deleted boolValue] == NO)
+		{
+			[notDeleted addObject:c]; 
+		}
+	}
+	
+	return [NSArray arrayWithArray:notDeleted];
 }
 
 + (NSArray *)getRemoteStoredContexts:(NSError **)error

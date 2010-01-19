@@ -110,7 +110,20 @@
 + (NSArray *) getAllFolders:(NSError **)error
 {
 	NSArray* objects = [Folder getFoldersWithFilterString:@"deleted == NO" error:error];	
-	return objects;
+	
+	NSMutableArray *notDeleted = [NSMutableArray array];
+	
+	for(Folder *f in objects)
+	{
+		if([f.deleted boolValue] == NO)
+		{
+			[notDeleted addObject:f]; 
+		}
+	}
+	
+	return [NSArray arrayWithArray:notDeleted];
+	
+	//return objects;
 }
 
 + (NSArray *)getFolderWithRGB:(NSNumber *)red green:(NSNumber *)green blue:(NSNumber *)blue error:(NSError *)error
