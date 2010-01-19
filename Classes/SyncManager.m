@@ -982,6 +982,11 @@
 			remoteTask.date_modified = localTask.lastLocalModification;
 			remoteTask.date_start = localTask.startDateAnnoy;
 			remoteTask.date_due = localTask.dueDate;
+			if(localTask.dueTime == nil)
+				remoteTask.hasDueTime = NO;
+			else
+				remoteTask.hasDueTime = YES;
+
 			
 			NSMutableArray *mutableTags = [NSMutableArray array];
 			for(Tag *tag in localTask.tags)
@@ -1024,6 +1029,10 @@
 			remoteTask.date_modified = localTask.lastLocalModification;
 			remoteTask.date_start = localTask.startDateAnnoy;
 			remoteTask.date_due = localTask.dueDate;
+			if(localTask.dueTime == nil)
+				remoteTask.hasDueTime = NO;
+			else
+				remoteTask.hasDueTime = YES;
 			ALog(@"remoteTask.date_due: %@, localTask.dueDate: %@, localTask.dueTime: %@", remoteTask.date_due, localTask.dueDate, localTask.dueTime);
 			NSMutableArray *mutableTags = [NSMutableArray array];
 			for(Tag *tag in localTask.tags)
@@ -1064,6 +1073,10 @@
 		remoteTask.date_modified = localTask.lastLocalModification;
 		remoteTask.date_start = localTask.startDateAnnoy;
 		remoteTask.date_due = localTask.dueDate;
+		if(localTask.dueTime == nil)
+			remoteTask.hasDueTime = NO;
+		else
+			remoteTask.hasDueTime = YES;
 		NSMutableArray *mutableTags = [NSMutableArray array];
 		for(Tag *tag in localTask.tags)
 		{
@@ -1236,7 +1249,10 @@
 			remoteTask.date_modified = localTask.lastLocalModification;
 			remoteTask.date_start = localTask.startDateAnnoy;
 			remoteTask.date_due = localTask.dueDate;
-			
+			if(localTask.dueTime == nil)
+				remoteTask.hasDueTime = NO;
+			else
+				remoteTask.hasDueTime = YES;
 			NSMutableArray *mutableTags = [NSMutableArray array];
 			for(Tag *tag in localTask.tags)
 			{
@@ -1278,6 +1294,10 @@
 			remoteTask.date_modified = localTask.lastLocalModification;
 			remoteTask.date_start = localTask.startDateAnnoy;
 			remoteTask.date_due = localTask.dueDate;
+			if(localTask.dueTime == nil)
+				remoteTask.hasDueTime = NO;
+			else
+				remoteTask.hasDueTime = YES;
 			ALog(@"remoteTask.date_due: %@, localTask.dueDate: %@, localTask.dueTime: %@", remoteTask.date_due, localTask.dueDate, localTask.dueTime);
 			NSMutableArray *mutableTags = [NSMutableArray array];
 			for(Tag *tag in localTask.tags)
@@ -1318,6 +1338,10 @@
 		remoteTask.date_modified = localTask.lastLocalModification;
 		remoteTask.date_start = localTask.startDateAnnoy;
 		remoteTask.date_due = localTask.dueDate;
+		if(localTask.dueTime == nil)
+			remoteTask.hasDueTime = NO;
+		else
+			remoteTask.hasDueTime = YES;
 		NSMutableArray *mutableTags = [NSMutableArray array];
 		for(Tag *tag in localTask.tags)
 		{
@@ -1582,6 +1606,10 @@
 		remoteTask.date_modified = localTask.lastLocalModification;
 		remoteTask.date_start = localTask.startDateAnnoy;
 		remoteTask.date_due = localTask.dueDate;
+		if(localTask.dueTime == nil)
+			remoteTask.hasDueTime = NO;
+		else
+			remoteTask.hasDueTime = YES;
 		NSMutableArray *mutableTags = [NSMutableArray array];
 		for(Tag *tag in localTask.tags)
 		{
