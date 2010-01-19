@@ -129,6 +129,8 @@
 -(IBAction)setNone {
 	self.task.dueTime = nil;
 	self.dateLabel.text = @"No Due Time";
+	
+	[self changeDate];
 }
 
 
