@@ -28,6 +28,11 @@
 
 + (BOOL)deleteObject:(BaseManagedObject *)theObject error:(NSError **)error
 {
+	/* show if parameter is set */
+	if(theObject == nil) {
+		*error = [NSError errorWithDomain:DAOErrorDomain code:DAOMissingParametersError userInfo:nil];
+		return NO;
+	}
 	theObject.deleted = [NSNumber numberWithInteger:1];
 	ALog(@"deleted the object: %d", [theObject.deleted integerValue]);
 	return YES;
