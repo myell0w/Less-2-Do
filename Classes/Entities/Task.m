@@ -384,7 +384,7 @@
 + (NSArray *) getTasksWithContext:(CLLocation *)theLocation error:(NSError **)error
 {
 	NSMutableArray *result = [[NSMutableArray alloc] init];
-	[result addObjectsFromArray:[Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and isCompleted == NO and deleted == NO" error:error]];
+	[result addObjectsFromArray:[Task getTasksWithFilterString:@"context != nil and context.gpsX != nil and context.gpsY != nil and context.gpsY != 0 and context.gpsX != 0 and isCompleted == NO and deleted == NO" error:error]];
 	
 	NSMutableArray *sorted = [[[NSMutableArray alloc] init] autorelease];
 	
@@ -406,7 +406,11 @@
 			[locNearest release];
 			[locTask release];
 		}
-		[sorted addObject:[result objectAtIndex:nearest]];
+		if ([((Task *)[result objectAtIndex:nearest]).context hasGps]) {
+			ALog ("%@ - %@",((Task *)[result objectAtIndex:nearest]),((Task *)[result objectAtIndex:nearest]).context); 
+			[sorted addObject:[result objectAtIndex:nearest]];
+		}
+		
 		
 		[result removeObjectAtIndex:nearest];
 	}

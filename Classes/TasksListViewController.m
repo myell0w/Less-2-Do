@@ -238,6 +238,32 @@
 	NSError *error;
 	
 	Task *t = (Task *)[self.tasks objectAtIndex:row];
+
+	//Remove Folder
+	Folder *f = t.folder;
+	if (f != nil)
+		[f removeTasksObject:t];
+	t.folder = nil;
+	
+	//Remove Context
+	Context *c = t.context;
+	if (c != nil)
+		[c removeTasksObject:t];
+	t.context = nil;
+
+	//Remove Tags
+	NSMutableArray *tagsToRemove = [NSMutableArray array];
+	for(Tag *tag in t.tags)
+	{
+		[tagsToRemove addObject:tag];
+	}
+	for(Tag *tag in tagsToRemove)
+	{
+		[tag removeTasksObject:t];
+	}
+	[t removeTags:[NSSet setWithArray:tagsToRemove]];
+	
+	
 	[Task deleteObject:t error:&error];
 	[BaseManagedObject commit];
 	

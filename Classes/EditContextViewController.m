@@ -279,6 +279,7 @@
 		[contextView release];
 		[self dismissModalViewControllerAnimated:YES];
 	}
+	[BaseManagedObject commit];
 }
 
 - (IBAction) textFieldDone:(id)sender {
