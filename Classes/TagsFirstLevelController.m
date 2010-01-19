@@ -159,7 +159,6 @@
 		}
 		[tag removeTasks:[NSSet setWithArray:tasksToRemove]];
 		
-		
 		DLog ("Try to delete Tag '%@'", tag.name);
 		[self.controllersSection1 removeObjectAtIndex:row];
 		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
