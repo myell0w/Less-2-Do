@@ -797,8 +797,15 @@
 					localTask.creationDate = remoteTask.date_created;
 					//localTask.lastLocalModification = remoteTask.date_modified;
 					localTask.startDateAnnoy = remoteTask.date_start; // ???
-					localTask.dueDate = remoteTask.date_due;
-					localTask.dueTime = remoteTask.date_due;
+					
+					if(remoteTask.hasDueDate)
+						localTask.dueDate = remoteTask.date_due;
+					else
+						localTask.dueDate = nil;
+					if(remoteTask.hasDueTime)
+						localTask.dueTime = remoteTask.date_due;
+					else
+						localTask.dueTime = nil;
 					
 					NSMutableArray *tagsToRemove = [NSMutableArray array];
 					for(Tag *tag in localTask.tags)
@@ -887,8 +894,14 @@
 			newTask.creationDate = remoteTask.date_created;
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
-			newTask.dueDate = remoteTask.date_due;
-			newTask.dueTime = remoteTask.date_due;
+			if(remoteTask.hasDueDate)
+				newTask.dueDate = remoteTask.date_due;
+			else
+				newTask.dueDate = nil;
+			if(remoteTask.hasDueTime)
+				newTask.dueTime = remoteTask.date_due;
+			else
+				newTask.dueTime = nil;
 			
 			for(NSString *remoteTag in remoteTask.tags)
 			{
@@ -1153,7 +1166,14 @@
 			newTask.creationDate = remoteTask.date_created;
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
-			newTask.dueDate = remoteTask.date_due;
+			if(remoteTask.hasDueDate)
+				newTask.dueDate = remoteTask.date_due;
+			else
+				newTask.dueDate = nil;
+			if(remoteTask.hasDueTime)
+				newTask.dueTime = remoteTask.date_due;
+			else
+				newTask.dueTime = nil;
 			
 			for(NSString *remoteTag in remoteTask.tags)
 			{
@@ -1394,7 +1414,14 @@
 				localTask.creationDate = remoteTask.date_created;
 				//localTask.lastLocalModification = remoteTask.date_modified;
 				localTask.startDateAnnoy = remoteTask.date_start; // ???
-				localTask.dueDate = remoteTask.date_due;
+				if(remoteTask.hasDueDate)
+					localTask.dueDate = remoteTask.date_due;
+				else
+					localTask.dueDate = nil;
+				if(remoteTask.hasDueTime)
+					localTask.dueTime = remoteTask.date_due;
+				else
+					localTask.dueTime = nil;
 				
 				NSMutableArray *tagsToRemove = [NSMutableArray array];
 				for(Tag *tag in localTask.tags)
@@ -1476,7 +1503,14 @@
 			newTask.creationDate = remoteTask.date_created;
 			newTask.modificationDate = remoteTask.date_modified;
 			newTask.startDateAnnoy = remoteTask.date_start; // ???
-			newTask.dueDate = remoteTask.date_due;
+			if(remoteTask.hasDueDate)
+				newTask.dueDate = remoteTask.date_due;
+			else
+				newTask.dueDate = nil;
+			if(remoteTask.hasDueTime)
+				newTask.dueTime = remoteTask.date_due;
+			else
+				newTask.dueTime = nil;
 			
 			for(NSString *remoteTag in remoteTask.tags)
 			{
