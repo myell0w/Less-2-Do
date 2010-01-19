@@ -173,7 +173,7 @@
 	if(error == nil)
 	{
 		BOOL successful = NO;
-		if(settings.preferToodleDo)
+		if([settings.preferToodleDo boolValue])
 			successful = [syncManager syncWithPreference:SyncPreferRemote error:&error];
 		else
 			successful = [syncManager syncWithPreference:SyncPreferLocal error:&error];
